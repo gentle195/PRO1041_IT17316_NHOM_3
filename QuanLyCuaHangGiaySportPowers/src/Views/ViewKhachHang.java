@@ -78,7 +78,7 @@ public class ViewKhachHang extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         txtDC = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        txtNgaySinh = new com.toedter.calendar.JDateChooser();
+        txtNgaySinh = new org.netbeans.modules.form.InvalidComponent();
         btnUpdate = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
 
@@ -272,6 +272,8 @@ public class ViewKhachHang extends javax.swing.JFrame {
                 .addContainerGap(70, Short.MAX_VALUE))
         );
 
+        txtNgaySinh.getAccessibleContext().setAccessibleName("1111");
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -399,7 +401,7 @@ public class ViewKhachHang extends javax.swing.JFrame {
     private javax.swing.JTextField txtGioiTinh;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtMa;
-    private com.toedter.calendar.JDateChooser txtNgaySinh;
+    private org.netbeans.modules.form.InvalidComponent txtNgaySinh;
     private javax.swing.JTextField txtSDT;
     private javax.swing.JTextField txtTen;
     // End of variables declaration//GEN-END:variables
