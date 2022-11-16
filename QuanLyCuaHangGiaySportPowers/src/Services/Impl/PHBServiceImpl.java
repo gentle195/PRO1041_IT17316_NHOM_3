@@ -5,9 +5,9 @@
 package Services.Impl;
 
 import java.util.List;
-import repository.PBHRepository;
-import service.PBHService;
-import viewmodel.PhieuBaoHanh;
+import Repositories.PBHRepository;
+import Services.PBHService;
+import ViewModels.PhieuBaoHanh;
 
 /**
  *
@@ -50,5 +50,5 @@ public class PHBServiceImpl implements PBHService{
              return  "Xóa thất bại";
         }
     }
-    
+
 }
