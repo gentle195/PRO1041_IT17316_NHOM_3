@@ -264,6 +264,7 @@ public class SanPham_Form extends javax.swing.JFrame {
     }//GEN-LAST:event_btnbAddActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+    
         int row = TbSP.getSelectedRow();
         if (row == -1) {
             JOptionPane.showMessageDialog(this, "Vui lòng chọn Dòng trên table");
@@ -273,7 +274,6 @@ public class SanPham_Form extends javax.swing.JFrame {
         int XacNhan = JOptionPane.showConfirmDialog(this, "xác nhận xóa");
         if (XacNhan == JOptionPane.YES_OPTION) {
             sp_ServiceImpl.DeleteModel(id);
-
         }
         JOptionPane.showMessageDialog(this, "Xóa Thành công");
         LoadTable();
