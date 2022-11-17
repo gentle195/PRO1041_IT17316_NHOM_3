@@ -370,7 +370,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
             nv.setGioiTing(txt_gioiTinh.getText());
             nv.setDiaChi(txt_diaChi.getText());
             nv.setSDT(txt_SDT.getText());
-            nv.setIdCV(((ChucVu) cb_cv.getSelectedItem()).getId());
+            nv.setIdCV(((ChucVu_ViewM) cb_cv.getSelectedItem()).getId());
             java.util.Date date;
             try {
                 date = new SimpleDateFormat("dd-MM-yyyy").parse(txt_ngaySinh.getText());

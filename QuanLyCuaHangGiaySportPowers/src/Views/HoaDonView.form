@@ -40,10 +40,7 @@
                               <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="jLabel2" min="-2" pref="67" max="-2" attributes="0"/>
-                                          <EmptySpace min="227" pref="227" max="-2" attributes="0"/>
-                                      </Group>
+                                      <Component id="jLabel2" alignment="0" min="-2" pref="67" max="-2" attributes="0"/>
                                       <Group type="102" alignment="0" attributes="0">
                                           <EmptySpace min="99" pref="99" max="-2" attributes="0"/>
                                           <Component id="txtNgayNhan" min="-2" pref="195" max="-2" attributes="0"/>
@@ -278,6 +275,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtId">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>

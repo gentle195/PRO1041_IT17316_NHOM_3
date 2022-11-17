@@ -9,7 +9,11 @@ import Services.HoaDonService;
 import Services.Impl.HoaDonServiceimpl;
 
 import ViewModels.HoaDonViewModel;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -18,16 +22,20 @@ import javax.swing.table.DefaultTableModel;
  * @author dinhq
  */
 public class HoaDonView extends javax.swing.JFrame {
- HoaDonService hoaDonService;
+
+    HoaDonService hoaDonService;
+
     /**
      * Creates new form HoaDonView
      */
     public HoaDonView() {
         initComponents();
-         hoaDonService = new HoaDonServiceimpl();
+        hoaDonService = new HoaDonServiceimpl();
         loaddatatable();
     }
-
+    void clear(){
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -87,6 +95,8 @@ public class HoaDonView extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tbHoaDon);
 
         jLabel1.setText("ID");
+
+        txtId.setEditable(false);
 
         jLabel2.setText("Ngày Nhận");
 
@@ -165,9 +175,7 @@ public class HoaDonView extends javax.swing.JFrame {
                                 .addGap(3, 3, 3)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(227, 227, 227))
+                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGroup(layout.createSequentialGroup()
                                             .addGap(99, 99, 99)
                                             .addComponent(txtNgayNhan, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -287,7 +295,7 @@ public class HoaDonView extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-          HoaDon hd = tonghop();
+        HoaDon hd = tonghop();
         if (hd == null) {
             return;
         }
@@ -317,7 +325,7 @@ public class HoaDonView extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-           int row = tbHoaDon.getSelectedRow();
+        int row = tbHoaDon.getSelectedRow();
         if (row == -1) {
             JOptionPane.showMessageDialog(this, "Vui lòng chọn vào trong bảng");
             return;
@@ -337,7 +345,7 @@ public class HoaDonView extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-         HoaDon hd = tonghop1();
+        HoaDon hd = tonghop1();
         if (hd == null) {
             return;
         }
@@ -428,10 +436,43 @@ public class HoaDonView extends javax.swing.JFrame {
     private HoaDon tonghop() {
         HoaDon aN = new HoaDon();
         aN.setMa(txtMa.getText());
-        aN.setNgayTao(txtNgayTao.getText());
-        aN.setNgayThanhToan(txtNgayTT.getText());
-        aN.setNgayShip(txtNgShip.getText());
-        aN.setNgayNhan(txtNgayNhan.getText());
+        java.util.Date date;
+        try {
+            date = new SimpleDateFormat("dd-MM-yyyy").parse(txtNgayTao.getText());
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            String ns = format.format(date);
+            aN.setNgayTao(ns);
+        } catch (ParseException ex) {
+            Logger.getLogger(QuanLyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "Sai định dạng ngày");
+        }
+        try {
+            date = new SimpleDateFormat("dd-MM-yyyy").parse(txtNgayTT.getText());
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            String ns = format.format(date);
+            aN.setNgayThanhToan(ns);
+        } catch (ParseException ex) {
+            Logger.getLogger(QuanLyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "Sai định dạng ngày");
+        }
+        try {
+            date = new SimpleDateFormat("dd-MM-yyyy").parse(txtNgShip.getText());
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            String ns = format.format(date);
+            aN.setNgayShip(ns);
+        } catch (ParseException ex) {
+            Logger.getLogger(QuanLyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "Sai định dạng ngày");
+        }
+        try {
+            date = new SimpleDateFormat("dd-MM-yyyy").parse(txtNgayNhan.getText());
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            String ns = format.format(date);
+            aN.setNgayNhan(ns);
+        } catch (ParseException ex) {
+            Logger.getLogger(QuanLyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "Sai định dạng ngày");
+        }
         aN.setTenNgNhan(txtTenNN.getText());
         aN.setDiaChi(txtDiaChi.getText());
         aN.setSdt(txtSdt.getText());
@@ -447,10 +488,43 @@ public class HoaDonView extends javax.swing.JFrame {
         HoaDon aN = new HoaDon();
         aN.setIdHD(txtId.getText());
         aN.setMa(txtMa.getText());
-        aN.setNgayTao(txtNgayTao.getText());
-        aN.setNgayThanhToan(txtNgayTT.getText());
-        aN.setNgayShip(txtNgShip.getText());
-        aN.setNgayNhan(txtNgayNhan.getText());
+        java.util.Date date;
+        try {
+            date = new SimpleDateFormat("dd-MM-yyyy").parse(txtNgayTao.getText());
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            String ns = format.format(date);
+            aN.setNgayTao(ns);
+        } catch (ParseException ex) {
+            Logger.getLogger(QuanLyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "Sai định dạng ngày");
+        }
+        try {
+            date = new SimpleDateFormat("dd-MM-yyyy").parse(txtNgayTT.getText());
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            String ns = format.format(date);
+            aN.setNgayThanhToan(ns);
+        } catch (ParseException ex) {
+            Logger.getLogger(QuanLyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "Sai định dạng ngày");
+        }
+        try {
+            date = new SimpleDateFormat("dd-MM-yyyy").parse(txtNgShip.getText());
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            String ns = format.format(date);
+            aN.setNgayShip(ns);
+        } catch (ParseException ex) {
+            Logger.getLogger(QuanLyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "Sai định dạng ngày");
+        }
+        try {
+            date = new SimpleDateFormat("dd-MM-yyyy").parse(txtNgayNhan.getText());
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            String ns = format.format(date);
+            aN.setNgayNhan(ns);
+        } catch (ParseException ex) {
+            Logger.getLogger(QuanLyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "Sai định dạng ngày");
+        }
         aN.setTenNgNhan(txtTenNN.getText());
         aN.setDiaChi(txtDiaChi.getText());
         aN.setSdt(txtSdt.getText());
@@ -461,6 +535,5 @@ public class HoaDonView extends javax.swing.JFrame {
         }
         return aN;
     }
-
 
 }
