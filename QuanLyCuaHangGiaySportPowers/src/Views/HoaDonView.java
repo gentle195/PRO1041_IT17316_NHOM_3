@@ -295,6 +295,38 @@ public class HoaDonView extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+         if(txtMa.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập Mã");
+            return;
+        }
+        if(txtNgayTao.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập ngày tạo");
+            return;
+        }
+        if(txtNgayTT.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Vui lòng ngày thanh toán");
+            return;
+        }
+        if(txtNgShip.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập ngày ship");
+            return;
+        }
+        if(txtNgayNhan.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập ngày nhận");
+            return;
+        }
+        if(txtTenNN.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập tên người nhận");
+            return;
+        }
+        if(txtSdt.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập SĐT");
+            return;
+        }
+        if(txtDiaChi.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập địa chỉ");
+            return;
+        }
         HoaDon hd = tonghop();
         if (hd == null) {
             return;
@@ -345,6 +377,38 @@ public class HoaDonView extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+         if(txtMa.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập Mã");
+            return;
+        }
+        if(txtNgayTao.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập ngày tạo");
+            return;
+        }
+        if(txtNgayTT.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Vui lòng ngày thanh toán");
+            return;
+        }
+        if(txtNgShip.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập ngày ship");
+            return;
+        }
+        if(txtNgayNhan.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập ngày nhận");
+            return;
+        }
+        if(txtTenNN.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập tên người nhận");
+            return;
+        }
+        if(txtSdt.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập SĐT");
+            return;
+        }
+        if(txtDiaChi.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập địa chỉ");
+            return;
+        }
         HoaDon hd = tonghop1();
         if (hd == null) {
             return;

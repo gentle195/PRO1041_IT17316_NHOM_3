@@ -223,6 +223,11 @@ public class khachHang extends javax.swing.JFrame {
         });
 
         jButton3.setText("Sửa");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         txtmota.setColumns(20);
         txtmota.setRows(5);
@@ -421,6 +426,10 @@ public class khachHang extends javax.swing.JFrame {
       int index = tbl.getSelectedRow();
         show(index);
     }//GEN-LAST:event_tblMouseClicked
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
