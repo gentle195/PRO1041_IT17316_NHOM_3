@@ -142,7 +142,7 @@ public class Repo {
 
     public String Suacv(ChucVu v) {
         try {
-            String insert = "update ChucVu set MaCV=?,TenCV=?,Mota=? where Id=?";
+            String insert = "update ChucVu set MaCV=?,TenCV=?,Mota=? where IdCV=?";
             PreparedStatement ps = con.prepareStatement(insert);
             ps.setObject(1, v.getMa());
             ps.setObject(2, v.getTen());

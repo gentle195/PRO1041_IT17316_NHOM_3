@@ -72,6 +72,8 @@ public class BaoHanhSP extends javax.swing.JFrame {
 
         jLabel2.setText("ID");
 
+        txtId.setEditable(false);
+
         jLabel3.setText("Mã Phiếu");
 
         jLabel4.setText("Tên Phiếu");

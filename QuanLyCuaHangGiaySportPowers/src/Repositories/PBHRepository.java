@@ -4,9 +4,9 @@
  */
 package Repositories;
 
-import db.DBConnection1;
+import Utilities.DBConnection1;
 import java.util.List;
-import viewmodel.PhieuBaoHanh;
+import ViewModels.PhieuBaoHanh;
 import java.sql.*;
 import java.util.ArrayList;
 
