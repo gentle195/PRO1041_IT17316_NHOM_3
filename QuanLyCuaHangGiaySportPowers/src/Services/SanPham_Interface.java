@@ -18,9 +18,10 @@ public interface SanPham_Interface {
     List<SanPham_ViewModel> getAll();
     
     SanPham_ViewModel addModel(SanPham_ViewModel sp);
-    SanPham_ViewModel DeleteModel(String idSP);
+    String DeleteModel(String idSP);
     SanPham_ViewModel UpdateModel(SanPham_ViewModel sp,String idSP);
     
     
     
 }
+ 
