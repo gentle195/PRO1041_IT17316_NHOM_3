@@ -48,7 +48,7 @@ public class SanPham_ServiceImpl implements SanPham_Interface {
     }
 
     @Override
-    public SanPham_ViewModel DeleteModel(String idSP) {
+    public String DeleteModel(String idSP) {
         sp_Repository.Delete(idSP);
         return DeleteModel(idSP);
 

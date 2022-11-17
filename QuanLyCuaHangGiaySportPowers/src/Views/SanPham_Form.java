@@ -252,12 +252,18 @@ public class SanPham_Form extends javax.swing.JFrame {
     }//GEN-LAST:event_txtMaActionPerformed
 
     private void btnbAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbAddActionPerformed
-        SanPham_ViewModel sp = TongHop();
-        if (sp == null) {
+  if (txtMa.getText().equals("") || txtTen.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Ban Chưa nhập đủ dữ liệu");
             return;
+        } else {
+            SanPham_ViewModel sp = TongHop();
+            if (sp == null) {
+                return;
+            }
+            JOptionPane.showMessageDialog(this, "Them thanh cong");
+            sp_ServiceImpl.addModel(sp);
+            LoadTable();
         }
-        sp_ServiceImpl.addModel(sp);
-        LoadTable();
 
 
     }//GEN-LAST:event_btnbAddActionPerformed
@@ -281,19 +287,30 @@ public class SanPham_Form extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        SanPham_ViewModel sp = TongHop();
-        int row = TbSP.getSelectedRow();
-        if (row == -1) {
-            JOptionPane.showMessageDialog(this, "Vui lòng chọn Dòng trên table");
+        if (txtMa.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Ban Chưa nhập ma");
             return;
         }
-        String idSP = TbSP.getValueAt(row, 0).toString();
-        int XacNhan = JOptionPane.showConfirmDialog(this, "xác nhận sua");
-        if (XacNhan == JOptionPane.YES_OPTION) {
-            sp_ServiceImpl.UpdateModel(sp, idSP);
+        
+        if (txtTen.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Ban Chưa nhập ten");
+            return;
+        } else {
+            
+            SanPham_ViewModel sp = TongHop();
+            int row = TbSP.getSelectedRow();
+            if (row == -1) {
+                JOptionPane.showMessageDialog(this, "Vui lòng chọn Dòng trên table");
+                return;
+            }
+            String idSP = TbSP.getValueAt(row, 0).toString();
+            int XacNhan = JOptionPane.showConfirmDialog(this, "xác nhận sua");
+            if (XacNhan == JOptionPane.YES_OPTION) {
+                sp_ServiceImpl.UpdateModel(sp, idSP);
 
+            }
+            LoadTable();
         }
-        LoadTable();
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void txtTenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenActionPerformed

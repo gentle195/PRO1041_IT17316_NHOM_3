@@ -32,7 +32,6 @@ public class SanPham_Repository {
   
             }
             
-            
         } catch (Exception e) {
         e.printStackTrace();
         }
