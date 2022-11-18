@@ -18,7 +18,7 @@ import java.sql.Connection;
 public class DBcontext {
      private static String URL ="jdbc:sqlserver://localhost:1433;databaseName=QUANLYCUAHANGGIAY";
      private static String USERNAME="sa";
-     private static String PASSWORD ="honkai123";
+     private static String PASSWORD ="123";
 
      static {
          try {

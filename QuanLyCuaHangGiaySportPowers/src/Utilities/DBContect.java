@@ -15,7 +15,7 @@ public class DBContect {
     public static final String PORT = "1433";
     public static final String DBNAME = "QUANLYCUAHANGGIAY";
     public static final String USERNAME = "sa";
-    public static final String PASSWORD = "honkai123";
+    public static final String PASSWORD = "123";
 
     /**
      * Get connection to MSSQL Server
