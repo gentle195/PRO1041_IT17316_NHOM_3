@@ -22,7 +22,7 @@ public class DBConnection1 {
 
     public static final String USERNAME = "sa";
 
-    public static final String PASSWORD = "i123";
+    public static final String PASSWORD = "123";
 
     public static Connection getConnection() {
 
