@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class KhachHangRepository {
+    
 
     public List<KhachHang> getAll() {
         String query = "SELECT * FROM KhachHang";

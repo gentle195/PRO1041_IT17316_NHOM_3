@@ -11,7 +11,7 @@ import java.util.Date;
  * @author trxua
  */
 public class KhachHang {
-
+    
     private String ID;
     private String ma;
     private String hoTen;
@@ -115,4 +115,5 @@ public class KhachHang {
         return new Object[]{ID, ma, hoTen, gioiTinh, ngaySinh, sdt, diaChi};
     }
 
+    
 }
