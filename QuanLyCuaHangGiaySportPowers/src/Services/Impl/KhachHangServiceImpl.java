@@ -56,6 +56,7 @@ public class KhachHangServiceImpl implements KhachHangService {
         } else {
             return "Them that bai";
         }
+
     }
 
     @Override
@@ -69,9 +70,6 @@ public class KhachHangServiceImpl implements KhachHangService {
         if (kh.getSdt().equals("")) {
             return "Sđt null";
         }
-//        if (kh.getSdt().matches(".*[^0-9].*") && kh.getSdt().length() == 10) {
-//            return "Sđt sai";
-//        }
         if (kh.getGioiTinh().equals("")) {
             return "gt null";
         }
@@ -113,6 +111,10 @@ public class KhachHangServiceImpl implements KhachHangService {
 //        } else {
 //            return "Them that bai";
 //        }
+    @Override
+    public List<KhachHang> search(String ten) {
+        return khachHangRepository.search(ten);
+    }
 }
 
 //    @Override
