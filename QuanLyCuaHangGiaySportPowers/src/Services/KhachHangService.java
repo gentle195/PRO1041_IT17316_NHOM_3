@@ -15,6 +15,8 @@ public interface KhachHangService {
 
     List<KhachHang> getAll();
 
+    List<KhachHang> search(String ten);
+
     String create(KhachHang kh);
 
     String update(KhachHang kh, String ma);
