@@ -24,12 +24,14 @@ public class ViewKhachHang extends javax.swing.JFrame {
     private List<KhachHang> listKH = new ArrayList<>();
 
     public ViewKhachHang() {
+        
         initComponents();
         tblKH.setModel(dtm);
         Object[] header = {"ID", "Mã", "Họ tên", "Giới tính", "Ngày sinh", "SĐT", "Địa chỉ"};
         dtm.setColumnIdentifiers(header);
         listKH = service.getAll();
         showData(listKH);
+        
     }
 
     private void showData(List<KhachHang> list) {
