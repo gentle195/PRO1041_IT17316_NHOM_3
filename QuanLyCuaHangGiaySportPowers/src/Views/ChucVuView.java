@@ -222,18 +222,24 @@ public class ChucVuView extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         int vt = tb_bang.getSelectedRow();
-
-        if (vt >= 0) {
-            JOptionPane.showMessageDialog(this, se.Xoacv(tb_bang.getValueAt(vt, 1).toString()));
-            loadbang();
-            clear();
-        }else {
-            JOptionPane.showMessageDialog(this, "chọn sản phẩm để xóa");
-    }
+        if (vt == -1) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn vào bảng");
+            return;
+        }
+        String ma = tb_bang.getValueAt(vt, 1).toString();
+        int tb = JOptionPane.showConfirmDialog(this, "Muốn xoá", "Thông báo", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION);
+        if (tb == JOptionPane.YES_OPTION) {
+            se.Xoacv(ma);
+            JOptionPane.showMessageDialog(this, "Xoá thành công");
+        } else if (tb == JOptionPane.NO_OPTION) {
+            return;
+        } else {
+            return;
+        }
+        loadbang();
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    
-        
+
     private void tb_bangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_bangMouseClicked
         int vt = tb_bang.getSelectedRow();
 
@@ -245,7 +251,7 @@ public class ChucVuView extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        QuanLyNhanVien ql=new QuanLyNhanVien();
+        QuanLyNhanVien ql = new QuanLyNhanVien();
         ql.setVisible(true);
         this.dispose();
 

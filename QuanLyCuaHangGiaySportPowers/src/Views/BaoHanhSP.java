@@ -27,7 +27,7 @@ public class BaoHanhSP extends javax.swing.JFrame {
         initComponents();
         
         jTablePBH.setModel(dtm);
-        String a[] = {"id", "mã", "tên", "thời gian", "Mô tả"};
+        String a[] = {"id", "mã", "tên", "Số Năm", "Mô tả"};
         dtm.setColumnIdentifiers(a);
         showData(ql.getAll());
     }
@@ -80,7 +80,7 @@ public class BaoHanhSP extends javax.swing.JFrame {
 
         jLabel5.setText("Mô tả");
 
-        jLabel6.setText("Thời gian");
+        jLabel6.setText("Số Năm");
 
         btnXoa.setText("Xóa");
         btnXoa.addActionListener(new java.awt.event.ActionListener() {
@@ -236,7 +236,7 @@ public class BaoHanhSP extends javax.swing.JFrame {
         int row = jTablePBH.getSelectedRow();
         PhieuBaoHanh pbh = ql.getAll().get(row);
         txtId.setText(pbh.getId());
-        txtmaPhieu.setText(pbh.getTenPhieu());
+        txtmaPhieu.setText(pbh.getMaPhieu());
         txtTenPhieu.setText(pbh.getTenPhieu());
         txtThoiGian.setText(String.valueOf(pbh.getThoiGianBaoHanh()));
         txtMoTa.setText(pbh.getMota());

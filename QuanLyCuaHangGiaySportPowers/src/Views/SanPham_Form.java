@@ -4,6 +4,7 @@
  */
 package Views;
 
+import DomainModels.SanPham_DomainModel;
 import Services.Impl.SanPham_ServiceImpl;
 import ViewModels.SanPham_ViewModel;
 
@@ -41,8 +42,8 @@ public class SanPham_Form extends javax.swing.JFrame {
         }
     }
 
-    private SanPham_ViewModel TongHop() {
-        SanPham_ViewModel sp = new SanPham_ViewModel();
+    private SanPham_DomainModel TongHop() {
+        SanPham_DomainModel sp = new SanPham_DomainModel();
         sp.setMaSP(txtMa.getText());
         sp.setTenSP(txtTen.getText());
         sp.setMoTa(txtMoTa.getText());
@@ -252,11 +253,11 @@ public class SanPham_Form extends javax.swing.JFrame {
     }//GEN-LAST:event_txtMaActionPerformed
 
     private void btnbAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbAddActionPerformed
-  if (txtMa.getText().equals("") || txtTen.getText().equals("")) {
+        if (txtMa.getText().equals("") || txtTen.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Ban Chưa nhập đủ dữ liệu");
             return;
         } else {
-            SanPham_ViewModel sp = TongHop();
+            SanPham_DomainModel sp = TongHop();
             if (sp == null) {
                 return;
             }
@@ -278,10 +279,10 @@ public class SanPham_Form extends javax.swing.JFrame {
         int XacNhan = JOptionPane.showConfirmDialog(this, "xác nhận xóa");
         if (XacNhan == JOptionPane.YES_OPTION) {
             sp_ServiceImpl.DeleteModel(id);
-
+            JOptionPane.showMessageDialog(this, "Xóa Thành công");
+            LoadTable();
         }
-        JOptionPane.showMessageDialog(this, "Xóa Thành công");
-        LoadTable();
+        
 
 // TODO add your handling code here:
     }//GEN-LAST:event_btnDeleteActionPerformed
@@ -291,13 +292,13 @@ public class SanPham_Form extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Ban Chưa nhập ma");
             return;
         }
-        
+
         if (txtTen.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Ban Chưa nhập ten");
             return;
         } else {
-            
-            SanPham_ViewModel sp = TongHop();
+
+            SanPham_DomainModel sp = TongHop();
             int row = TbSP.getSelectedRow();
             if (row == -1) {
                 JOptionPane.showMessageDialog(this, "Vui lòng chọn Dòng trên table");

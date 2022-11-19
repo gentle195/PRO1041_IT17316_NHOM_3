@@ -5,6 +5,7 @@
 package Services.Impl;
 
 
+import DomainModels.SanPham_DomainModel;
 import Repositories.SanPham_Repository;
 
 import Services.SanPham_Interface;
@@ -35,13 +36,13 @@ public class SanPham_ServiceImpl implements SanPham_Interface {
     
     
     @Override
-    public SanPham_ViewModel addModel(SanPham_ViewModel sp) {
+    public SanPham_DomainModel addModel(SanPham_DomainModel sp) {
         sp_Repository.add(sp);
         return sp;
     }
 
     @Override
-    public SanPham_ViewModel UpdateModel(SanPham_ViewModel sp, String idSP) {
+    public SanPham_DomainModel UpdateModel(SanPham_DomainModel sp, String idSP) {
         sp_Repository.Update(idSP, sp);
         return sp;
 
@@ -50,7 +51,7 @@ public class SanPham_ServiceImpl implements SanPham_Interface {
     @Override
     public String DeleteModel(String idSP) {
         sp_Repository.Delete(idSP);
-        return DeleteModel(idSP);
+        return idSP;
 
     }
     
