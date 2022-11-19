@@ -348,14 +348,21 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         int vt = tb_bang.getSelectedRow();
-
-        if (vt >= 0) {
-            JOptionPane.showMessageDialog(this, se.XoaNV(tb_bang.getValueAt(vt, 1).toString()));
-            row();
-            clear();
-        } else {
-            JOptionPane.showMessageDialog(this, "chọn để xóa nhân viên");
+        if (vt == -1) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn vào bảng");
+            return;
         }
+        String ma = tb_bang.getValueAt(vt, 1).toString();
+        int tb = JOptionPane.showConfirmDialog(this, "Muốn xoá", "Thông báo", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION);
+        if (tb == JOptionPane.YES_OPTION) {
+            se.XoaNV(ma);
+            JOptionPane.showMessageDialog(this, "Xoá thành công");
+        } else if (tb == JOptionPane.NO_OPTION) {
+            return;
+        } else {
+            return;
+        }
+       row();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

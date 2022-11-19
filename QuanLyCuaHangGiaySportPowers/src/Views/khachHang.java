@@ -139,6 +139,7 @@ public class khachHang extends javax.swing.JFrame {
 
         jLabel9.setText("Thành phố");
 
+        txtid.setEditable(false);
         txtid.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtidActionPerformed(evt);

@@ -5,6 +5,7 @@
 package Repositories;
 
 
+import DomainModels.SanPham_DomainModel;
 import Utilities.DBContect;
 import ViewModels.SanPham_ViewModel;
 
@@ -38,7 +39,7 @@ public class SanPham_Repository {
         return sp;
     }
     
-    public void add(SanPham_ViewModel sp){
+    public void add(SanPham_DomainModel sp){
         try {
             String sql = "Insert into SanPham(MaSP,TenSP,MoTa)" +"values(?,?,?)";
             Connection con = DBContect.getConnection();
@@ -59,13 +60,13 @@ public class SanPham_Repository {
             Connection con =DBContect.getConnection();
             PreparedStatement ptm = con.prepareStatement(sql);
             ptm.setString(1,IdSP);
-            
             ptm.executeUpdate();             
         } catch (Exception e) {
+            e.printStackTrace();
         }
     }
     
-    public void Update(String IdSP, SanPham_ViewModel sp){
+    public void Update(String IdSP, SanPham_DomainModel sp){
         try {
             String sql= "update SanPham set MaSP=?,TenSP=?, MoTa=? where IdSP=?";
             Connection con = DBContect.getConnection();

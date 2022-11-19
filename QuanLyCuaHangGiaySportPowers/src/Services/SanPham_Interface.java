@@ -4,8 +4,7 @@
  */
 package Services;
 
-
-
+import DomainModels.SanPham_DomainModel;
 import ViewModels.SanPham_ViewModel;
 
 import java.util.List;
@@ -15,13 +14,13 @@ import java.util.List;
  * @author TUAN ANH
  */
 public interface SanPham_Interface {
+
     List<SanPham_ViewModel> getAll();
-    
-    SanPham_ViewModel addModel(SanPham_ViewModel sp);
+
+    SanPham_DomainModel addModel(SanPham_DomainModel sp);
+
     String DeleteModel(String idSP);
-    SanPham_ViewModel UpdateModel(SanPham_ViewModel sp,String idSP);
-    
-    
-    
+
+    SanPham_DomainModel UpdateModel(SanPham_DomainModel sp, String idSP);
+
 }
- 

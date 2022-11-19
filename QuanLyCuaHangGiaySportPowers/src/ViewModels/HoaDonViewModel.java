@@ -4,21 +4,20 @@
  */
 package ViewModels;
 
+import DomainModels.*;
+
 /**
  *
  * @author dinhq
  */
 public class HoaDonViewModel {
-    private String idHD,  Ma, NgayTao, NgayThanhToan, NgayShip, NgayNhan, tenNgNhan, diaChi, sdt;
-    private int TinhTrang;
+    private String idHD, Ma, NgayTao,NgayDat, NgayThanhToan, NgayShip, NgayNhan, tenNgNhan, diaChi, sdt;
 
-    public HoaDonViewModel() {
-    }
-
-    public HoaDonViewModel(String idHD, String Ma, String NgayTao, String NgayThanhToan, String NgayShip, String NgayNhan, String tenNgNhan, String diaChi, String sdt, int TinhTrang) {
+    public HoaDonViewModel(String idHD, String Ma, String NgayTao, String NgayDat, String NgayThanhToan, String NgayShip, String NgayNhan, String tenNgNhan, String diaChi, String sdt, int TinhTrang) {
         this.idHD = idHD;
         this.Ma = Ma;
         this.NgayTao = NgayTao;
+        this.NgayDat = NgayDat;
         this.NgayThanhToan = NgayThanhToan;
         this.NgayShip = NgayShip;
         this.NgayNhan = NgayNhan;
@@ -28,6 +27,7 @@ public class HoaDonViewModel {
         this.TinhTrang = TinhTrang;
     }
 
+    
     public String getIdHD() {
         return idHD;
     }
@@ -50,6 +50,14 @@ public class HoaDonViewModel {
 
     public void setNgayTao(String NgayTao) {
         this.NgayTao = NgayTao;
+    }
+
+    public String getNgayDat() {
+        return NgayDat;
+    }
+
+    public void setNgayDat(String NgayDat) {
+        this.NgayDat = NgayDat;
     }
 
     public String getNgayThanhToan() {
@@ -107,6 +115,13 @@ public class HoaDonViewModel {
     public void setTinhTrang(int TinhTrang) {
         this.TinhTrang = TinhTrang;
     }
+    private int TinhTrang;
+
+    public HoaDonViewModel() {
+    }
+
+   
+
     
     
 }

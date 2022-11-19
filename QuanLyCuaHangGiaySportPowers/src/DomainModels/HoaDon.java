@@ -9,19 +9,20 @@ package DomainModels;
  * @author dinhq
  */
 public class HoaDon {
-    private String idHD, idKH, idNV, idPT, Ma, NgayTao, NgayThanhToan, NgayShip, NgayNhan, tenNgNhan, diaChi, sdt;
+    private String idHD, idKH, idNV, idPT, Ma, NgayTao,NgayDat, NgayThanhToan, NgayShip, NgayNhan, tenNgNhan, diaChi, sdt;
     private int TinhTrang;
 
     public HoaDon() {
     }
 
-    public HoaDon(String idHD, String idKH, String idNV, String idPT, String Ma, String NgayTao, String NgayThanhToan, String NgayShip, String NgayNhan, String tenNgNhan, String diaChi, String sdt, int TinhTrang) {
+    public HoaDon(String idHD, String idKH, String idNV, String idPT, String Ma, String NgayTao, String NgayDat, String NgayThanhToan, String NgayShip, String NgayNhan, String tenNgNhan, String diaChi, String sdt, int TinhTrang) {
         this.idHD = idHD;
         this.idKH = idKH;
         this.idNV = idNV;
         this.idPT = idPT;
         this.Ma = Ma;
         this.NgayTao = NgayTao;
+        this.NgayDat = NgayDat;
         this.NgayThanhToan = NgayThanhToan;
         this.NgayShip = NgayShip;
         this.NgayNhan = NgayNhan;
@@ -79,6 +80,14 @@ public class HoaDon {
         this.NgayTao = NgayTao;
     }
 
+    public String getNgayDat() {
+        return NgayDat;
+    }
+
+    public void setNgayDat(String NgayDat) {
+        this.NgayDat = NgayDat;
+    }
+
     public String getNgayThanhToan() {
         return NgayThanhToan;
     }
@@ -134,6 +143,7 @@ public class HoaDon {
     public void setTinhTrang(int TinhTrang) {
         this.TinhTrang = TinhTrang;
     }
+
     
     
 }
