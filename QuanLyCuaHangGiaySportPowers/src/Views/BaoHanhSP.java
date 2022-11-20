@@ -27,7 +27,7 @@ public class BaoHanhSP extends javax.swing.JFrame {
         initComponents();
         
         jTablePBH.setModel(dtm);
-        String a[] = {"id", "mã", "tên", "Số Năm", "Mô tả"};
+        String a[] = {"id", "mã", "tên", "Số Năm BH", "Mô tả"};
         dtm.setColumnIdentifiers(a);
         showData(ql.getAll());
     }
@@ -80,7 +80,7 @@ public class BaoHanhSP extends javax.swing.JFrame {
 
         jLabel5.setText("Mô tả");
 
-        jLabel6.setText("Số Năm");
+        jLabel6.setText("Số Năm BH");
 
         btnXoa.setText("Xóa");
         btnXoa.addActionListener(new java.awt.event.ActionListener() {

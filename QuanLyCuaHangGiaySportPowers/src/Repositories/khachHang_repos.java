@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import DomainModels.khachHang_model;
 import Utilities.JDBC_Helper;
-import Repositories.ikhachHang;
+import Services.ikhachHang;
 /**
  *
  * @author Admin
