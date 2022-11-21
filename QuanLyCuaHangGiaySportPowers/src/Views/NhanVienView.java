@@ -36,7 +36,6 @@ public class NhanVienView extends javax.swing.JFrame {
         btnBanHang2 = new javax.swing.JButton();
         btnHoaDon = new javax.swing.JButton();
         btnSanPham = new javax.swing.JButton();
-        btnNhanVien = new javax.swing.JButton();
         btnKhachHang = new javax.swing.JButton();
         btnThongKe = new javax.swing.JButton();
         btnDangXuat = new javax.swing.JButton();
@@ -400,17 +399,6 @@ public class NhanVienView extends javax.swing.JFrame {
             }
         });
         pnlMenu2.add(btnSanPham);
-
-        btnNhanVien.setBackground(new java.awt.Color(204, 255, 255));
-        btnNhanVien.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
-        btnNhanVien.setText("Nhân viên");
-        btnNhanVien.setPreferredSize(new java.awt.Dimension(170, 50));
-        btnNhanVien.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNhanVienActionPerformed(evt);
-            }
-        });
-        pnlMenu2.add(btnNhanVien);
 
         btnKhachHang.setBackground(new java.awt.Color(204, 255, 255));
         btnKhachHang.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
@@ -2170,7 +2158,7 @@ public class NhanVienView extends javax.swing.JFrame {
         pnlSanPham.setLayout(pnlSanPhamLayout);
         pnlSanPhamLayout.setHorizontalGroup(
             pnlSanPhamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1141, Short.MAX_VALUE)
+            .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1141, Short.MAX_VALUE)
         );
         pnlSanPhamLayout.setVerticalGroup(
             pnlSanPhamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2877,7 +2865,7 @@ public class NhanVienView extends javax.swing.JFrame {
         jPanel12.setLayout(jPanel12Layout);
         jPanel12Layout.setHorizontalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel23, javax.swing.GroupLayout.DEFAULT_SIZE, 1141, Short.MAX_VALUE)
+            .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, 1141, Short.MAX_VALUE)
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3317,7 +3305,7 @@ public class NhanVienView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(103, 103, 103))
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1139, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -3327,7 +3315,7 @@ public class NhanVienView extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel27, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE))
+                    .addComponent(jPanel27, javax.swing.GroupLayout.PREFERRED_SIZE, 111, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -3634,12 +3622,6 @@ public class NhanVienView extends javax.swing.JFrame {
         CardLayout layout = (CardLayout) pnlCacGiaoDien.getLayout();
         layout.show(pnlCacGiaoDien, "cardSanPham");
     }//GEN-LAST:event_btnSanPhamActionPerformed
-
-    private void btnNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNhanVienActionPerformed
-        // TODO add your handling code here:
-        CardLayout layout = (CardLayout) pnlCacGiaoDien.getLayout();
-        layout.show(pnlCacGiaoDien, "cardNhanVien");
-    }//GEN-LAST:event_btnNhanVienActionPerformed
 
     private void btnKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhachHangActionPerformed
         // TODO add your handling code here:
@@ -3982,7 +3964,6 @@ public class NhanVienView extends javax.swing.JFrame {
     private javax.swing.JButton btnDangXuat;
     private javax.swing.JButton btnHoaDon;
     private javax.swing.JButton btnKhachHang;
-    private javax.swing.JButton btnNhanVien;
     private javax.swing.JButton btnSanPham;
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnSua1;
