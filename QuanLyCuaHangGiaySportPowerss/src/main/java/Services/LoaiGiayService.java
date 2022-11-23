@@ -3,7 +3,7 @@ package Services;
 import DomainModels.LoaiGiay;
 import Repositories.LoaiGiayRepository;
 
-import Services.Impl.LoaiGiayServiceInterface;
+import Services.Interface.LoaiGiayServiceInterface;
 import ViewModels.LoaiGiayViewModel;
 import java.util.ArrayList;
 import java.util.List;

@@ -5,8 +5,8 @@ import DomainModels.Size;
 import Repositories.LoaiGiayRepository;
 import Repositories.SizeRepository;
 
-import Services.Impl.LoaiGiayServiceInterface;
-import Services.Impl.SizeServiceInterface;
+import Services.Interface.LoaiGiayServiceInterface;
+import Services.Interface.SizeServiceInterface;
 import ViewModels.LoaiGiayViewModel;
 import ViewModels.SizeViewModel;
 import java.util.ArrayList;

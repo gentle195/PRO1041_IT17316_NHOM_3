@@ -5,7 +5,7 @@ package Services;
 
 import DomainModels.DeGiay;
 import Repositories.DeGiayRepository;
-import Services.Impl.DeGiayServiceInterface;
+import Services.Interface.DeGiayServiceInterface;
 import ViewModels.DeGiayViewModel;
 import java.util.ArrayList;
 import java.util.List;

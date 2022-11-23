@@ -10,7 +10,7 @@ import DomainModels.HangGiay;
 
 import java.util.ArrayList;
 import java.util.List;
-import Services.Impl.HangGiayServiceInterface;
+import Services.Interface.HangGiayServiceInterface;
 
 /**
  *

@@ -4,7 +4,7 @@ package Services;
 import ViewModels.SanPhamViewModel;
 import Repositories.SanPhamRepository;
 import DomainModels.SanPham;
-import Services.Impl.SanPhamServiceInterface;
+import Services.Interface.SanPhamServiceInterface;
 import java.util.ArrayList;
 import java.util.List;
 
