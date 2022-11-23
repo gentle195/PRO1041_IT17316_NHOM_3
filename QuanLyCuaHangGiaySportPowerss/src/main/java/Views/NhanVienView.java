@@ -3719,6 +3719,9 @@ public class NhanVienView extends javax.swing.JFrame {
         if (check != JOptionPane.YES_OPTION) {
             return;
         }
+        giaoDienDN gd=new giaoDienDN();
+        gd.setVisible(true);
+        this.dispose();
         JOptionPane.showMessageDialog(this, "Bạn đã đăng xuất");
     }//GEN-LAST:event_btnDangXuatActionPerformed
 
