@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class KhachHangRepository {
-    
 
     public List<KhachHang> getAll() {
         String query = "SELECT * FROM KhachHang";
@@ -52,8 +51,7 @@ public class KhachHangRepository {
 //        }
 //        return null;
 //    }
-    
-      public List<KhachHang> search(String ten) {
+    public List<KhachHang> search(String ten) {
         String query = "SELECT * FROM KhachHang where hoten =?";
         try (Connection conn = DBConnection.getConnection();
                 PreparedStatement ps = conn.prepareStatement(query)) {
@@ -71,7 +69,7 @@ public class KhachHangRepository {
         }
         return null;
     }
-      
+
     public Boolean create(KhachHang kh) {
         String query = "INSERT INTO [dbo].[KhachHang] "
                 + "           ([MaKH] "
