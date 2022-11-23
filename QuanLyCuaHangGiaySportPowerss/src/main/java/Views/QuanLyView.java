@@ -185,19 +185,22 @@ public class QuanLyView extends javax.swing.JFrame {
 //        }
 //
 //    }
-   private void loadTableChiTietSP() {
+    private void loadTableChiTietSP() {
         DefaultTableModel modeltb = new DefaultTableModel();
         List<ChiTietSPViewModel> Sz = chiTietSPService.all();
         modeltb = (DefaultTableModel) tblQLSP.getModel();
         modeltb.setRowCount(0);
         for (ChiTietSPViewModel x : Sz) {
             modeltb.addRow(new Object[]{
-                x.getIdCTSP(), x.getSanPham(),  x.getSanPham(), x.getSize(), x.getLoaigiay(), x.getHangGiay(), x.getDeGiay(),
-                x.getSoLuong(), x.getDonGia(), x.getTrongLuong(), x.getTrangThai(), x.getMoTa()
+                x.getIdCTSP(), x.getSanPham().getMaSP(), x.getSanPham().getTenSP(), x.getSize().getSoSize(), x.getLoaigiay().getTenLoai(), x.getHangGiay().getTenHang(), x.getDeGiay().getLoaiDe(),
+                x.getChatlieu().getTenCL(), x.getSoLuong(), x.getDonGia(), x.getTrongLuong(),
+                x.getTrangThai(),
+                 x.getMoTa()
             });
 
         }
     }
+
     private void loadCBMaSP() {
         DefaultComboBoxModel cb = new DefaultComboBoxModel();
         List<SanPhamViewModel> sp = SanPhamService.all();
@@ -1237,29 +1240,29 @@ public class QuanLyView extends javax.swing.JFrame {
 
         tblQLSP.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Mã Sản Phẩm", "Tên Sản Phẩm", "Chất Liệu", "SIZE", "Loại", "Hãng", "Đê Giày", "Trọng Lượng", "Số Lượng", "Trạng Thái", "Mô Tả"
+                "ID", "Mã Sản Phẩm", "Tên Sản Phẩm", "SIZE", "Loại", "Hãng", "Đê Giày", "Chất Liệu", "Số Lượng", "Ðơn Giá", "Trọng Lượng", "Trạng Thái", "Mô Tả"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, true, false, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -1267,6 +1270,11 @@ public class QuanLyView extends javax.swing.JFrame {
             }
         });
         tblQLSP.setGridColor(new java.awt.Color(204, 255, 255));
+        tblQLSP.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblQLSPMouseClicked(evt);
+            }
+        });
         jScrollPane12.setViewportView(tblQLSP);
 
         txtSearch1.setText("Search");
@@ -1420,10 +1428,20 @@ public class QuanLyView extends javax.swing.JFrame {
         btnXoa.setBackground(new java.awt.Color(204, 204, 204));
         btnXoa.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnXoa.setText("Xóa thông tin");
+        btnXoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaActionPerformed(evt);
+            }
+        });
 
         btnSua.setBackground(new java.awt.Color(204, 204, 204));
         btnSua.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnSua.setText("Sửa thông tin");
+        btnSua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSuaActionPerformed(evt);
+            }
+        });
 
         lblMaSp1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblMaSp1.setText("SIZE");
@@ -1458,6 +1476,7 @@ public class QuanLyView extends javax.swing.JFrame {
         lblMaSp6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblMaSp6.setText("ID");
 
+        txtID.setEditable(false);
         txtID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtIDActionPerformed(evt);
@@ -4279,9 +4298,9 @@ public class QuanLyView extends javax.swing.JFrame {
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
-       
+
         ChiTietSP ctsp = new ChiTietSP();
-     
+
 //        ctsp.set(UUID.fromString(cbTenSP.getSelectedItem().toString()));
         ctsp.setSanPham((SanPham) cbCL.getSelectedItem());
         ctsp.setHangGiay((HangGiay) cbHang.getSelectedItem());
@@ -4292,12 +4311,12 @@ public class QuanLyView extends javax.swing.JFrame {
         ctsp.setTrongLuong(Integer.parseInt(txtTrongLuong.getText()));
         ctsp.setSoLuong(Integer.parseInt(txtSoLuongSP.getText()));
         if (rdNam.isSelected()) {
-                ctsp.setTrangThai(0);
-            } else if (rdNu.isSelected()) {
-                ctsp.setTrangThai(1);
-            } 
+            ctsp.setTrangThai(0);
+        } else if (rdNu.isSelected()) {
+            ctsp.setTrangThai(1);
+        }
         ctsp.setMoTa(txtMotaChiTietSP.getText());
-    
+
         loadTableChiTietSP();
     }//GEN-LAST:event_btnThemActionPerformed
 
@@ -4413,6 +4432,7 @@ public class QuanLyView extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         loadTableSanPham();
+        loadCBMaSP();
         loadCBTenSP();
     }//GEN-LAST:event_btnThem1ActionPerformed
 
@@ -4572,6 +4592,8 @@ public class QuanLyView extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         loadTableSanPham();
+        loadCBMaSP();
+        loadCBTenSP();
     }//GEN-LAST:event_btnSua1ActionPerformed
 
     private void btnXoa1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoa1ActionPerformed
@@ -4587,6 +4609,8 @@ public class QuanLyView extends javax.swing.JFrame {
             e.printStackTrace();
         }
         loadTableSanPham();
+        loadCBMaSP();
+        loadCBTenSP();
     }//GEN-LAST:event_btnXoa1ActionPerformed
 
     private void btnSua2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSua2ActionPerformed
@@ -4603,6 +4627,7 @@ public class QuanLyView extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         loadTableChatLieu();
+        loadCBChatLieu();
     }//GEN-LAST:event_btnSua2ActionPerformed
 
     private void btnXoa2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoa2ActionPerformed
@@ -4652,6 +4677,7 @@ public class QuanLyView extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         loadTableHangGiay();
+        loadCBHang();
     }//GEN-LAST:event_btnSua3ActionPerformed
 
     private void btnXoa3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoa3ActionPerformed
@@ -4667,6 +4693,7 @@ public class QuanLyView extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         loadTableHangGiay();
+        loadCBHang();
     }//GEN-LAST:event_btnXoa3ActionPerformed
 
     private void txtIDDeGiayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDDeGiayActionPerformed
@@ -4714,6 +4741,7 @@ public class QuanLyView extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         loadTableDeGiay();
+        loadCBDe();
     }//GEN-LAST:event_btnSua6ActionPerformed
 
     private void btnXoa6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoa6ActionPerformed
@@ -4729,6 +4757,7 @@ public class QuanLyView extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         loadTableDeGiay();
+        loadCBDe();
     }//GEN-LAST:event_btnXoa6ActionPerformed
 
     private void tbDeGiayMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDeGiayMouseClicked
@@ -4753,6 +4782,7 @@ public class QuanLyView extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         loadTableLoaiGiay();
+        loadCBLoai();
     }//GEN-LAST:event_btnSua4ActionPerformed
 
     private void btnXoa4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoa4ActionPerformed
@@ -4768,6 +4798,7 @@ public class QuanLyView extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         loadTableLoaiGiay();
+        loadCBLoai();
     }//GEN-LAST:event_btnXoa4ActionPerformed
 
     private void tbLoaiGiayMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbLoaiGiayMouseClicked
@@ -4791,7 +4822,7 @@ public class QuanLyView extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         loadTableSizeGiay();
-
+        loadCBSize();
     }//GEN-LAST:event_btnSua5ActionPerformed
 
     private void tbSIZEMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbSIZEMouseClicked
@@ -4814,6 +4845,7 @@ public class QuanLyView extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         loadTableSizeGiay();
+        loadCBSize();
     }//GEN-LAST:event_btnXoa5ActionPerformed
 
     private void cbTenSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTenSPActionPerformed
@@ -4831,6 +4863,106 @@ public class QuanLyView extends javax.swing.JFrame {
     private void cbMaSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMaSPActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbMaSPActionPerformed
+
+    private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSuaActionPerformed
+
+    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnXoaActionPerformed
+
+    private void tblQLSPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblQLSPMouseClicked
+        // TODO add your handling code here:
+        List<SizeViewModel> Sz = sizeService.all();
+        List<LoaiGiayViewModel> lg = loaiGiayService.all();
+        List<DeGiayViewModel> dg = deGiayService.all();
+        List<HangGiayViewModel> hang = hangGiayService.all();
+        List<ChatLieuViewModel> cl = chatLieuService.all();
+        List<SanPhamViewModel> sp = SanPhamService.all();
+        int row = tblQLSP.getSelectedRow();
+        txtID.setText(tblQLSP.getValueAt(row, 0).toString());
+        if (tblQLSP.getValueAt(row, 1) == null) {
+            JOptionPane.showMessageDialog(this, "Nhân viên không có chức vụ ");
+            cbMaSP.setSelectedIndex(0);
+        } else {
+            for (int j = 0; j < sp.size(); j++) {
+                if (sp.get(j).getMaSP().equalsIgnoreCase(tblQLSP.getValueAt(row, 1).toString())) {
+                    cbMaSP.setSelectedIndex(j);
+                }
+            }
+        }
+        if (tblQLSP.getValueAt(row, 2) == null) {
+            JOptionPane.showMessageDialog(this, "Nhân viên không có chức vụ ");
+            cbTenSP.setSelectedIndex(0);
+        } else {
+            for (int j = 0; j < sp.size(); j++) {
+                if (sp.get(j).getTenSP().equalsIgnoreCase(tblQLSP.getValueAt(row, 2).toString())) {
+                    cbTenSP.setSelectedIndex(j);
+                }
+            }
+        }
+        if (tblQLSP.getValueAt(row, 3) == null) {
+            JOptionPane.showMessageDialog(this, "Nhân viên không có chức vụ ");
+            cbSIZE.setSelectedIndex(0);
+        } else {
+            for (int j = 0; j < Sz.size(); j++) {
+                if (Sz.get(j).getSoSize() == Integer.parseInt(tblQLSP.getValueAt(row, 3).toString())) {
+                    cbSIZE.setSelectedIndex(j);
+                }
+            }
+        }
+        if (tblQLSP.getValueAt(row, 4) == null) {
+            JOptionPane.showMessageDialog(this, "Nhân viên không có chức vụ ");
+            cbLoai.setSelectedIndex(0);
+        } else {
+            for (int j = 0; j < lg.size(); j++) {
+                if (lg.get(j).getTenLoai().equalsIgnoreCase(tblQLSP.getValueAt(row, 4).toString())) {
+                    cbLoai.setSelectedIndex(j);
+                }
+            }
+        }
+        if (tblQLSP.getValueAt(row, 5) == null) {
+            JOptionPane.showMessageDialog(this, "Nhân viên không có chức vụ ");
+            cbHang.setSelectedIndex(0);
+        } else {
+            for (int j = 0; j < hang.size(); j++) {
+                if (hang.get(j).getTenHang().equalsIgnoreCase(tblQLSP.getValueAt(row, 5).toString())) {
+                    cbHang.setSelectedIndex(j);
+                }
+            }
+        }
+        if (tblQLSP.getValueAt(row, 6) == null) {
+            JOptionPane.showMessageDialog(this, "Nhân viên không có chức vụ ");
+            cbDe.setSelectedIndex(0);
+        } else {
+            for (int j = 0; j < dg.size(); j++) {
+                if (dg.get(j).getLoaiDe().equalsIgnoreCase(tblQLSP.getValueAt(row, 6).toString())) {
+                    cbDe.setSelectedIndex(j);
+                }
+            }
+        }
+        if (tblQLSP.getValueAt(row, 7) == null) {
+            JOptionPane.showMessageDialog(this, "Nhân viên không có chức vụ ");
+            cbCL.setSelectedIndex(0);
+        } else {
+            for (int j = 0; j < cl.size(); j++) {
+                if (cl.get(j).getTenCL().equalsIgnoreCase(tblQLSP.getValueAt(row, 7).toString())) {
+                    cbCL.setSelectedIndex(j);
+                }
+            }
+        }
+        txtDonGia.setText(tblQLSP.getValueAt(row, 8).toString());
+        txtTrongLuong.setText(tblQLSP.getValueAt(row, 9).toString());
+        txtSoLuongSP.setText(tblQLSP.getValueAt(row, 10).toString());
+        if(Integer.parseInt(tblQLSP.getValueAt(row, 11).toString())== 0){
+            rdoConHang.isSelected();
+        }else{
+            rdoHetHang.isSelected();
+        }
+        txtMotaChiTietSP.setText(tblQLSP.getValueAt(row, 12).toString());
+        
+    }//GEN-LAST:event_tblQLSPMouseClicked
 
     /**
      * @param args the command line arguments
