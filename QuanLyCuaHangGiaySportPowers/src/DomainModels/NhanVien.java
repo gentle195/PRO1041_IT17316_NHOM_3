@@ -11,6 +11,7 @@ import java.util.Date;
  * @author admin
  */
 public class NhanVien {
+
     private String id;
     private String ma;
     private String hoten;
@@ -18,13 +19,13 @@ public class NhanVien {
     private String ngaySinh;
     private String diaChi;
     private String SDT;
-    private String chucVu;
+    private String matKhau;
     private String idCV;
 
     public NhanVien() {
     }
 
-    public NhanVien(String id, String ma, String hoten, String gioiTing, String ngaySinh, String diaChi, String SDT, String chucVu, String idCV) {
+    public NhanVien(String id, String ma, String hoten, String gioiTing, String ngaySinh, String diaChi, String SDT, String matKhau, String idCV) {
         this.id = id;
         this.ma = ma;
         this.hoten = hoten;
@@ -32,20 +33,10 @@ public class NhanVien {
         this.ngaySinh = ngaySinh;
         this.diaChi = diaChi;
         this.SDT = SDT;
-        this.chucVu = chucVu;
+        this.matKhau = matKhau;
         this.idCV = idCV;
     }
 
-    
-
-    public String getIdCV() {
-        return idCV;
-    }
-
-    public void setIdCV(String idCV) {
-        this.idCV = idCV;
-    }
-    
     public String getId() {
         return id;
     }
@@ -53,8 +44,6 @@ public class NhanVien {
     public void setId(String id) {
         this.id = id;
     }
-
-    
 
     public String getMa() {
         return ma;
@@ -104,12 +93,25 @@ public class NhanVien {
         this.SDT = SDT;
     }
 
-    public String getChucVu() {
-        return chucVu;
+    public String getMatKhau() {
+        return matKhau;
     }
 
-    public void setChucVu(String chucVu) {
-        this.chucVu = chucVu;
+    public void setMatKhau(String matKhau) {
+        this.matKhau = matKhau;
     }
-    
+
+    public String getIdCV() {
+        return idCV;
+    }
+
+    public void setIdCV(String idCV) {
+        this.idCV = idCV;
+    }
+
+    @Override
+    public String toString() {
+        return "NhanVien{" + "id=" + id + ", ma=" + ma + ", hoten=" + hoten + ", gioiTing=" + gioiTing + ", ngaySinh=" + ngaySinh + ", diaChi=" + diaChi + ", SDT=" + SDT + ", matKhau=" + matKhau + ", idCV=" + idCV + '}';
+    }
+
 }
