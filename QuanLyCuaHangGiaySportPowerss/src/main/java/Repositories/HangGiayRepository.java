@@ -24,7 +24,7 @@ public class HangGiayRepository implements HangGiayRepositoryInterface{
     }
 
     public List<HangGiay> getall() {
-         String jpql = "SELECT cate FROM HangGiay cate";
+         String jpql = "SELECT cate FROM HangGiay cate order by cate.MaHang asc";
         TypedQuery<HangGiay> query = this.em.createQuery(jpql, HangGiay.class);
         return query.getResultList();
     }

@@ -28,7 +28,7 @@ public class DeGiayRepository implements DeGiayRepositoryInterface {
 
     @Override
     public List<DeGiay> getall() {
-        String jpql = "SELECT cate FROM DeGiay cate";
+        String jpql = "SELECT cate FROM DeGiay cate order by cate.MaDG asc";
         TypedQuery<DeGiay> query = this.em.createQuery(jpql, DeGiay.class);
         return query.getResultList();
     }

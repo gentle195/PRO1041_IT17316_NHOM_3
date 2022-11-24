@@ -31,7 +31,7 @@ public class LoaiGiayRepository implements LoaiGiayRepositoryInterface {
     //}
     @Override
     public List<LoaiGiay> getall() {
-        String jpql = "SELECT cate FROM LoaiGiay cate";
+        String jpql = "SELECT cate FROM LoaiGiay cate order by cate.MaLoai asc";
         TypedQuery<LoaiGiay> query = this.em.createQuery(jpql, LoaiGiay.class);
         return query.getResultList();
     }

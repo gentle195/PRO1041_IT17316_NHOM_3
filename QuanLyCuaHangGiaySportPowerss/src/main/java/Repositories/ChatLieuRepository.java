@@ -28,7 +28,7 @@ public class ChatLieuRepository implements ChatLieuRepositoryInterface {
 
     @Override
     public List<ChatLieu> getall() {
-        String jpql = "SELECT cate FROM ChatLieu cate";
+        String jpql = "SELECT cate FROM ChatLieu cate order by cate.MaCL asc";
         TypedQuery<ChatLieu> query = this.em.createQuery(jpql, ChatLieu.class);
         return query.getResultList();
     }
