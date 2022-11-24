@@ -26,7 +26,7 @@ public class SanPhamRepository implements SanPhamRepositoryInterface {
 
     @Override
     public List<SanPham> getall() {
-        String jpql = "SELECT cate FROM SanPham cate";
+        String jpql = "SELECT cate FROM SanPham cate order by cate.TenSP asc";
         TypedQuery<SanPham> query = this.em.createQuery(jpql, SanPham.class);
         return query.getResultList();
     }
