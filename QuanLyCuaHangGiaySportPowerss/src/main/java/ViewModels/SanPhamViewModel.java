@@ -71,7 +71,7 @@ public class SanPhamViewModel {
 
     @Override
     public String toString() {
-        return  MaSP ;
+        return  TenSP ;
     }
 
     
