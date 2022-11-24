@@ -13,7 +13,7 @@ import java.util.List;
  * @author TUAN ANH
  */
 public interface HangGiayServiceInterface {
-    public List<HangGiayViewModel> all();
+    public List<HangGiay> all();
     
     public void add(HangGiay hangSP) throws Exception;
     public void update(HangGiay hangSP) throws Exception;

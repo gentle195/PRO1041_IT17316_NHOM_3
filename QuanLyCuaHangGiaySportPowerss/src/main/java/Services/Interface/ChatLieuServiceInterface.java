@@ -9,7 +9,7 @@ import ViewModels.ChatLieuViewModel;
 import java.util.List;
 
 public interface ChatLieuServiceInterface {
-    public List<ChatLieuViewModel> all();
+    public List<ChatLieu> all();
     
     public void add(ChatLieu chatLieu) throws Exception;
     public void update(ChatLieu chatLieu) throws Exception;

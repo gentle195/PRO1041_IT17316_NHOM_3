@@ -20,15 +20,8 @@ public class DeGiayService implements DeGiayServiceInterface {
     }
 
     @Override
-    public List<DeGiayViewModel> all() {
-        List<DeGiay> listDomainModel = this.DeGiayRepo.getall();
-        List<DeGiayViewModel> listVModel = new ArrayList<>();
-        for (DeGiay c : listDomainModel) {
-            DeGiayViewModel vmodel = new DeGiayViewModel(c.getIdDG(), c.getMaCL(), c.getLoaiDe(), c.getMoTaDG());
-            listVModel.add(vmodel);
-        }
-
-        return listVModel;
+    public List<DeGiay> all() {
+       return DeGiayRepo.getall();
     }
 
     @Override

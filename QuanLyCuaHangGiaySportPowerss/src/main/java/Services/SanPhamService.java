@@ -18,15 +18,8 @@ public class SanPhamService implements SanPhamServiceInterface {
     }
 
     @Override
-    public List<SanPhamViewModel> all() {
-        List<SanPham> listDomainModel = this.sanPhamRepo.getall();
-        List<SanPhamViewModel> listVModel = new ArrayList<>();
-        for (SanPham c : listDomainModel) {
-            SanPhamViewModel vmodel = new SanPhamViewModel(c.getIdSP(), c.getMaSP(), c.getTenSP(), c.getMoTa());
-            listVModel.add(vmodel);
-        }
-
-        return listVModel;
+    public List<SanPham> all() {
+        return sanPhamRepo.getall();
     }
 
     @Override

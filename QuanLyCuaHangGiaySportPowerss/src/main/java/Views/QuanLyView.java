@@ -76,21 +76,40 @@ public class QuanLyView extends javax.swing.JFrame {
         this.loadTableLoaiGiay();
         this.loadTableSizeGiay();
         this.loadTableChiTietSP();
-        this.loadCBChatLieu();
-        this.loadCBDe();
-        this.loadCBHang();
-        this.loadCBLoai();
-        this.loadCBSize();
-        this.loadCBTenSP();
-        this.loadCBMaSP();
+//        this.loadCBChatLieu();
+//        this.loadCBDe();
+//        this.loadCBHang();
+//        this.loadCBLoai();
+//        this.loadCBSize();
+//        this.loadCBTenSP();
+//        this.loadCBMaSP();
+
+        List<SanPham> sp = SanPhamService.all();
+        cbMaSP.setModel(new DefaultComboBoxModel((sp.toArray())));
+
+        List<ChatLieu> cl = chatLieuService.all();
+        cbCL.setModel(new DefaultComboBoxModel((cl.toArray())));
+
+        List<DeGiay> dg = deGiayService.all();
+        cbDe.setModel(new DefaultComboBoxModel((dg.toArray())));
+
+        List<HangGiay> hang = hangGiayService.all();
+        cbHang.setModel(new DefaultComboBoxModel((hang.toArray())));
+
+        List<LoaiGiay> lg = loaiGiayService.all();
+        cbLoai.setModel(new DefaultComboBoxModel((lg.toArray())));
+
+        List<Size> sz = sizeService.all();
+        cbSIZE.setModel(new DefaultComboBoxModel((sz.toArray())));
+
     }
 
     private void loadTableSanPham() {
         DefaultTableModel modeltb = new DefaultTableModel();
-        List<SanPhamViewModel> sp = SanPhamService.all();
+        List<SanPham> sp = SanPhamService.all();
         modeltb = (DefaultTableModel) tbSP.getModel();
         modeltb.setRowCount(0);
-        for (SanPhamViewModel x : sp) {
+        for (SanPham x : sp) {
             modeltb.addRow(new Object[]{
                 x.getIdSP(),
                 x.getMaSP(), x.getTenSP(), x.getMoTa()
@@ -100,23 +119,23 @@ public class QuanLyView extends javax.swing.JFrame {
 
     private void loadTableChatLieu() {
         DefaultTableModel modeltb = new DefaultTableModel();
-        List<ChatLieuViewModel> cl = chatLieuService.all();
+        List<ChatLieu> cl = chatLieuService.all();
         modeltb = (DefaultTableModel) tbChatLieu.getModel();
         modeltb.setRowCount(0);
-        for (ChatLieuViewModel x : cl) {
+        for (ChatLieu x : cl) {
             modeltb.addRow(new Object[]{
                 x.getIdCL(),
-                x.getMaCL(), x.getTenCL(), x.getMoTaCL()
+                x.getMaCL(), x.getTenCL(), x.getMaCL()
             });
         }
     }
 
     private void loadTableHangGiay() {
         DefaultTableModel modeltb = new DefaultTableModel();
-        List<HangGiayViewModel> hang = hangGiayService.all();
+        List<HangGiay> hang = hangGiayService.all();
         modeltb = (DefaultTableModel) tbHang.getModel();
         modeltb.setRowCount(0);
-        for (HangGiayViewModel x : hang) {
+        for (HangGiay x : hang) {
             modeltb.addRow(new Object[]{
                 x.getIdHang(), x.getMaHang(),
                 x.getTenHang(), x.getMoTaHang()
@@ -128,13 +147,13 @@ public class QuanLyView extends javax.swing.JFrame {
 
     private void loadTableDeGiay() {
         DefaultTableModel modeltb = new DefaultTableModel();
-        List<DeGiayViewModel> dg = deGiayService.all();
+        List<DeGiay> dg = deGiayService.all();
         modeltb = (DefaultTableModel) tbDeGiay.getModel();
         modeltb.setRowCount(0);
-        for (DeGiayViewModel x : dg) {
+        for (DeGiay x : dg) {
             modeltb.addRow(new Object[]{
-                x.getIdDG(), x.getMaDG(),
-                x.getLoaiDe(), x.getMoTaDeGiay()
+                x.getIdDG(), x.getMaCL(),
+                x.getLoaiDe(), x.getMoTaDG()
             });
 
         }
@@ -143,10 +162,10 @@ public class QuanLyView extends javax.swing.JFrame {
 
     private void loadTableLoaiGiay() {
         DefaultTableModel modeltb = new DefaultTableModel();
-        List<LoaiGiayViewModel> lg = loaiGiayService.all();
+        List<LoaiGiay> lg = loaiGiayService.all();
         modeltb = (DefaultTableModel) tbLoaiGiay.getModel();
         modeltb.setRowCount(0);
-        for (LoaiGiayViewModel x : lg) {
+        for (LoaiGiay x : lg) {
             modeltb.addRow(new Object[]{
                 x.getIdLoai(), x.getMaLoai(),
                 x.getTenLoai(), x.getMoTa()
@@ -158,10 +177,10 @@ public class QuanLyView extends javax.swing.JFrame {
 
     private void loadTableSizeGiay() {
         DefaultTableModel modeltb = new DefaultTableModel();
-        List<SizeViewModel> Sz = sizeService.all();
+        List<Size> Sz = sizeService.all();
         modeltb = (DefaultTableModel) tbSIZE.getModel();
         modeltb.setRowCount(0);
-        for (SizeViewModel x : Sz) {
+        for (Size x : Sz) {
             modeltb.addRow(new Object[]{
                 x.getIdSize(), x.getMaSize(),
                 x.getSoSize()
@@ -171,20 +190,6 @@ public class QuanLyView extends javax.swing.JFrame {
 
     }
 
-//    private void loadTableChiTietSP() {
-//        DefaultTableModel modeltb = new DefaultTableModel();
-//        List<ChiTietSPViewModel> Sz = chiTietSPService.all();
-//        modeltb = (DefaultTableModel) tblQLSP.getModel();
-//        modeltb.setRowCount(0);
-//        for (ChiTietSPViewModel x : Sz) {
-//            modeltb.addRow(new Object[]{
-//                x.getIdCTSP(), x.getMaSP(), x.getTenSP(), x.getTenChatLieu(), x.getCoSize(), x.getTenLoai(), x.getTenHang(), x.getLoaiDe(),
-//                x.getSoLuong(), x.getDonGia(), x.getTrongLuong(), x.getTrangThai(), x.getMoTa()
-//            });
-//
-//        }
-//
-//    }
     private void loadTableChiTietSP() {
         DefaultTableModel modeltb = new DefaultTableModel();
         List<ChiTietSPViewModel> Sz = chiTietSPService.all();
@@ -192,77 +197,77 @@ public class QuanLyView extends javax.swing.JFrame {
         modeltb.setRowCount(0);
         for (ChiTietSPViewModel x : Sz) {
             modeltb.addRow(new Object[]{
-                x.getIdCTSP(), x.getSanPham().getMaSP(), x.getSanPham().getTenSP(), x.getSize().getSoSize(), x.getLoaigiay().getTenLoai(), x.getHangGiay().getTenHang(), x.getDeGiay().getLoaiDe(),
-                x.getChatlieu().getTenCL(), x.getSoLuong(), x.getDonGia(), x.getTrongLuong(),
+                x.getIdCTSP(), x.getSanPham(), x.getSanPham(), x.getSize(), x.getLoaigiay(), x.getHangGiay(), x.getDeGiay(),
+                x.getChatlieu(), x.getSoLuong(), x.getDonGia(), x.getTrongLuong(),
                 x.getTrangThai(),
-                 x.getMoTa()
+                x.getMoTa()
             });
 
         }
     }
-
-    private void loadCBMaSP() {
-        DefaultComboBoxModel cb = new DefaultComboBoxModel();
-        List<SanPhamViewModel> sp = SanPhamService.all();
-        cb = (DefaultComboBoxModel) cbMaSP.getModel();
-        for (SanPhamViewModel x : sp) {
-            cb.addElement(x.getMaSP());
-        }
-    }
-
-    private void loadCBTenSP() {
-        DefaultComboBoxModel cb = new DefaultComboBoxModel();
-        List<SanPhamViewModel> sp = SanPhamService.all();
-        cb = (DefaultComboBoxModel) cbTenSP.getModel();
-        for (SanPhamViewModel x : sp) {
-            cb.addElement(x.getTenSP());
-        }
-    }
-
-    private void loadCBChatLieu() {
-        DefaultComboBoxModel cb = new DefaultComboBoxModel();
-        List<ChatLieuViewModel> sp = chatLieuService.all();
-        cb = (DefaultComboBoxModel) cbCL.getModel();
-        for (ChatLieuViewModel x : sp) {
-            cb.addElement(x.getTenCL());
-        }
-    }
-
-    private void loadCBSize() {
-        DefaultComboBoxModel cb = new DefaultComboBoxModel();
-        List<SizeViewModel> sp = sizeService.all();
-        cb = (DefaultComboBoxModel) cbSIZE.getModel();
-        for (SizeViewModel x : sp) {
-            cb.addElement(x.getSoSize());
-        }
-    }
-
-    private void loadCBLoai() {
-        DefaultComboBoxModel cb = new DefaultComboBoxModel();
-        List<LoaiGiayViewModel> sp = loaiGiayService.all();
-        cb = (DefaultComboBoxModel) cbLoai.getModel();
-        for (LoaiGiayViewModel x : sp) {
-            cb.addElement(x.getTenLoai());
-        }
-    }
-
-    private void loadCBHang() {
-        DefaultComboBoxModel cb = new DefaultComboBoxModel();
-        List<HangGiayViewModel> sp = hangGiayService.all();
-        cb = (DefaultComboBoxModel) cbHang.getModel();
-        for (HangGiayViewModel x : sp) {
-            cb.addElement(x.getTenHang());
-        }
-    }
-
-    private void loadCBDe() {
-        DefaultComboBoxModel cb = new DefaultComboBoxModel();
-        List<DeGiayViewModel> sp = deGiayService.all();
-        cb = (DefaultComboBoxModel) cbDe.getModel();
-        for (DeGiayViewModel x : sp) {
-            cb.addElement(x.getLoaiDe());
-        }
-    }
+//
+//    private void loadCBMaSP() {
+//        DefaultComboBoxModel cb = new DefaultComboBoxModel();
+//        List<SanPhamViewModel> sp = SanPhamService.all();
+//        cb = (DefaultComboBoxModel) cbMaSP.getModel();
+//        for (SanPhamViewModel x : sp) {
+//            cb.addElement(x.getMaSP());
+//        }
+//    }
+//
+//    private void loadCBTenSP() {
+//        DefaultComboBoxModel cb = new DefaultComboBoxModel();
+//        List<SanPhamViewModel> sp = SanPhamService.all();
+//        cb = (DefaultComboBoxModel) cbTenSP.getModel();
+//        for (SanPhamViewModel x : sp) {
+//            cb.addElement(x.getTenSP());
+//        }
+//    }
+//
+//    private void loadCBChatLieu() {
+//        DefaultComboBoxModel cb = new DefaultComboBoxModel();
+//        List<ChatLieuViewModel> sp = chatLieuService.all();
+//        cb = (DefaultComboBoxModel) cbCL.getModel();
+//        for (ChatLieuViewModel x : sp) {
+//            cb.addElement(x.getTenCL());
+//        }
+//    }
+//
+//    private void loadCBSize() {
+//        DefaultComboBoxModel cb = new DefaultComboBoxModel();
+//        List<SizeViewModel> sp = sizeService.all();
+//        cb = (DefaultComboBoxModel) cbSIZE.getModel();
+//        for (SizeViewModel x : sp) {
+//            cb.addElement(x.getSoSize());
+//        }
+//    }
+//
+//    private void loadCBLoai() {
+//        DefaultComboBoxModel cb = new DefaultComboBoxModel();
+//        List<LoaiGiayViewModel> sp = loaiGiayService.all();
+//        cb = (DefaultComboBoxModel) cbLoai.getModel();
+//        for (LoaiGiayViewModel x : sp) {
+//            cb.addElement(x.getTenLoai());
+//        }
+//    }
+//
+//    private void loadCBHang() {
+//        DefaultComboBoxModel cb = new DefaultComboBoxModel();
+//        List<HangGiayViewModel> sp = hangGiayService.all();
+//        cb = (DefaultComboBoxModel) cbHang.getModel();
+//        for (HangGiayViewModel x : sp) {
+//            cb.addElement(x.getTenHang());
+//        }
+//    }
+//
+//    private void loadCBDe() {
+//        DefaultComboBoxModel cb = new DefaultComboBoxModel();
+//        List<DeGiayViewModel> sp = deGiayService.all();
+//        cb = (DefaultComboBoxModel) cbDe.getModel();
+//        for (DeGiayViewModel x : sp) {
+//            cb.addElement(x.getLoaiDe());
+//        }
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -1355,7 +1360,7 @@ public class QuanLyView extends javax.swing.JFrame {
                         .addComponent(btnTimKiem1))
                     .addGroup(jPanel29Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane12, javax.swing.GroupLayout.DEFAULT_SIZE, 975, Short.MAX_VALUE)))
+                        .addComponent(jScrollPane12, javax.swing.GroupLayout.DEFAULT_SIZE, 998, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel30, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27))
@@ -4214,7 +4219,7 @@ public class QuanLyView extends javax.swing.JFrame {
         if (check != JOptionPane.YES_OPTION) {
             return;
         }
-        giaoDienDN gd=new giaoDienDN();
+        giaoDienDN gd = new giaoDienDN();
         gd.setVisible(true);
         this.dispose();
         JOptionPane.showMessageDialog(this, "Bạn đã đăng xuất");
@@ -4311,7 +4316,8 @@ public class QuanLyView extends javax.swing.JFrame {
         ChiTietSP ctsp = new ChiTietSP();
 
 //        ctsp.set(UUID.fromString(cbTenSP.getSelectedItem().toString()));
-        ctsp.setSanPham((SanPham) cbCL.getSelectedItem());
+        ctsp.setSanPham((SanPham) cbMaSP.getSelectedItem());
+        ctsp.setChatlieu((ChatLieu) cbCL.getSelectedItem());
         ctsp.setHangGiay((HangGiay) cbHang.getSelectedItem());
         ctsp.setSize((Size) cbSIZE.getSelectedItem());
         ctsp.setLoaigiay((LoaiGiay) cbLoai.getSelectedItem());
@@ -4325,7 +4331,11 @@ public class QuanLyView extends javax.swing.JFrame {
             ctsp.setTrangThai(1);
         }
         ctsp.setMoTa(txtMotaChiTietSP.getText());
-
+        try {
+            chiTietSPService.add(ctsp);
+        } catch (Exception ex) {
+            Logger.getLogger(QuanLyView.class.getName()).log(Level.SEVERE, null, ex);
+        }
         loadTableChiTietSP();
     }//GEN-LAST:event_btnThemActionPerformed
 
@@ -4441,8 +4451,8 @@ public class QuanLyView extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         loadTableSanPham();
-        loadCBMaSP();
-        loadCBTenSP();
+//        loadCBMaSP();
+//        loadCBTenSP();
     }//GEN-LAST:event_btnThem1ActionPerformed
 
     private void txtIDChatLieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDChatLieuActionPerformed
@@ -4474,7 +4484,7 @@ public class QuanLyView extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         loadTableChatLieu();
-        loadCBChatLieu();
+//        loadCBChatLieu();
     }//GEN-LAST:event_btnThem2ActionPerformed
 
     private void txtIDHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDHangActionPerformed
@@ -4515,7 +4525,7 @@ public class QuanLyView extends javax.swing.JFrame {
                 ex.printStackTrace();
             }
             loadTableHangGiay();
-            loadCBHang();
+//            loadCBHang();
         }
 
     }//GEN-LAST:event_btnThem3ActionPerformed
@@ -4548,7 +4558,7 @@ public class QuanLyView extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         loadTableLoaiGiay();
-        loadCBLoai();
+//        loadCBLoai();
 
     }//GEN-LAST:event_btnThem4ActionPerformed
 
@@ -4571,7 +4581,7 @@ public class QuanLyView extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         loadTableSizeGiay();
-        loadCBSize();
+//        loadCBSize();
     }//GEN-LAST:event_btnThem5ActionPerformed
 
     private void txtSoSizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSoSizeActionPerformed
@@ -4601,8 +4611,8 @@ public class QuanLyView extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         loadTableSanPham();
-        loadCBMaSP();
-        loadCBTenSP();
+//        loadCBMaSP();
+//        loadCBTenSP();
     }//GEN-LAST:event_btnSua1ActionPerformed
 
     private void btnXoa1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoa1ActionPerformed
@@ -4618,8 +4628,8 @@ public class QuanLyView extends javax.swing.JFrame {
             e.printStackTrace();
         }
         loadTableSanPham();
-        loadCBMaSP();
-        loadCBTenSP();
+//        loadCBMaSP();
+//        loadCBTenSP();
     }//GEN-LAST:event_btnXoa1ActionPerformed
 
     private void btnSua2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSua2ActionPerformed
@@ -4636,7 +4646,7 @@ public class QuanLyView extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         loadTableChatLieu();
-        loadCBChatLieu();
+//        loadCBChatLieu();
     }//GEN-LAST:event_btnSua2ActionPerformed
 
     private void btnXoa2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoa2ActionPerformed
@@ -4686,7 +4696,7 @@ public class QuanLyView extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         loadTableHangGiay();
-        loadCBHang();
+//        loadCBHang();
     }//GEN-LAST:event_btnSua3ActionPerformed
 
     private void btnXoa3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoa3ActionPerformed
@@ -4702,7 +4712,7 @@ public class QuanLyView extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         loadTableHangGiay();
-        loadCBHang();
+//        loadCBHang();
     }//GEN-LAST:event_btnXoa3ActionPerformed
 
     private void txtIDDeGiayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDDeGiayActionPerformed
@@ -4733,7 +4743,7 @@ public class QuanLyView extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         loadTableDeGiay();
-        loadCBDe();
+//        loadCBDe();
 
     }//GEN-LAST:event_btnThem6ActionPerformed
 
@@ -4750,7 +4760,7 @@ public class QuanLyView extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         loadTableDeGiay();
-        loadCBDe();
+//        loadCBDe();
     }//GEN-LAST:event_btnSua6ActionPerformed
 
     private void btnXoa6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoa6ActionPerformed
@@ -4766,7 +4776,7 @@ public class QuanLyView extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         loadTableDeGiay();
-        loadCBDe();
+//        loadCBDe();
     }//GEN-LAST:event_btnXoa6ActionPerformed
 
     private void tbDeGiayMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDeGiayMouseClicked
@@ -4791,7 +4801,7 @@ public class QuanLyView extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         loadTableLoaiGiay();
-        loadCBLoai();
+//        loadCBLoai();
     }//GEN-LAST:event_btnSua4ActionPerformed
 
     private void btnXoa4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoa4ActionPerformed
@@ -4807,7 +4817,7 @@ public class QuanLyView extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         loadTableLoaiGiay();
-        loadCBLoai();
+//        loadCBLoai();
     }//GEN-LAST:event_btnXoa4ActionPerformed
 
     private void tbLoaiGiayMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbLoaiGiayMouseClicked
@@ -4831,7 +4841,7 @@ public class QuanLyView extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         loadTableSizeGiay();
-        loadCBSize();
+//        loadCBSize();
     }//GEN-LAST:event_btnSua5ActionPerformed
 
     private void tbSIZEMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbSIZEMouseClicked
@@ -4854,7 +4864,7 @@ public class QuanLyView extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         loadTableSizeGiay();
-        loadCBSize();
+//        loadCBSize();
     }//GEN-LAST:event_btnXoa5ActionPerformed
 
     private void cbTenSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTenSPActionPerformed
@@ -4883,12 +4893,12 @@ public class QuanLyView extends javax.swing.JFrame {
 
     private void tblQLSPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblQLSPMouseClicked
         // TODO add your handling code here:
-        List<SizeViewModel> Sz = sizeService.all();
-        List<LoaiGiayViewModel> lg = loaiGiayService.all();
-        List<DeGiayViewModel> dg = deGiayService.all();
-        List<HangGiayViewModel> hang = hangGiayService.all();
-        List<ChatLieuViewModel> cl = chatLieuService.all();
-        List<SanPhamViewModel> sp = SanPhamService.all();
+        List<Size> Sz = sizeService.all();
+        List<LoaiGiay> lg = loaiGiayService.all();
+        List<DeGiay> dg = deGiayService.all();
+        List<HangGiay> hang = hangGiayService.all();
+        List<ChatLieu> cl = chatLieuService.all();
+        List<SanPham> sp = SanPhamService.all();
         int row = tblQLSP.getSelectedRow();
         txtID.setText(tblQLSP.getValueAt(row, 0).toString());
         if (tblQLSP.getValueAt(row, 1) == null) {
@@ -4964,13 +4974,13 @@ public class QuanLyView extends javax.swing.JFrame {
         txtDonGia.setText(tblQLSP.getValueAt(row, 8).toString());
         txtTrongLuong.setText(tblQLSP.getValueAt(row, 9).toString());
         txtSoLuongSP.setText(tblQLSP.getValueAt(row, 10).toString());
-        if(Integer.parseInt(tblQLSP.getValueAt(row, 11).toString())== 0){
+        if (Integer.parseInt(tblQLSP.getValueAt(row, 11).toString()) == 0) {
             rdoConHang.isSelected();
-        }else{
+        } else {
             rdoHetHang.isSelected();
         }
         txtMotaChiTietSP.setText(tblQLSP.getValueAt(row, 12).toString());
-        
+
     }//GEN-LAST:event_tblQLSPMouseClicked
 
     /**

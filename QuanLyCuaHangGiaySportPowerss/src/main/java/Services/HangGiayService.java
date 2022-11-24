@@ -25,15 +25,8 @@ public class HangGiayService implements HangGiayServiceInterface {
     }
 
     @Override
-    public List<HangGiayViewModel> all() {
-        List<HangGiay> listDomainModel = this.hangSPRepository.getall();
-        List<HangGiayViewModel> listVModel = new ArrayList<>();
-        for (HangGiay hang : listDomainModel) {
-            HangGiayViewModel vModel = new HangGiayViewModel(hang.getIdHang(), hang.getMaHang(), hang.getTenHang(), hang.getMoTaHang());
-            listVModel.add(vModel);
-
-        }
-        return listVModel;
+    public List<HangGiay> all() {
+       return hangSPRepository.getall();
     }
 
     @Override
