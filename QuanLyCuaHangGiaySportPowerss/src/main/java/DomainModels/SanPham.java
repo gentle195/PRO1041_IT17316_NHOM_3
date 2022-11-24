@@ -97,7 +97,7 @@ public class SanPham {
 
     @Override
     public String toString() {
-        return  MaSP ;
+        return  TenSP ;
     }
 
     
