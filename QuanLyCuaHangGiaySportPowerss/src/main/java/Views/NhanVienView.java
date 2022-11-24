@@ -5,12 +5,14 @@
 package Views;
 
 import DomainModels.KhachHang;
-import Services.Impl.KhachHangServiceImpl;
 import Services.KhachHangService;
 import java.awt.CardLayout;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -21,7 +23,7 @@ import javax.swing.table.DefaultTableModel;
 public class NhanVienView extends javax.swing.JFrame {
 
     private DefaultTableModel dtmKH = new DefaultTableModel();
-    private KhachHangService serviceKH = new KhachHangServiceImpl();
+    private KhachHangService serviceKH = new KhachHangService();
     private List<KhachHang> listKH = new ArrayList<>();
 
     public NhanVienView() {
@@ -34,9 +36,8 @@ public class NhanVienView extends javax.swing.JFrame {
         /*end*/
 
     }
-    
-    
-        /*Quan ly khach hang begin*/   
+
+    /*Quan ly khach hang begin*/
     private void showDataKH(List<KhachHang> list) {
         dtmKH.setRowCount(0);
         for (KhachHang kh : list) {
@@ -46,7 +47,7 @@ public class NhanVienView extends javax.swing.JFrame {
 
     private void fillDataKH(int index) {
         KhachHang kh = listKH.get(index);
-        this.txtIdKH.setText(kh.getID());
+        this.txtIdKH.setText(kh.getID().toString());
         this.txtMaKH.setText(kh.getMa());
         this.txtTenKH.setText(kh.getHoTen());
         String gt = kh.getGioiTinh();
@@ -68,9 +69,9 @@ public class NhanVienView extends javax.swing.JFrame {
         this.txtDC.setText("");
         this.txtNgaySinh.setDate(null);
         this.buttonGroup1.clearSelection();
-    }   
-    /*end QLKH*/
+    }
 
+    /*end QLKH*/
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -3719,7 +3720,7 @@ public class NhanVienView extends javax.swing.JFrame {
         if (check != JOptionPane.YES_OPTION) {
             return;
         }
-        giaoDienDN gd=new giaoDienDN();
+        giaoDienDN gd = new giaoDienDN();
         gd.setVisible(true);
         this.dispose();
         JOptionPane.showMessageDialog(this, "Bạn đã đăng xuất");
@@ -3875,13 +3876,25 @@ public class NhanVienView extends javax.swing.JFrame {
     }//GEN-LAST:event_rdNamActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        int row = this.tblKH.getSelectedRow();
-        KhachHang kh = listKH.get(row);
-        String ma = kh.getMa();
-        JOptionPane.showMessageDialog(this, serviceKH.delete(ma));
+        KhachHang kh = new KhachHang();
+        kh.setID(UUID.fromString(txtIdKH.getText()));
+        kh.setMa(txtMaKH.getText());
+        kh.setDiaChi(txtDC.getText());
+        if (rdNam.isSelected()) {
+            kh.setGioiTinh("Nam");
+        } else {
+            kh.setGioiTinh("Nữ");
+        }
+        kh.setHoTen(txtTenKH.getText());
+        kh.setNgaySinh(txtNgaySinh.getDate());
+        kh.setSdt(txtSDT.getText());
+        try {
+            serviceKH.delete(kh);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         listKH = serviceKH.getAll();
         showDataKH(listKH);
-        clearTblKH();
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -4009,22 +4022,24 @@ public class NhanVienView extends javax.swing.JFrame {
     }//GEN-LAST:event_txtSoSizeActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        String ma = this.txtMaKH.getText();
-        String ten = this.txtTenKH.getText();
-        String sdt = this.txtSDT.getText();
-        String dc = this.txtDC.getText();
-        Date ngaySinh = this.txtNgaySinh.getDate();
-        String gt;
+        KhachHang kh = new KhachHang();
+        kh.setDiaChi(txtDC.getText());
         if (rdNam.isSelected()) {
-            gt = "Nam";
+            kh.setGioiTinh("Nam");
         } else {
-            gt = "Nữ";
+            kh.setGioiTinh("Nữ");
         }
-        KhachHang kh = new KhachHang(ma, ten, gt, ngaySinh, sdt, dc);
-        JOptionPane.showMessageDialog(this, serviceKH.create(kh));
+        kh.setHoTen(txtTenKH.getText());
+        kh.setMa(txtMaKH.getText());
+        kh.setNgaySinh(txtNgaySinh.getDate());
+        kh.setSdt(txtSDT.getText());
+        try {
+            serviceKH.create(kh);
+        } catch (Exception ex) {
+            Logger.getLogger(QuanLyView.class.getName()).log(Level.SEVERE, null, ex);
+        }
         listKH = serviceKH.getAll();
         showDataKH(listKH);
-        clearTblKH();
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void tblKHMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblKHMouseClicked
@@ -4035,33 +4050,32 @@ public class NhanVienView extends javax.swing.JFrame {
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         int row = this.tblKH.getSelectedRow();
         KhachHang kh = listKH.get(row);
-        String ma = kh.getMa();
-
-        String ten = this.txtTenKH.getText();
-        String sdt = this.txtSDT.getText();
-        String dc = this.txtDC.getText();
-        Date ngaySinh = this.txtNgaySinh.getDate();
-        String gt;
+        kh.setDiaChi(txtDC.getText());
         if (rdNam.isSelected()) {
-            gt = "Nam";
+            kh.setGioiTinh("Nam");
         } else {
-            gt = "Nữ";
+            kh.setGioiTinh("Nữ");
         }
-
-        kh = new KhachHang(ma, ten, gt, ngaySinh, sdt, dc);
-        JOptionPane.showMessageDialog(this, serviceKH.update(kh, ma));
+        kh.setHoTen(txtTenKH.getText());
+        kh.setMa(txtMaKH.getText());
+        kh.setNgaySinh(txtNgaySinh.getDate());
+        kh.setSdt(txtSDT.getText());
+        try {
+            serviceKH.update(kh);
+        } catch (Exception ex) {
+            Logger.getLogger(QuanLyView.class.getName()).log(Level.SEVERE, null, ex);
+        }
         listKH = serviceKH.getAll();
         showDataKH(listKH);
-        clearTblKH();
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-        String ten = this.txtSearch.getText();
-        listKH = serviceKH.search(ten);
-        showDataKH(listKH);
-        if(listKH.isEmpty()){
-            JOptionPane.showMessageDialog(this, "khong tim thấy tên cần");
-        }
+//        String ten = this.txtSearch.getText();
+//        listKH = serviceKH.search(ten);
+//        showDataKH(listKH);
+//        if (listKH.isEmpty()) {
+//            JOptionPane.showMessageDialog(this, "khong tim thấy tên cần");
+//        }
     }//GEN-LAST:event_btnSearchActionPerformed
 
     /**
