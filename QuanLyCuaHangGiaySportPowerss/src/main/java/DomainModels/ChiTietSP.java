@@ -91,6 +91,7 @@ public class ChiTietSP {
         return IdCTSP;
     }
 
+    
     public void setIdCTSP(UUID IdCTSP) {
         this.IdCTSP = IdCTSP;
     }

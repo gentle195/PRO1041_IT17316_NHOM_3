@@ -69,7 +69,7 @@ public class ChiTietSPViewModel {
     public UUID getIdCTSP() {
         return IdCTSP;
     }
-
+    
     public void setIdCTSP(UUID IdCTSP) {
         this.IdCTSP = IdCTSP;
     }

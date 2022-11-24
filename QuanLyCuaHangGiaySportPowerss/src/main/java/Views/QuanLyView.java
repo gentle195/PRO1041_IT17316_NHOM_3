@@ -25,16 +25,9 @@ import Services.Interface.SizeServiceInterface;
 import Services.LoaiGiayService;
 import Services.SanPhamService;
 import Services.SizeService;
-import ViewModels.ChatLieuViewModel;
 import ViewModels.ChiTietSPViewModel;
-import ViewModels.DeGiayViewModel;
-import ViewModels.HangGiayViewModel;
-import ViewModels.LoaiGiayViewModel;
-import ViewModels.SanPhamViewModel;
-import ViewModels.SizeViewModel;
 import java.awt.CardLayout;
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.logging.Level;
@@ -4337,6 +4330,7 @@ public class QuanLyView extends javax.swing.JFrame {
             Logger.getLogger(QuanLyView.class.getName()).log(Level.SEVERE, null, ex);
         }
         loadTableChiTietSP();
+       
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
@@ -4885,10 +4879,57 @@ public class QuanLyView extends javax.swing.JFrame {
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
         // TODO add your handling code here:
+        ChiTietSP ctsp = new ChiTietSP();
+
+        ctsp.setIdCTSP(UUID.fromString(txtID.getText()));
+        ctsp.setSanPham((SanPham) cbMaSP.getSelectedItem());
+        ctsp.setChatlieu((ChatLieu) cbCL.getSelectedItem());
+        ctsp.setHangGiay((HangGiay) cbHang.getSelectedItem());
+        ctsp.setSize((Size) cbSIZE.getSelectedItem());
+        ctsp.setLoaigiay((LoaiGiay) cbLoai.getSelectedItem());
+        ctsp.setDeGiay((DeGiay) cbDe.getSelectedItem());
+        ctsp.setDonGia(BigDecimal.valueOf(Double.parseDouble(txtDonGia.getText())));
+        ctsp.setTrongLuong(Integer.parseInt(txtTrongLuong.getText()));
+        ctsp.setSoLuong(Integer.parseInt(txtSoLuongSP.getText()));
+        if (rdNam.isSelected()) {
+            ctsp.setTrangThai(0);
+        } else if (rdNu.isSelected()) {
+            ctsp.setTrangThai(1);
+        }
+        ctsp.setMoTa(txtMotaChiTietSP.getText());
+        try {
+            chiTietSPService.update(ctsp);
+        } catch (Exception ex) {
+            Logger.getLogger(QuanLyView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        loadTableChiTietSP();
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         // TODO add your handling code here:
+        ChiTietSP ctsp = new ChiTietSP();
+        ctsp.setIdCTSP(UUID.fromString(txtID.getText()));
+        ctsp.setSanPham((SanPham) cbMaSP.getSelectedItem());
+        ctsp.setChatlieu((ChatLieu) cbCL.getSelectedItem());
+        ctsp.setHangGiay((HangGiay) cbHang.getSelectedItem());
+        ctsp.setSize((Size) cbSIZE.getSelectedItem());
+        ctsp.setLoaigiay((LoaiGiay) cbLoai.getSelectedItem());
+        ctsp.setDeGiay((DeGiay) cbDe.getSelectedItem());
+        ctsp.setDonGia(BigDecimal.valueOf(Double.parseDouble(txtDonGia.getText())));
+        ctsp.setTrongLuong(Integer.parseInt(txtTrongLuong.getText()));
+        ctsp.setSoLuong(Integer.parseInt(txtSoLuongSP.getText()));
+        if (rdNam.isSelected()) {
+            ctsp.setTrangThai(0);
+        } else if (rdNu.isSelected()) {
+            ctsp.setTrangThai(1);
+        }
+        ctsp.setMoTa(txtMotaChiTietSP.getText());
+        try {
+            chiTietSPService.delete(ctsp);
+        } catch (Exception ex) {
+            Logger.getLogger(QuanLyView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        loadTableChiTietSP();
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void tblQLSPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblQLSPMouseClicked
@@ -4975,9 +5016,9 @@ public class QuanLyView extends javax.swing.JFrame {
         txtTrongLuong.setText(tblQLSP.getValueAt(row, 9).toString());
         txtSoLuongSP.setText(tblQLSP.getValueAt(row, 10).toString());
         if (Integer.parseInt(tblQLSP.getValueAt(row, 11).toString()) == 0) {
-            rdoConHang.isSelected();
+            rdoConHang.setSelected(true);
         } else {
-            rdoHetHang.isSelected();
+            rdoHetHang.setSelected(true);
         }
         txtMotaChiTietSP.setText(tblQLSP.getValueAt(row, 12).toString());
 
