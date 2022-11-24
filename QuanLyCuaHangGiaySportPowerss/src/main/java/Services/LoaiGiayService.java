@@ -17,17 +17,9 @@ public class LoaiGiayService implements LoaiGiayServiceInterface {
     }
 
     @Override
-    public List<LoaiGiayViewModel> all() {
+    public List<LoaiGiay> all() {
 
-        List<LoaiGiay> listDomainModel = this.LoaiGiayRepo.getall();
-        List<LoaiGiayViewModel> listVModel = new ArrayList<>();
-        for (LoaiGiay loai : listDomainModel) {
-            LoaiGiayViewModel vmodel = new LoaiGiayViewModel(loai.getIdLoai(), loai.getMaLoai(),
-                    loai.getTenLoai(), loai.getMoTa());
-            listVModel.add(vmodel);
-
-        }
-        return listVModel;
+       return LoaiGiayRepo.getall();
     }
 
     @Override

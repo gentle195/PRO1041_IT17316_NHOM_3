@@ -95,5 +95,8 @@ public class LoaiGiay {
         this.MoTa = MoTa;
     }
 
-    
+    @Override
+    public String toString() {
+        return  TenLoai ;
+    }
 }

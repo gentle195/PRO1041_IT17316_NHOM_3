@@ -22,15 +22,8 @@ public class ChatLieuService implements ChatLieuServiceInterface {
     }
 
     @Override
-    public List<ChatLieuViewModel> all() {
-        List<ChatLieu> listDomainModel = this.chatLieuRepo.getall();
-        List<ChatLieuViewModel> listVModel = new ArrayList<>();
-        for (ChatLieu c : listDomainModel) {
-            ChatLieuViewModel vmodel = new ChatLieuViewModel(c.getIdCL(), c.getMaCL(), c.getTenCL(), c.getMoTaCl());
-            listVModel.add(vmodel);
-        }
-
-        return listVModel;
+    public List<ChatLieu> all() {
+       return chatLieuRepo.getall();
     }
 
     @Override

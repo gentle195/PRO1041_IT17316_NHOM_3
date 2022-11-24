@@ -97,7 +97,10 @@ public class HangGiay {
     }
 
     
-
+@Override
+    public String toString() {
+        return  TenHang ;
+    }
     
     
 }

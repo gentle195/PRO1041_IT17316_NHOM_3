@@ -82,4 +82,10 @@ public class Size {
         this.SoSize = SoSize;
     }
 
+    @Override
+    public String toString() {
+        return "" + SoSize ;
+    }
+
+    
 }

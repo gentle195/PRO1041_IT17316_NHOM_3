@@ -95,5 +95,10 @@ public class SanPham {
         this.MoTa = MoTa;
     }
 
+    @Override
+    public String toString() {
+        return  MaSP ;
+    }
+
     
 }

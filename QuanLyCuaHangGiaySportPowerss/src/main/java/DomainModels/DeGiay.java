@@ -96,7 +96,10 @@ public class DeGiay {
     }
 
 
-    
+    @Override
+    public String toString() {
+        return  LoaiDe ;
+    }
 
     
     

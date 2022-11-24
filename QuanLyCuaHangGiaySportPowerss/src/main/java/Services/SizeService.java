@@ -21,16 +21,8 @@ public class SizeService implements SizeServiceInterface {
     }
 
     @Override
-    public List<SizeViewModel> all() {
-        List<Size> listDomainModel = this.sizeRepo.getall();
-        List<SizeViewModel> listVModel = new ArrayList<>();
-        for (Size sizeViewModel : listDomainModel) {
-            SizeViewModel vmodel = new SizeViewModel(sizeViewModel.getIdSize(),
-                    sizeViewModel.getMaSize(), sizeViewModel.getSoSize());
-            listVModel.add(vmodel);
-
-        }
-        return listVModel;
+    public List<Size> all() {
+        return sizeRepo.getall();
     }
 
     @Override

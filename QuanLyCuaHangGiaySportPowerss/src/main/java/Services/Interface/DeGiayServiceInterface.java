@@ -10,7 +10,7 @@ import ViewModels.DeGiayViewModel;
 import java.util.List;
 
 public interface DeGiayServiceInterface {
-    public List<DeGiayViewModel> all();
+    public List<DeGiay> all();
     
     public void add(DeGiay deGiay) throws Exception;
     public void update(DeGiay deGiay) throws Exception;

@@ -10,7 +10,7 @@ import ViewModels.SizeViewModel;
 import java.util.List;
 
 public interface SizeServiceInterface {
-    public List<SizeViewModel> all();
+    public List<Size> all();
     
     public void add(Size s) throws Exception;
     public void update(Size s) throws Exception;

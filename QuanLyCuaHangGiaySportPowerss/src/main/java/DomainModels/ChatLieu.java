@@ -97,4 +97,10 @@ public class ChatLieu {
         this.MoTaCl = MoTaCl;
     }
 
+    @Override
+    public String toString() {
+        return  TenCL ;
+    }
+    
+
 }
