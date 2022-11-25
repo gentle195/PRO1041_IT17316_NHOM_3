@@ -6,33 +6,40 @@ package Views;
 
 import DomainModels.ChatLieu;
 import DomainModels.ChiTietSP;
+import DomainModels.ChucVu;
 import DomainModels.DeGiay;
 import DomainModels.HangGiay;
 import DomainModels.KhachHang;
 import DomainModels.LoaiGiay;
+import DomainModels.NhanVien;
 import DomainModels.SanPham;
 import DomainModels.Size;
 import Repositories.HoaDonRepository;
 import Services.ChatLieuService;
 import Services.ChiTietSPService;
+import Services.ChucVuSevice;
 import Services.DeGiayService;
 import Services.HangGiayService;
 import Services.HoaDonServiceImpl;
 import Services.Interface.ChatLieuServiceInterface;
 import Services.Interface.ChiTietSPServiceInterface;
+import Services.Interface.ChucVuServiceInterface;
 import Services.Interface.DeGiayServiceInterface;
 import Services.Interface.HangGiayServiceInterface;
 import Services.Interface.HoaDonService;
 import Services.Interface.LoaiGiayServiceInterface;
+import Services.Interface.NhanVienServiceInteface;
 import Services.Interface.SanPhamServiceInterface;
 import Services.Interface.SizeServiceInterface;
 import Services.KhachHangService;
 import Services.LoaiGiayService;
+import Services.NhanVienService;
 import Services.SanPhamService;
 import Services.SizeService;
 import ViewModels.ChiTietSPViewModel;
 import ViewModels.HoaDonChiTietViewModel;
 import ViewModels.HoaDonViewModel;
+import ViewModels.NhanVienViewModel;
 import java.awt.CardLayout;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -59,6 +66,8 @@ public class QuanLyView extends javax.swing.JFrame {
     private LoaiGiayServiceInterface loaiGiayService;
     private SizeServiceInterface sizeService;
     private ChiTietSPServiceInterface chiTietSPService;
+    private ChucVuServiceInterface cvService;
+    private NhanVienServiceInteface nvService;
     private KhachHangService serviceKH = new KhachHangService();
     private DefaultTableModel dtmKH = new DefaultTableModel();
     private List<KhachHang> listKH = new ArrayList<>();
@@ -80,6 +89,8 @@ public class QuanLyView extends javax.swing.JFrame {
         this.loaiGiayService = new LoaiGiayService();
         this.sizeService = new SizeService();
         this.chiTietSPService = new ChiTietSPService();
+        this.cvService = new ChucVuSevice();
+        this.nvService = new NhanVienService();
         this.loadTableSanPham();
         this.loadTableChatLieu();
         this.loadTableHangGiay();
@@ -114,6 +125,8 @@ public class QuanLyView extends javax.swing.JFrame {
 
         List<Size> sz = sizeService.all();
         cbSIZE.setModel(new DefaultComboBoxModel((sz.toArray())));
+        List<ChucVu> cv= cvService.getall();
+        cbCV.setModel(new DefaultComboBoxModel(cv.toArray()));
 
         tblKH.setModel(dtmKH);
         Object[] header = {"ID", "Mã", "Họ tên", "Giới tính", "Ngày sinh", "SĐT", "Địa chỉ"};
@@ -261,6 +274,31 @@ public class QuanLyView extends javax.swing.JFrame {
 
         }
     }
+//    private void loadTableChucVu() {
+//        DefaultTableModel modeltb = new DefaultTableModel();
+//        List<ChucVu> cv = cvService.getall();
+//        modeltb = (DefaultTableModel) tblCV.getModel();
+//        modeltb.setRowCount(0);
+//        for (ChucVu s : cv) {
+//            modeltb.addRow(new Object[]{
+//                s.getIdCV(),
+//                s.getMaCV(), s.getMaCV(), s.getTenCV()
+//            });
+//        }
+//    }
+
+    private void loadTableNhanVien() {
+        DefaultTableModel modeltb = new DefaultTableModel();
+        List<NhanVienViewModel> Sz = nvService.getall();
+        modeltb = (DefaultTableModel) tblQLSP.getModel();
+        modeltb.setRowCount(0);
+        for (NhanVienViewModel x : Sz) {
+            modeltb.addRow(new Object[]{
+                x.getIdNV(), x.getMaNV(), x.getHoTenNV(), x.getGioiTinh(), x.getChucvu().getTenCV(), x.getDiaChi(), x.getNgaySinh(),
+                 x.getMaNV(), x.getMatkhau()
+            });
+
+        }
 //
 //    private void loadCBMaSP() {
 //        DefaultComboBoxModel cb = new DefaultComboBoxModel();
@@ -323,7 +361,7 @@ public class QuanLyView extends javax.swing.JFrame {
 //        for (DeGiayViewModel x : sp) {
 //            cb.addElement(x.getLoaiDe());
 //        }
-//    }
+    }
 
     private void loadTableChiTietSPBH() {
         DefaultTableModel dtmSpBH = new DefaultTableModel();
@@ -376,6 +414,7 @@ public class QuanLyView extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
         pnlTong = new javax.swing.JPanel();
         pnlMenu2 = new javax.swing.JPanel();
         pnlAnhDaiDien2 = new javax.swing.JPanel();
@@ -449,26 +488,26 @@ public class QuanLyView extends javax.swing.JFrame {
         panel3 = new java.awt.Panel();
         jPanel34 = new javax.swing.JPanel();
         jLabel26 = new javax.swing.JLabel();
-        jComboBox7 = new javax.swing.JComboBox<>();
+        cbCV = new javax.swing.JComboBox<>();
         jTextField12 = new javax.swing.JTextField();
         jTextField13 = new javax.swing.JTextField();
         jLabel27 = new javax.swing.JLabel();
         jLabel42 = new javax.swing.JLabel();
-        jTextField14 = new javax.swing.JTextField();
+        txtDCNV = new javax.swing.JTextField();
         jLabel43 = new javax.swing.JLabel();
         jLabel44 = new javax.swing.JLabel();
-        jTextField15 = new javax.swing.JTextField();
-        jTextField16 = new javax.swing.JTextField();
+        txtMaNV = new javax.swing.JTextField();
+        txtMKNV = new javax.swing.JTextField();
         jLabel45 = new javax.swing.JLabel();
-        jTextField17 = new javax.swing.JTextField();
+        txtTKNV = new javax.swing.JTextField();
         jLabel46 = new javax.swing.JLabel();
         jLabel47 = new javax.swing.JLabel();
         jLabel48 = new javax.swing.JLabel();
-        jTextField18 = new javax.swing.JTextField();
-        jRadioButton5 = new javax.swing.JRadioButton();
+        txtHoTenNV = new javax.swing.JTextField();
+        rdNamNV = new javax.swing.JRadioButton();
         jLabel49 = new javax.swing.JLabel();
-        jRadioButton6 = new javax.swing.JRadioButton();
-        jDateChooser3 = new com.toedter.calendar.JDateChooser();
+        rdNuNV = new javax.swing.JRadioButton();
+        dateNSNV = new com.toedter.calendar.JDateChooser();
         jPanel36 = new javax.swing.JPanel();
         jButton13 = new javax.swing.JButton();
         jButton14 = new javax.swing.JButton();
@@ -1074,7 +1113,7 @@ public class QuanLyView extends javax.swing.JFrame {
                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1083,7 +1122,7 @@ public class QuanLyView extends javax.swing.JFrame {
                 .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         jTabbedPane5.setBackground(new java.awt.Color(204, 255, 255));
@@ -1508,7 +1547,7 @@ public class QuanLyView extends javax.swing.JFrame {
 
         jLabel26.setText("CHỨC VỤ");
 
-        jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chức vụ", "Quản lý", "Nhân Viên" }));
+        cbCV.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chức vụ", "Quản lý", "Nhân Viên" }));
 
         jTextField12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1526,9 +1565,9 @@ public class QuanLyView extends javax.swing.JFrame {
 
         jLabel42.setText("EMAIL");
 
-        jTextField14.addActionListener(new java.awt.event.ActionListener() {
+        txtDCNV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField14ActionPerformed(evt);
+                txtDCNVActionPerformed(evt);
             }
         });
 
@@ -1536,23 +1575,23 @@ public class QuanLyView extends javax.swing.JFrame {
 
         jLabel44.setText("QUÊ QUÁN");
 
-        jTextField15.addActionListener(new java.awt.event.ActionListener() {
+        txtMaNV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField15ActionPerformed(evt);
+                txtMaNVActionPerformed(evt);
             }
         });
 
-        jTextField16.addActionListener(new java.awt.event.ActionListener() {
+        txtMKNV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField16ActionPerformed(evt);
+                txtMKNVActionPerformed(evt);
             }
         });
 
         jLabel45.setText("MẬT KHẨU");
 
-        jTextField17.addActionListener(new java.awt.event.ActionListener() {
+        txtTKNV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField17ActionPerformed(evt);
+                txtTKNVActionPerformed(evt);
             }
         });
 
@@ -1562,22 +1601,24 @@ public class QuanLyView extends javax.swing.JFrame {
 
         jLabel48.setText("MÃ NHÂN VIÊN");
 
-        jTextField18.addActionListener(new java.awt.event.ActionListener() {
+        txtHoTenNV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField18ActionPerformed(evt);
+                txtHoTenNVActionPerformed(evt);
             }
         });
 
-        jRadioButton5.setText("NAM");
-        jRadioButton5.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(rdNamNV);
+        rdNamNV.setText("NAM");
+        rdNamNV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton5ActionPerformed(evt);
+                rdNamNVActionPerformed(evt);
             }
         });
 
         jLabel49.setText("HỌ VÀ TÊN");
 
-        jRadioButton6.setText("NỮ");
+        buttonGroup1.add(rdNuNV);
+        rdNuNV.setText("NỮ");
 
         javax.swing.GroupLayout jPanel34Layout = new javax.swing.GroupLayout(jPanel34);
         jPanel34.setLayout(jPanel34Layout);
@@ -1592,14 +1633,14 @@ public class QuanLyView extends javax.swing.JFrame {
                             .addComponent(jLabel42, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox7, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbCV, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel34Layout.createSequentialGroup()
                         .addComponent(jLabel43, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jRadioButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(rdNamNV, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(57, 57, 57)
-                        .addComponent(jRadioButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(rdNuNV, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel34Layout.createSequentialGroup()
                         .addGroup(jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jLabel49, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1607,10 +1648,10 @@ public class QuanLyView extends javax.swing.JFrame {
                         .addGroup(jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel34Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
-                                .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtMaNV, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel34Layout.createSequentialGroup()
                                 .addGap(17, 17, 17)
-                                .addComponent(jTextField18, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(txtHoTenNV, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1620,8 +1661,8 @@ public class QuanLyView extends javax.swing.JFrame {
                                 .addComponent(jLabel45, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGap(21, 21, 21)
                             .addGroup(jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTextField17, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
-                                .addComponent(jTextField16)))
+                                .addComponent(txtTKNV, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+                                .addComponent(txtMKNV)))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel34Layout.createSequentialGroup()
                             .addGroup(jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel34Layout.createSequentialGroup()
@@ -1632,11 +1673,11 @@ public class QuanLyView extends javax.swing.JFrame {
                                     .addGap(21, 21, 21)))
                             .addGroup(jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(txtDCNV, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel34Layout.createSequentialGroup()
                         .addComponent(jLabel47, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jDateChooser3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(dateNSNV, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(38, 38, 38))
         );
         jPanel34Layout.setVerticalGroup(
@@ -1646,12 +1687,12 @@ public class QuanLyView extends javax.swing.JFrame {
                 .addGroup(jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel34Layout.createSequentialGroup()
                         .addGroup(jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtDCNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel44))
                         .addGap(20, 20, 20)
                         .addGroup(jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel47)
-                            .addComponent(jDateChooser3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(dateNSNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel27)
@@ -1659,28 +1700,28 @@ public class QuanLyView extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel46)
-                            .addComponent(jTextField17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtTKNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtMKNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel45)))
                     .addGroup(jPanel34Layout.createSequentialGroup()
                         .addGroup(jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtMaNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel48))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtHoTenNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel49))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel43)
-                            .addComponent(jRadioButton5)
-                            .addComponent(jRadioButton6))
+                            .addComponent(rdNamNV)
+                            .addComponent(rdNuNV))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel26)
-                            .addComponent(jComboBox7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cbCV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1693,6 +1734,11 @@ public class QuanLyView extends javax.swing.JFrame {
 
         jButton13.setBackground(new java.awt.Color(204, 204, 204));
         jButton13.setText("THÊM");
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
 
         jButton14.setBackground(new java.awt.Color(204, 204, 204));
         jButton14.setText("SỬA");
@@ -1740,37 +1786,42 @@ public class QuanLyView extends javax.swing.JFrame {
 
         jTable5.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "MÃ NHÂN VIÊN", "HỌ VÀ TÊN", "GIỚI TÍNH", "CHỨC VỤ", "EMAIL", "QUÊ QUÁN", "NGÀY SINH", "LƯƠNG", "TÀI KHOẢN", "MẬT KHẨU"
+                "MÃ NHÂN VIÊN", "HỌ VÀ TÊN", "GIỚI TÍNH", "CHỨC VỤ", "QUÊ QUÁN", "NGÀY SINH", "TÀI KHOẢN", "MẬT KHẨU"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        jTable5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable5MouseClicked(evt);
             }
         });
         jScrollPane15.setViewportView(jTable5);
@@ -2037,7 +2088,7 @@ public class QuanLyView extends javax.swing.JFrame {
         jPanel12.setLayout(jPanel12Layout);
         jPanel12Layout.setHorizontalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel23, javax.swing.GroupLayout.DEFAULT_SIZE, 1486, Short.MAX_VALUE)
+            .addComponent(jPanel23, javax.swing.GroupLayout.DEFAULT_SIZE, 1155, Short.MAX_VALUE)
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2497,7 +2548,7 @@ public class QuanLyView extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel27, javax.swing.GroupLayout.PREFERRED_SIZE, 113, Short.MAX_VALUE))
+                    .addComponent(jPanel27, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -2907,36 +2958,42 @@ public class QuanLyView extends javax.swing.JFrame {
             }
         });
 
+        updatesp.setIcon(new javax.swing.ImageIcon("C:\\Users\\Admin\\OneDrive\\Documents\\GitHub\\PRO1041_IT17316_NHOM_3\\QuanLyCuaHangGiaySportPowerss\\src\\main\\java\\icon\\Add.png")); // NOI18N
         updatesp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 updatespActionPerformed(evt);
             }
         });
 
+        updatesp2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Admin\\OneDrive\\Documents\\GitHub\\PRO1041_IT17316_NHOM_3\\QuanLyCuaHangGiaySportPowerss\\src\\main\\java\\icon\\Add.png")); // NOI18N
         updatesp2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 updatesp2ActionPerformed(evt);
             }
         });
 
+        updatesp3.setIcon(new javax.swing.ImageIcon("C:\\Users\\Admin\\OneDrive\\Documents\\GitHub\\PRO1041_IT17316_NHOM_3\\QuanLyCuaHangGiaySportPowerss\\src\\main\\java\\icon\\Add.png")); // NOI18N
         updatesp3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 updatesp3ActionPerformed(evt);
             }
         });
 
+        updatesp4.setIcon(new javax.swing.ImageIcon("C:\\Users\\Admin\\OneDrive\\Documents\\GitHub\\PRO1041_IT17316_NHOM_3\\QuanLyCuaHangGiaySportPowerss\\src\\main\\java\\icon\\Add.png")); // NOI18N
         updatesp4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 updatesp4ActionPerformed(evt);
             }
         });
 
+        updatesp5.setIcon(new javax.swing.ImageIcon("C:\\Users\\Admin\\OneDrive\\Documents\\GitHub\\PRO1041_IT17316_NHOM_3\\QuanLyCuaHangGiaySportPowerss\\src\\main\\java\\icon\\Add.png")); // NOI18N
         updatesp5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 updatesp5ActionPerformed(evt);
             }
         });
 
+        updatesp6.setIcon(new javax.swing.ImageIcon("C:\\Users\\Admin\\OneDrive\\Documents\\GitHub\\PRO1041_IT17316_NHOM_3\\QuanLyCuaHangGiaySportPowerss\\src\\main\\java\\icon\\Add.png")); // NOI18N
         updatesp6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 updatesp6ActionPerformed(evt);
@@ -4860,29 +4917,29 @@ public class QuanLyView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField13ActionPerformed
 
-    private void jTextField14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField14ActionPerformed
+    private void txtDCNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDCNVActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField14ActionPerformed
+    }//GEN-LAST:event_txtDCNVActionPerformed
 
-    private void jTextField15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField15ActionPerformed
+    private void txtMaNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaNVActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField15ActionPerformed
+    }//GEN-LAST:event_txtMaNVActionPerformed
 
-    private void jTextField16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField16ActionPerformed
+    private void txtMKNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMKNVActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField16ActionPerformed
+    }//GEN-LAST:event_txtMKNVActionPerformed
 
-    private void jTextField17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField17ActionPerformed
+    private void txtTKNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTKNVActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField17ActionPerformed
+    }//GEN-LAST:event_txtTKNVActionPerformed
 
-    private void jTextField18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField18ActionPerformed
+    private void txtHoTenNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHoTenNVActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField18ActionPerformed
+    }//GEN-LAST:event_txtHoTenNVActionPerformed
 
-    private void jRadioButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton5ActionPerformed
+    private void rdNamNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdNamNVActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton5ActionPerformed
+    }//GEN-LAST:event_rdNamNVActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         // TODO add your handling code here:
@@ -6079,6 +6136,39 @@ public class QuanLyView extends javax.swing.JFrame {
         System.out.println(hoaDon);
     }//GEN-LAST:event_btntaohdActionPerformed
 
+    private void jTable5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable5MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTable5MouseClicked
+
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        // TODO add your handling code here:
+        int bb = JOptionPane.showConfirmDialog(this, "Bạn muốn thêm không ?", "Có", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION);
+        if (bb == JOptionPane.YES_OPTION) {
+            NhanVien nv=new NhanVien();
+            nv.setMaNV(txtMaNV.getText());
+            nv.setHoTenNV(txtHoTenNV.getText());
+            if(rdNamNV.isSelected()){
+                nv.setGioiTinh("Nam");
+            }else{
+                nv.setGioiTinh("Nữ");
+            }
+            nv.setChucvu((ChucVu) cbCV.getSelectedItem());
+            nv.setDiaChi(txtDCNV.getText());
+            nv.setNgaySinh((Date) dateNSNV.getDate());
+            nv.setMaNV(txtMKNV.getText());
+            try {
+                nvService.create(nv);
+            } catch (Exception ex) {
+                Logger.getLogger(QuanLyView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            JOptionPane.showMessageDialog(this, "Thêm thành công");
+        } else if (bb == JOptionPane.NO_OPTION) {
+            return;
+        } else {
+            return;
+        }
+    }//GEN-LAST:event_jButton13ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -6167,8 +6257,10 @@ public class QuanLyView extends javax.swing.JFrame {
     private javax.swing.JButton btnxacnhan1;
     private javax.swing.JButton btnxoa;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JComboBox<String> cbCL;
     private javax.swing.JComboBox<String> cbCL1;
+    private javax.swing.JComboBox<String> cbCV;
     private javax.swing.JComboBox<String> cbDe;
     private javax.swing.JComboBox<String> cbDe1;
     private javax.swing.JComboBox<String> cbHang;
@@ -6179,6 +6271,7 @@ public class QuanLyView extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbSIZE1;
     private javax.swing.JComboBox<String> cbTenSP;
     private javax.swing.JComboBox<String> cbTenSP1;
+    private com.toedter.calendar.JDateChooser dateNSNV;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
@@ -6200,10 +6293,8 @@ public class QuanLyView extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox17;
     private javax.swing.JComboBox<String> jComboBox18;
     private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox7;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private com.toedter.calendar.JDateChooser jDateChooser2;
-    private com.toedter.calendar.JDateChooser jDateChooser3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel17;
@@ -6303,8 +6394,6 @@ public class QuanLyView extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JRadioButton jRadioButton4;
-    private javax.swing.JRadioButton jRadioButton5;
-    private javax.swing.JRadioButton jRadioButton6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
@@ -6336,11 +6425,6 @@ public class QuanLyView extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
     private javax.swing.JTextField jTextField13;
-    private javax.swing.JTextField jTextField14;
-    private javax.swing.JTextField jTextField15;
-    private javax.swing.JTextField jTextField16;
-    private javax.swing.JTextField jTextField17;
-    private javax.swing.JTextField jTextField18;
     private javax.swing.JTextField jTextField19;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField6;
@@ -6419,7 +6503,9 @@ public class QuanLyView extends javax.swing.JFrame {
     private javax.swing.JPanel pnlThongKe;
     private javax.swing.JPanel pnlTong;
     private javax.swing.JRadioButton rdNam;
+    private javax.swing.JRadioButton rdNamNV;
     private javax.swing.JRadioButton rdNu;
+    private javax.swing.JRadioButton rdNuNV;
     private javax.swing.JRadioButton rdoConHang;
     private javax.swing.JRadioButton rdoConHang1;
     private javax.swing.JRadioButton rdoHetHang;
@@ -6437,9 +6523,11 @@ public class QuanLyView extends javax.swing.JFrame {
     private javax.swing.JTable tbldssanpham;
     private javax.swing.JTable tblgiohang;
     private javax.swing.JTextArea txtDC;
+    private javax.swing.JTextField txtDCNV;
     private javax.swing.JTextField txtDonGia;
     private javax.swing.JTextField txtDonGia1;
     private javax.swing.JTextField txtGhiChu;
+    private javax.swing.JTextField txtHoTenNV;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtID1;
     private javax.swing.JTextField txtIDChatLieu;
@@ -6451,12 +6539,14 @@ public class QuanLyView extends javax.swing.JFrame {
     private javax.swing.JTextField txtIdKH;
     private javax.swing.JTextField txtKhachTra;
     private javax.swing.JTextField txtLoaiDe;
+    private javax.swing.JTextField txtMKNV;
     private javax.swing.JTextField txtMaChatLieu;
     private javax.swing.JTextField txtMaDe;
     private javax.swing.JTextField txtMaHang;
     private javax.swing.JTextField txtMaHdBH;
     private javax.swing.JTextField txtMaKH;
     private javax.swing.JTextField txtMaLoai;
+    private javax.swing.JTextField txtMaNV;
     private javax.swing.JTextField txtMaNVBH;
     private javax.swing.JTextField txtMaSIZE;
     private javax.swing.JTextField txtMaSP;
@@ -6474,6 +6564,7 @@ public class QuanLyView extends javax.swing.JFrame {
     private javax.swing.JTextField txtSoLuongSP;
     private javax.swing.JTextField txtSoLuongSP1;
     private javax.swing.JTextField txtSoSize;
+    private javax.swing.JTextField txtTKNV;
     private javax.swing.JTextField txtTenChatLieu;
     private javax.swing.JTextField txtTenHang;
     private javax.swing.JTextField txtTenKH;
