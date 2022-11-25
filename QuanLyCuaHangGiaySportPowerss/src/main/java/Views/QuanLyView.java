@@ -5986,6 +5986,93 @@ public class QuanLyView extends javax.swing.JFrame {
 
     private void tblQLSPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblQLSPMouseClicked
         // TODO add your handling code here:
+          List<Size> Sz = sizeService.all();
+        List<LoaiGiay> lg = loaiGiayService.all();
+        List<DeGiay> dg = deGiayService.all();
+        List<HangGiay> hang = hangGiayService.all();
+        List<ChatLieu> cl = chatLieuService.all();
+        List<SanPham> sp = SanPhamService.all();
+        int row = tblQLSP.getSelectedRow();
+        txtID.setText(tblQLSP.getValueAt(row, 0).toString());
+        if (tblQLSP.getValueAt(row, 1) == null) {
+            JOptionPane.showMessageDialog(this, "Nhân viên không có chức vụ ");
+            cbTenSP.setSelectedIndex(0);
+        } else {
+            for (int j = 0; j < sp.size(); j++) {
+                if (sp.get(j).getMaSP().equalsIgnoreCase(tblQLSP.getValueAt(row, 1).toString())) {
+                    cbTenSP.setSelectedIndex(j);
+                }
+            }
+        }
+        if (tblQLSP.getValueAt(row, 2) == null) {
+            JOptionPane.showMessageDialog(this, "Nhân viên không có chức vụ ");
+            cbTenSP.setSelectedIndex(0);
+        } else {
+            for (int j = 0; j < sp.size(); j++) {
+                if (sp.get(j).getTenSP().equalsIgnoreCase(tblQLSP.getValueAt(row, 2).toString())) {
+                    cbTenSP.setSelectedIndex(j);
+                }
+            }
+        }
+        if (tblQLSP.getValueAt(row, 3) == null) {
+            JOptionPane.showMessageDialog(this, "Nhân viên không có chức vụ ");
+            cbSIZE.setSelectedIndex(0);
+        } else {
+            for (int j = 0; j < Sz.size(); j++) {
+                if (Sz.get(j).getSoSize() == Integer.parseInt(tblQLSP.getValueAt(row, 3).toString())) {
+                    cbSIZE.setSelectedIndex(j);
+                }
+            }
+        }
+        if (tblQLSP.getValueAt(row, 4) == null) {
+            JOptionPane.showMessageDialog(this, "Nhân viên không có chức vụ ");
+            cbLoai.setSelectedIndex(0);
+        } else {
+            for (int j = 0; j < lg.size(); j++) {
+                if (lg.get(j).getTenLoai().equalsIgnoreCase(tblQLSP.getValueAt(row, 4).toString())) {
+                    cbLoai.setSelectedIndex(j);
+                }
+            }
+        }
+        if (tblQLSP.getValueAt(row, 5) == null) {
+            JOptionPane.showMessageDialog(this, "Nhân viên không có chức vụ ");
+            cbHang.setSelectedIndex(0);
+        } else {
+            for (int j = 0; j < hang.size(); j++) {
+                if (hang.get(j).getTenHang().equalsIgnoreCase(tblQLSP.getValueAt(row, 5).toString())) {
+                    cbHang.setSelectedIndex(j);
+                }
+            }
+        }
+        if (tblQLSP.getValueAt(row, 6) == null) {
+            JOptionPane.showMessageDialog(this, "Nhân viên không có chức vụ ");
+            cbDe.setSelectedIndex(0);
+        } else {
+            for (int j = 0; j < dg.size(); j++) {
+                if (dg.get(j).getLoaiDe().equalsIgnoreCase(tblQLSP.getValueAt(row, 6).toString())) {
+                    cbDe.setSelectedIndex(j);
+                }
+            }
+        }
+        if (tblQLSP.getValueAt(row, 7) == null) {
+            JOptionPane.showMessageDialog(this, "Nhân viên không có chức vụ ");
+            cbCL.setSelectedIndex(0);
+        } else {
+            for (int j = 0; j < cl.size(); j++) {
+                if (cl.get(j).getTenCL().equalsIgnoreCase(tblQLSP.getValueAt(row, 7).toString())) {
+                    cbCL.setSelectedIndex(j);
+                }
+            }
+        }
+        txtDonGia.setText(tblQLSP.getValueAt(row, 9).toString());
+        txtTrongLuong.setText(tblQLSP.getValueAt(row, 10).toString());
+        txtSoLuongSP.setText(tblQLSP.getValueAt(row, 8).toString());
+        if (tblQLSP.getValueAt(row, 11).toString().equals("Còn Hàng")) {
+            rdoConHang.setSelected(true);
+        } else {
+            rdoHetHang.setSelected(true);
+        }
+        txtMotaChiTietSP.setText(tblQLSP.getValueAt(row, 12).toString());
     }//GEN-LAST:event_tblQLSPMouseClicked
 
     private void btnNext1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNext1ActionPerformed
