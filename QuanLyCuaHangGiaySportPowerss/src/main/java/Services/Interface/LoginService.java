@@ -4,7 +4,7 @@
  */
 package Services.Interface;
 
-import DomainModels.NhanVien;
+import DomainModels.TaiKhoan;
 import java.util.List;
 
 /**
@@ -13,5 +13,5 @@ import java.util.List;
  */
 public interface LoginService {
 
-    List<NhanVien> getNV(String ma);
+    List<TaiKhoan> getNV(String ma);
 }

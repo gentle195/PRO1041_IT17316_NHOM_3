@@ -4,7 +4,7 @@
  */
 package Services;
 
-import DomainModels.NhanVien;
+import DomainModels.TaiKhoan;
 import Repositories.LoginRepository;
 import Services.Interface.LoginService;
 import java.util.List;
@@ -18,7 +18,7 @@ public class LoginServiceImpl implements LoginService {
     private LoginRepository repo = new LoginRepository();
 
     @Override
-    public List<NhanVien> getNV(String ma) {
+    public List<TaiKhoan> getNV(String ma) {
         return repo.getnv(ma);
 
     }

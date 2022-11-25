@@ -10,7 +10,7 @@ import java.util.Date;
  *
  * @author admin
  */
-public class NhanVien {
+public class TaiKhoan {
 
     private String id;
     private String ma;
@@ -22,10 +22,10 @@ public class NhanVien {
     private String matKhau;
     private String idCV;
 
-    public NhanVien() {
+    public TaiKhoan() {
     }
 
-    public NhanVien(String id, String ma, String hoten, String gioiTing, String ngaySinh, String diaChi, String SDT, String matKhau, String idCV) {
+    public TaiKhoan(String id, String ma, String hoten, String gioiTing, String ngaySinh, String diaChi, String SDT, String matKhau, String idCV) {
         this.id = id;
         this.ma = ma;
         this.hoten = hoten;
