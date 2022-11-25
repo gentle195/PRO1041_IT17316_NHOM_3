@@ -4,114 +4,147 @@
  */
 package DomainModels;
 
+/**
+ *
+ * @author Admin
+ */
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import DomainModels.ChatLieu;
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.util.UUID;
 import java.util.Date;
 
 /**
  *
- * @author admin
+ * @author dinhq
  */
+@Entity
+@Table(name = "NhanVien")
 public class NhanVien {
 
-    private String id;
-    private String ma;
-    private String hoten;
-    private String gioiTing;
-    private String ngaySinh;
-    private String diaChi;
-    private String SDT;
-    private String matKhau;
-    private String idCV;
+    @Id
+    @Column(name = "IdNV")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID IdNV;
+
+    @Column(name = "MaNV")
+    private String MaNV;
+
+    @Column(name = "HoTenNV")
+    private String HoTenNV;
+
+    @Column(name = "GioiTinh")
+    private String GioiTinh;
+
+    @Column(name = "NgaySinh")
+    private Date NgaySinh;
+
+    @Column(name = "DiaChi")
+    private String DiaChi;
+    @Column(name = "Sdt")
+    private String Sdt;
+
+    @ManyToOne
+    @JoinColumn(name = "IdCV", nullable = false)
+    private ChucVu chucVu;
+    @Column(name = "MatKhau")
+    private String MatKhau;
 
     public NhanVien() {
     }
 
-    public NhanVien(String id, String ma, String hoten, String gioiTing, String ngaySinh, String diaChi, String SDT, String matKhau, String idCV) {
-        this.id = id;
-        this.ma = ma;
-        this.hoten = hoten;
-        this.gioiTing = gioiTing;
-        this.ngaySinh = ngaySinh;
-        this.diaChi = diaChi;
-        this.SDT = SDT;
-        this.matKhau = matKhau;
-        this.idCV = idCV;
+    public NhanVien(UUID IdNV, String MaNV, String HoTenNV, String GioiTinh, Date NgaySinh, String DiaChi, String Sdt, ChucVu chucVu, String MatKhau) {
+        this.IdNV = IdNV;
+        this.MaNV = MaNV;
+        this.HoTenNV = HoTenNV;
+        this.GioiTinh = GioiTinh;
+        this.NgaySinh = NgaySinh;
+        this.DiaChi = DiaChi;
+        this.Sdt = Sdt;
+        this.chucVu = chucVu;
+        this.MatKhau = MatKhau;
     }
 
-    public String getId() {
-        return id;
+    public UUID getIdNV() {
+        return IdNV;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setIdNV(UUID IdNV) {
+        this.IdNV = IdNV;
     }
 
-    public String getMa() {
-        return ma;
+    public String getMaNV() {
+        return MaNV;
     }
 
-    public void setMa(String ma) {
-        this.ma = ma;
+    public void setMaNV(String MaNV) {
+        this.MaNV = MaNV;
     }
 
-    public String getHoten() {
-        return hoten;
+    public String getHoTenNV() {
+        return HoTenNV;
     }
 
-    public void setHoten(String hoten) {
-        this.hoten = hoten;
+    public void setHoTenNV(String HoTenNV) {
+        this.HoTenNV = HoTenNV;
     }
 
-    public String getGioiTing() {
-        return gioiTing;
+    public String getGioiTinh() {
+        return GioiTinh;
     }
 
-    public void setGioiTing(String gioiTing) {
-        this.gioiTing = gioiTing;
+    public void setGioiTinh(String GioiTinh) {
+        this.GioiTinh = GioiTinh;
     }
 
-    public String getNgaySinh() {
-        return ngaySinh;
+    public Date getNgaySinh() {
+        return NgaySinh;
     }
 
-    public void setNgaySinh(String ngaySinh) {
-        this.ngaySinh = ngaySinh;
+    public void setNgaySinh(Date NgaySinh) {
+        this.NgaySinh = NgaySinh;
     }
 
     public String getDiaChi() {
-        return diaChi;
+        return DiaChi;
     }
 
-    public void setDiaChi(String diaChi) {
-        this.diaChi = diaChi;
+    public void setDiaChi(String DiaChi) {
+        this.DiaChi = DiaChi;
     }
 
-    public String getSDT() {
-        return SDT;
+    public String getSdt() {
+        return Sdt;
     }
 
-    public void setSDT(String SDT) {
-        this.SDT = SDT;
+    public void setSdt(String Sdt) {
+        this.Sdt = Sdt;
+    }
+
+    public ChucVu getChucVu() {
+        return chucVu;
+    }
+
+    public void setChucVu(ChucVu chucVu) {
+        this.chucVu = chucVu;
     }
 
     public String getMatKhau() {
-        return matKhau;
+        return MatKhau;
     }
 
-    public void setMatKhau(String matKhau) {
-        this.matKhau = matKhau;
+    public void setMatKhau(String MatKhau) {
+        this.MatKhau = MatKhau;
     }
-
-    public String getIdCV() {
-        return idCV;
+    public Object[] toDataRow (){
+    return new Object[]{IdNV,MaNV,HoTenNV,GioiTinh,NgaySinh,DiaChi,Sdt,chucVu,MatKhau};
     }
-
-    public void setIdCV(String idCV) {
-        this.idCV = idCV;
-    }
-
-    @Override
-    public String toString() {
-        return "NhanVien{" + "id=" + id + ", ma=" + ma + ", hoten=" + hoten + ", gioiTing=" + gioiTing + ", ngaySinh=" + ngaySinh + ", diaChi=" + diaChi + ", SDT=" + SDT + ", matKhau=" + matKhau + ", idCV=" + idCV + '}';
-    }
-
 }

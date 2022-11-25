@@ -4,7 +4,7 @@
  */
 package Repositories;
 
-import DomainModels.NhanVien;
+import DomainModels.TaiKhoan;
 import Utilities.DBConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -35,15 +35,15 @@ public class LoginRepository {
 //        }
 //        return null;
 //    }
-    public List<NhanVien> getnv(String ma) {
+    public List<TaiKhoan> getnv(String ma) {
         String query = "SELECT * FROM NhanVien where MaNV =?";
         try (Connection conn = DBConnection.getConnection();
                 PreparedStatement ps = conn.prepareStatement(query)) {
             ps.setObject(1, ma);
             ResultSet rs = ps.executeQuery();
-            List<NhanVien> listNV = new ArrayList<>();
+            List<TaiKhoan> listNV = new ArrayList<>();
             while (rs.next()) {
-                NhanVien nv = new NhanVien(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9));
+                TaiKhoan nv = new TaiKhoan(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9));
                 listNV.add(nv);
             }
             return listNV;
@@ -56,9 +56,9 @@ public class LoginRepository {
 
     public static void main(String[] args) {
         String ma = "ql";
-        List<NhanVien> ls = new ArrayList<>();
+        List<TaiKhoan> ls = new ArrayList<>();
         ls = new LoginRepository().getnv(ma);
-        for (NhanVien l : ls) {
+        for (TaiKhoan l : ls) {
             System.out.println(l.toString());
         }
     }

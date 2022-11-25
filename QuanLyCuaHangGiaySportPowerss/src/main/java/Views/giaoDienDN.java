@@ -4,7 +4,7 @@
  */
 package Views;
 
-import DomainModels.NhanVien;
+import DomainModels.TaiKhoan;
 import Services.LoginServiceImpl;
 import Services.Interface.LoginService;
 import Views.NhanVienView;
@@ -144,8 +144,8 @@ public class giaoDienDN extends javax.swing.JFrame {
         String manv = txtMa.getText();
         String matKhau = new String(txtMK.getText());
         try {
-            List<NhanVien> ls = service.getNV(manv);
-            NhanVien nv = ls.get(0);
+            List<TaiKhoan> ls = service.getNV(manv);
+            TaiKhoan nv = ls.get(0);
             System.out.println(nv);
             if (nv != null) {
                 String matKhau2 = nv.getMatKhau();
