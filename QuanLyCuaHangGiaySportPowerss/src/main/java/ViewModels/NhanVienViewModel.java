@@ -109,5 +109,11 @@ public class NhanVienViewModel {
     public void setMatkhau(String Matkhau) {
         this.Matkhau = Matkhau;
     }
+
+    @Override
+    public String toString() {
+        return  MaNV ;
+    }
+    
     
 }
