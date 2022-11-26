@@ -2,9 +2,11 @@
 
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
-    <Component class="javax.swing.ButtonGroup" name="buttonGroup1">
+    <Component class="javax.swing.ButtonGroup" name="buttonNV">
     </Component>
-    <Component class="javax.swing.ButtonGroup" name="buttonGroup2">
+    <Component class="javax.swing.ButtonGroup" name="buttonKH">
+    </Component>
+    <Component class="javax.swing.ButtonGroup" name="buttonSP">
     </Component>
   </NonVisualComponents>
   <Properties>
@@ -1023,7 +1025,7 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="1485" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="1136" max="32767" attributes="0"/>
                           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jPanel21" max="32767" attributes="0"/>
@@ -1256,7 +1258,7 @@
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace pref="68" max="32767" attributes="0"/>
+                              <EmptySpace pref="40" max="32767" attributes="0"/>
                               <Component id="jScrollPane11" min="-2" pref="273" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                           </Group>
@@ -1640,7 +1642,7 @@
                         <Component class="javax.swing.JRadioButton" name="rdNamNV">
                           <Properties>
                             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                              <ComponentRef name="buttonGroup1"/>
+                              <ComponentRef name="buttonNV"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="NAM"/>
                           </Properties>
@@ -1656,7 +1658,7 @@
                         <Component class="javax.swing.JRadioButton" name="rdNuNV">
                           <Properties>
                             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                              <ComponentRef name="buttonGroup1"/>
+                              <ComponentRef name="buttonNV"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="N&#x1eee;"/>
                           </Properties>
@@ -1935,7 +1937,7 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jPanel23" alignment="0" pref="1485" max="32767" attributes="0"/>
+                          <Component id="jPanel23" alignment="0" pref="1155" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
@@ -2114,6 +2116,9 @@
                         </Component>
                         <Component class="javax.swing.JRadioButton" name="rdNam">
                           <Properties>
+                            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                              <ComponentRef name="buttonKH"/>
+                            </Property>
                             <Property name="selected" type="boolean" value="true"/>
                             <Property name="text" type="java.lang.String" value="Nam"/>
                           </Properties>
@@ -2123,6 +2128,9 @@
                         </Component>
                         <Component class="javax.swing.JRadioButton" name="rdNu">
                           <Properties>
+                            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                              <ComponentRef name="buttonKH"/>
+                            </Property>
                             <Property name="text" type="java.lang.String" value="N&#x1eef;"/>
                           </Properties>
                         </Component>
@@ -2326,7 +2334,7 @@
                                       <Component id="btnSearch" alignment="0" min="-2" pref="32" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jScrollPane6" pref="394" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane6" pref="366" max="32767" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -3744,6 +3752,9 @@
                     </Component>
                     <Component class="javax.swing.JRadioButton" name="rdoConHang">
                       <Properties>
+                        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                          <ComponentRef name="buttonSP"/>
+                        </Property>
                         <Property name="text" type="java.lang.String" value="C&#xf2;n H&#xe0;ng"/>
                         <Property name="enabled" type="boolean" value="false"/>
                       </Properties>
@@ -3753,6 +3764,9 @@
                     </Component>
                     <Component class="javax.swing.JRadioButton" name="rdoHetHang">
                       <Properties>
+                        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                          <ComponentRef name="buttonSP"/>
+                        </Property>
                         <Property name="text" type="java.lang.String" value="H&#x1ebf;t H&#xe0;ng"/>
                         <Property name="enabled" type="boolean" value="false"/>
                       </Properties>
@@ -4138,11 +4152,80 @@
                                 <Column editable="false" title="&#x110;&#xea; Gi&#xe0;y" type="java.lang.Object"/>
                                 <Column editable="false" title="Ch&#x1ea5;t Li&#x1ec7;u" type="java.lang.Object"/>
                                 <Column editable="false" title="S&#x1ed1; L&#x1b0;&#x1ee3;ng" type="java.lang.Integer"/>
-                                <Column editable="true" title="&#xd0;&#x1a1;n Gi&#xe1;" type="java.lang.Double"/>
+                                <Column editable="false" title="&#xd0;&#x1a1;n Gi&#xe1;" type="java.lang.Double"/>
                                 <Column editable="false" title="Tr&#x1ecd;ng L&#x1b0;&#x1ee3;ng" type="java.lang.Float"/>
-                                <Column editable="true" title="Tr&#x1ea1;ng Th&#xe1;i" type="java.lang.Object"/>
-                                <Column editable="true" title="M&#xf4; T&#x1ea3;" type="java.lang.Object"/>
+                                <Column editable="false" title="Tr&#x1ea1;ng Th&#xe1;i" type="java.lang.Object"/>
+                                <Column editable="false" title="M&#xf4; T&#x1ea3;" type="java.lang.Object"/>
                               </Table>
+                            </Property>
+                            <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                              <TableColumnModel selectionModel="0">
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                              </TableColumnModel>
                             </Property>
                             <Property name="gridColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="ff" green="ff" red="cc" type="rgb"/>

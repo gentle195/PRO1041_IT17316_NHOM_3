@@ -173,7 +173,7 @@ public class QuanLyView extends javax.swing.JFrame {
         this.txtID.setText("");
         this.txtDC.setText("");
         this.txtNgaySinh.setDate(null);
-        this.buttonGroup1.clearSelection();
+        this.buttonNV.clearSelection();
     }
 
     private void loadTableSanPham() {
@@ -417,8 +417,9 @@ public class QuanLyView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
-        buttonGroup2 = new javax.swing.ButtonGroup();
+        buttonNV = new javax.swing.ButtonGroup();
+        buttonKH = new javax.swing.ButtonGroup();
+        buttonSP = new javax.swing.ButtonGroup();
         pnlTong = new javax.swing.JPanel();
         pnlMenu2 = new javax.swing.JPanel();
         pnlAnhDaiDien2 = new javax.swing.JPanel();
@@ -1491,7 +1492,7 @@ public class QuanLyView extends javax.swing.JFrame {
         jPanel20.setLayout(jPanel20Layout);
         jPanel20Layout.setHorizontalGroup(
             jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1485, Short.MAX_VALUE)
+            .addGap(0, 1136, Short.MAX_VALUE)
             .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel20Layout.createSequentialGroup()
                     .addComponent(jPanel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1552,7 +1553,7 @@ public class QuanLyView extends javax.swing.JFrame {
         jPanel22Layout.setVerticalGroup(
             jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel22Layout.createSequentialGroup()
-                .addContainerGap(68, Short.MAX_VALUE)
+                .addContainerGap(40, Short.MAX_VALUE)
                 .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35))
         );
@@ -1632,7 +1633,7 @@ public class QuanLyView extends javax.swing.JFrame {
             }
         });
 
-        buttonGroup1.add(rdNamNV);
+        buttonNV.add(rdNamNV);
         rdNamNV.setText("NAM");
         rdNamNV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1642,7 +1643,7 @@ public class QuanLyView extends javax.swing.JFrame {
 
         jLabel49.setText("HỌ VÀ TÊN");
 
-        buttonGroup1.add(rdNuNV);
+        buttonNV.add(rdNuNV);
         rdNuNV.setText("NỮ");
 
         jButton4.setText("+");
@@ -1970,6 +1971,7 @@ public class QuanLyView extends javax.swing.JFrame {
         jLabel40.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel40.setText("Số điện thoại");
 
+        buttonKH.add(rdNam);
         rdNam.setSelected(true);
         rdNam.setText("Nam");
         rdNam.addActionListener(new java.awt.event.ActionListener() {
@@ -1978,6 +1980,7 @@ public class QuanLyView extends javax.swing.JFrame {
             }
         });
 
+        buttonKH.add(rdNu);
         rdNu.setText("Nữ");
 
         jLabel41.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -2139,7 +2142,7 @@ public class QuanLyView extends javax.swing.JFrame {
         jPanel12.setLayout(jPanel12Layout);
         jPanel12Layout.setHorizontalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel23, javax.swing.GroupLayout.DEFAULT_SIZE, 1485, Short.MAX_VALUE)
+            .addComponent(jPanel23, javax.swing.GroupLayout.DEFAULT_SIZE, 1155, Short.MAX_VALUE)
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2217,7 +2220,7 @@ public class QuanLyView extends javax.swing.JFrame {
                     .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -2907,6 +2910,7 @@ public class QuanLyView extends javax.swing.JFrame {
         lblTrangThai.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblTrangThai.setText("Trạng thái");
 
+        buttonSP.add(rdoConHang);
         rdoConHang.setText("Còn Hàng");
         rdoConHang.setEnabled(false);
         rdoConHang.addActionListener(new java.awt.event.ActionListener() {
@@ -2915,6 +2919,7 @@ public class QuanLyView extends javax.swing.JFrame {
             }
         });
 
+        buttonSP.add(rdoHetHang);
         rdoHetHang.setText("Hết Hàng");
         rdoHetHang.setEnabled(false);
 
@@ -3233,7 +3238,7 @@ public class QuanLyView extends javax.swing.JFrame {
                 java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Double.class, java.lang.Float.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, true, false, true, true
+                false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -6469,8 +6474,9 @@ public class QuanLyView extends javax.swing.JFrame {
     private javax.swing.JButton btntimkiem;
     private javax.swing.JButton btnxacnhan1;
     private javax.swing.JButton btnxoa;
-    private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.ButtonGroup buttonKH;
+    private javax.swing.ButtonGroup buttonNV;
+    private javax.swing.ButtonGroup buttonSP;
     private javax.swing.JComboBox<String> cbCL;
     private javax.swing.JComboBox<String> cbCL1;
     private javax.swing.JComboBox<String> cbCV;
