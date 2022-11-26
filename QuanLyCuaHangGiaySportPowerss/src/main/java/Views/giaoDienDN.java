@@ -154,7 +154,7 @@ public class giaoDienDN extends javax.swing.JFrame {
                     QuanLyView ql = new QuanLyView();
                     this.dispose();
                     ql.setVisible(true);
-                }else if(matKhau.equals(matKhau2)&&!manv.equalsIgnoreCase("ql")){
+                }else if(matKhau.equals(matKhau2)&&!manv.equalsIgnoreCase("nv")){
                     JOptionPane.showMessageDialog(this, "Đăng nhập thành công");
                     NhanVienView nvv = new NhanVienView();
                     this.dispose();
