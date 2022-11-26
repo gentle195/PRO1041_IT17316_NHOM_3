@@ -375,7 +375,7 @@ public class QuanLyView extends javax.swing.JFrame {
         for (ChiTietSPViewModel x : Sz) {
             dtmSpBH.addRow(new Object[]{
                 x.getSanPham().getMaSP(), x.getSanPham().getTenSP(), x.getDonGia(),
-                x.getSoLuong(),x.getTrangThai() == 1 ? "Còn Hàng" : "Hết Hàng"});
+                x.getSoLuong(), x.getTrangThai() == 1 ? "Còn Hàng" : "Hết Hàng"});
         }
     }
 
@@ -5048,7 +5048,7 @@ public class QuanLyView extends javax.swing.JFrame {
         //            }
         //
         //        }
-          ArrayList<HoaDonChiTietViewModel> list = new ArrayList<>();
+        ArrayList<HoaDonChiTietViewModel> list = new ArrayList<>();
         HoaDonChiTietViewModel chiTietHoaDonViewModel = new HoaDonChiTietViewModel();
         String sl = JOptionPane.showInputDialog("Mời nhập số lượng");
         int row = tbldssanpham.getSelectedRow();
@@ -5750,16 +5750,31 @@ public class QuanLyView extends javax.swing.JFrame {
     }//GEN-LAST:event_txtMoTaSPActionPerformed
 
     private void btnThem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThem2ActionPerformed
+
         // TODO add your handling code here:
-        SanPham sp = new SanPham();
-        sp.setMaSP(txtMaSP.getText());
-        sp.setTenSP(txtTenSP.getText());
-        sp.setMoTa(txtMoTaSP.getText());
-        try {
-            SanPhamService.add(sp);
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        if (txtMaSP.getText().equals("") || txtTenSP.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Ban Chưa nhập đủ dữ liệu");
+            return;
         }
+        int xacnhan = JOptionPane.showConfirmDialog(this, "Bạn muốn thêm hay không?", "Có", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION);
+        if (xacnhan == JOptionPane.YES_OPTION) {
+            SanPham sp = new SanPham();
+            sp.setMaSP(txtMaSP.getText());
+            sp.setTenSP(txtTenSP.getText());
+            sp.setMoTa(txtMoTaSP.getText());
+            try {
+                SanPhamService.add(sp);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+
+            JOptionPane.showMessageDialog(this, "Thêm sản phẩm thành công");
+        } else if (xacnhan == JOptionPane.NO_OPTION) {
+            return;
+        } else {
+            return;
+        }
+
         loadTableSanPham();
         //        loadCBMaSP();
         //        loadCBTenSP();
@@ -5767,17 +5782,34 @@ public class QuanLyView extends javax.swing.JFrame {
 
     private void btnSua2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSua2ActionPerformed
         // TODO add your handling code here:
-        SanPham sp = new SanPham();
-        sp.setIdSP(UUID.fromString(txtIDsp.getText()));
-        sp.setMaSP(txtMaSP.getText());
-        sp.setTenSP(txtTenSP.getText());
-        sp.setMoTa(txtMoTaSP.getText());
-        try {
-            SanPhamService.update(sp);
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        int row = tbSP.getSelectedRow();
+        if (row == -1) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn vào trong bảng");
+            return;
         }
+        if (txtMaSP.getText().equals("") || txtTenSP.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Ban Chưa nhập đủ dữ liệu");
+            return;
+        }
+        int bb = JOptionPane.showConfirmDialog(this, "Thông báo", "Sửa", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION);
+        if (bb == JOptionPane.YES_OPTION) {
+            SanPham sp = new SanPham();
+            sp.setIdSP(UUID.fromString(txtIDsp.getText()));
+            sp.setMaSP(txtMaSP.getText());
+            sp.setTenSP(txtTenSP.getText());
+            sp.setMoTa(txtMoTaSP.getText());
+            try {
+                SanPhamService.update(sp);
+
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+            JOptionPane.showMessageDialog(this, "Sửa thành công");
+        } else if (bb == JOptionPane.NO_OPTION) {
+            return;
+
+        }
+
         loadTableSanPham();
         //        loadCBMaSP();
         //        loadCBTenSP();
@@ -5785,15 +5817,27 @@ public class QuanLyView extends javax.swing.JFrame {
 
     private void btnXoa2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoa2ActionPerformed
         // TODO add your handling code here:
-        SanPham sp = new SanPham();
-        sp.setIdSP(UUID.fromString(txtIDsp.getText()));
-        sp.setMaSP(txtMaSP.getText());
-        sp.setTenSP(txtTenSP.getText());
-        sp.setMoTa(txtMoTaSP.getText());
-        try {
-            SanPhamService.delete(sp);
-        } catch (Exception e) {
-            e.printStackTrace();
+        int row = tbSP.getSelectedRow();
+        if (row == -1) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn vào trong bảng");
+            return;
+        }
+        int bb = JOptionPane.showConfirmDialog(this, "Thông báo", "Xoá", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION);
+        if (bb == JOptionPane.YES_OPTION) {
+            SanPham sp = new SanPham();
+            sp.setIdSP(UUID.fromString(txtIDsp.getText()));
+            sp.setMaSP(txtMaSP.getText());
+            sp.setTenSP(txtTenSP.getText());
+            sp.setMoTa(txtMoTaSP.getText());
+            try {
+                SanPhamService.delete(sp);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            JOptionPane.showMessageDialog(this, "Xóa thành công");
+        } else if (bb == JOptionPane.NO_OPTION) {
+            return;
+
         }
         loadTableSanPham();
         //        loadCBMaSP();
@@ -5827,15 +5871,28 @@ public class QuanLyView extends javax.swing.JFrame {
 
     private void btnThem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThem3ActionPerformed
         // TODO add your handling code here:
-        ChatLieu cl = new ChatLieu();
-        cl.setMaCL(txtMaChatLieu.getText());
-        cl.setTenCL(txtTenChatLieu.getText());
-        cl.setMoTaCl(txtMoTaCL.getText());
+        if (txtMaChatLieu.getText().equals("") || txtTenChatLieu.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Ban Chưa nhập đủ dữ liệu");
+            return;
+        }
 
-        try {
-            chatLieuService.add(cl);
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        int xacnhan = JOptionPane.showConfirmDialog(this, "Bạn muốn thêm hay không?", "Có", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION);
+        if (xacnhan == JOptionPane.YES_OPTION) {
+            ChatLieu cl = new ChatLieu();
+            cl.setMaCL(txtMaChatLieu.getText());
+            cl.setTenCL(txtTenChatLieu.getText());
+            cl.setMoTaCl(txtMoTaCL.getText());
+
+            try {
+                chatLieuService.add(cl);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+            JOptionPane.showMessageDialog(this, "Thêm sản phẩm thành công");
+        } else if (xacnhan == JOptionPane.NO_OPTION) {
+            return;
+        } else {
+            return;
         }
         loadTableChatLieu();
         //        loadCBChatLieu();
@@ -5843,16 +5900,31 @@ public class QuanLyView extends javax.swing.JFrame {
 
     private void btnSua3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSua3ActionPerformed
         // TODO add your handling code here:
-        ChatLieu cl = new ChatLieu();
-        cl.setIdCL(UUID.fromString(txtIDChatLieu.getText()));
-        cl.setMaCL(txtMaChatLieu.getText());
-        cl.setTenCL(txtTenChatLieu.getText());
-        cl.setMoTaCl(txtMoTaCL.getText());
+        int row = tbChatLieu.getSelectedRow();
+        if (row == -1) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn vào trong bảng");
+            return;
+        }
+        if (txtMaChatLieu.getText().equals("") || txtTenChatLieu.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Ban Chưa nhập đủ dữ liệu");
+            return;
+        }
+        int bb = JOptionPane.showConfirmDialog(this, "Thông báo", "Sửa", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION);
+        if (bb == JOptionPane.YES_OPTION) {
+            ChatLieu cl = new ChatLieu();
+            cl.setIdCL(UUID.fromString(txtIDChatLieu.getText()));
+            cl.setMaCL(txtMaChatLieu.getText());
+            cl.setTenCL(txtTenChatLieu.getText());
+            cl.setMoTaCl(txtMoTaCL.getText());
 
-        try {
-            chatLieuService.update(cl);
-        } catch (Exception ex) {
-            ex.printStackTrace();
+            try {
+                chatLieuService.update(cl);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+            JOptionPane.showMessageDialog(this, "Sửa thành công");
+        } else if (bb == JOptionPane.NO_OPTION) {
+            return;
         }
         loadTableChatLieu();
         //        loadCBChatLieu();
@@ -5860,16 +5932,28 @@ public class QuanLyView extends javax.swing.JFrame {
 
     private void btnXoa3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoa3ActionPerformed
         // TODO add your handling code here:
-        ChatLieu cl = new ChatLieu();
-        cl.setIdCL(UUID.fromString(txtIDChatLieu.getText()));
-        cl.setMaCL(txtMaChatLieu.getText());
-        cl.setTenCL(txtTenChatLieu.getText());
-        cl.setMoTaCl(txtMoTaCL.getText());
+        int row = tbChatLieu.getSelectedRow();
+        if (row == -1) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn vào trong bảng");
+            return;
+        }
 
-        try {
-            chatLieuService.delete(cl);
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        int bb = JOptionPane.showConfirmDialog(this, "Thông báo bạn chắc chắn xóa", "Xóa", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION);
+        if (bb == JOptionPane.YES_OPTION) {
+            ChatLieu cl = new ChatLieu();
+            cl.setIdCL(UUID.fromString(txtIDChatLieu.getText()));
+            cl.setMaCL(txtMaChatLieu.getText());
+            cl.setTenCL(txtTenChatLieu.getText());
+            cl.setMoTaCl(txtMoTaCL.getText());
+
+            try {
+                chatLieuService.delete(cl);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+            JOptionPane.showMessageDialog(this, "Xóa thành công");
+        } else if (bb == JOptionPane.NO_OPTION) {
+            return;
         }
         loadTableChatLieu();
     }//GEN-LAST:event_btnXoa3ActionPerformed
@@ -5906,19 +5990,26 @@ public class QuanLyView extends javax.swing.JFrame {
             return;
 
         } else {
-            HangGiay hangSP = new HangGiay();
+            int xacnhan = JOptionPane.showConfirmDialog(this, "Bạn muốn thêm hay không?", "Có", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION);
+            if (xacnhan == JOptionPane.YES_OPTION) {
+                HangGiay hangSP = new HangGiay();
 
-            hangSP.setMaHang(txtMaHang.getText());
-            hangSP.setTenHang(txtTenHang.getText());
-            hangSP.setMoTaHang(txtMoTaHang.getText());
-            if (hangSP == null) {
+                hangSP.setMaHang(txtMaHang.getText());
+                hangSP.setTenHang(txtTenHang.getText());
+                hangSP.setMoTaHang(txtMoTaHang.getText());
+                if (hangSP == null) {
+                    return;
+                }
+                try {
+                    hangGiayService.add(hangSP);
+                    JOptionPane.showMessageDialog(this, "Thêm hãng thành công");
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            } else if (xacnhan == JOptionPane.NO_OPTION) {
                 return;
-            }
-            try {
-                hangGiayService.add(hangSP);
-                JOptionPane.showMessageDialog(this, "Thêm thành công");
-            } catch (Exception ex) {
-                ex.printStackTrace();
+            } else {
+                return;
             }
             loadTableHangGiay();
             //            loadCBHang();
@@ -5926,16 +6017,33 @@ public class QuanLyView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnThem4ActionPerformed
 
     private void btnSua4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSua4ActionPerformed
+
         // TODO add your handling code here:
-        HangGiay hg = new HangGiay();
-        hg.setIdHang(UUID.fromString(txtIDHang.getText()));
-        hg.setMaHang(txtMaHang.getText());
-        hg.setTenHang(txtTenHang.getText());
-        hg.setMoTaHang(txtMoTaHang.getText());
-        try {
-            hangGiayService.update(hg);
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        int row = tbHang.getSelectedRow();
+        if (row == -1) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn vào trong bảng");
+            return;
+        }
+        if (txtMaHang.getText().equals("") || txtTenHang.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Ban Chưa nhập đủ dữ liệu");
+            return;
+        }
+        int bb = JOptionPane.showConfirmDialog(this, "Thông báo", "Sửa", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION);
+        if (bb == JOptionPane.YES_OPTION) {
+            HangGiay hg = new HangGiay();
+            hg.setIdHang(UUID.fromString(txtIDHang.getText()));
+            hg.setMaHang(txtMaHang.getText());
+            hg.setTenHang(txtTenHang.getText());
+            hg.setMoTaHang(txtMoTaHang.getText());
+            try {
+                hangGiayService.update(hg);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+            JOptionPane.showMessageDialog(this, "Sửa thành công");
+        } else if (bb == JOptionPane.NO_OPTION) {
+            return;
+
         }
         loadTableHangGiay();
         //        loadCBHang();
@@ -5943,15 +6051,26 @@ public class QuanLyView extends javax.swing.JFrame {
 
     private void btnXoa4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoa4ActionPerformed
         // TODO add your handling code here:
-        HangGiay hg = new HangGiay();
-        hg.setIdHang(UUID.fromString(txtIDHang.getText()));
-        hg.setMaHang(txtMaHang.getText());
-        hg.setTenHang(txtTenHang.getText());
-        hg.setMoTaHang(txtMoTaHang.getText());
-        try {
-            hangGiayService.delete(hg);
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        int row = tbHang.getSelectedRow();
+        if (row == -1) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn vào trong bảng");
+            return;
+        }
+        int bb = JOptionPane.showConfirmDialog(this, "Thông báo", "Xóa", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION);
+        if (bb == JOptionPane.YES_OPTION) {
+            HangGiay hg = new HangGiay();
+            hg.setIdHang(UUID.fromString(txtIDHang.getText()));
+            hg.setMaHang(txtMaHang.getText());
+            hg.setTenHang(txtTenHang.getText());
+            hg.setMoTaHang(txtMoTaHang.getText());
+            try {
+                hangGiayService.delete(hg);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+            JOptionPane.showMessageDialog(this, "Xóa thành công");
+        } else if (bb == JOptionPane.NO_OPTION) {
+            return;
         }
         loadTableHangGiay();
         //        loadCBHang();
@@ -5984,30 +6103,58 @@ public class QuanLyView extends javax.swing.JFrame {
 
     private void btnThem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThem5ActionPerformed
         // TODO add your handling code here:
-        LoaiGiay lg = new LoaiGiay();
-        lg.setMaLoai(txtMaLoai.getText());
-        lg.setTenLoai(txtTenLoai.getText());
-        lg.setMoTa(txtMoTaLoaiGiay.getText());
-        try {
-            loaiGiayService.add(lg);
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        if (txtMaLoai.getText().equals("") || txtTenLoai.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Bạn Chưa nhập đủ dữ liệu");
+            return;
+        }
+        int xacnhan = JOptionPane.showConfirmDialog(this, "Bạn muốn thêm hay không?", "Có", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION);
+        if (xacnhan == JOptionPane.YES_OPTION) {
+            LoaiGiay lg = new LoaiGiay();
+            lg.setMaLoai(txtMaLoai.getText());
+            lg.setTenLoai(txtTenLoai.getText());
+            lg.setMoTa(txtMoTaLoaiGiay.getText());
+            try {
+                loaiGiayService.add(lg);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+            JOptionPane.showMessageDialog(this, "Thêm thành công");
+        } else if (xacnhan == JOptionPane.NO_OPTION) {
+            return;
+        } else {
+            return;
         }
         loadTableLoaiGiay();
         //        loadCBLoai();
     }//GEN-LAST:event_btnThem5ActionPerformed
 
     private void btnSua5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSua5ActionPerformed
+
+        int row = tbLoaiGiay.getSelectedRow();
+        if (row == -1) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn vào trong bảng");
+            return;
+        }
+        if (txtMaLoai.getText().equals("") || txtTenLoai.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Ban Chưa nhập đủ dữ liệu");
+            return;
+        }
         // TODO add your handling code here:
-        LoaiGiay lg = new LoaiGiay();
-        lg.setIdLoai(UUID.fromString(txtIDLoai.getText()));
-        lg.setMaLoai(txtMaLoai.getText());
-        lg.setTenLoai(txtTenLoai.getText());
-        lg.setMoTa(txtMoTaLoaiGiay.getText());
-        try {
-            loaiGiayService.update(lg);
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        int xacnhan = JOptionPane.showConfirmDialog(this, "Bạn muốn sửa hay không?", "Có", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION);
+        if (xacnhan == JOptionPane.YES_OPTION) {
+            LoaiGiay lg = new LoaiGiay();
+            lg.setIdLoai(UUID.fromString(txtIDLoai.getText()));
+            lg.setMaLoai(txtMaLoai.getText());
+            lg.setTenLoai(txtTenLoai.getText());
+            lg.setMoTa(txtMoTaLoaiGiay.getText());
+            try {
+                loaiGiayService.update(lg);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+            JOptionPane.showMessageDialog(this, "Sửa thành công");
+        } else if (xacnhan == JOptionPane.NO_OPTION) {
+            return;
         }
         loadTableLoaiGiay();
         //        loadCBLoai();
@@ -6015,15 +6162,28 @@ public class QuanLyView extends javax.swing.JFrame {
 
     private void btnXoa5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoa5ActionPerformed
         // TODO add your handling code here:
-        LoaiGiay lg = new LoaiGiay();
-        lg.setIdLoai(UUID.fromString(txtIDLoai.getText()));
-        lg.setMaLoai(txtMaLoai.getText());
-        lg.setTenLoai(txtTenLoai.getText());
-        lg.setMoTa(txtMoTaLoaiGiay.getText());
-        try {
-            loaiGiayService.delete(lg);
-        } catch (Exception ex) {
-            ex.printStackTrace();
+
+        int row = tbLoaiGiay.getSelectedRow();
+        if (row == -1) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn vào trong bảng");
+            return;
+        }
+        // TODO add your handling code here:
+        int xacnhan = JOptionPane.showConfirmDialog(this, "Bạn muốn Xóa hay không?", "Có", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION);
+        if (xacnhan == JOptionPane.YES_OPTION) {
+            LoaiGiay lg = new LoaiGiay();
+            lg.setIdLoai(UUID.fromString(txtIDLoai.getText()));
+            lg.setMaLoai(txtMaLoai.getText());
+            lg.setTenLoai(txtTenLoai.getText());
+            lg.setMoTa(txtMoTaLoaiGiay.getText());
+            try {
+                loaiGiayService.delete(lg);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+            JOptionPane.showMessageDialog(this, "Xóa thành công");
+        } else if (xacnhan == JOptionPane.NO_OPTION) {
+            return;
         }
         loadTableLoaiGiay();
         //        loadCBLoai();
@@ -6052,28 +6212,75 @@ public class QuanLyView extends javax.swing.JFrame {
 
     private void btnThem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThem6ActionPerformed
         // TODO add your handling code here:
-        Size s = new Size();
-        s.setMaSize(txtMaSIZE.getText());
-        s.setSoSize(Integer.parseInt(txtSoSize.getText()));
-        try {
-            sizeService.add(s);
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        if (txtMaSIZE.getText().equals("") || txtSoSize.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Bạn Chưa nhập đủ dữ liệu");
+            return;
         }
+        if (Integer.parseInt(txtSoSize.getText()) <= 30) {
+            JOptionPane.showMessageDialog(this, "Số size phải lớn hơn 30");
+            return;
+        }
+        if (Integer.parseInt(txtSoSize.getText()) >= 50) {
+            JOptionPane.showMessageDialog(this, "Số size phải nhỏ hơn 50");
+            return;
+        }
+
+        int xacnhan = JOptionPane.showConfirmDialog(this, "Bạn muốn thêm hay không?", "Có", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION);
+        if (xacnhan == JOptionPane.YES_OPTION) {
+
+            Size s = new Size();
+            s.setMaSize(txtMaSIZE.getText());
+            s.setSoSize(Integer.parseInt(txtSoSize.getText()));
+            try {
+                sizeService.add(s);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+            JOptionPane.showMessageDialog(this, "Thêm thành công");
+        } else if (xacnhan == JOptionPane.NO_OPTION) {
+            return;
+        } else {
+            return;
+        }
+
         loadTableSizeGiay();
         //        loadCBSize();
     }//GEN-LAST:event_btnThem6ActionPerformed
 
     private void btnSua6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSua6ActionPerformed
-        // TODO add your handling code here:
-        Size s = new Size();
-        s.setIdSize(UUID.fromString(txtIDSIZE.getText()));
-        s.setMaSize(txtMaSIZE.getText());
-        s.setSoSize(Integer.parseInt(txtSoSize.getText()));
-        try {
-            sizeService.update(s);
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        int row = tbSIZE.getSelectedRow();
+        if (row == -1) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn vào trong bảng");
+            return;
+        }
+        if (txtMaSIZE.getText().equals("") || txtSoSize.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Ban Chưa nhập đủ dữ liệu");
+            return;
+        }
+
+        if (Integer.parseInt(txtSoSize.getText()) <= 30) {
+            JOptionPane.showMessageDialog(this, "Số size phải lớn hơn 30");
+            return;
+        }
+        if (Integer.parseInt(txtSoSize.getText()) >= 50) {
+            JOptionPane.showMessageDialog(this, "Số size phải nhỏ hơn 50");
+            return;
+        }// TODO add your handling code here:
+        int xacnhan = JOptionPane.showConfirmDialog(this, "Bạn muốn sửa hay không?", "Có", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION);
+        if (xacnhan == JOptionPane.YES_OPTION) {
+            Size s = new Size();
+            s.setIdSize(UUID.fromString(txtIDSIZE.getText()));
+            s.setMaSize(txtMaSIZE.getText());
+            s.setSoSize(Integer.parseInt(txtSoSize.getText()));
+            try {
+                sizeService.update(s);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+            JOptionPane.showMessageDialog(this, "Sửa thành công");
+        } else if (xacnhan == JOptionPane.NO_OPTION) {
+            return;
+
         }
         loadTableSizeGiay();
         //        loadCBSize();
@@ -6081,14 +6288,25 @@ public class QuanLyView extends javax.swing.JFrame {
 
     private void btnXoa6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoa6ActionPerformed
         // TODO add your handling code here:
-        Size s = new Size();
-        s.setIdSize(UUID.fromString(txtIDSIZE.getText()));
-        s.setMaSize(txtMaSIZE.getText());
-        s.setSoSize(Integer.parseInt(txtSoSize.getText()));
-        try {
-            sizeService.delete(s);
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        int row = tbSIZE.getSelectedRow();
+        if (row == -1) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn vào trong bảng");
+            return;
+        }
+        int xacnhan = JOptionPane.showConfirmDialog(this, "Bạn muốn thêm hay không?", "Có", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION);
+        if (xacnhan == JOptionPane.YES_OPTION) {
+            Size s = new Size();
+            s.setIdSize(UUID.fromString(txtIDSIZE.getText()));
+            s.setMaSize(txtMaSIZE.getText());
+            s.setSoSize(Integer.parseInt(txtSoSize.getText()));
+            try {
+                sizeService.delete(s);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+            JOptionPane.showMessageDialog(this, "Xóa thành công");
+        } else if (xacnhan == JOptionPane.NO_OPTION) {
+            return;
         }
         loadTableSizeGiay();
         //        loadCBSize();
@@ -6120,30 +6338,57 @@ public class QuanLyView extends javax.swing.JFrame {
 
     private void btnThem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThem7ActionPerformed
         // TODO add your handling code here:
-        DeGiay dg = new DeGiay();
-        dg.setMaCL(txtMaDe.getText());
-        dg.setLoaiDe(txtLoaiDe.getText());
-        dg.setMoTaDG(txtMoTaDe.getText());
-        try {
-            deGiayService.add(dg);
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        if (txtMaDe.getText().equals("") || txtLoaiDe.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Bạn Chưa nhập đủ dữ liệu");
+            return;
+        }
+        int xacnhan = JOptionPane.showConfirmDialog(this, "Bạn muốn thêm hay không?", "Có", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION);
+        if (xacnhan == JOptionPane.YES_OPTION) {
+            DeGiay dg = new DeGiay();
+            dg.setMaCL(txtMaDe.getText());
+            dg.setLoaiDe(txtLoaiDe.getText());
+            dg.setMoTaDG(txtMoTaDe.getText());
+            try {
+                deGiayService.add(dg);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+            JOptionPane.showMessageDialog(this, "Thêm thành công");
+        } else if (xacnhan == JOptionPane.NO_OPTION) {
+            return;
+        } else {
+            return;
         }
         loadTableDeGiay();
         //        loadCBDe();
     }//GEN-LAST:event_btnThem7ActionPerformed
 
     private void btnSua7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSua7ActionPerformed
+        int row = tbDeGiay.getSelectedRow();
+        if (row == -1) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn vào trong bảng");
+            return;
+        }
+        if (txtMaDe.getText().equals("") || txtLoaiDe.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Ban Chưa nhập đủ dữ liệu");
+            return;
+        }
         // TODO add your handling code here:
-        DeGiay dg = new DeGiay();
-        dg.setIdDG(UUID.fromString(txtIDDeGiay.getText()));
-        dg.setMaCL(txtMaDe.getText());
-        dg.setLoaiDe(txtLoaiDe.getText());
-        dg.setMoTaDG(txtMoTaDe.getText());
-        try {
-            deGiayService.update(dg);
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        int xacnhan = JOptionPane.showConfirmDialog(this, "Bạn muốn sửa hay không?", "Có", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION);
+        if (xacnhan == JOptionPane.YES_OPTION) {
+            DeGiay dg = new DeGiay();
+            dg.setIdDG(UUID.fromString(txtIDDeGiay.getText()));
+            dg.setMaCL(txtMaDe.getText());
+            dg.setLoaiDe(txtLoaiDe.getText());
+            dg.setMoTaDG(txtMoTaDe.getText());
+            try {
+                deGiayService.update(dg);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+            JOptionPane.showMessageDialog(this, "sửa thành công");
+        } else if (xacnhan == JOptionPane.NO_OPTION) {
+            return;
         }
         loadTableDeGiay();
         //        loadCBDe();
@@ -6151,15 +6396,28 @@ public class QuanLyView extends javax.swing.JFrame {
 
     private void btnXoa7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoa7ActionPerformed
         // TODO add your handling code here:
-        DeGiay dg = new DeGiay();
-        dg.setIdDG(UUID.fromString(txtIDDeGiay.getText()));
-        dg.setMaCL(txtMaDe.getText());
-        dg.setLoaiDe(txtLoaiDe.getText());
-        dg.setMoTaDG(txtMoTaDe.getText());
-        try {
-            deGiayService.delete(dg);
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        int row = tbDeGiay.getSelectedRow();
+        if (row == -1) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn vào trong bảng");
+            return;
+        }
+
+        // TODO add your handling code here:
+        int xacnhan = JOptionPane.showConfirmDialog(this, "Bạn muốn xóa hay không?", "Có", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION);
+        if (xacnhan == JOptionPane.YES_OPTION) {
+            DeGiay dg = new DeGiay();
+            dg.setIdDG(UUID.fromString(txtIDDeGiay.getText()));
+            dg.setMaCL(txtMaDe.getText());
+            dg.setLoaiDe(txtLoaiDe.getText());
+            dg.setMoTaDG(txtMoTaDe.getText());
+            try {
+                deGiayService.delete(dg);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+            JOptionPane.showMessageDialog(this, "Xóa thành công");
+        } else if (xacnhan == JOptionPane.NO_OPTION) {
+            return;
         }
         loadTableDeGiay();
         //        loadCBDe();
@@ -6286,7 +6544,7 @@ public class QuanLyView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnxacnhan1ActionPerformed
 
     private void tbldssanphamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbldssanphamMouseClicked
-      
+
     }//GEN-LAST:event_tbldssanphamMouseClicked
 
     private void btntaohdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btntaohdActionPerformed
@@ -6333,7 +6591,7 @@ public class QuanLyView extends javax.swing.JFrame {
 
     private void btnsudungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsudungActionPerformed
         // TODO add your handling code here:
-          ChucVu cv = new ChucVu();
+        ChucVu cv = new ChucVu();
         cv.setIdCV(UUID.fromString(txtIDChucVu.getText()));
         cv.setMaCV(txtMaChucVu.getText());
         cv.setTenCV(txtTenChucVu.getText());
@@ -6346,7 +6604,15 @@ public class QuanLyView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnsudungActionPerformed
 
     private void btnsudung1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsudung1ActionPerformed
-        // TODO add your handling code here:
+        int row = tbChucVu.getSelectedRow();
+        if (row == -1) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn vào trong bảng");
+            return;
+        }
+        if (txtMaChucVu.getText().equals("") || txtTenChucVu.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Ban Chưa nhập đủ dữ liệu");
+            return;
+        }        // TODO add your handling code here:
         ChucVu cv = new ChucVu();
         cv.setIdCV(UUID.fromString(txtIDChucVu.getText()));
         cv.setMaCV(txtMaChucVu.getText());
@@ -6370,7 +6636,7 @@ public class QuanLyView extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         loadTableChucVu();
-        
+
     }//GEN-LAST:event_btnsudung2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
