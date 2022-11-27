@@ -24,9 +24,9 @@ public class NhanVienRepository implements NhanVienRepositoryInterface{
     }
 
     @Override
-    public List<NhanVienViewModel> getall() {
+    public List<NhanVien> getall() {
         String jpql = "SELECT cate FROM NhanVien cate";
-        TypedQuery<NhanVienViewModel> query = this.em.createQuery(jpql, NhanVienViewModel.class);
+        TypedQuery<NhanVien> query = this.em.createQuery(jpql, NhanVien.class);
         return query.getResultList();
     }
 
