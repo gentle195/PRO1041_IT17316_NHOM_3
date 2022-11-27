@@ -6,15 +6,23 @@ package Repositories;
  */
 import DomainModels.ChatLieu;
 import DomainModels.ChiTietSP;
+import DomainModels.ChiTietSP1;
 import Utilities.JpaUtil;
 import DomainModels.SanPham;
 import Repositories.Impl.ChatLieuRepositoryInterface;
 import Repositories.Impl.ChiTietSPRepositoryInterface;
 import Repositories.Impl.SanPhamRepositoryInterface;
+import Utilities.DBConnection;
+import ViewModels.ChiTietSPViewModel;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -75,15 +83,19 @@ public class ChiTietSPRepository implements ChiTietSPRepositoryInterface {
         }
 
     }
-    public void updatesl(ChiTietSP ct){
+
+    @Override
+    public void updates1(ChiTietSP ct, String ma) throws Exception {
         try {
-            this.em.getTransaction().begin();
-            this.em.merge(ct);
-            this.em.getTransaction().commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-            this.em.getTransaction().rollback();
-            throw e;
+            Connection conn = DBConnection.getConnection();
+            String insert = "update ChiTietSp set SoLuong=? where IdSP like(Select IdSP from SanPham where MaSP=?)";
+            PreparedStatement ps = conn.prepareStatement(insert);
+            ps.setObject(1, ct.getSoLuong());
+            ps.setObject(2, ma);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ChiTietSPRepository.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
     }
 

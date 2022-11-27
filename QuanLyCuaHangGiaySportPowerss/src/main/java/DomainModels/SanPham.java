@@ -4,8 +4,6 @@ package DomainModels;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -28,22 +26,25 @@ import java.util.UUID;
 @Entity
 @Table(name = "SanPham")
 public class SanPham {
+
     @Id
     @Column(name = "IdSP")
-    @GeneratedValue (strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID IdSP;
-    
+
     @Column(name = "MaSP")
     private String MaSP;
-    
+
     @Column(name = "TenSP")
     private String TenSP;
-    
+
     @Column(name = "MoTa")
     private String MoTa;
-    
-         @OneToMany(fetch = FetchType.LAZY, mappedBy = "sanPham")
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "sanPham")
     private Set<ChiTietSP> list = new HashSet<>();
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "sanPham1")
+    private Set<ChiTietSP1> list1 = new HashSet<>();
 
     public Set<ChiTietSP> getList() {
         return list;
@@ -97,8 +98,7 @@ public class SanPham {
 
     @Override
     public String toString() {
-        return  TenSP ;
+        return TenSP;
     }
 
-    
 }
