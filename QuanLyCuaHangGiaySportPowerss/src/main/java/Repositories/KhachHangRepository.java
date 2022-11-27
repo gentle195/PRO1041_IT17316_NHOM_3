@@ -6,12 +6,18 @@ package Repositories;
 
 import DomainModels.KhachHang;
 import Repositories.Impl.KhachHangRepositoryInterface;
+import Utilities.DBConnection;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import Utilities.JpaUtil;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -70,6 +76,26 @@ public class KhachHangRepository implements KhachHangRepositoryInterface {
             this.em.getTransaction().rollback();
             throw e;
         }
+    }
+    public List<KhachHang> search(String ten) {
+        String query = "SELECT * FROM KhachHang where hoten =?";
+        try (Connection conn = DBConnection.getConnection();
+                PreparedStatement ps = conn.prepareStatement(query)) {
+            ps.setObject(1, ten);
+            ResultSet rs = ps.executeQuery();
+            List<KhachHang> listKhachHang = new ArrayList<>();
+            while (rs.next()) {
+                KhachHang kh = new KhachHang(
+                        //                        rs.getString(1), 
+                        rs.getString(2), rs.getString(3), rs.getString(4), rs.getDate(5), rs.getString(6), rs.getString(7));
+                listKhachHang.add(kh);
+            }
+            return listKhachHang;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }

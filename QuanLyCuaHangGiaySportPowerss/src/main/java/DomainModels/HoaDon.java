@@ -4,6 +4,7 @@
  */
 package DomainModels;
 
+import ViewModels.NhanVienViewModel;
 import java.util.Date;
 
 /**
@@ -13,7 +14,7 @@ import java.util.Date;
 public class HoaDon {
 
     private String IdHD;
-    private String IdNV;
+    private NhanVienViewModel IdNV;
     private String IdKH;
     private String IdPT;
     private String maHD;
@@ -31,7 +32,7 @@ public class HoaDon {
     public HoaDon() {
     }
 
-    public HoaDon(String IdHD, String IdNV, String IdKH, String IdPT, String maHD, Date ngayTao, Date ngayDat, Date ngayShip, Date ngayNhan, Date ngayThanhToan, int tinhTrang, String tenNguoiNhan, String diaChi, String SDT, String moTa) {
+    public HoaDon(String IdHD, NhanVienViewModel IdNV, String IdKH, String IdPT, String maHD, Date ngayTao, Date ngayDat, Date ngayShip, Date ngayNhan, Date ngayThanhToan, int tinhTrang, String tenNguoiNhan, String diaChi, String SDT, String moTa) {
         this.IdHD = IdHD;
         this.IdNV = IdNV;
         this.IdKH = IdKH;
@@ -57,11 +58,11 @@ public class HoaDon {
         this.IdHD = IdHD;
     }
 
-    public String getIdNV() {
+    public NhanVienViewModel getIdNV() {
         return IdNV;
     }
 
-    public void setIdNV(String IdNV) {
+    public void setIdNV(NhanVienViewModel IdNV) {
         this.IdNV = IdNV;
     }
 

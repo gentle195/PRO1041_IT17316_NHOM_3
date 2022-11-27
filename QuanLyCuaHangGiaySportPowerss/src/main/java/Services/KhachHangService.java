@@ -47,4 +47,9 @@ public class KhachHangService implements KhachHangServiceInterface {
     public void delete(KhachHang kh) throws Exception {
         KHRepo.delete(kh);
     }
+
+    @Override
+    public List<KhachHang> search(String ten) {
+        return KHRepo.search(ten);
+    }
 }

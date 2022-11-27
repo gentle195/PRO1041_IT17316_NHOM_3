@@ -58,4 +58,9 @@ public class ChiTietSPService implements ChiTietSPServiceInterface {
         chiTietSPRepo.delete(chiTietSP);
 
     }
+
+    @Override
+    public void updatesl(ChiTietSP ct) throws Exception {
+        chiTietSPRepo.delete(ct);
+    }
 }

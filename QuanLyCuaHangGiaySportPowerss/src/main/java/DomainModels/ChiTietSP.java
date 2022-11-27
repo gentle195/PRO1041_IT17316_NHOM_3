@@ -38,7 +38,7 @@ public class ChiTietSP {
     @JoinColumn(name = "IdHang", nullable = false)
     private HangGiay hangGiay;
 
-     @ManyToOne
+    @ManyToOne
     @JoinColumn(name = "IdCL", nullable = false)
     private ChatLieu chatlieu;
 
@@ -91,7 +91,6 @@ public class ChiTietSP {
         return IdCTSP;
     }
 
-    
     public void setIdCTSP(UUID IdCTSP) {
         this.IdCTSP = IdCTSP;
     }
@@ -184,5 +183,4 @@ public class ChiTietSP {
         this.MoTa = MoTa;
     }
 
-   
 }

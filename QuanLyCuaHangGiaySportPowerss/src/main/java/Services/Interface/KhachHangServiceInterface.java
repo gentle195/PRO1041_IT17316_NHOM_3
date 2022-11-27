@@ -20,5 +20,5 @@ public interface KhachHangServiceInterface {
     public void update(KhachHang kh) throws Exception;
 
     public void delete(KhachHang kh) throws Exception;
-
+    public List<KhachHang> search(String ten);
 }

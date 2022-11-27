@@ -75,5 +75,16 @@ public class ChiTietSPRepository implements ChiTietSPRepositoryInterface {
         }
 
     }
+    public void updatesl(ChiTietSP ct){
+        try {
+            this.em.getTransaction().begin();
+            this.em.merge(ct);
+            this.em.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            this.em.getTransaction().rollback();
+            throw e;
+        }
+    }
 
 }

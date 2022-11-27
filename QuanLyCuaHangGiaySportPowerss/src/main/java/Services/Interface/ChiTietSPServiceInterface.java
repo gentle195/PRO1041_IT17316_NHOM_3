@@ -16,4 +16,5 @@ public interface ChiTietSPServiceInterface {
     public void add(ChiTietSP chiTietSP) throws Exception;
     public void update(ChiTietSP chiTietSP) throws Exception;
     public  void delete(ChiTietSP chiTietSP) throws Exception;
+    public void updatesl(ChiTietSP ct) throws Exception;
 }

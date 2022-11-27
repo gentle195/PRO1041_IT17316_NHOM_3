@@ -23,12 +23,12 @@ public class HoaDonBanHangRepository implements HoaDonBanHangRepositoryInterface
     public List<HoaDonBanHangViewModel> all() {
         List<HoaDonBanHangViewModel> hd = new ArrayList<>();
         try {
-            String sql = "select HoaDon.Ma, HoaDon.NgayTao,NhanVien.MaNV,HoaDon.TinhTrang from HoaDon left join NhanVien on HoaDon.IdNV = NhanVien.IdNV";
+            String sql = "select HoaDon.Ma, HoaDon.NgayTao,HoaDon.TinhTrang from HoaDon order by Ma asc";
             Connection cn = DBConnection.getConnection();
             PreparedStatement pstm = cn.prepareStatement(sql);
             ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
-                hd.add(new HoaDonBanHangViewModel(rs.getString(1), rs.getDate(2), rs.getString(3), rs.getInt(4)));
+                hd.add(new HoaDonBanHangViewModel(rs.getString(1), rs.getDate(2), rs.getInt(3)));
             }
             return hd;
         } catch (Exception e) {
@@ -40,14 +40,13 @@ public class HoaDonBanHangRepository implements HoaDonBanHangRepositoryInterface
     @Override
     public void add(HoaDon hoaDon) throws Exception {
         try {
-            String sql = "insert into HoaDon (Ma,IdNV,NgayTao,TinhTrang)values(?,?,?,?)"
+            String sql = "insert into HoaDon (Ma,NgayTao,TinhTrang)values(?,?,?)"
                   ;
             Connection cn = DBConnection.getConnection();
             PreparedStatement pstm = cn.prepareStatement(sql);
             pstm.setObject(1, hoaDon.getMaHD());
-            pstm.setObject(2, hoaDon.getIdNV());
-            pstm.setObject(3,  hoaDon.getNgayTao());
-            pstm.setObject(4, hoaDon.getTinhTrang());
+            pstm.setObject(2,  hoaDon.getNgayTao());
+            pstm.setObject(3, hoaDon.getTinhTrang());
             pstm.executeUpdate();
 
         } catch (Exception e) {

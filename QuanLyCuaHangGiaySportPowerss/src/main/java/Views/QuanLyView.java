@@ -370,7 +370,6 @@ public class QuanLyView extends javax.swing.JFrame {
             modeltb.addRow(new Object[]{
                 hoaDon.getMaHD(),
                 hoaDon.getNgayTao(),
-                hoaDon.getMaNV(),
                 hoaDon.getTinhTrang(),});
         }
     }
@@ -1096,13 +1095,13 @@ public class QuanLyView extends javax.swing.JFrame {
 
         tbHoaDonBanHang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Mã", "Ngày Tạo", "Mã NV", "Tình Trạng"
+                "Mã", "Ngày Tạo", "Tình Trạng"
             }
         ));
         jScrollPane22.setViewportView(tbHoaDonBanHang);
@@ -1384,7 +1383,7 @@ public class QuanLyView extends javax.swing.JFrame {
                 .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, 789, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addComponent(jPanel54, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         pnlBanHangLayout.setVerticalGroup(
             pnlBanHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2601,7 +2600,7 @@ public class QuanLyView extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel27, javax.swing.GroupLayout.PREFERRED_SIZE, 113, Short.MAX_VALUE))
+                    .addComponent(jPanel27, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -5056,8 +5055,14 @@ public class QuanLyView extends javax.swing.JFrame {
         //
         //        }
         ArrayList<HoaDonChiTietViewModel> list = new ArrayList<>();
+        ArrayList<ChiTietSPViewModel> listSP=new ArrayList<>();
         HoaDonChiTietViewModel chiTietHoaDonViewModel = new HoaDonChiTietViewModel();
         String sl = JOptionPane.showInputDialog("Mời nhập số lượng");
+        for (ChiTietSPViewModel chiTietSPViewModel : listSP) {
+            for (HoaDonChiTietViewModel hoaDonChiTietViewModel : list) {
+                
+            }
+        }
         int row = tbldssanpham.getSelectedRow();
         chiTietHoaDonViewModel.setMaSP((String) tbldssanpham.getValueAt(row, 0));
         chiTietHoaDonViewModel.setTenSP((String) tbldssanpham.getValueAt(row, 1));
@@ -6656,8 +6661,8 @@ public class QuanLyView extends javax.swing.JFrame {
 
     private void LBtimeAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_LBtimeAncestorAdded
         // TODO add your handling code here:
-        Time times = new Time(LBtime);
-        times.start();
+//        Time times = new Time(LBtime);
+//        times.start();
     }//GEN-LAST:event_LBtimeAncestorAdded
 
     private void btntaohd1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btntaohd1ActionPerformed
@@ -6670,7 +6675,6 @@ public class QuanLyView extends javax.swing.JFrame {
         }
 
         hd.setNgayTao(new Date());
-        hd.setIdNV((String) cbMaNhanVien.getSelectedItem());
         hd.setTinhTrang(0);
         try {
             hoaDonBanHangService.add(hd);

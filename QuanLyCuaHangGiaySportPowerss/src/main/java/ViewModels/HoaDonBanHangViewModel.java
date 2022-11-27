@@ -13,16 +13,14 @@ import java.util.Date;
 public class HoaDonBanHangViewModel {
     private String MaHD;
     private Date NgayTao;
-    private String MaNV;
     private int TinhTrang;
 
     public HoaDonBanHangViewModel() {
     }
 
-    public HoaDonBanHangViewModel(String MaHD, Date NgayTao, String MaNV, int TinhTrang) {
+    public HoaDonBanHangViewModel(String MaHD, Date NgayTao, int TinhTrang) {
         this.MaHD = MaHD;
         this.NgayTao = NgayTao;
-        this.MaNV = MaNV;
         this.TinhTrang = TinhTrang;
     }
 
@@ -42,13 +40,6 @@ public class HoaDonBanHangViewModel {
         this.NgayTao = NgayTao;
     }
 
-    public String getMaNV() {
-        return MaNV;
-    }
-
-    public void setMaNV(String MaNV) {
-        this.MaNV = MaNV;
-    }
 
     public int getTinhTrang() {
         return TinhTrang;

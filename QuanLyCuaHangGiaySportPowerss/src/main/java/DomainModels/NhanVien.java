@@ -142,4 +142,9 @@ public class NhanVien {
         this.Matkhau = Matkhau;
     }
 
+    @Override
+    public String toString() {
+        return MaNV;
+    }
+
 }
