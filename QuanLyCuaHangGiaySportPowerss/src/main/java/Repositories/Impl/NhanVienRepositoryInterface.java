@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface NhanVienRepositoryInterface {
 
-    public List<NhanVienViewModel> getall();
+    public List<NhanVien> getall();
 
     public void create(NhanVien nv) throws Exception;
 

@@ -45,9 +45,9 @@ public class HoaDonBanHangRepository implements HoaDonBanHangRepositoryInterface
             Connection cn = DBConnection.getConnection();
             PreparedStatement pstm = cn.prepareStatement(sql);
             pstm.setObject(1, hoaDon.getMaHD());
-            pstm.setObject(2,  hoaDon.getNgayTao());
+            pstm.setObject(2, hoaDon.getIdNV());
+            pstm.setObject(3,  hoaDon.getNgayTao());
             pstm.setObject(4, hoaDon.getTinhTrang());
-            pstm.setObject(3, hoaDon.getIdNV());
             pstm.executeUpdate();
 
         } catch (Exception e) {

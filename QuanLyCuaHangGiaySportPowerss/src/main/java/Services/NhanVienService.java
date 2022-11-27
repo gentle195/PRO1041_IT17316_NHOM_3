@@ -7,6 +7,7 @@ import DomainModels.NhanVien;
 import Repositories.NhanVienRepository;
 import Services.Interface.NhanVienServiceInteface;
 import ViewModels.NhanVienViewModel;
+import java.util.ArrayList;
 import java.util.List;
 /**
  *
@@ -21,7 +22,14 @@ public class NhanVienService implements NhanVienServiceInteface{
 
     @Override
     public List<NhanVienViewModel> getall() {
-       return NVrepo.getall();
+        List<NhanVien> listDomainModel = this.NVrepo.getall();
+        List<NhanVienViewModel> listVModel = new ArrayList<>();
+        for (NhanVien c : listDomainModel) {
+            NhanVienViewModel vmodel = new NhanVienViewModel(c.getIdNV(),c.getMaNV(),c.getHoTenNV(),c.getGioiTinh(),c.getNgaySinh(),c.getDiaChi(),c.getSdt(),c.getChucvu(),c.getMatkhau());
+            listVModel.add(vmodel);
+        }
+
+        return listVModel;
     }
 
     @Override

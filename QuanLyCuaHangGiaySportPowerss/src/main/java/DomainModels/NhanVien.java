@@ -42,17 +42,17 @@ public class NhanVien {
 
     @Column(name = "NgaySinh")
     private Date NgaySinh;
-    
-     @Column(name = "DiaChi")
+
+    @Column(name = "DiaChi")
     private String DiaChi;
-     
-      @Column(name = "Sdt")
+
+    @Column(name = "Sdt")
     private String Sdt;
     @ManyToOne
     @JoinColumn(name = "IdCV", nullable = false)
     private ChucVu chucvu;
-    
- @Column(name = "Matkhau")
+
+    @Column(name = "Matkhau")
     private String Matkhau;
 
     public NhanVien() {
@@ -141,6 +141,5 @@ public class NhanVien {
     public void setMatkhau(String Matkhau) {
         this.Matkhau = Matkhau;
     }
- 
- 
+
 }
