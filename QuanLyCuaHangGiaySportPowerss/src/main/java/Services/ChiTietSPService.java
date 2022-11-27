@@ -3,6 +3,7 @@ package Services;
 import Services.*;
 import DomainModels.ChatLieu;
 import DomainModels.ChiTietSP;
+import DomainModels.ChiTietSP1;
 import ViewModels.SanPhamViewModel;
 import Repositories.SanPhamRepository;
 import DomainModels.SanPham;
@@ -60,7 +61,8 @@ public class ChiTietSPService implements ChiTietSPServiceInterface {
     }
 
     @Override
-    public void updatesl(ChiTietSP ct) throws Exception {
-        chiTietSPRepo.delete(ct);
+    public void updatesl(ChiTietSP ct, String ma) throws Exception {
+        chiTietSPRepo.updates1(ct, ma);
     }
+
 }

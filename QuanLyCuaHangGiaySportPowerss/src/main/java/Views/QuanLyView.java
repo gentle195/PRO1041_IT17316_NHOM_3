@@ -6,6 +6,7 @@ package Views;
 
 import DomainModels.ChatLieu;
 import DomainModels.ChiTietSP;
+import DomainModels.ChiTietSP1;
 import DomainModels.ChucVu;
 import DomainModels.DeGiay;
 import DomainModels.HangGiay;
@@ -314,7 +315,7 @@ public class QuanLyView extends javax.swing.JFrame {
         for (NhanVienViewModel x : Sz) {
             modeltb.addRow(new Object[]{
                 x.getIdNV(), x.getMaNV(), x.getHoTenNV(), x.getGioiTinh(), x.getChucvu(), x.getDiaChi(), x.getNgaySinh(),
-                x.getMaNV(), x.getMatkhau(),x.getSdt()
+                x.getMaNV(), x.getMatkhau(), x.getSdt()
             });
 
         }
@@ -5022,6 +5023,7 @@ public class QuanLyView extends javax.swing.JFrame {
 
     private void btnlammoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlammoiActionPerformed
         // TODO add your handling code here:
+        loadTableChiTietSPBH();
     }//GEN-LAST:event_btnlammoiActionPerformed
 
     private void btnthemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnthemActionPerformed
@@ -5054,16 +5056,31 @@ public class QuanLyView extends javax.swing.JFrame {
         //            }
         //
         //        }
-        ArrayList<HoaDonChiTietViewModel> list = new ArrayList<>();
-        ArrayList<ChiTietSPViewModel> listSP=new ArrayList<>();
-        HoaDonChiTietViewModel chiTietHoaDonViewModel = new HoaDonChiTietViewModel();
-        String sl = JOptionPane.showInputDialog("Mời nhập số lượng");
-        for (ChiTietSPViewModel chiTietSPViewModel : listSP) {
-            for (HoaDonChiTietViewModel hoaDonChiTietViewModel : list) {
-                
-            }
-        }
         int row = tbldssanpham.getSelectedRow();
+        ArrayList<HoaDonChiTietViewModel> list = new ArrayList<>();
+//        ChiTietSPViewModel CT = listSP.get(row);
+        HoaDonChiTietViewModel chiTietHoaDonViewModel = new HoaDonChiTietViewModel();
+        ChiTietSP CT = new ChiTietSP();
+        String sl = JOptionPane.showInputDialog("Mời nhập số lượng");
+        int slm = Integer.valueOf(sl);
+//        if (slm < 0) {
+//            JOptionPane.showMessageDialog(rootPane, "Vui lòng nhập số lượng => 0  !");
+//            return;
+//        }
+//        if (CT.getSoLuong()<= 0) {
+//            JOptionPane.showMessageDialog(rootPane, " Hang da het ! \n" + " Vui lòng chọn sản phẩm khác !!");
+//            return;
+//        }
+//        CT.setSoLuong(slm);
+        CT.setSoLuong(Integer.parseInt(tbldssanpham.getValueAt(row, 3).toString()));
+        CT.setSoLuong(CT.getSoLuong() - slm);
+
+        try {
+            chiTietSPService.updatesl(CT, tbldssanpham.getValueAt(row, 0).toString());
+            loadTableChiTietSPBH();
+        } catch (Exception ex) {
+            Logger.getLogger(QuanLyView.class.getName()).log(Level.SEVERE, null, ex);
+        }
         chiTietHoaDonViewModel.setMaSP((String) tbldssanpham.getValueAt(row, 0));
         chiTietHoaDonViewModel.setTenSP((String) tbldssanpham.getValueAt(row, 1));
         chiTietHoaDonViewModel.setSoLuong(Integer.valueOf(sl));
@@ -6540,7 +6557,8 @@ public class QuanLyView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPrevious1ActionPerformed
 
     private void tbldssanphamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbldssanphamMouseClicked
-
+        
+        
     }//GEN-LAST:event_tbldssanphamMouseClicked
 
     private void btntaohdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btntaohdActionPerformed
@@ -6679,7 +6697,7 @@ public class QuanLyView extends javax.swing.JFrame {
         try {
             hoaDonBanHangService.add(hd);
         } catch (Exception ex) {
-           ex.printStackTrace();
+            ex.printStackTrace();
         }
         addTableHoaDonBanHang();
     }//GEN-LAST:event_btntaohd1ActionPerformed
