@@ -85,6 +85,7 @@ public class QuanLyView extends javax.swing.JFrame {
     private DefaultTableModel tableHoaDon;
     private HoaDonRepository hoaDonRepository = new HoaDonRepository();
     private ArrayList<HoaDonViewModel> lsthd = new ArrayList<>();
+    ArrayList<HoaDonChiTietViewModel> listhdct = new ArrayList<>();
 
     /**
      * Creates new form QuanyView
@@ -371,7 +372,7 @@ public class QuanLyView extends javax.swing.JFrame {
             modeltb.addRow(new Object[]{
                 hoaDon.getMaHD(),
                 hoaDon.getNgayTao(),
-                hoaDon.getTinhTrang(),});
+                hoaDon.getTinhTrang() == 0 ? "Chờ xử lý" : "Ðã thanh toán"});
         }
     }
 
@@ -1105,6 +1106,11 @@ public class QuanLyView extends javax.swing.JFrame {
                 "Mã", "Ngày Tạo", "Tình Trạng"
             }
         ));
+        tbHoaDonBanHang.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbHoaDonBanHangMouseClicked(evt);
+            }
+        });
         jScrollPane22.setViewportView(tbHoaDonBanHang);
 
         javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
@@ -2601,7 +2607,7 @@ public class QuanLyView extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel27, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE))
+                    .addComponent(jPanel27, javax.swing.GroupLayout.PREFERRED_SIZE, 113, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -5019,6 +5025,8 @@ public class QuanLyView extends javax.swing.JFrame {
 
     private void tblgiohangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblgiohangMouseClicked
         // TODO add your handling code here:
+//        int ro = tblgiohang.getSelectedRow();
+//        txtThanhTien1.setText(tblgiohang.getValueAt(ro, 4).toString());
     }//GEN-LAST:event_tblgiohangMouseClicked
 
     private void btnlammoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlammoiActionPerformed
@@ -5057,21 +5065,10 @@ public class QuanLyView extends javax.swing.JFrame {
         //
         //        }
         int row = tbldssanpham.getSelectedRow();
-        ArrayList<HoaDonChiTietViewModel> list = new ArrayList<>();
-//        ChiTietSPViewModel CT = listSP.get(row);
         HoaDonChiTietViewModel chiTietHoaDonViewModel = new HoaDonChiTietViewModel();
         ChiTietSP CT = new ChiTietSP();
         String sl = JOptionPane.showInputDialog("Mời nhập số lượng");
         int slm = Integer.valueOf(sl);
-//        if (slm < 0) {
-//            JOptionPane.showMessageDialog(rootPane, "Vui lòng nhập số lượng => 0  !");
-//            return;
-//        }
-//        if (CT.getSoLuong()<= 0) {
-//            JOptionPane.showMessageDialog(rootPane, " Hang da het ! \n" + " Vui lòng chọn sản phẩm khác !!");
-//            return;
-//        }
-//        CT.setSoLuong(slm);
         CT.setSoLuong(Integer.parseInt(tbldssanpham.getValueAt(row, 3).toString()));
         CT.setSoLuong(CT.getSoLuong() - slm);
 
@@ -5083,10 +5080,19 @@ public class QuanLyView extends javax.swing.JFrame {
         }
         chiTietHoaDonViewModel.setMaSP((String) tbldssanpham.getValueAt(row, 0));
         chiTietHoaDonViewModel.setTenSP((String) tbldssanpham.getValueAt(row, 1));
-        chiTietHoaDonViewModel.setSoLuong(Integer.valueOf(sl));
+        for (int i = 0; i <listhdct.size() ; i++) {
+            if(chiTietHoaDonViewModel.getMaSP().equals(tbldssanpham.getValueAt(row, 0))){
+                chiTietHoaDonViewModel.setSoLuong(chiTietHoaDonViewModel.getSoLuong() + Integer.valueOf(sl));
+            }else{
+                chiTietHoaDonViewModel.setSoLuong(Integer.valueOf(sl));
+            }
+        }
+        
         chiTietHoaDonViewModel.setDonGia((BigDecimal) tbldssanpham.getValueAt(row, 2));
-        list.add(chiTietHoaDonViewModel);
-        addTableGioHang(list);
+//        int ro = tblgiohang.getSelectedRow();
+//        txtThanhTien1.setText(tblgiohang.getValueAt(ro, 4).toString());
+        listhdct.add(chiTietHoaDonViewModel);
+        addTableGioHang(listhdct);
     }//GEN-LAST:event_btnthemActionPerformed
     void clearQLSP() {
         txttMaSPP.setText("");
@@ -6557,8 +6563,8 @@ public class QuanLyView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPrevious1ActionPerformed
 
     private void tbldssanphamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbldssanphamMouseClicked
-        
-        
+
+
     }//GEN-LAST:event_tbldssanphamMouseClicked
 
     private void btntaohdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btntaohdActionPerformed
@@ -6705,6 +6711,13 @@ public class QuanLyView extends javax.swing.JFrame {
     private void txtSDTNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSDTNhanVienActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSDTNhanVienActionPerformed
+
+    private void tbHoaDonBanHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbHoaDonBanHangMouseClicked
+        // TODO add your handling code here:
+        int row = tbHoaDonBanHang.getSelectedRow();
+        txtMaHdBH.setText(tbHoaDonBanHang.getValueAt(row, 0).toString());
+        LBtime.setText(tbHoaDonBanHang.getValueAt(row, 1).toString());
+    }//GEN-LAST:event_tbHoaDonBanHangMouseClicked
 
     /**
      * @param args the command line arguments
