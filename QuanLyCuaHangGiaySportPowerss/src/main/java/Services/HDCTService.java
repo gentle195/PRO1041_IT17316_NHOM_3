@@ -5,6 +5,7 @@
 package Services;
 
 import DomainModels.HoaDonChiTiet;
+import DomainModels.SanPham;
 import Repositories.HoaDonChiTietRepository;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +23,8 @@ public class HDCTService {
         this.chiTietHDRepo = new HoaDonChiTietRepository();
         chiTietSPs = new ArrayList<>();
     }
-    public void create(HoaDonChiTiet hd){
-        chiTietHDRepo.create(hd);
+    public void add(String ma,String mahd,HoaDonChiTiet hd){
+        chiTietHDRepo.add(ma,mahd,hd);
     }
+    
 }

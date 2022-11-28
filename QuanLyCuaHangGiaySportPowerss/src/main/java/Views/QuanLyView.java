@@ -11,6 +11,7 @@ import DomainModels.ChucVu;
 import DomainModels.DeGiay;
 import DomainModels.HangGiay;
 import DomainModels.HoaDon;
+import DomainModels.HoaDonChiTiet;
 import DomainModels.KhachHang;
 import DomainModels.LoaiGiay;
 import DomainModels.NhanVien;
@@ -22,6 +23,7 @@ import Services.ChatLieuService;
 import Services.ChiTietSPService;
 import Services.ChucVuSevice;
 import Services.DeGiayService;
+import Services.HDCTService;
 import Services.HangGiayService;
 import Services.HoaDonBanHangService;
 import Services.HoaDonServiceImpl;
@@ -76,7 +78,7 @@ public class QuanLyView extends javax.swing.JFrame {
     private ChucVuServiceInterface cvService;
     private NhanVienServiceInteface nvService;
     private HoaDonBanHangServiceInterface hoaDonBanHangService;
-
+    private HDCTService HDCT;
     private KhachHangService serviceKH = new KhachHangService();
     private DefaultTableModel dtmKH = new DefaultTableModel();
     private List<KhachHang> listKH = new ArrayList<>();
@@ -86,6 +88,7 @@ public class QuanLyView extends javax.swing.JFrame {
     private HoaDonRepository hoaDonRepository = new HoaDonRepository();
     private ArrayList<HoaDonViewModel> lsthd = new ArrayList<>();
     ArrayList<HoaDonChiTietViewModel> listhdct = new ArrayList<>();
+    ArrayList<HoaDonChiTiet> listhdctt = new ArrayList<>();
 
     /**
      * Creates new form QuanyView
@@ -102,7 +105,7 @@ public class QuanLyView extends javax.swing.JFrame {
         this.cvService = new ChucVuSevice();
         this.nvService = new NhanVienService();
         this.hoaDonBanHangService = new HoaDonBanHangService();
-
+        this.HDCT = new HDCTService();
         this.loadTableSanPham();
         this.loadTableChatLieu();
         this.loadTableHangGiay();
@@ -2607,7 +2610,7 @@ public class QuanLyView extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel27, javax.swing.GroupLayout.PREFERRED_SIZE, 113, Short.MAX_VALUE))
+                    .addComponent(jPanel27, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -5036,63 +5039,39 @@ public class QuanLyView extends javax.swing.JFrame {
 
     private void btnthemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnthemActionPerformed
         // TODO add your handling code here:
-        //        int row = tbldssanpham.getSelectedRow();
-        //        if (row == -1) {
-        //            JOptionPane.showMessageDialog(this, "Bạn chưa chọn Sản Phẩm");
-        //        } else {
-        //            String soluong = JOptionPane.showInputDialog("Mời nhập số lượng");
-        //            String PHONENUMBER_PATTERN = "\\d{1}";
-        //
-        //            if (!soluong.matches(PHONENUMBER_PATTERN)) {
-        //                JOptionPane.showConfirmDialog(this, "mời nhập số");
-        //
-        //            } else {
-        //                float sl = Float.parseFloat(soluong);
-        //
-        //                tblmodel = (DefaultTableModel) tblgiohang.getModel();
-        //                tblmodel.setRowCount(0);
-        //                String maSP = (String) tbldssanpham.getValueAt(row, 0);
-        //
-        //                for (SanPham sanPham : listsp) {
-        //                    float tong = sanPham.getDonGia() * sl;
-        //                    if (sanPham.getMaSP().equals(maSP)) {
-        //                        tblmodel.addRow(new Object[]{sanPham.getMaSP(), sanPham.getTenSP(), soluong, sanPham.getDonGia(), tong});
-        //                    }
-        //
-        //                }
-        //
-        //            }
-        //
-        //        }
         int row = tbldssanpham.getSelectedRow();
+        int ro = tblgiohang.getSelectedRow();
+        int r = tbHoaDonBanHang.getSelectedRow();
         HoaDonChiTietViewModel chiTietHoaDonViewModel = new HoaDonChiTietViewModel();
         ChiTietSP CT = new ChiTietSP();
         String sl = JOptionPane.showInputDialog("Mời nhập số lượng");
         int slm = Integer.valueOf(sl);
         CT.setSoLuong(Integer.parseInt(tbldssanpham.getValueAt(row, 3).toString()));
         CT.setSoLuong(CT.getSoLuong() - slm);
+        chiTietHoaDonViewModel.setMaSP((String) tbldssanpham.getValueAt(row, 0));
+        chiTietHoaDonViewModel.setTenSP((String) tbldssanpham.getValueAt(row, 1));
+        chiTietHoaDonViewModel.setSoLuong(Integer.valueOf(sl));
+        chiTietHoaDonViewModel.setDonGia((BigDecimal) tbldssanpham.getValueAt(row, 2));
+        HoaDonChiTiet hd = new HoaDonChiTiet();
+        hd.setSoLuong(Integer.valueOf(sl));
+        hd.setDonGia((BigDecimal) tbldssanpham.getValueAt(row, 2));
+        listhdct.add(chiTietHoaDonViewModel);
+        listhdctt.add(hd);
 
         try {
             chiTietSPService.updatesl(CT, tbldssanpham.getValueAt(row, 0).toString());
+            addTableGioHang(listhdct);
             loadTableChiTietSPBH();
+            HDCT.add(tbldssanpham.getValueAt(row, 0).toString(), tbHoaDonBanHang.getValueAt(r, 0).toString(), hd);
+            if (tblgiohang.getRowCount() > 0) {
+                for (int i = 0; i < ro; i++) {
+                    
+                }
+                txtThanhTien1.setText(tblgiohang.getValueAt(row, 4).toString());
+            }
         } catch (Exception ex) {
             Logger.getLogger(QuanLyView.class.getName()).log(Level.SEVERE, null, ex);
         }
-        chiTietHoaDonViewModel.setMaSP((String) tbldssanpham.getValueAt(row, 0));
-        chiTietHoaDonViewModel.setTenSP((String) tbldssanpham.getValueAt(row, 1));
-        for (int i = 0; i <listhdct.size() ; i++) {
-            if(chiTietHoaDonViewModel.getMaSP().equals(tbldssanpham.getValueAt(row, 0))){
-                chiTietHoaDonViewModel.setSoLuong(chiTietHoaDonViewModel.getSoLuong() + Integer.valueOf(sl));
-            }else{
-                chiTietHoaDonViewModel.setSoLuong(Integer.valueOf(sl));
-            }
-        }
-        
-        chiTietHoaDonViewModel.setDonGia((BigDecimal) tbldssanpham.getValueAt(row, 2));
-//        int ro = tblgiohang.getSelectedRow();
-//        txtThanhTien1.setText(tblgiohang.getValueAt(ro, 4).toString());
-        listhdct.add(chiTietHoaDonViewModel);
-        addTableGioHang(listhdct);
     }//GEN-LAST:event_btnthemActionPerformed
     void clearQLSP() {
         txttMaSPP.setText("");
@@ -6706,6 +6685,7 @@ public class QuanLyView extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         addTableHoaDonBanHang();
+
     }//GEN-LAST:event_btntaohd1ActionPerformed
 
     private void txtSDTNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSDTNhanVienActionPerformed

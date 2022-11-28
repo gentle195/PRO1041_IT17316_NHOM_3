@@ -6,6 +6,7 @@ package Repositories;
 
 import DomainModels.HoaDon;
 import DomainModels.HoaDonChiTiet;
+import DomainModels.SanPham;
 import Utilities.DBConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -46,21 +47,38 @@ public class HoaDonChiTietRepository {
 //        }
 //        return null;
 //    }
+//    public void create(HoaDonChiTiet hd) {
+//        Connection conn = DBConnection.getConnection();
+//        String pr = "insert into ChiTietHoaDon(IdHD,IdChiTietSP,SoLuong,DonGia) values(?,?,?,?)";
+//        PreparedStatement ps;
+//        try {
+//            ps = conn.prepareStatement(pr);
+//            ps.setObject(1, hd.getIdHD());
+//            ps.setObject(2, hd.getIdChiTietSP());
+//            ps.setObject(3, hd.getSoLuong());
+//            ps.setObject(4, hd.getDonGia());
+//            ps.executeUpdate();
+//        } catch (SQLException ex) {
+//            Logger.getLogger(HoaDonChiTietRepository.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//
+//    }
 
-    public void create(HoaDonChiTiet hd) {
-        Connection conn = DBConnection.getConnection();
-        String pr = "insert into ChiTietHoaDon(IdHD,IdChiTietSP,SoLuong,DonGia) values(?,?,?,?)";
-        PreparedStatement ps;
+    public void add(String ma,String mahd,HoaDonChiTiet nv) {
         try {
-            ps = conn.prepareStatement(pr);
-            ps.setObject(1, hd.getIdHD());
-            ps.setObject(2, hd.getIdChiTietSP());
-            ps.setObject(3, hd.getSoLuong());
-            ps.setObject(4, hd.getDonGia());
-            ps.executeUpdate();
-        } catch (SQLException ex) {
-            Logger.getLogger(HoaDonChiTietRepository.class.getName()).log(Level.SEVERE, null, ex);
+            String sql = "declare @idctsp UNIQUEIDENTIFIER\n"
+                    + "set @idctsp=(select a.IdCTSP from ChiTietSP a left join SanPham b on a.IdSP=b.IdSP where b.MaSP=?)\n"+
+                    "declare @idhd UNIQUEIDENTIFIER\n"+"set @idhd=(select IdHD from HoaDon where Ma=?) "
+                    + "insert into ChiTietHoaDon(IdHD,IdChiTietSP,SoLuong,DonGia) values(@idhd,@idctsp,?,?)";
+            Connection cn = dBConnection.getConnection();
+            PreparedStatement pstm = cn.prepareStatement(sql);
+            pstm.setString(1, ma);
+            pstm.setString(2, mahd);
+            pstm.setObject(3, nv.getSoLuong());
+            pstm.setObject(4, nv.getDonGia());
+            pstm.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
     }
 }

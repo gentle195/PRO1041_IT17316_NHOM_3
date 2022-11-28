@@ -5,6 +5,7 @@
 package DomainModels;
 
 import ViewModels.NhanVienViewModel;
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -28,11 +29,11 @@ public class HoaDon {
     private String diaChi;
     private String SDT;
     private String moTa;
-
+    private BigDecimal TongTien;
     public HoaDon() {
     }
 
-    public HoaDon(String IdHD, NhanVienViewModel IdNV, String IdKH, String IdPT, String maHD, Date ngayTao, Date ngayDat, Date ngayShip, Date ngayNhan, Date ngayThanhToan, int tinhTrang, String tenNguoiNhan, String diaChi, String SDT, String moTa) {
+    public HoaDon(String IdHD, NhanVienViewModel IdNV, String IdKH, String IdPT, String maHD, Date ngayTao, Date ngayDat, Date ngayShip, Date ngayNhan, Date ngayThanhToan, int tinhTrang, String tenNguoiNhan, String diaChi, String SDT, String moTa, BigDecimal TongTien) {
         this.IdHD = IdHD;
         this.IdNV = IdNV;
         this.IdKH = IdKH;
@@ -48,7 +49,18 @@ public class HoaDon {
         this.diaChi = diaChi;
         this.SDT = SDT;
         this.moTa = moTa;
+        this.TongTien = TongTien;
     }
+
+    public BigDecimal getTongTien() {
+        return TongTien;
+    }
+
+    public void setTongTien(BigDecimal TongTien) {
+        this.TongTien = TongTien;
+    }
+
+    
 
     public String getIdHD() {
         return IdHD;

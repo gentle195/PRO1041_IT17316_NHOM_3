@@ -23,7 +23,7 @@ public class HoaDonBanHangRepository implements HoaDonBanHangRepositoryInterface
     public List<HoaDonBanHangViewModel> all() {
         List<HoaDonBanHangViewModel> hd = new ArrayList<>();
         try {
-            String sql = "select HoaDon.Ma, HoaDon.NgayTao,HoaDon.TinhTrang from HoaDon order by Ma asc";
+            String sql = "select Ma, NgayTao,TinhTrang from HoaDon order by Ma asc";
             Connection cn = DBConnection.getConnection();
             PreparedStatement pstm = cn.prepareStatement(sql);
             ResultSet rs = pstm.executeQuery();
