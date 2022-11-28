@@ -20,7 +20,7 @@ public class HoaDonBanHangService implements HoaDonBanHangServiceInterface {
 
     @Override
     public void add(HoaDon hd) throws Exception {
-hoadonrepo.add(hd);
+        hoadonrepo.add(hd);
     }
 
     @Override

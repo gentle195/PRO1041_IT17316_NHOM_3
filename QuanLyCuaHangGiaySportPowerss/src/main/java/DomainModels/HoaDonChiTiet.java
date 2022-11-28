@@ -13,15 +13,15 @@ import java.math.BigDecimal;
 public class HoaDonChiTiet {
 
     private String IdHDCT;
-    private String IdHD;
-    private String IdChiTietSP;
+    private HoaDon IdHD;
+    private ChiTietSP IdChiTietSP;
     private int soLuong;
     private BigDecimal donGia;
 
     public HoaDonChiTiet() {
     }
 
-    public HoaDonChiTiet(String IdHDCT, String IdHD, String IdChiTietSP, int soLuong, BigDecimal donGia) {
+    public HoaDonChiTiet(String IdHDCT, HoaDon IdHD, ChiTietSP IdChiTietSP, int soLuong, BigDecimal donGia) {
         this.IdHDCT = IdHDCT;
         this.IdHD = IdHD;
         this.IdChiTietSP = IdChiTietSP;
@@ -37,19 +37,19 @@ public class HoaDonChiTiet {
         this.IdHDCT = IdHDCT;
     }
 
-    public String getIdHD() {
+    public HoaDon getIdHD() {
         return IdHD;
     }
 
-    public void setIdHD(String IdHD) {
+    public void setIdHD(HoaDon IdHD) {
         this.IdHD = IdHD;
     }
 
-    public String getIdChiTietSP() {
+    public ChiTietSP getIdChiTietSP() {
         return IdChiTietSP;
     }
 
-    public void setIdChiTietSP(String IdChiTietSP) {
+    public void setIdChiTietSP(ChiTietSP IdChiTietSP) {
         this.IdChiTietSP = IdChiTietSP;
     }
 
@@ -68,7 +68,7 @@ public class HoaDonChiTiet {
     public void setDonGia(BigDecimal donGia) {
         this.donGia = donGia;
     }
-
+    
     @Override
     public String toString() {
         return "HoaDonChiTiet{" + "IdHDCT=" + IdHDCT + ", IdHD=" + IdHD + ", IdChiTietSP=" + IdChiTietSP + ", soLuong=" + soLuong + ", donGia=" + donGia + '}';
