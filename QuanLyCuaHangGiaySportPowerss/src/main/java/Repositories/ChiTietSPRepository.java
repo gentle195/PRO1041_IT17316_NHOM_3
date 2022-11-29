@@ -39,6 +39,7 @@ public class ChiTietSPRepository implements ChiTietSPRepositoryInterface {
     @Override
     public List<ChiTietSP> getall() {
         String jpql = "SELECT cate FROM ChiTietSP cate";
+        this.em.clear();
         TypedQuery<ChiTietSP> query = this.em.createQuery(jpql, ChiTietSP.class);
         return query.getResultList();
     }
