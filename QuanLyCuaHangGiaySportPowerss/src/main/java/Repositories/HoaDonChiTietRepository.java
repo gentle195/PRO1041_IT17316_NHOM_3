@@ -11,6 +11,7 @@ import Utilities.DBConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -79,6 +80,19 @@ public class HoaDonChiTietRepository {
             pstm.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+    public void updateSL(int sl,UUID id){
+        String sql="UPDATE ChiTietHoaDon SET SoLuong = ? WHERE IdChiTietSP= ?";
+        Connection cn=dBConnection.getConnection();
+        try {
+            PreparedStatement ps=cn.prepareStatement(sql);
+            ps.setObject(1, sl);
+            ps.setObject(2, id);
+            ps.executeUpdate();
+            ps.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(HoaDonChiTietRepository.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }
