@@ -289,7 +289,7 @@ public class QuanLyView extends javax.swing.JFrame {
         modeltb.setRowCount(0);
         for (ChiTietSPViewModel x : Sz) {
             modeltb.addRow(new Object[]{
-                x.getIdCTSP(), x.getSanPham(), x.getSanPham(), x.getSize(), x.getLoaigiay(), x.getHangGiay(), x.getDeGiay(),
+                x.getIdCTSP(), x.getSanPham().getMaSP(), x.getSanPham().getTenSP(), x.getSize(), x.getLoaigiay(), x.getHangGiay(), x.getDeGiay(),
                 x.getChatlieu(), x.getSoLuong(), x.getDonGia(), x.getTrongLuong(),
                 x.getTrangThai() == 1 ? "Còn Hàng" : "Hết Hàng",
                 x.getMoTa()
@@ -5001,6 +5001,23 @@ public class QuanLyView extends javax.swing.JFrame {
         // TODO add your handling code here:
         CardLayout layout = (CardLayout) pnlCacGiaoDien.getLayout();
         layout.show(pnlCacGiaoDien, "cardSanPham");
+        List<SanPham> sp = SanPhamService.all();
+        cbTenSP.setModel(new DefaultComboBoxModel((sp.toArray())));
+
+        List<ChatLieu> cl = chatLieuService.all();
+        cbCL.setModel(new DefaultComboBoxModel((cl.toArray())));
+
+        List<DeGiay> dg = deGiayService.all();
+        cbDe.setModel(new DefaultComboBoxModel((dg.toArray())));
+
+        List<HangGiay> hang = hangGiayService.all();
+        cbHang.setModel(new DefaultComboBoxModel((hang.toArray())));
+
+        List<LoaiGiay> lg = loaiGiayService.all();
+        cbLoai.setModel(new DefaultComboBoxModel((lg.toArray())));
+
+        List<Size> sz = sizeService.all();
+        cbSIZE.setModel(new DefaultComboBoxModel((sz.toArray())));
     }//GEN-LAST:event_btnSanPhamActionPerformed
 
     private void btnNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNhanVienActionPerformed
@@ -5013,7 +5030,7 @@ public class QuanLyView extends javax.swing.JFrame {
         // TODO add your handling code here:
         CardLayout layout = (CardLayout) pnlCacGiaoDien.getLayout();
         layout.show(pnlCacGiaoDien, "cardKhachHang");
-        listKH=serviceKH.getAll();
+        listKH = serviceKH.getAll();
         showDataKH(listKH);
     }//GEN-LAST:event_btnKhachHangActionPerformed
 
@@ -5057,6 +5074,9 @@ public class QuanLyView extends javax.swing.JFrame {
         int ro = tblgiohang.getSelectedRow();
         int r = tbHoaDonBanHang.getSelectedRow();
         HoaDonChiTietViewModel chiTietHoaDonViewModel = new HoaDonChiTietViewModel();
+        List<ChiTietSPViewModel> lctsp1 = chiTietSPService.all();
+        ChiTietSPViewModel ctsp = lctsp1.get(row);
+        UUID id = ctsp.getIdCTSP();
         ChiTietSP CT = new ChiTietSP();
         String sl = JOptionPane.showInputDialog("Mời nhập số lượng");
         int slm = Integer.valueOf(sl);
@@ -5075,15 +5095,24 @@ public class QuanLyView extends javax.swing.JFrame {
         try {
             chiTietSPService.updatesl(CT, tbldssanpham.getValueAt(row, 0).toString());
             addTableGioHang(listhdct);
-            System.out.println("abcabc");
             loadTableChiTietSPBH();
             HDCT.add(tbldssanpham.getValueAt(row, 0).toString(), tbHoaDonBanHang.getValueAt(r, 0).toString(), hd);
+            int thanhtien = 0;
+            int slsp = 0;
             if (tblgiohang.getRowCount() > 0) {
                 for (int i = 0; i < listhdct.size(); i++) {
-                    
+                    thanhtien = thanhtien + (listhdct.get(i).getSoLuong() * Integer.parseInt(listhdct.get(i).getDonGia().toString()));
                 }
-                txtThanhTien1.setText(tblgiohang.getValueAt(row, 4).toString());
+                txtThanhTien1.setText((String.valueOf(thanhtien)));
             }
+            if (tblgiohang.getRowCount() > 0) {
+                for (int i = 0; i < listhdct.size(); i++) {
+                    slsp = slsp + (listhdct.get(i).getSoLuong());
+                }
+                chiTietHoaDonViewModel.setSoLuong(slsp);
+//                HDCT.updateSL(hd,id);
+            }
+
         } catch (Exception ex) {
             Logger.getLogger(QuanLyView.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -6667,10 +6696,10 @@ public class QuanLyView extends javax.swing.JFrame {
 
     private void btnxacnhan1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnxacnhan1ActionPerformed
         // TODO add your handling code here:
-                CardLayout layout = (CardLayout) pnlCacGiaoDien.getLayout();
-                layout.show(pnlCacGiaoDien, "cardLayThongTin");
-                listKH=serviceKH.getAll();
-                showDataKH(listKH);
+        CardLayout layout = (CardLayout) pnlCacGiaoDien.getLayout();
+        layout.show(pnlCacGiaoDien, "cardLayThongTin");
+        listKH = serviceKH.getAll();
+        showDataKH(listKH);
         //        KH1 kh = new KH1();
         //        kh.setVisible(true);
     }//GEN-LAST:event_btnxacnhan1ActionPerformed
@@ -6720,14 +6749,14 @@ public class QuanLyView extends javax.swing.JFrame {
         int row = tblKhachHang.getSelectedRow();
         KhachHang kh = listKH.get(row);
         String tenKH = kh.getHoTen();
-         CardLayout layout = (CardLayout) pnlCacGiaoDien.getLayout();
+        CardLayout layout = (CardLayout) pnlCacGiaoDien.getLayout();
         layout.show(pnlCacGiaoDien, "cardBanHang");
         txttenkh1.setText(tenKH);
     }//GEN-LAST:event_btnXacNhanActionPerformed
 
     private void txtKhachTra1CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtKhachTra1CaretUpdate
         // TODO add your handling code here:
-        double tiendu=Double.parseDouble(txtKhachTra1.getText())-Double.parseDouble(txtThanhTien1.getText());
+        double tiendu = Double.parseDouble(txtKhachTra1.getText()) - Double.parseDouble(txtThanhTien1.getText());
         txtTienDu1.setText(String.valueOf(tiendu));
     }//GEN-LAST:event_txtKhachTra1CaretUpdate
 
