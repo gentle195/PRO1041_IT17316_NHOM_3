@@ -256,7 +256,7 @@
                           <Component id="jPanel15" min="-2" pref="789" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                           <Component id="jPanel54" min="-2" pref="367" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="115" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -796,8 +796,10 @@
                                               <Group type="103" groupAlignment="0" attributes="0">
                                                   <Component id="txtGhiChu1" alignment="0" min="-2" pref="208" max="-2" attributes="0"/>
                                                   <Component id="txtTienDu1" alignment="0" min="-2" pref="178" max="-2" attributes="0"/>
-                                                  <Component id="txtKhachTra1" alignment="0" min="-2" pref="178" max="-2" attributes="0"/>
-                                                  <Component id="txtThanhTien1" alignment="0" min="-2" pref="178" max="-2" attributes="0"/>
+                                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                                      <Component id="txtThanhTien1" alignment="0" max="32767" attributes="0"/>
+                                                      <Component id="txtKhachTra1" alignment="0" pref="178" max="32767" attributes="0"/>
+                                                  </Group>
                                               </Group>
                                           </Group>
                                           <Group type="102" alignment="0" attributes="0">
@@ -863,12 +865,12 @@
                                   <Component id="jRadioButton3" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jRadioButton4" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel59" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtThanhTien1" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel59" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtThanhTien1" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel60" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="txtKhachTra1" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -999,23 +1001,6 @@
                         <EventHandler event="caretUpdate" listener="javax.swing.event.CaretListener" parameters="javax.swing.event.CaretEvent" handler="txtKhachTra1CaretUpdate"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="txtThanhTien1">
-                      <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="Segoe UI" size="14" style="1"/>
-                        </Property>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="33" green="0" red="cc" type="rgb"/>
-                        </Property>
-                        <Property name="horizontalAlignment" type="int" value="4"/>
-                        <Property name="text" type="java.lang.String" value="VND"/>
-                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                            <LineBorder/>
-                          </Border>
-                        </Property>
-                      </Properties>
-                    </Component>
                     <Component class="javax.swing.JLabel" name="jLabel59">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Th&#xe0;nh ti&#x1ec1;n"/>
@@ -1081,6 +1066,11 @@
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                       </AuxValues>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="txtThanhTien1">
+                      <Events>
+                        <EventHandler event="caretUpdate" listener="javax.swing.event.CaretListener" parameters="javax.swing.event.CaretEvent" handler="txtThanhTien1CaretUpdate"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
