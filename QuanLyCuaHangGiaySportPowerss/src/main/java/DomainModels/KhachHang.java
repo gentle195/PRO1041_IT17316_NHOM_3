@@ -123,7 +123,7 @@ public class KhachHang {
     }
 
     public Object[] toDataRow() {
-        return new Object[]{ID, ma, hoTen, gioiTinh, ngaySinh, sdt, diaChi};
+        return new Object[]{ ma, hoTen, gioiTinh, ngaySinh, sdt, diaChi};
     }
 
 }
