@@ -6,6 +6,7 @@ package Services.Interface;
 
 import DomainModels.HoaDon;
 import ViewModels.HoaDonViewModel;
+import java.util.List;
 
 /**
  *
@@ -13,5 +14,5 @@ import ViewModels.HoaDonViewModel;
  */
 public interface HoaDonService {
 
-    Boolean saveHoaDon(HoaDonViewModel hoaDon);
+    public List<HoaDonViewModel> all();
 }

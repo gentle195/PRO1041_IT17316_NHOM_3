@@ -8,6 +8,7 @@ import DomainModels.HoaDon;
 import Repositories.HoaDonRepository;
 import Services.Interface.HoaDonService;
 import ViewModels.HoaDonViewModel;
+import java.util.List;
 
 /**
  *
@@ -17,9 +18,9 @@ public class HoaDonServiceImpl implements HoaDonService {
 
     private HoaDonRepository hoaDonRepository = new HoaDonRepository();
 
-    @Override
-    public Boolean saveHoaDon(HoaDonViewModel hoaDon) {
-        return hoaDonRepository.saveHoaDon(hoaDon);
+     @Override
+    public List<HoaDonViewModel> all() {
+        return hoaDonRepository.all();
     }
 
 }

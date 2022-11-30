@@ -16,7 +16,7 @@ public class HoaDon {
 
     private String IdHD;
     private NhanVienViewModel IdNV;
-    private String IdKH;
+    private KhachHang IdKH;
     private String IdPT;
     private String maHD;
     private Date ngayTao;
@@ -24,6 +24,7 @@ public class HoaDon {
     private Date ngayShip;
     private Date ngayNhan;
     private Date ngayThanhToan;
+    private int PTGD;
     private int tinhTrang;
     private String tenNguoiNhan;
     private String diaChi;
@@ -33,7 +34,7 @@ public class HoaDon {
     public HoaDon() {
     }
 
-    public HoaDon(String IdHD, NhanVienViewModel IdNV, String IdKH, String IdPT, String maHD, Date ngayTao, Date ngayDat, Date ngayShip, Date ngayNhan, Date ngayThanhToan, int tinhTrang, String tenNguoiNhan, String diaChi, String SDT, String moTa, BigDecimal TongTien) {
+    public HoaDon(String IdHD, NhanVienViewModel IdNV, KhachHang IdKH, String IdPT, String maHD, Date ngayTao, Date ngayDat, Date ngayShip, Date ngayNhan, Date ngayThanhToan, int PTGD, int tinhTrang, String tenNguoiNhan, String diaChi, String SDT, String moTa, BigDecimal TongTien) {
         this.IdHD = IdHD;
         this.IdNV = IdNV;
         this.IdKH = IdKH;
@@ -44,6 +45,7 @@ public class HoaDon {
         this.ngayShip = ngayShip;
         this.ngayNhan = ngayNhan;
         this.ngayThanhToan = ngayThanhToan;
+        this.PTGD = PTGD;
         this.tinhTrang = tinhTrang;
         this.tenNguoiNhan = tenNguoiNhan;
         this.diaChi = diaChi;
@@ -51,16 +53,6 @@ public class HoaDon {
         this.moTa = moTa;
         this.TongTien = TongTien;
     }
-
-    public BigDecimal getTongTien() {
-        return TongTien;
-    }
-
-    public void setTongTien(BigDecimal TongTien) {
-        this.TongTien = TongTien;
-    }
-
-    
 
     public String getIdHD() {
         return IdHD;
@@ -78,11 +70,11 @@ public class HoaDon {
         this.IdNV = IdNV;
     }
 
-    public String getIdKH() {
+    public KhachHang getIdKH() {
         return IdKH;
     }
 
-    public void setIdKH(String IdKH) {
+    public void setIdKH(KhachHang IdKH) {
         this.IdKH = IdKH;
     }
 
@@ -142,6 +134,14 @@ public class HoaDon {
         this.ngayThanhToan = ngayThanhToan;
     }
 
+    public int getPTGD() {
+        return PTGD;
+    }
+
+    public void setPTGD(int PTGD) {
+        this.PTGD = PTGD;
+    }
+
     public int getTinhTrang() {
         return tinhTrang;
     }
@@ -182,9 +182,13 @@ public class HoaDon {
         this.moTa = moTa;
     }
 
-    @Override
-    public String toString() {
-        return "HoaDon{" + "IdHD=" + IdHD + ", IdNV=" + IdNV + ", IdKH=" + IdKH + ", IdPT=" + IdPT + ", maHD=" + maHD + ", ngayTao=" + ngayTao + ", ngayDat=" + ngayDat + ", ngayShip=" + ngayShip + ", ngayNhan=" + ngayNhan + ", ngayThanhToan=" + ngayThanhToan + ", tinhTrang=" + tinhTrang + ", tenNguoiNhan=" + tenNguoiNhan + ", diaChi=" + diaChi + ", SDT=" + SDT + ", moTa=" + moTa + '}';
+    public BigDecimal getTongTien() {
+        return TongTien;
     }
 
+    public void setTongTien(BigDecimal TongTien) {
+        this.TongTien = TongTien;
+    }
+
+    
 }
