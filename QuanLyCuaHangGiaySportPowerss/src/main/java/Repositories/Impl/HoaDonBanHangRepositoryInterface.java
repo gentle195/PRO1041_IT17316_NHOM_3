@@ -24,5 +24,5 @@ public interface HoaDonBanHangRepositoryInterface {
 
     public void update(HoaDon hoaDon, String ma, String ma1) throws Exception;
 
-    public void delete(HoaDon hoaDon) throws Exception;
+    public void delete(String Ma) throws Exception;
 }

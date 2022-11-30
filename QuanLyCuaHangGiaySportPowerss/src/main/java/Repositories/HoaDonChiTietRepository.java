@@ -43,9 +43,7 @@ public class HoaDonChiTietRepository {
     }
 
     public void updateSL(String ma, HoaDonChiTiet hd) {
-        String sql = "declare @idctsp UNIQUEIDENTIFIER\n"
-                + "set @idctsp=(select a.IdCTSP from ChiTietSP a left join SanPham b on a.IdSP=b.IdSP where b.MaSP=?)/n"
-                + "UPDATE ChiTietHoaDon SET SoLuong = ? WHERE IdChiTietSP= @idctsp";
+        String sql = "declare @idctsp UNIQUEIDENTIFIER set @idctsp=(select a.IdHoaDonCT from ChiTietHoaDon a left join ChiTietSP b on a.IdChiTietSP=b.IdCTSP where IdChiTietSP = (Select IdCTSP from ChiTietSP b join SanPham c on b.IdSP=c.IdSP  where c.MaSP=?)) UPDATE ChiTietHoaDon SET SoLuong = ? WHERE IdHoaDonCT= @idctsp";
         Connection cn = dBConnection.getConnection();
         try {
             PreparedStatement ps = cn.prepareStatement(sql);
