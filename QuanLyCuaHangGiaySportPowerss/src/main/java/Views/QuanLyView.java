@@ -960,6 +960,11 @@ public class QuanLyView extends javax.swing.JFrame {
 
         btnxoa.setBackground(new java.awt.Color(204, 204, 204));
         btnxoa.setText("Xóa khỏi Giỏ hàng");
+        btnxoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnxoaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
         jPanel16.setLayout(jPanel16Layout);
@@ -6763,6 +6768,77 @@ public class QuanLyView extends javax.swing.JFrame {
     private void txtThanhTien1CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtThanhTien1CaretUpdate
         // TODO add your handling code here:
     }//GEN-LAST:event_txtThanhTien1CaretUpdate
+
+    private void btnxoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnxoaActionPerformed
+        // TODO add your handling code here:
+//        int row = tbldssanpham.getSelectedRow();
+//        int r = tbHoaDonBanHang.getSelectedRow();
+//        HoaDonChiTietViewModel chiTietHoaDonViewModel = new HoaDonChiTietViewModel();
+//        List<ChiTietSPViewModel> lctsp1 = chiTietSPService.all();
+//        ChiTietSPViewModel ctsp = lctsp1.get(row);
+//        UUID id = ctsp.getIdCTSP();
+//        ChiTietSP CT = new ChiTietSP();
+//        String sl = JOptionPane.showInputDialog("Mời nhập số lượng");
+//        int slm = Integer.valueOf(sl);
+//        CT.setSoLuong(Integer.parseInt(tbldssanpham.getValueAt(row, 3).toString()));
+//        CT.setSoLuong(CT.getSoLuong() - slm);
+//        chiTietHoaDonViewModel.setMaSP((String) tbldssanpham.getValueAt(row, 0));
+//        chiTietHoaDonViewModel.setTenSP((String) tbldssanpham.getValueAt(row, 1));
+//        chiTietHoaDonViewModel.setSoLuong(Integer.valueOf(sl));
+//        chiTietHoaDonViewModel.setDonGia((BigDecimal) tbldssanpham.getValueAt(row, 2));
+//        HoaDonChiTiet hd = new HoaDonChiTiet();
+//        hd.setSoLuong(Integer.valueOf(sl));
+//        hd.setDonGia((BigDecimal) tbldssanpham.getValueAt(row, 2));
+//        listhdct.add(chiTietHoaDonViewModel);
+//        listhdctt.add(hd);
+//
+//        try {
+//            chiTietSPService.updatesl(CT, tbldssanpham.getValueAt(row, 0).toString());
+//            addTableGioHang(listhdct);
+//            loadTableChiTietSPBH();
+//            HDCT.add(tbldssanpham.getValueAt(row, 0).toString(), tbHoaDonBanHang.getValueAt(r, 0).toString(), hd);
+//            int thanhtien = 0;
+//            int slsp = 0;
+//            if (tblgiohang.getRowCount() > 0) {
+//                for (int i = 0; i < listhdct.size(); i++) {
+//                    thanhtien = thanhtien + (listhdct.get(i).getSoLuong() * Integer.parseInt(listhdct.get(i).getDonGia().toString()));
+//                }
+//                txtThanhTien1.setText((String.valueOf(thanhtien)));
+//            }
+//            if (tblgiohang.getRowCount() > 0) {
+//                for (int i = 0; i < listhdct.size(); i++) {
+//                    slsp = slsp + (listhdct.get(i).getSoLuong());
+//                }
+//                chiTietHoaDonViewModel.setSoLuong(slsp);
+////                HDCT.updateSL(hd,id);
+//            }
+//
+//        } catch (Exception ex) {
+//            Logger.getLogger(QuanLyView.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+        int row = tblgiohang.getSelectedRow();
+//        int sp=tbldssanpham.getSelectedRow();
+//        HoaDonChiTiet hd = new HoaDonChiTiet();
+//        ChiTietSP CT = new ChiTietSP();
+//        String sl = JOptionPane.showInputDialog("Mời nhập số lượng");
+////        CT.setSoLuong(Integer.parseInt(tbldssanpham.getValueAt(sp, 3).toString()));
+//        hd.setSoLuong(Integer.parseInt(tblgiohang.getValueAt(row, 2).toString()));
+//        int slm = Integer.valueOf(sl);
+//        CT.setSoLuong(CT.getSoLuong() + slm);
+//        hd.setSoLuong(hd.getSoLuong() - slm);
+//        listhdctt.add(hd);
+        try {
+//            if (slm < Integer.parseInt(tblgiohang.getValueAt(row, 2).toString())) {
+////                chiTietSPService.updatesl(CT, tblgiohang.getValueAt(row, 0).toString());
+//                HDCT.updateSL(tblgiohang.getValueAt(row, 0).toString(), hd);
+                loadTableChiTietSPBH();
+                addTableGioHang(listhdct);
+                HDCT.deleteSL(tblgiohang.getValueAt(row, 0).toString());
+//            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnxoaActionPerformed
 
     /**
      * @param args the command line arguments

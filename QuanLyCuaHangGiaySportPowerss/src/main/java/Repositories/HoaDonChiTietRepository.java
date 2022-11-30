@@ -8,6 +8,7 @@ import DomainModels.HoaDon;
 import DomainModels.HoaDonChiTiet;
 import DomainModels.SanPham;
 import Utilities.DBConnection;
+import ViewModels.HoaDonChiTietViewModel;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -23,53 +24,11 @@ public class HoaDonChiTietRepository {
 
     private DBConnection dBConnection;
 
-//    public Boolean saveHoaDonChiTiet(HoaDonChiTiet hoaDonChiTiet) {
-//
-//        int checkInsert = 0;
-//
-//        String sql = "INSERT INTO [dbo].[ChiTietHoaDon]\n"
-//                + "           (\n"
-//                + "           [IdHD]\n"
-//                + "           ,[IdChiTietSP]\n"
-//                + "           ,[SoLuong]\n"
-//                + "           ,[DonGia])\n"
-//                + "     VALUES\n"
-//                + "           (?,?,?,?)";
-//        try ( Connection con = dBConnection.getConnection();  PreparedStatement ps = con.prepareStatement(sql)) {
-//            ps.setObject(1, hoaDonChiTiet.getIdHD());
-//            ps.setObject(2, hoaDonChiTiet.getIdChiTietSP());
-//            ps.setObject(3, hoaDonChiTiet.getSoLuong());
-//            ps.setObject(4, hoaDonChiTiet.getDonGia());
-//            checkInsert = ps.executeUpdate();
-//            return checkInsert > 0;
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return null;
-//    }
-//    public void create(HoaDonChiTiet hd) {
-//        Connection conn = DBConnection.getConnection();
-//        String pr = "insert into ChiTietHoaDon(IdHD,IdChiTietSP,SoLuong,DonGia) values(?,?,?,?)";
-//        PreparedStatement ps;
-//        try {
-//            ps = conn.prepareStatement(pr);
-//            ps.setObject(1, hd.getIdHD());
-//            ps.setObject(2, hd.getIdChiTietSP());
-//            ps.setObject(3, hd.getSoLuong());
-//            ps.setObject(4, hd.getDonGia());
-//            ps.executeUpdate();
-//        } catch (SQLException ex) {
-//            Logger.getLogger(HoaDonChiTietRepository.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//
-//    }
-
-    public void add(String ma,String mahd,HoaDonChiTiet nv) {
+    public void add(String ma, String mahd, HoaDonChiTiet nv) {
         try {
             String sql = "declare @idctsp UNIQUEIDENTIFIER\n"
-                    + "set @idctsp=(select a.IdCTSP from ChiTietSP a left join SanPham b on a.IdSP=b.IdSP where b.MaSP=?)\n"+
-                    "declare @idhd UNIQUEIDENTIFIER\n"+"set @idhd=(select IdHD from HoaDon where Ma=?) "
+                    + "set @idctsp=(select a.IdCTSP from ChiTietSP a left join SanPham b on a.IdSP=b.IdSP where b.MaSP=?)\n"
+                    + "declare @idhd UNIQUEIDENTIFIER\n" + "set @idhd=(select IdHD from HoaDon where Ma=?) "
                     + "insert into ChiTietHoaDon(IdHD,IdChiTietSP,SoLuong,DonGia) values(@idhd,@idctsp,?,?)";
             Connection cn = dBConnection.getConnection();
             PreparedStatement pstm = cn.prepareStatement(sql);
@@ -82,15 +41,30 @@ public class HoaDonChiTietRepository {
             e.printStackTrace();
         }
     }
-    public void updateSL(int sl,UUID id){
-        String sql="UPDATE ChiTietHoaDon SET SoLuong = ? WHERE IdChiTietSP= ?";
-        Connection cn=dBConnection.getConnection();
+
+    public void updateSL(String ma, HoaDonChiTiet hd) {
+        String sql = "declare @idctsp UNIQUEIDENTIFIER\n"
+                + "set @idctsp=(select a.IdCTSP from ChiTietSP a left join SanPham b on a.IdSP=b.IdSP where b.MaSP=?)/n"
+                + "UPDATE ChiTietHoaDon SET SoLuong = ? WHERE IdChiTietSP= @idctsp";
+        Connection cn = dBConnection.getConnection();
         try {
-            PreparedStatement ps=cn.prepareStatement(sql);
-            ps.setObject(1, sl);
-            ps.setObject(2, id);
+            PreparedStatement ps = cn.prepareStatement(sql);
+            ps.setObject(1, ma);
+            ps.setObject(2, hd.getSoLuong());
             ps.executeUpdate();
-            ps.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(HoaDonChiTietRepository.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void deleteSL(String ma) {
+        String sql = "declare @idctsp UNIQUEIDENTIFIER\n"
+                + "set @idctsp=(select a.IdCTSP from ChiTietSP a left join SanPham b on a.IdSP=b.IdSP where b.MaSP=?)\n"
+                + "Delete ChiTietHoaDon where IdChiTietSP=@idctsp";
+        try {
+            PreparedStatement ps = dBConnection.getConnection().prepareStatement(sql);
+            ps.setObject(1, ma);
+            ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(HoaDonChiTietRepository.class.getName()).log(Level.SEVERE, null, ex);
         }

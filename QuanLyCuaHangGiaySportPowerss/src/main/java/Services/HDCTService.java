@@ -7,6 +7,7 @@ package Services;
 import DomainModels.HoaDonChiTiet;
 import DomainModels.SanPham;
 import Repositories.HoaDonChiTietRepository;
+import ViewModels.HoaDonChiTietViewModel;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -27,7 +28,10 @@ public class HDCTService {
     public void add(String ma,String mahd,HoaDonChiTiet hd){
         chiTietHDRepo.add(ma,mahd,hd);
     }
-    public void updateSL(int sl,UUID id){
-        chiTietHDRepo.updateSL(sl, id);
+    public void updateSL(String ma,HoaDonChiTiet hd){
+        chiTietHDRepo.updateSL(ma,hd);
+    }
+    public void deleteSL(String ma){
+        chiTietHDRepo.deleteSL(ma);
     }
 }
