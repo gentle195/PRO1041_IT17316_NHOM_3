@@ -27,4 +27,7 @@ public interface ChiTietSPRepositoryInterface {
     public void delete(ChiTietSP chiTietSP) throws Exception;
 
     public void updates1(ChiTietSP ct,String ma) throws Exception;
+    
+    public List<ChiTietSPViewModel> search(String ten);
+    
 }

@@ -81,7 +81,9 @@ public class QuanLyView extends javax.swing.JFrame {
     private HDCTService HDCT;
     private KhachHangService serviceKH = new KhachHangService();
     private DefaultTableModel dtmKH = new DefaultTableModel();
+    DefaultTableModel dtmSpBH = new DefaultTableModel();
     private List<KhachHang> listKH = new ArrayList<>();
+    private List<ChiTietSPViewModel> listCTSPVM = new ArrayList<>();
     private HoaDonService hoadonService = new HoaDonServiceImpl();
     private DefaultTableModel defaultTableModelGioHang;
     private DefaultTableModel tableHoaDon;
@@ -326,7 +328,6 @@ public class QuanLyView extends javax.swing.JFrame {
     }
 
     private void loadTableChiTietSPBH() {
-        DefaultTableModel dtmSpBH = new DefaultTableModel();
         List<ChiTietSPViewModel> Sz = chiTietSPService.all();
         dtmSpBH = (DefaultTableModel) tbldssanpham.getModel();
         dtmSpBH.setRowCount(0);
@@ -376,6 +377,13 @@ public class QuanLyView extends javax.swing.JFrame {
                 hoaDon.getMaHD(),
                 hoaDon.getNgayTao(),
                 hoaDon.getTinhTrang() == 0 ? "Chờ xử lý" : "Ðã thanh toán"});
+        }
+    }
+    
+    private void searchSPBH(List<ChiTietSPViewModel> list){
+        dtmSpBH.setRowCount(0);
+        for (ChiTietSPViewModel chiTietSPViewModel : list) {
+            dtmSpBH.addRow(chiTietSPViewModel.toDataRow());
         }
     }
 
@@ -1044,6 +1052,11 @@ public class QuanLyView extends javax.swing.JFrame {
 
         btntimkiem.setBackground(new java.awt.Color(204, 204, 204));
         btntimkiem.setText("Tìm kiếm");
+        btntimkiem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btntimkiemActionPerformed(evt);
+            }
+        });
 
         jLabel24.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel24.setText("Tên SP");
@@ -1135,7 +1148,7 @@ public class QuanLyView extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel17Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane22, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17))
         );
@@ -1150,7 +1163,7 @@ public class QuanLyView extends javax.swing.JFrame {
                     .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 14, Short.MAX_VALUE))
+                .addGap(0, 7, Short.MAX_VALUE))
         );
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -6763,6 +6776,12 @@ public class QuanLyView extends javax.swing.JFrame {
     private void txtThanhTien1CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtThanhTien1CaretUpdate
         // TODO add your handling code here:
     }//GEN-LAST:event_txtThanhTien1CaretUpdate
+
+    private void btntimkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btntimkiemActionPerformed
+        String search=txttimkiem.getText();
+        listCTSPVM=chiTietSPService.search(search);
+        searchSPBH(listCTSPVM);
+    }//GEN-LAST:event_btntimkiemActionPerformed
 
     /**
      * @param args the command line arguments
