@@ -24,7 +24,8 @@ public class HoaDonBanHangService implements HoaDonBanHangServiceInterface {
     }
 
     @Override
-    public void update(HoaDon hd) throws Exception {
+    public void update(HoaDon hd, String ma,String ma1) throws Exception {
+        hoadonrepo.update(hd, ma, ma1);
     }
 
     @Override

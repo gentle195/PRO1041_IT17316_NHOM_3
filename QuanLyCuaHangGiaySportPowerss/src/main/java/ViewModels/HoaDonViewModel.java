@@ -4,6 +4,7 @@
  */
 package ViewModels;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -12,8 +13,9 @@ import java.util.Date;
  */
 public class HoaDonViewModel {
 
-    private int STT;
+    private String maHD;
     private String maNV;
+    private String maKH;
     private String tenKH;
     private String IdHD;
     private Date ngayTao;
@@ -21,13 +23,17 @@ public class HoaDonViewModel {
     private Date ngayShip;
     private Date ngayNhan;
     private Date ngayThanhToan;
+    private int PTDG;
+    private int TinhTrang;
+    private BigDecimal tongTien;
 
     public HoaDonViewModel() {
     }
 
-    public HoaDonViewModel(int STT, String maNV, String tenKH, String IdHD, Date ngayTao, Date ngayDat, Date ngayShip, Date ngayNhan, Date ngayThanhToan) {
-        this.STT = STT;
+    public HoaDonViewModel(String maHD, String maNV, String maKH, String tenKH, String IdHD, Date ngayTao, Date ngayDat, Date ngayShip, Date ngayNhan, Date ngayThanhToan, int PTDG, int TinhTrang, BigDecimal tongTien) {
+        this.maHD = maHD;
         this.maNV = maNV;
+        this.maKH = maKH;
         this.tenKH = tenKH;
         this.IdHD = IdHD;
         this.ngayTao = ngayTao;
@@ -35,14 +41,17 @@ public class HoaDonViewModel {
         this.ngayShip = ngayShip;
         this.ngayNhan = ngayNhan;
         this.ngayThanhToan = ngayThanhToan;
+        this.PTDG = PTDG;
+        this.TinhTrang = TinhTrang;
+        this.tongTien = tongTien;
     }
 
-    public int getSTT() {
-        return STT;
+    public String getMaHD() {
+        return maHD;
     }
 
-    public void setSTT(int STT) {
-        this.STT = STT;
+    public void setMaHD(String maHD) {
+        this.maHD = maHD;
     }
 
     public String getMaNV() {
@@ -51,6 +60,14 @@ public class HoaDonViewModel {
 
     public void setMaNV(String maNV) {
         this.maNV = maNV;
+    }
+
+    public String getMaKH() {
+        return maKH;
+    }
+
+    public void setMaKH(String maKH) {
+        this.maKH = maKH;
     }
 
     public String getTenKH() {
@@ -109,9 +126,32 @@ public class HoaDonViewModel {
         this.ngayThanhToan = ngayThanhToan;
     }
 
-    @Override
-    public String toString() {
-        return "HoaDonViewModel{" + "STT=" + STT + ", maNV=" + maNV + ", tenKH=" + tenKH + ", IdHD=" + IdHD + ", ngayTao=" + ngayTao + ", ngayDat=" + ngayDat + ", ngayShip=" + ngayShip + ", ngayNhan=" + ngayNhan + ", ngayThanhToan=" + ngayThanhToan + '}';
+    public int getPTDG() {
+        return PTDG;
     }
 
+    public void setPTDG(int PTDG) {
+        this.PTDG = PTDG;
+    }
+
+    public int getTinhTrang() {
+        return TinhTrang;
+    }
+
+    public void setTinhTrang(int TinhTrang) {
+        this.TinhTrang = TinhTrang;
+    }
+
+    public BigDecimal getTongTien() {
+        return tongTien;
+    }
+
+    public void setTongTien(BigDecimal tongTien) {
+        this.tongTien = tongTien;
+    }
+
+    
+
+
+    
 }
