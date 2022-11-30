@@ -18,7 +18,9 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import java.util.List;
 import java.util.logging.Level;
@@ -97,8 +99,29 @@ public class ChiTietSPRepository implements ChiTietSPRepositoryInterface {
             ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(ChiTietSPRepository.class.getName()).log(Level.SEVERE, null, ex);
-            
+
         }
+    }
+
+    @Override
+    public List<ChiTietSPViewModel> search(String ten) {
+        String sql = "select SanPham.MaSP, SanPham.TenSP, DonGia, SoLuong, TrangThai "
+                + "from ChiTietSP join SanPham on ChiTietSP.IdSP= SanPham.IdSP "
+                + "where TenSP = ?";
+        try (Connection conn = DBConnection.getConnection();
+                PreparedStatement ps = conn.prepareStatement(sql)) {
+            List<ChiTietSPViewModel> lstCTSPVM = new ArrayList<>();
+            ps.setObject(1, ten);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                SanPham sp = new SanPham(rs.getString(1), rs.getString(2));
+                lstCTSPVM.add(new ChiTietSPViewModel(sp, rs.getBigDecimal(3), rs.getInt(4), rs.getInt(5)));
+                return lstCTSPVM;
+            }
+        } catch (Exception e) {
+
+        }
+        return null;
     }
 
 }

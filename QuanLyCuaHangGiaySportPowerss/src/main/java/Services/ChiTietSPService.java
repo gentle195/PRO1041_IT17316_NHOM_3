@@ -65,4 +65,9 @@ public class ChiTietSPService implements ChiTietSPServiceInterface {
         chiTietSPRepo.updates1(ct, ma);
     }
 
+    @Override
+    public List<ChiTietSPViewModel> search(String ten) {
+        return chiTietSPRepo.search(ten);
+    }
+
 }

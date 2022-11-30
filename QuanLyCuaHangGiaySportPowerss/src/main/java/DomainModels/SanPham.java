@@ -64,6 +64,11 @@ public class SanPham {
         this.MoTa = MoTa;
     }
 
+    public SanPham(String MaSP, String TenSP) {
+        this.MaSP = MaSP;
+        this.TenSP = TenSP;
+    }
+
     public UUID getIdSP() {
         return IdSP;
     }

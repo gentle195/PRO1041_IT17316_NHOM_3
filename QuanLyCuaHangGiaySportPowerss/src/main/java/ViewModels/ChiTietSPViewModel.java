@@ -66,10 +66,17 @@ public class ChiTietSPViewModel {
         this.MoTa = MoTa;
     }
 
+    public ChiTietSPViewModel(SanPham sanPham, BigDecimal DonGia, int SoLuong, int TrangThai) {
+        this.sanPham = sanPham;
+        this.SoLuong = SoLuong;
+        this.DonGia = DonGia;
+        this.TrangThai = TrangThai;
+    }
+
     public UUID getIdCTSP() {
         return IdCTSP;
     }
-    
+
     public void setIdCTSP(UUID IdCTSP) {
         this.IdCTSP = IdCTSP;
     }
@@ -160,6 +167,10 @@ public class ChiTietSPViewModel {
 
     public void setMoTa(String MoTa) {
         this.MoTa = MoTa;
+    }
+    
+     public Object[] toDataRow() {
+        return new Object[]{sanPham.getMaSP(), sanPham.getTenSP(), DonGia, SoLuong, TrangThai==0?"Hết hàng":"Còn hàng"};
     }
 
 }
