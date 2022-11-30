@@ -9,6 +9,7 @@ import DomainModels.ChiTietSP;
 import DomainModels.ChiTietSP1;
 import DomainModels.SanPham;
 import ViewModels.ChiTietSPViewModel;
+import ViewModels.TimKiemSPViewModel;
 
 import java.util.List;
 
@@ -27,4 +28,6 @@ public interface ChiTietSPRepositoryInterface {
     public void delete(ChiTietSP chiTietSP) throws Exception;
 
     public void updates1(ChiTietSP ct,String ma) throws Exception;
+    
+      public List<TimKiemSPViewModel> sreach();
 }

@@ -126,4 +126,9 @@ public class KhachHang {
         return new Object[]{ ma, hoTen, gioiTinh, ngaySinh, sdt, diaChi};
     }
 
+    @Override
+    public String toString() {
+        return  ma;
+    }
+
 }

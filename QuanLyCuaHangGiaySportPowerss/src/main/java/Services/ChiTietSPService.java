@@ -13,12 +13,15 @@ import Services.Interface.ChatLieuServiceInterface;
 import Services.Interface.ChatLieuServiceInterface;
 import Services.Interface.ChiTietSPServiceInterface;
 import Services.Interface.SanPhamServiceInterface;
+import Utilities.DBConnection;
 import ViewModels.ChatLieuViewModel;
 import ViewModels.ChiTietSPViewModel;
+import ViewModels.TimKiemSPViewModel;
 import static java.lang.Integer.toString;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.*;
 
 public class ChiTietSPService implements ChiTietSPServiceInterface {
 
@@ -63,6 +66,11 @@ public class ChiTietSPService implements ChiTietSPServiceInterface {
     @Override
     public void updatesl(ChiTietSP ct, String ma) throws Exception {
         chiTietSPRepo.updates1(ct, ma);
+    }
+
+    @Override
+    public List<TimKiemSPViewModel> sreach() {
+       return chiTietSPRepo.sreach();
     }
 
 }

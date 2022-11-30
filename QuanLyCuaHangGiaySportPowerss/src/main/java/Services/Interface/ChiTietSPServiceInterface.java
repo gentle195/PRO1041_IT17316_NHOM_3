@@ -9,6 +9,7 @@ package Services.Interface;
 import DomainModels.ChiTietSP;
 import DomainModels.ChiTietSP1;
 import ViewModels.ChiTietSPViewModel;
+import ViewModels.TimKiemSPViewModel;
 import java.util.List;
 
 public interface ChiTietSPServiceInterface {
@@ -18,4 +19,5 @@ public interface ChiTietSPServiceInterface {
     public void update(ChiTietSP chiTietSP) throws Exception;
     public  void delete(ChiTietSP chiTietSP) throws Exception;
     public void updatesl(ChiTietSP ct,String ma) throws Exception;
+    public List<TimKiemSPViewModel> sreach();
 }

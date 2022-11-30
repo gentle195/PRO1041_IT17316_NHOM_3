@@ -40,15 +40,13 @@ public class HoaDonBanHangRepository implements HoaDonBanHangRepositoryInterface
     @Override
     public void add(HoaDon hoaDon) throws Exception {
         try {
-            String sql = "insert into HoaDon (Ma,NgayTao,TinhTrang)values(?,?,?)"
-                  ;
+            String sql = "insert into HoaDon (Ma,NgayTao,TinhTrang)values(?,?,?)";
             Connection cn = DBConnection.getConnection();
             PreparedStatement pstm = cn.prepareStatement(sql);
             pstm.setObject(1, hoaDon.getMaHD());
-            pstm.setObject(2,  hoaDon.getNgayTao());
+            pstm.setObject(2, hoaDon.getNgayTao());
             pstm.setObject(3, hoaDon.getTinhTrang());
             pstm.executeUpdate();
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -56,7 +54,29 @@ public class HoaDonBanHangRepository implements HoaDonBanHangRepositoryInterface
     }
 
     @Override
-    public void update(HoaDon hoaDon) throws Exception {
+    public void update(HoaDon hoaDon, String ma, String ma1) throws Exception {
+        try {
+            String sql = "Declare @Idkh UNIQUEIDENTIFIER \n"
+                    + "set @Idkh = (select IdKH from KhachHang where MaKH = ?)\n"
+                    + "Declare @Idnv UNIQUEIDENTIFIER \n"
+                    + "set @Idnv = (select IdNV from NhanVien where MaNV = ?)"
+                    + "update HoaDon set IdKH = @Idkh , IdNV = @Idnv, NgayThanhToan = ?,NgayDat = ?,NgayShip = ?,NgayNhan = ?,TinhTrang= ?,TongTien = ? where Ma = ?";
+            Connection cn = DBConnection.getConnection();
+            PreparedStatement pstm = cn.prepareStatement(sql);
+            pstm.setObject(1, ma);
+            pstm.setObject(2, ma1);
+            pstm.setObject(3, hoaDon.getNgayThanhToan());
+            pstm.setObject(4, hoaDon.getNgayDat());
+            pstm.setObject(5, hoaDon.getNgayShip());
+            pstm.setObject(6, hoaDon.getNgayNhan());
+            pstm.setObject(7, hoaDon.getTinhTrang());
+            pstm.setObject(8, hoaDon.getTongTien());
+            pstm.setObject(9, hoaDon.getMaHD());
+
+            pstm.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

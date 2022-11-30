@@ -63,12 +63,11 @@ public class HoaDonChiTietRepository {
 //        }
 //
 //    }
-
-    public void add(String ma,String mahd,HoaDonChiTiet nv) {
+    public void add(String ma, String mahd, HoaDonChiTiet nv) {
         try {
             String sql = "declare @idctsp UNIQUEIDENTIFIER\n"
-                    + "set @idctsp=(select a.IdCTSP from ChiTietSP a left join SanPham b on a.IdSP=b.IdSP where b.MaSP=?)\n"+
-                    "declare @idhd UNIQUEIDENTIFIER\n"+"set @idhd=(select IdHD from HoaDon where Ma=?) "
+                    + "set @idctsp=(select a.IdCTSP from ChiTietSP a left join SanPham b on a.IdSP=b.IdSP where b.MaSP=?)\n"
+                    + "declare @idhd UNIQUEIDENTIFIER\n" + "set @idhd=(select IdHD from HoaDon where Ma=?) "
                     + "insert into ChiTietHoaDon(IdHD,IdChiTietSP,SoLuong,DonGia) values(@idhd,@idctsp,?,?)";
             Connection cn = dBConnection.getConnection();
             PreparedStatement pstm = cn.prepareStatement(sql);

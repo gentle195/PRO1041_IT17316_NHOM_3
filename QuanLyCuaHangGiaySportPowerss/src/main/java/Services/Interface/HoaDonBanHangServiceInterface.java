@@ -10,7 +10,7 @@ public interface HoaDonBanHangServiceInterface {
 
     public void add(HoaDon hd) throws Exception;
 
-    public void update(HoaDon hd) throws Exception;
+      public void update(HoaDon hd, String ma, String ma1) throws Exception;
 
     public void delete(HoaDon hd) throws Exception;
 }

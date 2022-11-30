@@ -22,7 +22,7 @@ public interface HoaDonBanHangRepositoryInterface {
 
     public void add(HoaDon hoaDon) throws Exception;
 
-    public void update(HoaDon hoaDon) throws Exception;
+    public void update(HoaDon hoaDon, String ma, String ma1) throws Exception;
 
     public void delete(HoaDon hoaDon) throws Exception;
 }
