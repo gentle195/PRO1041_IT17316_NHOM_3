@@ -61,7 +61,6 @@ public class HoaDonBanHangRepository implements HoaDonBanHangRepositoryInterface
                     + "set @Idkh = (select IdKH from KhachHang where MaKH = ?)\n"
                     + "Declare @Idnv UNIQUEIDENTIFIER \n"
                     + "set @Idnv = (select IdNV from NhanVien where MaNV = ?)"
-                    
                     + "update HoaDon set IdKH = @Idkh , IdNV = @Idnv, NgayThanhToan = ?,NgayDat = ?,NgayShip = ?,NgayNhan = ?,PTGH = ?,TinhTrang= ?,TongTien = ? where Ma = ?";
             Connection cn = DBConnection.getConnection();
             PreparedStatement pstm = cn.prepareStatement(sql);
@@ -83,7 +82,13 @@ public class HoaDonBanHangRepository implements HoaDonBanHangRepositoryInterface
     }
 
     @Override
-    public void delete(HoaDon hoaDon) throws Exception {
+    public void delete(String Ma) throws Exception {
+        String sql = "declare @idhd UNIQUEIDENTIFIER set @idhd=(select IdHD from HoaDon where Ma=?) Delete ChiTietHoaDon where IdHD=@idhd Delete from HoaDon where Ma=?";
+        Connection cn = DBConnection.getConnection();
+        PreparedStatement pstm = cn.prepareStatement(sql);
+        pstm.setObject(1, Ma);
+        pstm.setObject(2, Ma);
+        pstm.executeUpdate();
     }
 
 }

@@ -12,5 +12,5 @@ public interface HoaDonBanHangServiceInterface {
 
     public void update(HoaDon hd, String ma, String ma1) throws Exception;
 
-    public void delete(HoaDon hd) throws Exception;
+    public void delete(String Ma) throws Exception;
 }

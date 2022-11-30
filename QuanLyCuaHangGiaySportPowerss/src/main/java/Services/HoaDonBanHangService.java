@@ -29,7 +29,8 @@ public class HoaDonBanHangService implements HoaDonBanHangServiceInterface {
     }
 
     @Override
-    public void delete(HoaDon hd) throws Exception {
+    public void delete(String Ma) throws Exception {
+        hoadonrepo.delete(Ma);
     }
 
     @Override
