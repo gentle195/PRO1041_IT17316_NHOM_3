@@ -11,7 +11,10 @@ import Utilities.DBConnection;
 import ViewModels.HoaDonChiTietViewModel;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -66,5 +69,22 @@ public class HoaDonChiTietRepository {
         } catch (SQLException ex) {
             Logger.getLogger(HoaDonChiTietRepository.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+     public List<HoaDonChiTietViewModel> getListById(String idhoaDon) throws SQLException {
+        String query = "SELECT  c.MaSP , c.TenSP , a.SoLuong , a.DonGia fROM ChiTietHoaDon a left join ChiTietSP b on a.IdChiTietSP = b.IdCTSP left join SanPham c on c.IdSP = b.IdSP left join HoaDon d on a.IdHD = d.IdHD where d.Ma = ?";
+        List<HoaDonChiTietViewModel> list = new ArrayList<>();
+        try (Connection con = dBConnection.getConnection();
+                PreparedStatement ps = con.prepareStatement(query)) {
+            ps.setObject(1, idhoaDon);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                HoaDonChiTietViewModel model = new HoaDonChiTietViewModel(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getBigDecimal(4));
+                list.add(model);
+            }
+            return list;
+        } catch (Exception e) {
+        }
+        return null;
     }
 }
