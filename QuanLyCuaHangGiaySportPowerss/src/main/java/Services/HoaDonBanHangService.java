@@ -3,16 +3,21 @@ package Services;
 import DomainModels.HoaDon;
 
 import Repositories.HoaDonBanHangRepository;
+import Repositories.HoaDonChiTietRepository;
 
 import Services.Interface.HoaDonBanHangServiceInterface;
 
 import ViewModels.HoaDonBanHangViewModel;
+import ViewModels.HoaDonChiTietViewModel;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 import java.util.List;
 
 public class HoaDonBanHangService implements HoaDonBanHangServiceInterface {
 
     private HoaDonBanHangRepository hoadonrepo;
+    private HoaDonChiTietRepository hoaDonChiTietRepository = new HoaDonChiTietRepository();
 
     public HoaDonBanHangService() {
         this.hoadonrepo = new HoaDonBanHangRepository();
@@ -36,5 +41,16 @@ public class HoaDonBanHangService implements HoaDonBanHangServiceInterface {
     @Override
     public List<HoaDonBanHangViewModel> all() {
         return hoadonrepo.all();
+    }
+    
+     @Override
+    public List<HoaDonChiTietViewModel> getAll(String idHoaDon) {
+        List<HoaDonChiTietViewModel> list = new ArrayList<>();
+        try {
+            list = hoaDonChiTietRepository.getListById(idHoaDon);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return list;
     }
 }

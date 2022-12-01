@@ -2,6 +2,7 @@ package Services.Interface;
 
 import DomainModels.HoaDon;
 import ViewModels.HoaDonBanHangViewModel;
+import ViewModels.HoaDonChiTietViewModel;
 import java.util.List;
 
 public interface HoaDonBanHangServiceInterface {
@@ -13,4 +14,6 @@ public interface HoaDonBanHangServiceInterface {
     public void update(HoaDon hd, String ma, String ma1) throws Exception;
 
     public void delete(String Ma) throws Exception;
+    
+    List<HoaDonChiTietViewModel> getAll(String idHoaDon);
 }

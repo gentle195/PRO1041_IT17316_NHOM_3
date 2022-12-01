@@ -355,6 +355,19 @@ public class QuanLyView extends javax.swing.JFrame {
             });
         }
     }
+    
+        private void showDataChiTietGioHang(ArrayList<HoaDonChiTietViewModel> list) {
+        defaultTableModelGioHang = (DefaultTableModel) tb_hoaDonCT.getModel();
+        defaultTableModelGioHang.setRowCount(0);
+        int i = 0;
+        for (HoaDonChiTietViewModel chiTietHoaDonViewModel : list) {
+            defaultTableModelGioHang.addRow(new Object[]{
+                i++,
+                chiTietHoaDonViewModel.getMaSP(), chiTietHoaDonViewModel.getTenSP(), chiTietHoaDonViewModel.getSoLuong(), chiTietHoaDonViewModel.getDonGia(),
+                chiTietHoaDonViewModel.getSoLuong() * chiTietHoaDonViewModel.getDonGia().doubleValue()
+            });
+        }
+    }
 
     private void loadTableHoaDon() {
         DefaultTableModel modeltb = new DefaultTableModel();
@@ -486,7 +499,7 @@ public class QuanLyView extends javax.swing.JFrame {
         tblHoaDon = new javax.swing.JTable();
         jPanel22 = new javax.swing.JPanel();
         jScrollPane11 = new javax.swing.JScrollPane();
-        jTable8 = new javax.swing.JTable();
+        tb_hoaDonCT = new javax.swing.JTable();
         pnlNhanVien = new javax.swing.JPanel();
         panel3 = new java.awt.Panel();
         jPanel34 = new javax.swing.JPanel();
@@ -1520,6 +1533,11 @@ public class QuanLyView extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblHoaDon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblHoaDonMouseClicked(evt);
+            }
+        });
         jScrollPane10.setViewportView(tblHoaDon);
 
         javax.swing.GroupLayout jPanel21Layout = new javax.swing.GroupLayout(jPanel21);
@@ -1577,8 +1595,8 @@ public class QuanLyView extends javax.swing.JFrame {
         jPanel22.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Thông tin hóa đơn chi tiết", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 18))); // NOI18N
         jPanel22.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
-        jTable8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTable8.setModel(new javax.swing.table.DefaultTableModel(
+        tb_hoaDonCT.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tb_hoaDonCT.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -1605,7 +1623,7 @@ public class QuanLyView extends javax.swing.JFrame {
                 "STT", "Mã sản phẩm", "Tên sản phẩm", "Số lượng", "Đơn giá/1 sản phẩm", "Thành tiền"
             }
         ));
-        jScrollPane11.setViewportView(jTable8);
+        jScrollPane11.setViewportView(tb_hoaDonCT);
 
         javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
         jPanel22.setLayout(jPanel22Layout);
@@ -6997,6 +7015,14 @@ public class QuanLyView extends javax.swing.JFrame {
         layout.show(pnlCacGiaoDien, "cardThoiGian");
     }//GEN-LAST:event_jRadioButton1ActionPerformed
 
+    private void tblHoaDonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHoaDonMouseClicked
+        // TODO add your handling code here:
+         int row = tblHoaDon.getSelectedRow();
+        HoaDonViewModel hoaDon = hoaDonRepository.all().get(row);
+        List<HoaDonChiTietViewModel> listCTGH = hoaDonBanHangService.getAll(hoaDon.getMaHD());
+        showDataChiTietGioHang((ArrayList<HoaDonChiTietViewModel>) listCTGH);
+    }//GEN-LAST:event_tblHoaDonMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -7267,7 +7293,6 @@ public class QuanLyView extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable8;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
@@ -7366,6 +7391,7 @@ public class QuanLyView extends javax.swing.JFrame {
     private javax.swing.JTable tbNhanVien;
     private javax.swing.JTable tbSIZE;
     private javax.swing.JTable tbSP;
+    private javax.swing.JTable tb_hoaDonCT;
     private javax.swing.JTable tblHoaDon;
     private javax.swing.JTable tblKH;
     private javax.swing.JTable tblKhachHang;
