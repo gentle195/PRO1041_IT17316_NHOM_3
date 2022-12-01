@@ -53,6 +53,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -5081,6 +5082,10 @@ public class QuanLyView extends javax.swing.JFrame {
         // TODO add your handling code here:
         CardLayout layout = (CardLayout) pnlCacGiaoDien.getLayout();
         layout.show(pnlCacGiaoDien, "cardBanHang");
+        List<NhanVienViewModel> nv1 = nvService.getall();
+        cbMaNhanVien.setModel(new DefaultComboBoxModel(nv1.toArray()));
+        List<KhachHang> kh = serviceKH.getAll();
+        cbTenKH.setModel(new DefaultComboBoxModel(kh.toArray()));
     }//GEN-LAST:event_btnBanHang2ActionPerformed
 
     private void btnHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHoaDonActionPerformed
@@ -5116,6 +5121,11 @@ public class QuanLyView extends javax.swing.JFrame {
         // TODO add your handling code here:
         CardLayout layout = (CardLayout) pnlCacGiaoDien.getLayout();
         layout.show(pnlCacGiaoDien, "cardNhanVien");
+        List<ChucVu> cv = cvService.getall();
+        cbCV.setModel(new DefaultComboBoxModel(cv.toArray()));
+
+        List<NhanVienViewModel> nv1 = nvService.getall();
+        cbMaNhanVien.setModel(new DefaultComboBoxModel(nv1.toArray()));
     }//GEN-LAST:event_btnNhanVienActionPerformed
 
     private void btnKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhachHangActionPerformed
@@ -5576,12 +5586,16 @@ public class QuanLyView extends javax.swing.JFrame {
 
     private void txtSoLuongSPCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtSoLuongSPCaretUpdate
         // TODO add your handling code here:
-
-        if (Integer.parseInt(txtSoLuongSP.getText()) == 0) {
-            rdoHetHang.setSelected(true);
+        if (txtSoLuongSP.getText().equalsIgnoreCase("")) {
+            return;
         } else {
-            rdoConHang.setSelected(true);
+            if (Integer.parseInt(txtSoLuongSP.getText()) == 0) {
+                rdoHetHang.setSelected(true);
+            } else {
+                rdoConHang.setSelected(true);
+            }
         }
+
     }//GEN-LAST:event_txtSoLuongSPCaretUpdate
 
     private void txttMaSPPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txttMaSPPActionPerformed
@@ -6827,8 +6841,10 @@ public class QuanLyView extends javax.swing.JFrame {
             Date date = new Date(System.currentTimeMillis());
             HoaDon hd = new HoaDon();
             List<HoaDonBanHangViewModel> st = hoaDonBanHangService.all();
-            for (int i = 0; i < st.size() + 1; i++) {
-                hd.setMaHD("HD" + (i + 1));
+            for (int i = 0; i < 5 + 1; i++) {
+                Random rdm = new Random();
+                int rdmm = rdm.nextInt(100) + 1;
+                hd.setMaHD("HD" + rdmm);
             }
             hd.setNgayTao(new Date());
             hd.setTinhTrang(0);
@@ -6870,8 +6886,13 @@ public class QuanLyView extends javax.swing.JFrame {
 
     private void txtKhachTra1CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtKhachTra1CaretUpdate
         // TODO add your handling code here:
-        double tiendu = Double.parseDouble(txtKhachTra1.getText()) - Double.parseDouble(txtThanhTien1.getText());
-        txtTienDu1.setText(String.valueOf(tiendu));
+        if (txtKhachTra1.getText().equalsIgnoreCase("")) {
+            return;
+        } else {
+            double tiendu = Double.parseDouble(txtKhachTra1.getText()) - Double.parseDouble(txtThanhTien1.getText());
+            txtTienDu1.setText(String.valueOf(tiendu));
+        }
+
     }//GEN-LAST:event_txtKhachTra1CaretUpdate
 
     private void txtThanhTien1CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtThanhTien1CaretUpdate
@@ -6948,9 +6969,7 @@ public class QuanLyView extends javax.swing.JFrame {
 
         hd.setMaHD(txtMaHdBH.getText());
         hd.setNgayThanhToan(new Date());
-        hd.setNgayDat(jDateNgayDat.getDate());
-        hd.setNgayShip(jDateNgaySHIP.getDate());
-        hd.setNgayNhan(jDateNgayNhan.getDate());
+
         if (rdTienMat.isSelected()) {
             hd.setPTGD(0);
         } else {
@@ -6964,8 +6983,12 @@ public class QuanLyView extends javax.swing.JFrame {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+        listhdct.clear();
         loadTableHoaDon();
         loadTableHoaDonBanHang();
+        addTableGioHang(listhdct);
+
+
     }//GEN-LAST:event_btnthanhtoan2ActionPerformed
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
