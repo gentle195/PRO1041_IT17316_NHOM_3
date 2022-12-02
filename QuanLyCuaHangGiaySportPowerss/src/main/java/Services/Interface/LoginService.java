@@ -4,6 +4,7 @@
  */
 package Services.Interface;
 
+import DomainModels.Login_Result;
 import DomainModels.TaiKhoan;
 import java.util.List;
 
@@ -13,5 +14,5 @@ import java.util.List;
  */
 public interface LoginService {
 
-    List<TaiKhoan> getNV(String ma);
+    public Login_Result doLogin(String tk, String ma);
 }
