@@ -31,6 +31,7 @@ public class HoaDon {
     private String SDT;
     private String moTa;
     private BigDecimal TongTien;
+
     public HoaDon() {
     }
 
@@ -190,5 +191,4 @@ public class HoaDon {
         this.TongTien = TongTien;
     }
 
-    
 }
