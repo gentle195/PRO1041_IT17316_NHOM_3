@@ -72,6 +72,11 @@ public class ChiTietSPViewModel {
         this.DonGia = DonGia;
         this.TrangThai = TrangThai;
     }
+    
+    public ChiTietSPViewModel(SanPham sanPham,int SoLuong) {
+        this.sanPham = sanPham;
+        this.SoLuong = SoLuong;
+    }
 
     public UUID getIdCTSP() {
         return IdCTSP;
