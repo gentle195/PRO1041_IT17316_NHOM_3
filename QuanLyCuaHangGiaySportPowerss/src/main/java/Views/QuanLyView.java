@@ -334,6 +334,17 @@ public class QuanLyView extends javax.swing.JFrame {
         }
     }
 
+    void clearNV() {
+        txtMaNhanVien.setText("");
+        txtHoTenNV.setText("");
+        cbCV.setSelectedIndex(0);
+        txtDCNV.setText("");
+        txtNgaySinh.setDate(null);
+        txtTKNV.setText("");
+        txtMKNV.setText("");
+        txtSDTNhanVien.setText("");
+    }
+
     private void loadTableChiTietSPBH() {
         List<ChiTietSPViewModel> Sz = chiTietSPService.all();
         dtmSpBH = (DefaultTableModel) tbldssanpham.getModel();
@@ -5288,10 +5299,96 @@ public class QuanLyView extends javax.swing.JFrame {
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         // TODO add your handling code here:
+         int row = tbNhanVien.getSelectedRow();
+        if (row == -1) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn vào trong bảng");
+            return;
+        }
+        if (txtMaNhanVien.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập Mã");
+            return;
+        }
+        if (txtHoTenNV.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập họ tên");
+            return;
+        }
+        if (txtDCNV.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập địa chỉ");
+            return;
+        }
+        if (txtMKNV.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập mật khẩu");
+            return;
+        }
+        if (txtSDTNhanVien.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập SDT");
+            return;
+        }
+        int bb = JOptionPane.showConfirmDialog(this, "Bạn muốn sửa lại không ?", "Có", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION);
+        if (bb == JOptionPane.YES_OPTION) {
+            NhanVien nv = new NhanVien();
+            nv.setIdNV(UUID.fromString(txtIDNhanVien.getText()));
+            nv.setMaNV(txtMaNhanVien.getText());
+            nv.setHoTenNV(txtHoTenNV.getText());
+            nv.setChucvu((ChucVu) cbCV.getSelectedItem());
+            if (rdNamNV.isSelected()) {
+                nv.setGioiTinh("Nam");
+            } else {
+                nv.setGioiTinh("Nữ");
+            }
+            nv.setDiaChi(txtDCNV.getText());
+            nv.setNgaySinh(txtNgaySinh.getDate());
+            nv.setMatkhau(txtMKNV.getText());
+            try {
+                nvService.update(nv);
+            } catch (Exception ex) {
+                Logger.getLogger(QuanLyView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            JOptionPane.showMessageDialog(this, "Sửa thành công");
+        } else if (bb == JOptionPane.NO_OPTION) {
+            return;
+        } else {
+            return;
+        }
+        loadTableNhanVien();
+        clearNV();
     }//GEN-LAST:event_jButton14ActionPerformed
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
         // TODO add your handling code here:
+         int row = tbNhanVien.getSelectedRow();
+        if (row == -1) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn vào trong bảng");
+            return;
+        }
+        int bb = JOptionPane.showConfirmDialog(this, "Thông báo", "Xoá", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION);
+        if (bb == JOptionPane.YES_OPTION) {
+            NhanVien nv = new NhanVien();
+            nv.setIdNV(UUID.fromString(txtIDNhanVien.getText()));
+            nv.setMaNV(txtMaNhanVien.getText());
+            nv.setHoTenNV(txtHoTenNV.getText());
+            if (rdNamNV.isSelected()) {
+                nv.setGioiTinh("Nam");
+            } else {
+                nv.setGioiTinh("Nữ");
+            }
+            nv.setDiaChi(txtDCNV.getText());
+            nv.setNgaySinh(txtNgaySinh.getDate());
+            nv.setMatkhau(txtMKNV.getText());
+            try {
+                nvService.delete(nv);
+            } catch (Exception ex) {
+                Logger.getLogger(QuanLyView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            JOptionPane.showMessageDialog(this, "Xoá thành công");
+        } else if (bb == JOptionPane.NO_OPTION) {
+            return;
+        } else {
+            return;
+        }
+
+        loadTableNhanVien();
+        clearNV();
     }//GEN-LAST:event_jButton15ActionPerformed
 
     private void jTextField19jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField19jTextField8ActionPerformed
@@ -6739,10 +6836,46 @@ public class QuanLyView extends javax.swing.JFrame {
 
     private void tbNhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbNhanVienMouseClicked
         // TODO add your handling code here:
+           int row = tbNhanVien.getSelectedRow();
+        txtIDNhanVien.setText(tbNhanVien.getValueAt(row, 0).toString());
+        txtMaNhanVien.setText(tbNhanVien.getValueAt(row, 1).toString());
+        txtHoTenNV.setText(tbNhanVien.getValueAt(row, 2).toString());
+        if (tbNhanVien.getValueAt(row, 3).toString().equalsIgnoreCase("Nam")) {
+            rdNamNV.setSelected(true);
+        } else {
+            rdNuNV.setSelected(true);
+        }
+        cbCV.setSelectedItem(tbNhanVien.getValueAt(row, 4).toString());
+        txtDCNV.setText(tbNhanVien.getValueAt(row, 5).toString());
+        dateNSNV.setDate((Date) tbNhanVien.getValueAt(row, 6));
+
+        txtTKNV.setText(tbNhanVien.getValueAt(row, 7).toString());
+        txtMKNV.setText(tbNhanVien.getValueAt(row, 8).toString());
+        txtSDTNhanVien.setText(tbNhanVien.getValueAt(row, 9).toString());
     }//GEN-LAST:event_tbNhanVienMouseClicked
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
         // TODO add your handling code here:
+        if (txtMaNhanVien.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập Mã");
+            return;
+        }
+        if (txtHoTenNV.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập họ tên");
+            return;
+        }
+        if (txtDCNV.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập địa chỉ");
+            return;
+        }
+        if (txtMKNV.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập mật khẩu");
+            return;
+        }
+        if (txtSDTNhanVien.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập SDT");
+            return;
+        }
         int bb = JOptionPane.showConfirmDialog(this, "Bạn muốn thêm không ?", "Có", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION);
         if (bb == JOptionPane.YES_OPTION) {
             NhanVien nv = new NhanVien();
@@ -6770,6 +6903,7 @@ public class QuanLyView extends javax.swing.JFrame {
             return;
         }
         loadTableNhanVien();
+        clearNV();
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void btnsudungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsudungActionPerformed
