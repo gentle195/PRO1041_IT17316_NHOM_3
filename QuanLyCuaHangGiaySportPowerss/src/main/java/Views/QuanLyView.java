@@ -4953,6 +4953,11 @@ public class QuanLyView extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tbChucVu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbChucVuMouseClicked(evt);
+            }
+        });
         jScrollPane19.setViewportView(tbChucVu);
 
         btnsudung.setBackground(new java.awt.Color(204, 204, 204));
@@ -6739,6 +6744,22 @@ public class QuanLyView extends javax.swing.JFrame {
 
     private void tbNhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbNhanVienMouseClicked
         // TODO add your handling code here:
+        int row = tbNhanVien.getSelectedRow();
+        txtIDNhanVien.setText(tbNhanVien.getValueAt(row, 0).toString());
+        txtMaNhanVien.setText(tbNhanVien.getValueAt(row, 1).toString());
+        txtHoTenNV.setText(tbNhanVien.getValueAt(row, 2).toString());
+        if (tbNhanVien.getValueAt(row, 3).toString().equalsIgnoreCase("Nam")) {
+            rdNamNV.setSelected(true);
+        } else {
+            rdNuNV.setSelected(true);
+        }
+        cbCV.setSelectedItem(tbNhanVien.getValueAt(row, 4).toString());
+        txtDCNV.setText(tbNhanVien.getValueAt(row, 5).toString());
+        dateNSNV.setDate((Date) tbNhanVien.getValueAt(row, 6));
+
+        txtTKNV.setText(tbNhanVien.getValueAt(row, 7).toString());
+        txtMKNV.setText(tbNhanVien.getValueAt(row, 8).toString());
+        txtSDTNhanVien.setText(tbNhanVien.getValueAt(row, 9).toString());
     }//GEN-LAST:event_tbNhanVienMouseClicked
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
@@ -7022,6 +7043,14 @@ public class QuanLyView extends javax.swing.JFrame {
         List<HoaDonChiTietViewModel> listCTGH = hoaDonBanHangService.getAll(hoaDon.getMaHD());
         showDataChiTietGioHang((ArrayList<HoaDonChiTietViewModel>) listCTGH);
     }//GEN-LAST:event_tblHoaDonMouseClicked
+
+    private void tbChucVuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbChucVuMouseClicked
+        // TODO add your handling code here:
+        int row=tbChucVu.getSelectedRow();
+        txtIDChucVu.setText(tbChucVu.getValueAt(row, 0).toString());
+        txtMaChucVu.setText(tbChucVu.getValueAt(row, 1).toString());
+        txtTenChucVu.setText(tbChucVu.getValueAt(row, 2).toString());
+    }//GEN-LAST:event_tbChucVuMouseClicked
 
     /**
      * @param args the command line arguments
