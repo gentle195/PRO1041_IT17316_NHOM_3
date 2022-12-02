@@ -6,7 +6,7 @@
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
-    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="true"/>
   </SyntheticProperties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -63,8 +63,8 @@
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="txtMa" alignment="0" pref="180" max="32767" attributes="0"/>
-                                      <Component id="txtMK" alignment="0" pref="180" max="32767" attributes="0"/>
+                                      <Component id="txtMa" pref="180" max="32767" attributes="0"/>
+                                      <Component id="txtMK" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
@@ -138,8 +138,6 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtMa">
         </Component>
-        <Component class="javax.swing.JTextField" name="txtMK">
-        </Component>
         <Component class="javax.swing.JButton" name="btnDangNhap">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -167,6 +165,8 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnThoatActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JPasswordField" name="txtMK">
         </Component>
       </SubComponents>
     </Container>

@@ -4,6 +4,7 @@
  */
 package Views;
 
+import DomainModels.Login_Result;
 import DomainModels.TaiKhoan;
 import Services.LoginServiceImpl;
 import Services.Interface.LoginService;
@@ -38,9 +39,9 @@ public class giaoDienDN extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtMa = new javax.swing.JTextField();
-        txtMK = new javax.swing.JTextField();
         btnDangNhap = new javax.swing.JButton();
         btnThoat = new javax.swing.JButton();
+        txtMK = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -90,7 +91,7 @@ public class giaoDienDN extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtMa, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                                    .addComponent(txtMK, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)))
+                                    .addComponent(txtMK)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(btnDangNhap)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -138,37 +139,18 @@ public class giaoDienDN extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
-        String manv = txtMa.getText();
-        String matKhau = new String(txtMK.getText());
-        try {
-            List<TaiKhoan> ls = service.getNV(manv);
-            TaiKhoan nv = ls.get(0);
-            System.out.println(nv);
-            if (nv != null) {
-                String matKhau2 = nv.getMatKhau();
-                if (matKhau.equals(matKhau2)&&manv.equalsIgnoreCase("ql")) {
-                    JOptionPane.showMessageDialog(this, "Đăng nhập thành công");
-                    QuanLyView ql = new QuanLyView();
-                    this.dispose();
-                    ql.setVisible(true);
-                }else if(matKhau.equals(matKhau2)&&!manv.equalsIgnoreCase("nv")){
-                    JOptionPane.showMessageDialog(this, "Đăng nhập thành công");
-                    NhanVienView nvv = new NhanVienView();
-                    this.dispose();
-                    nvv.setVisible(true);
-                }
-                else{
-                    JOptionPane.showMessageDialog(this, "Sai mật khẩu!");
-                }
-            } else {
-                JOptionPane.showMessageDialog(this, "Sai tên đăng nhập!");
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Lỗi truy vấn dữ liệu!");
-            e.printStackTrace();
+        TaiKhoan user =new TaiKhoan();
+        String username = txtMa.getText();
+        String password = new String(txtMK.getPassword());
+        Login_Result result = service.doLogin(username, password);
+        if (result.getStatus().equals(Boolean.TRUE)) {
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, result.getMessage());
         }
     }//GEN-LAST:event_btnDangNhapActionPerformed
 
@@ -218,7 +200,7 @@ public class giaoDienDN extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField txtMK;
+    private javax.swing.JPasswordField txtMK;
     private javax.swing.JTextField txtMa;
     // End of variables declaration//GEN-END:variables
 }
