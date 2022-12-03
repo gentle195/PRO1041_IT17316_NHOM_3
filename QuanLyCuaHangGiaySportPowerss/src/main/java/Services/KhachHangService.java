@@ -30,16 +30,65 @@ public class KhachHangService implements KhachHangServiceInterface {
     }
 
     @Override
-    public void create(KhachHang kh) throws Exception {
-        KHRepo.create(kh);
+    public String create(KhachHang kh) throws Exception {
+        List<KhachHang> lstKH = KHRepo.all();
+        for (KhachHang khachHangtrc : lstKH) {
+            if (kh.getMa().equals(khachHangtrc.getMa())) {
+                return "mã trùng";
+            }
+        }
+        if (kh.getMa().equals("")) {
+            return "Mã null";
+        }
+        if (kh.getHoTen().equals("")) {
+            return "Tên null";
+        }
+        if (kh.getDiaChi().equals("")) {
+            return "Địa chỉ null";
+        }
+        if (kh.getSdt().equals("")) {
+            return "Sđt null";
+        }
+        if (!kh.getSdt().matches(".*[^0-9].*") && kh.getSdt().length() == 10) {
+            return "Sđt sai";
+        }
+        if (kh.getGioiTinh().equals("")) {
+            return "gt null";
+        }
+        if (kh.getNgaySinh().toString().equals("")) {
+            return "ns null";
+        }
+        if (KHRepo.create(kh) == true) {
+            return "Them thanh cong";
+        } else {
+            return "Them that bai";
+        }
     }
 
     @Override
-    public void update(KhachHang kh) throws Exception {
-        try {
-            KHRepo.update(kh);
-        } catch (Exception ex) {
-            Logger.getLogger(KhachHangService.class.getName()).log(Level.SEVERE, null, ex);
+    public String update(KhachHang kh) throws Exception {
+        if (kh.getHoTen().equals("")) {
+            return "Tên null";
+        }
+        if (kh.getDiaChi().equals("")) {
+            return "Địa chỉ null";
+        }
+        if (kh.getSdt().equals("")) {
+            return "Sđt null";
+        }
+        if (!kh.getSdt().matches(".*[^0-9].*") && kh.getSdt().length() == 10) {
+            return "Sđt sai";
+        }
+        if (kh.getGioiTinh().equals("")) {
+            return "gt null";
+        }
+        if (kh.getNgaySinh().toString().equals("")) {
+            return "ns null";
+        }
+        if (KHRepo.update(kh) == true) {
+            return "Update thanh cong";
+        } else {
+            return "Update that bai";
         }
     }
 

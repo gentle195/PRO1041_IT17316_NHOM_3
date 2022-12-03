@@ -15,9 +15,9 @@ public interface KhachHangRepositoryInterface {
 
     public List<KhachHang> all();
 
-    public void create(KhachHang kh) throws Exception;
+    public Boolean create(KhachHang kh) throws Exception;
 
-    public void update(KhachHang kh) throws Exception;
+    public Boolean update(KhachHang kh) throws Exception;
 
     public void delete(KhachHang kh) throws Exception;
 
