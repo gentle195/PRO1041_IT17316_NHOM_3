@@ -46,6 +46,7 @@ public class QuanLyViews extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(1500, 800));
 
         jPanel1.setBackground(new java.awt.Color(0, 204, 204));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.setPreferredSize(new java.awt.Dimension(130, 549));
 
         btnBanHang2.setBackground(new java.awt.Color(204, 255, 255));
@@ -106,6 +107,7 @@ public class QuanLyViews extends javax.swing.JFrame {
         getContentPane().add(jPanel1, java.awt.BorderLayout.LINE_START);
 
         panelTong.setBackground(new java.awt.Color(255, 255, 255));
+        panelTong.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         panelTong.setLayout(new java.awt.BorderLayout());
         getContentPane().add(panelTong, java.awt.BorderLayout.CENTER);
         panelTong.getAccessibleContext().setAccessibleName("panelTong");

@@ -38,6 +38,8 @@ public class ChiTietSPViewModel {
 
     private LoaiGiay loaigiay;
 
+    
+
     private int SoLuong;
 
     private BigDecimal DonGia;
@@ -66,14 +68,26 @@ public class ChiTietSPViewModel {
         this.MoTa = MoTa;
     }
 
+    public ChiTietSPViewModel(SanPham sanPham, HangGiay hangGiay, ChatLieu chatlieu, DeGiay deGiay, Size size, LoaiGiay loaigiay) {
+        this.sanPham = sanPham;
+        this.hangGiay = hangGiay;
+        this.chatlieu = chatlieu;
+        this.deGiay = deGiay;
+        this.size = size;
+
+    }
+
+    
+    
+
     public ChiTietSPViewModel(SanPham sanPham, BigDecimal DonGia, int SoLuong, int TrangThai) {
         this.sanPham = sanPham;
         this.SoLuong = SoLuong;
         this.DonGia = DonGia;
         this.TrangThai = TrangThai;
     }
-    
-    public ChiTietSPViewModel(SanPham sanPham,int SoLuong) {
+
+    public ChiTietSPViewModel(SanPham sanPham, int SoLuong) {
         this.sanPham = sanPham;
         this.SoLuong = SoLuong;
     }
@@ -173,9 +187,9 @@ public class ChiTietSPViewModel {
     public void setMoTa(String MoTa) {
         this.MoTa = MoTa;
     }
-    
-     public Object[] toDataRow() {
-        return new Object[]{sanPham.getMaSP(), sanPham.getTenSP(), DonGia, SoLuong, TrangThai==0?"Hết hàng":"Còn hàng"};
+
+    public Object[] toDataRow() {
+        return new Object[]{sanPham.getMaSP(), sanPham.getTenSP(), DonGia, SoLuong, TrangThai == 0 ? "Hết hàng" : "Còn hàng"};
     }
 
 }

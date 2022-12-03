@@ -34,6 +34,7 @@ import Services.SizeService;
 import ViewModels.ChiTietSPViewModel;
 import ViewModels.NhanVienViewModel;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import javax.swing.DefaultComboBoxModel;
@@ -54,15 +55,17 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
     private DeGiayServiceInterface deGiayService;
     private LoaiGiayServiceInterface loaiGiayService;
     private SizeServiceInterface sizeService;
+    List< ChiTietSPViewModel> list;
 
     /**
      * Creates new form SanPham
      */
     public ChiTietSanPhamView() {
         initComponents();
+      
 
         this.chiTietSPService = new ChiTietSPService();
-        loadTableChiTietSP();
+        loadTableChiTietSP(chiTietSPService.all());
         this.SanPhamService = new SanPhamService();
         this.chatLieuService = new ChatLieuService();
         this.hangGiayService = new HangGiayService();
@@ -70,6 +73,7 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
         this.loaiGiayService = new LoaiGiayService();
         this.sizeService = new SizeService();
         this.chiTietSPService = new ChiTietSPService();
+          list = chiTietSPService.all();
 
         List<SanPham> sp = SanPhamService.all();
         cbTenSP.setModel(new DefaultComboBoxModel((sp.toArray())));
@@ -98,9 +102,9 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
 
     }
 
-    private void loadTableChiTietSP() {
+    private void loadTableChiTietSP(List<ChiTietSPViewModel> Sz) {
         DefaultTableModel modeltb = new DefaultTableModel();
-        List<ChiTietSPViewModel> Sz = chiTietSPService.all();
+
         modeltb = (DefaultTableModel) tblQLSP.getModel();
         modeltb.setRowCount(0);
         for (ChiTietSPViewModel x : Sz) {
@@ -520,6 +524,11 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
         jPanel51.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(255, 255, 255), new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0)), "Sản Phẩm", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
 
         txtSearch2.setName(""); // NOI18N
+        txtSearch2.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtSearch2CaretUpdate(evt);
+            }
+        });
 
         btnTimKiem2.setBackground(new java.awt.Color(204, 204, 204));
         btnTimKiem2.setText("Tìm Kiếm");
@@ -864,7 +873,7 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
             return;
         }
 
-        loadTableChiTietSP();
+        loadTableChiTietSP(list);
 
     }//GEN-LAST:event_btnThemActionPerformed
 
@@ -906,7 +915,7 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
             return;
         }
 
-        loadTableChiTietSP();
+        loadTableChiTietSP(list);
 
     }//GEN-LAST:event_btnXoaActionPerformed
 
@@ -975,7 +984,7 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
             return;
         }
 
-        loadTableChiTietSP();
+        loadTableChiTietSP(list);
 
     }//GEN-LAST:event_btnSuaActionPerformed
 
@@ -988,6 +997,7 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
 
             }
         }
+        loadTableChiTietSP(chiTietSPService.all());
 
     }//GEN-LAST:event_cbTenSPActionPerformed
 
@@ -1001,41 +1011,47 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
 
     private void txtSoLuongSPCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtSoLuongSPCaretUpdate
         // TODO add your handling code here:
-     
+
     }//GEN-LAST:event_txtSoLuongSPCaretUpdate
 
     private void txtMaSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaSPActionPerformed
         // TODO add your handling code here:
-      
+
     }//GEN-LAST:event_txtMaSPActionPerformed
 
     private void updatespActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatespActionPerformed
-
+SanPhamView sp = new SanPhamView();
+sp.setVisible(true);
     }//GEN-LAST:event_updatespActionPerformed
 
     private void updatesp2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatesp2ActionPerformed
         // TODO add your handling code here:
-
+ChatLieuView cl = new ChatLieuView();
+cl.setVisible(true);
     }//GEN-LAST:event_updatesp2ActionPerformed
 
     private void updatesp3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatesp3ActionPerformed
         // TODO add your handling code here:
-
+SizeView s =new SizeView();
+s.setVisible(true);
     }//GEN-LAST:event_updatesp3ActionPerformed
 
     private void updatesp4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatesp4ActionPerformed
         // TODO add your handling code here:
-
+HangGiayView h = new HangGiayView();
+h.setVisible(true);
     }//GEN-LAST:event_updatesp4ActionPerformed
 
     private void updatesp5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatesp5ActionPerformed
         // TODO add your handling code here:
-
+LoaiSPView l = new LoaiSPView();
+l.setVisible(true);
     }//GEN-LAST:event_updatesp5ActionPerformed
 
     private void updatesp6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatesp6ActionPerformed
         // TODO add your handling code here:
-
+DeGiayView d = new DeGiayView();
+d.setVisible(true);
     }//GEN-LAST:event_updatesp6ActionPerformed
 
     private void tblQLSPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblQLSPMouseClicked
@@ -1137,6 +1153,18 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
     private void txtMaSPCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtMaSPCaretUpdate
         // TODO add your handling code here:
     }//GEN-LAST:event_txtMaSPCaretUpdate
+
+    private void txtSearch2CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtSearch2CaretUpdate
+        // TODO add your handling code here:
+        List<ChiTietSPViewModel> ds = new ArrayList<>();
+        for (ChiTietSPViewModel g : chiTietSPService.all()) {
+            if (g.getSanPham().getTenSP().contains(txtSearch2.getText())) {
+                ds.add(g);
+            }
+        }
+        loadTableChiTietSP(ds);
+
+    }//GEN-LAST:event_txtSearch2CaretUpdate
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

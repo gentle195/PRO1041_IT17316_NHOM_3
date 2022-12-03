@@ -19,9 +19,6 @@ import java.util.UUID;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-
-
-
 /**
  *
  * @author dinhq
@@ -29,21 +26,22 @@ import java.util.UUID;
 @Entity
 @Table(name = "HangGiay")
 public class HangGiay {
+
     @Id
     @Column(name = "IdHang")
-    @GeneratedValue (strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID IdHang;
-    
+
     @Column(name = "MaHang")
     private String MaHang;
-    
+
     @Column(name = "TenHang")
     private String TenHang;
-    
+
     @Column(name = "MoTa")
     private String MoTaHang;
-    
-          @OneToMany(fetch = FetchType.LAZY, mappedBy = "hangGiay")
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "hangGiay")
     private Set<ChiTietSP> list = new HashSet<>();
 
     public Set<ChiTietSP> getList() {
@@ -96,11 +94,9 @@ public class HangGiay {
         this.MoTaHang = MoTaHang;
     }
 
-    
-@Override
+    @Override
     public String toString() {
-        return  TenHang ;
+        return TenHang;
     }
-    
-    
+
 }
