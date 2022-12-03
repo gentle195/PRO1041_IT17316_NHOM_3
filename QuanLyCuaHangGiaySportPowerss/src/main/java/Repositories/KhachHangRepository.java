@@ -39,7 +39,7 @@ public class KhachHangRepository implements KhachHangRepositoryInterface {
     }
 
     @Override
-    public void create(KhachHang kh) throws Exception {
+    public Boolean create(KhachHang kh) throws Exception {
         try {
             this.em.getTransaction().begin();
             this.em.persist(kh);
@@ -49,10 +49,11 @@ public class KhachHangRepository implements KhachHangRepositoryInterface {
             this.em.getTransaction().rollback();
             throw e;
         }
+        return null;
     }
 
     @Override
-    public void update(KhachHang kh) throws Exception {
+    public Boolean update(KhachHang kh) throws Exception {
         try {
             this.em.getTransaction().begin();
             this.em.merge(kh);
@@ -62,6 +63,7 @@ public class KhachHangRepository implements KhachHangRepositoryInterface {
             this.em.getTransaction().rollback();
             throw e;
         }
+        return null;
     }
 
     @Override
@@ -77,6 +79,7 @@ public class KhachHangRepository implements KhachHangRepositoryInterface {
             throw e;
         }
     }
+
     public List<KhachHang> search(String ten) {
         String query = "SELECT * FROM KhachHang where hoten =?";
         try (Connection conn = DBConnection.getConnection();

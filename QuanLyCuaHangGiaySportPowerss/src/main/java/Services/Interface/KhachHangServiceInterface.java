@@ -15,10 +15,11 @@ public interface KhachHangServiceInterface {
 
     public List<KhachHang> getAll();
 
-    public void create(KhachHang kh) throws Exception;
+    public String create(KhachHang kh) throws Exception;
 
-    public void update(KhachHang kh) throws Exception;
+    public String update(KhachHang kh) throws Exception;
 
     public void delete(KhachHang kh) throws Exception;
+
     public List<KhachHang> search(String ten);
 }
