@@ -16,6 +16,7 @@ import Utilities.DBConnection;
 import ViewModels.ChiTietSPViewModel;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -108,8 +109,7 @@ public class ChiTietSPRepository implements ChiTietSPRepositoryInterface {
         String sql = "select SanPham.MaSP, SanPham.TenSP, DonGia, SoLuong, TrangThai "
                 + "from ChiTietSP join SanPham on ChiTietSP.IdSP= SanPham.IdSP "
                 + "where TenSP = ?";
-        try (Connection conn = DBConnection.getConnection();
-                PreparedStatement ps = conn.prepareStatement(sql)) {
+        try ( Connection conn = DBConnection.getConnection();  PreparedStatement ps = conn.prepareStatement(sql)) {
             List<ChiTietSPViewModel> lstCTSPVM = new ArrayList<>();
             ps.setObject(1, ten);
             ResultSet rs = ps.executeQuery();
@@ -123,5 +123,7 @@ public class ChiTietSPRepository implements ChiTietSPRepositoryInterface {
         }
         return null;
     }
+
+   
 
 }

@@ -18,4 +18,6 @@ public interface ChiTietSPServiceInterface {
     public void delete(ChiTietSP chiTietSP) throws Exception;
 
     public void updatesl(ChiTietSP ct, String ma) throws Exception;
+    
+
 }

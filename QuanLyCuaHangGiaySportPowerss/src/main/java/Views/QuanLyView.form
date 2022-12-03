@@ -300,7 +300,7 @@
                                   <Component id="jPanel16" max="32767" attributes="0"/>
                                   <Component id="jPanel19" alignment="0" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="39" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="42" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -635,7 +635,7 @@
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace max="32767" attributes="0"/>
+                                  <EmptySpace pref="36" max="32767" attributes="0"/>
                                   <Component id="jScrollPane22" min="-2" pref="145" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                               </Group>
@@ -4287,6 +4287,9 @@
                       <Properties>
                         <Property name="name" type="java.lang.String" value="" noResource="true"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="caretUpdate" listener="javax.swing.event.CaretListener" parameters="javax.swing.event.CaretEvent" handler="txtSearch2CaretUpdate"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="btnTimKiem2">
                       <Properties>
@@ -4322,9 +4325,9 @@
                                 <Column editable="false" title="H&#xe3;ng" type="java.lang.Object"/>
                                 <Column editable="false" title="&#x110;&#xea; Gi&#xe0;y" type="java.lang.Object"/>
                                 <Column editable="false" title="Ch&#x1ea5;t Li&#x1ec7;u" type="java.lang.Object"/>
-                                <Column editable="false" title="S&#x1ed1; L&#x1b0;&#x1ee3;ng" type="java.lang.Integer"/>
-                                <Column editable="false" title="&#xd0;&#x1a1;n Gi&#xe1;" type="java.lang.Double"/>
-                                <Column editable="false" title="Tr&#x1ecd;ng L&#x1b0;&#x1ee3;ng" type="java.lang.Float"/>
+                                <Column editable="false" title="S&#x1ed1; L&#x1b0;&#x1ee3;ng" type="java.lang.Object"/>
+                                <Column editable="false" title="&#xd0;&#x1a1;n Gi&#xe1;" type="java.lang.Object"/>
+                                <Column editable="false" title="Tr&#x1ecd;ng L&#x1b0;&#x1ee3;ng" type="java.lang.Object"/>
                                 <Column editable="false" title="Tr&#x1ea1;ng Th&#xe1;i" type="java.lang.Object"/>
                                 <Column editable="false" title="M&#xf4; T&#x1ea3;" type="java.lang.Object"/>
                               </Table>
