@@ -27,6 +27,8 @@ public class ChucVuView extends javax.swing.JFrame {
         initComponents();
          this.cvService = new ChucVuSevice();
          loadTableChucVu();
+         
+         
     }
 
     /**
@@ -199,7 +201,7 @@ private void loadTableChucVu() {
         for (ChucVu s : cv) {
             modeltb.addRow(new Object[]{
                 s.getIdCV(),
-                s.getMaCV(), s.getMaCV(), s.getTenCV()
+                s.getMaCV(), s.getTenCV()
             });
         }
     }

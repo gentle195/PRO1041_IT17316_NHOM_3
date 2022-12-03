@@ -1309,6 +1309,11 @@ public class QuanLyView extends javax.swing.JFrame {
         });
 
         cbTenKH.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbTenKH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbTenKHActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel54Layout = new javax.swing.GroupLayout(jPanel54);
         jPanel54.setLayout(jPanel54Layout);
@@ -2684,7 +2689,7 @@ public class QuanLyView extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel27, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE))
+                    .addComponent(jPanel27, javax.swing.GroupLayout.PREFERRED_SIZE, 113, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -7051,6 +7056,10 @@ public class QuanLyView extends javax.swing.JFrame {
         txtMaChucVu.setText(tbChucVu.getValueAt(row, 1).toString());
         txtTenChucVu.setText(tbChucVu.getValueAt(row, 2).toString());
     }//GEN-LAST:event_tbChucVuMouseClicked
+
+    private void cbTenKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTenKHActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbTenKHActionPerformed
 
     /**
      * @param args the command line arguments

@@ -1001,41 +1001,47 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
 
     private void txtSoLuongSPCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtSoLuongSPCaretUpdate
         // TODO add your handling code here:
-     
+
     }//GEN-LAST:event_txtSoLuongSPCaretUpdate
 
     private void txtMaSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaSPActionPerformed
         // TODO add your handling code here:
-      
+
     }//GEN-LAST:event_txtMaSPActionPerformed
 
     private void updatespActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatespActionPerformed
-
+        SanPhamView sp = new SanPhamView();
+sp.setVisible(true);
     }//GEN-LAST:event_updatespActionPerformed
 
     private void updatesp2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatesp2ActionPerformed
         // TODO add your handling code here:
-
+ChatLieuView cl = new ChatLieuView();
+cl.setVisible(true);
     }//GEN-LAST:event_updatesp2ActionPerformed
 
     private void updatesp3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatesp3ActionPerformed
         // TODO add your handling code here:
-
+SizeView s = new SizeView();
+s.setVisible(true);
     }//GEN-LAST:event_updatesp3ActionPerformed
 
     private void updatesp4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatesp4ActionPerformed
         // TODO add your handling code here:
-
+HangGiayView h = new HangGiayView();
+h.setVisible(true);
     }//GEN-LAST:event_updatesp4ActionPerformed
 
     private void updatesp5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatesp5ActionPerformed
         // TODO add your handling code here:
-
+LoaiSPView l = new LoaiSPView();
+l.setVisible(true);
     }//GEN-LAST:event_updatesp5ActionPerformed
 
     private void updatesp6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatesp6ActionPerformed
         // TODO add your handling code here:
-
+DeGiayView d = new DeGiayView();
+d.setVisible(true);
     }//GEN-LAST:event_updatesp6ActionPerformed
 
     private void tblQLSPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblQLSPMouseClicked
