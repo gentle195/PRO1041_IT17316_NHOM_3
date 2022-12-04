@@ -40,6 +40,7 @@ public class QuanLyViews extends javax.swing.JFrame {
         btnSanPham = new javax.swing.JButton();
         btnNhanVien = new javax.swing.JButton();
         btnKhachHang = new javax.swing.JButton();
+        btnDangXuat = new javax.swing.JButton();
         panelTong = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -104,6 +105,17 @@ public class QuanLyViews extends javax.swing.JFrame {
         });
         jPanel1.add(btnKhachHang);
 
+        btnDangXuat.setBackground(new java.awt.Color(204, 255, 255));
+        btnDangXuat.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        btnDangXuat.setText("Đăng xuất");
+        btnDangXuat.setPreferredSize(new java.awt.Dimension(170, 50));
+        btnDangXuat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDangXuatActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnDangXuat);
+
         getContentPane().add(jPanel1, java.awt.BorderLayout.LINE_START);
 
         panelTong.setBackground(new java.awt.Color(255, 255, 255));
@@ -160,6 +172,18 @@ public class QuanLyViews extends javax.swing.JFrame {
 //        cbTenKH.setModel(new DefaultComboBoxModel(kh.toArray()));
     }//GEN-LAST:event_btnBanHang2ActionPerformed
 
+    private void btnDangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangXuatActionPerformed
+        // TODO add your handling code here:
+        int check = JOptionPane.showConfirmDialog(this, "Bạn có muốn đăng xuất không", "Đăng xuất", JOptionPane.YES_NO_OPTION);
+        if (check != JOptionPane.YES_OPTION) {
+            return;
+        }
+        giaoDienDangNhap gd = new giaoDienDangNhap();
+        gd.setVisible(true);
+        this.dispose();
+        JOptionPane.showMessageDialog(this, "Bạn đã đăng xuất");
+    }//GEN-LAST:event_btnDangXuatActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -197,6 +221,7 @@ public class QuanLyViews extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBanHang2;
+    private javax.swing.JButton btnDangXuat;
     private javax.swing.JButton btnHoaDon;
     private javax.swing.JButton btnKhachHang;
     private javax.swing.JButton btnNhanVien;
