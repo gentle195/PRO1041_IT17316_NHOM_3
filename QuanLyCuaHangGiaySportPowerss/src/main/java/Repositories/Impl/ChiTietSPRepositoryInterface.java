@@ -11,6 +11,7 @@ import DomainModels.SanPham;
 import ViewModels.ChiTietSPViewModel;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  *
@@ -29,6 +30,8 @@ public interface ChiTietSPRepositoryInterface {
     public void updates1(ChiTietSP ct, String ma) throws Exception;
 
     public List<ChiTietSPViewModel> search(String ten);
+
+    List<ChiTietSP> loc(UUID IDCL, UUID SizeID, UUID IDHang, UUID IDDe, UUID IDLoaiGiay);
     
    
 }

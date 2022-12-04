@@ -24,6 +24,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -122,6 +123,81 @@ public class ChiTietSPRepository implements ChiTietSPRepositoryInterface {
 
         }
         return null;
+    }
+  public List<ChiTietSP> loc(UUID IDCL, UUID SizeID, UUID IDHang, UUID IDDe, UUID IDLoaiGiay) {
+        String sql = "select ct from ChiTietSP ct\n"
+                + "left join ct.hangGiay\n"
+                + "left join ct.chatlieu\n"
+                + "left join ct.deGiay\n"
+                + "left JOin ct.loaigiay\n"
+                + "left JOin ct.size\n";
+        //  + "where ct.size.IdSize=?1 and ct.hangGiay.IdHang=?2 and ct.chatlieu.IdCL=?3 and ct.deGiay.IdDG=?4 and ct.loaigiay.IdLoai=?5 ";
+        boolean loc = true;
+        if (IDCL != null) {
+            if (loc) {
+                loc = false;
+                sql += " where ct.chatlieu.IdCL=:cl";
+            } else {
+                sql += " and ct.chatlieu.IdCL=:cl";
+            }
+        }
+        if (SizeID != null) {
+            if (loc) {
+                loc = false;
+                sql += " where ct.size.IdSize=:size";
+            } else {
+                sql += " and ct.size.IdSize=:size";
+            }
+        }
+        if (IDHang != null) {
+            if (loc) {
+                loc = false;
+                sql += " where ct.hangGiay.IdHang=:h";
+            } else {
+                sql += " and ct.hangGiay.IdHang=:h";
+            }
+        }
+        if (IDLoaiGiay != null) {
+            if (loc) {
+                loc = false;
+                sql += " where ct.loaigiay.IdLoai=:l";
+            } else {
+                sql += " and ct.loaigiay.IdLoai=:l";
+            }
+        }
+        if (IDDe != null) {
+            if (loc) {
+                loc = false;
+                sql += " where ct.deGiay.IdDG=:d";
+            } else {
+                sql += " and ct.deGiay.IdDG=:d";
+            }
+        }
+        // }
+        //   this.em.clear();
+        JpaUtil.getEntityManager();
+        TypedQuery q = JpaUtil.getEntityManager().createQuery(sql, ChiTietSP.class);
+
+        if (SizeID != null) {
+            q.setParameter("size", SizeID);
+        }
+        if (IDCL != null) {
+            q.setParameter("cl", IDCL);
+        }
+        if (IDHang != null) {
+            q.setParameter("h", IDHang);
+        }
+        if (IDDe != null) {
+            q.setParameter("d", IDDe);
+        }
+
+        if (IDLoaiGiay != null) {
+            q.setParameter("l", IDLoaiGiay);
+        }
+
+        q.getResultList();
+        List<ChiTietSP> list = q.getResultList();
+        return list;
     }
 
    

@@ -300,7 +300,7 @@
                                   <Component id="jPanel16" max="32767" attributes="0"/>
                                   <Component id="jPanel19" alignment="0" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="42" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="49" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -635,7 +635,7 @@
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace pref="36" max="32767" attributes="0"/>
+                                  <EmptySpace pref="32" max="32767" attributes="0"/>
                                   <Component id="jScrollPane22" min="-2" pref="145" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                               </Group>
@@ -4454,11 +4454,11 @@
                                   </Group>
                                   <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jComboBox13" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
-                                      <Component id="jComboBox15" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
-                                      <Component id="jComboBox16" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
-                                      <Component id="jComboBox17" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
-                                      <Component id="jComboBox18" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
+                                      <Component id="cbbSize" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
+                                      <Component id="cbbLoai" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
+                                      <Component id="cbbHang" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
+                                      <Component id="cbbDe" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
+                                      <Component id="cbbCL" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
                                       <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
                                           <Component id="jComboBox14" alignment="0" pref="113" max="32767" attributes="0"/>
                                           <Component id="jComboBox12" alignment="0" max="32767" attributes="0"/>
@@ -4484,27 +4484,27 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="lblDanhMuc7" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
-                                      <Component id="jComboBox13" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cbbSize" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="lblDanhMuc8" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
-                                      <Component id="jComboBox15" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cbbLoai" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="lblDanhMuc9" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
-                                      <Component id="jComboBox16" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cbbHang" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="lblDanhMuc10" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
-                                      <Component id="jComboBox17" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cbbDe" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="lblDanhMuc11" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
-                                      <Component id="jComboBox18" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cbbCL" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="32767" attributes="0"/>
                               </Group>
@@ -4551,7 +4551,7 @@
                             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                           </AuxValues>
                         </Component>
-                        <Component class="javax.swing.JComboBox" name="jComboBox13">
+                        <Component class="javax.swing.JComboBox" name="cbbSize">
                           <Properties>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                               <StringArray count="3">
@@ -4561,6 +4561,9 @@
                               </StringArray>
                             </Property>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbbSizeActionPerformed"/>
+                          </Events>
                           <AuxValues>
                             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                           </AuxValues>
@@ -4587,7 +4590,7 @@
                             <Property name="text" type="java.lang.String" value="Lo&#x1ea1;i"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JComboBox" name="jComboBox15">
+                        <Component class="javax.swing.JComboBox" name="cbbLoai">
                           <Properties>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                               <StringArray count="3">
@@ -4597,6 +4600,9 @@
                               </StringArray>
                             </Property>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbbLoaiActionPerformed"/>
+                          </Events>
                           <AuxValues>
                             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                           </AuxValues>
@@ -4609,7 +4615,7 @@
                             <Property name="text" type="java.lang.String" value="H&#xe3;ng"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JComboBox" name="jComboBox16">
+                        <Component class="javax.swing.JComboBox" name="cbbHang">
                           <Properties>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                               <StringArray count="3">
@@ -4619,11 +4625,14 @@
                               </StringArray>
                             </Property>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbbHangActionPerformed"/>
+                          </Events>
                           <AuxValues>
                             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                           </AuxValues>
                         </Component>
-                        <Component class="javax.swing.JComboBox" name="jComboBox17">
+                        <Component class="javax.swing.JComboBox" name="cbbDe">
                           <Properties>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                               <StringArray count="3">
@@ -4633,6 +4642,9 @@
                               </StringArray>
                             </Property>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbbDeActionPerformed"/>
+                          </Events>
                           <AuxValues>
                             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                           </AuxValues>
@@ -4645,7 +4657,7 @@
                             <Property name="text" type="java.lang.String" value="&#x110;&#x1ebf;"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JComboBox" name="jComboBox18">
+                        <Component class="javax.swing.JComboBox" name="cbbCL">
                           <Properties>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                               <StringArray count="3">
@@ -4655,6 +4667,9 @@
                               </StringArray>
                             </Property>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbbCLActionPerformed"/>
+                          </Events>
                           <AuxValues>
                             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                           </AuxValues>

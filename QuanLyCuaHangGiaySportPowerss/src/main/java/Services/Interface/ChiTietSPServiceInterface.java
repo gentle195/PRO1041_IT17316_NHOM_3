@@ -4,6 +4,7 @@ import DomainModels.ChiTietSP;
 import DomainModels.ChiTietSP1;
 import ViewModels.ChiTietSPViewModel;
 import java.util.List;
+import java.util.UUID;
 
 public interface ChiTietSPServiceInterface {
 
@@ -19,5 +20,6 @@ public interface ChiTietSPServiceInterface {
 
     public void updatesl(ChiTietSP ct, String ma) throws Exception;
     
+    List<ChiTietSPViewModel> loc(UUID IDCL, UUID SizeID, UUID IDHang, UUID IDDe, UUID IDLoaiGiay);
 
 }
