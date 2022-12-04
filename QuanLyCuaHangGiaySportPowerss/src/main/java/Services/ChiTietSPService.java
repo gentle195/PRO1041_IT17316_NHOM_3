@@ -19,6 +19,7 @@ import static java.lang.Integer.toString;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class ChiTietSPService implements ChiTietSPServiceInterface {
 
@@ -70,6 +71,17 @@ public class ChiTietSPService implements ChiTietSPServiceInterface {
         return chiTietSPRepo.search(ten);
     }
 
+    @Override
+    public List<ChiTietSPViewModel> loc(UUID IDCL, UUID SizeID, UUID IDHang, UUID IDDe, UUID IDLoaiGiay) {
+  
+      List<ChiTietSP> listDomainModel = chiTietSPRepo.loc(IDCL, SizeID, IDHang, IDDe, IDLoaiGiay);
+        List<ChiTietSPViewModel> listVModel = new ArrayList<>();
+        for (ChiTietSP c : listDomainModel) {
+            ChiTietSPViewModel vmodel = new ChiTietSPViewModel(c.getIdCTSP(), c.getSanPham(), c.getHangGiay(), c.getChatlieu(), c.getDeGiay(), c.getSize(), c.getLoaigiay(), c.getSoLuong(), c.getDonGia(), c.getTrongLuong(), c.getTrangThai(), c.getMoTa());
+            listVModel.add(vmodel);
+        }
 
+        return listVModel;}
+  
 
 }
