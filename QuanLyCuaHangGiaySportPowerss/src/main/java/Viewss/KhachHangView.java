@@ -5,6 +5,7 @@
 package Viewss;
 
 import DomainModels.KhachHang;
+import Services.Interface.KhachHangServiceInterface;
 import Services.KhachHangService;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,25 +21,25 @@ import javax.swing.table.DefaultTableModel;
  */
 public class KhachHangView extends javax.swing.JPanel {
 
-    private KhachHangService serviceKH = new KhachHangService();
-    private List<KhachHang> listKH = new ArrayList<>();
-    private DefaultTableModel dtmKH = new DefaultTableModel();
+    private KhachHangServiceInterface khachHangService;
+    List<KhachHang> listKH;
 
     public KhachHangView() {
         initComponents();
-        showDataKH(listKH);
-        tblKH.setModel(dtmKH);
-        Object[] header = {"Mã", "Họ tên", "Giới tính", "Ngày sinh", "SĐT", "Địa chỉ"};
-        dtmKH.setColumnIdentifiers(header);
-        
-        
-        
+        khachHangService = new KhachHangService();
+        listKH = khachHangService.getAll();
+        LoadataTableKH(listKH);
+
     }
-    
-    private void showDataKH(List<KhachHang> list) {
-        dtmKH.setRowCount(0);
-        for (KhachHang kh : list) {
-            dtmKH.addRow(kh.toDataRow());
+
+    private void LoadataTableKH(List<KhachHang> kh) {
+        DefaultTableModel model = new DefaultTableModel();
+        model = (DefaultTableModel) tblKH.getModel();
+        model.setRowCount(0);
+        for (KhachHang x : kh) {
+            model.addRow(new Object[]{
+                x.getMa(), x.getHoTen(), x.getGioiTinh(), x.getNgaySinh(), x.getSdt(), x.getDiaChi()
+            });
         }
     }
 
@@ -347,6 +348,12 @@ public class KhachHangView extends javax.swing.JPanel {
         });
         jScrollPane6.setViewportView(tblKH);
 
+        txtSearch.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtSearchCaretUpdate(evt);
+            }
+        });
+
         btnSearch.setBackground(new java.awt.Color(204, 204, 204));
         btnSearch.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnSearch.setText("Tìm kiếm");
@@ -435,12 +442,11 @@ public class KhachHangView extends javax.swing.JPanel {
         kh.setNgaySinh(txtNgaySinh.getDate());
         kh.setSdt(txtSDT.getText());
         try {
-            serviceKH.create(kh);
+            khachHangService.create(kh);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        listKH = serviceKH.getAll();
-        showDataKH(listKH);
+        LoadataTableKH(listKH);
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
@@ -457,12 +463,11 @@ public class KhachHangView extends javax.swing.JPanel {
         kh.setNgaySinh(txtNgaySinh.getDate());
         kh.setSdt(txtSDT.getText());
         try {
-            serviceKH.delete(kh);
+            khachHangService.delete(kh);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        listKH = serviceKH.getAll();
-        showDataKH(listKH);
+        LoadataTableKH(listKH);
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
@@ -479,12 +484,11 @@ public class KhachHangView extends javax.swing.JPanel {
         kh.setNgaySinh(txtNgaySinh.getDate());
         kh.setSdt(txtSDT.getText());
         try {
-            serviceKH.update(kh);
+            khachHangService.update(kh);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        listKH = serviceKH.getAll();
-        showDataKH(listKH);
+        LoadataTableKH(listKH);
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void tblKHMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblKHMouseClicked
@@ -493,13 +497,19 @@ public class KhachHangView extends javax.swing.JPanel {
     }//GEN-LAST:event_tblKHMouseClicked
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-        String ten = this.txtSearch.getText();
-        listKH = serviceKH.search(ten);
-        showDataKH(listKH);
-        if (listKH.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Không tìm thấy tên vừa nhập");
-        }
+
     }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void txtSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtSearchCaretUpdate
+        // TODO add your handling code here:
+        List<KhachHang> kh = new ArrayList<>();
+        for (KhachHang k : khachHangService.getAll()) {
+            if (k.getHoTen().contains(txtSearch.getText())) {
+                kh.add(k);
+            }
+        }
+        LoadataTableKH(kh);
+    }//GEN-LAST:event_txtSearchCaretUpdate
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

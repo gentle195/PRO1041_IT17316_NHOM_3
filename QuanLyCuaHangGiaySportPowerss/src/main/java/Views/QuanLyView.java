@@ -1232,7 +1232,7 @@ public class QuanLyView extends javax.swing.JFrame {
         jPanel17Layout.setVerticalGroup(
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel17Layout.createSequentialGroup()
-                .addContainerGap(32, Short.MAX_VALUE)
+                .addContainerGap(36, Short.MAX_VALUE)
                 .addComponent(jScrollPane22, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17))
         );
@@ -1247,7 +1247,7 @@ public class QuanLyView extends javax.swing.JFrame {
                     .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 49, Short.MAX_VALUE))
+                .addGap(0, 42, Short.MAX_VALUE))
         );
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1714,7 +1714,7 @@ public class QuanLyView extends javax.swing.JFrame {
         panel3.setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel34.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel34.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "THÔNG TIN NHÂN VIÊN", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 10), new java.awt.Color(51, 0, 0))); // NOI18N
+        jPanel34.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "THÔNG TIN NHÂN VIÊN", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(51, 0, 0))); // NOI18N
         jPanel34.setForeground(new java.awt.Color(153, 153, 153));
 
         jLabel26.setText("CHỨC VỤ");
@@ -2745,7 +2745,7 @@ public class QuanLyView extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel27, javax.swing.GroupLayout.PREFERRED_SIZE, 113, Short.MAX_VALUE))
+                    .addComponent(jPanel27, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -3416,6 +3416,11 @@ public class QuanLyView extends javax.swing.JFrame {
         lblDanhMuc7.setText("Size");
 
         jComboBox12.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất cả", "<50k", "50k-100k", ">100k" }));
+        jComboBox12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox12ActionPerformed(evt);
+            }
+        });
 
         cbbSize.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất cả", "Trà", "Cafe" }));
         cbbSize.addActionListener(new java.awt.event.ActionListener() {
@@ -7188,6 +7193,10 @@ public class QuanLyView extends javax.swing.JFrame {
        locSP();
                // TODO add your handling code here:
     }//GEN-LAST:event_cbbCLActionPerformed
+
+    private void jComboBox12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox12ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox12ActionPerformed
 
     /**
      * @param args the command line arguments
