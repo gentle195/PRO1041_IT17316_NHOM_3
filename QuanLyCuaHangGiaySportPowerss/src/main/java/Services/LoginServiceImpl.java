@@ -12,6 +12,8 @@ import Services.Interface.LoginService;
 import Views.NhanVienView;
 import Views.QuanLyView;
 import Views.giaoDienDN;
+import Viewss.BanHang;
+import Viewss.QuanLyViews;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -37,8 +39,8 @@ public class LoginServiceImpl implements LoginService {
                     giaoDienDN login = new giaoDienDN();
                     if (cv.getTen().contains("Quản lý")) {
                         login.setVisible(false);
-                        QuanLyView ql = new QuanLyView();
-                        ql.setVisible(true);
+                        BanHang bh = new BanHang();
+                        bh.setVisible(true);
                     }
                     
                     if (cv.getTen().contains("Nhân viên")) {

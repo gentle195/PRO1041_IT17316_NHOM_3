@@ -11,6 +11,7 @@ import Services.Interface.ChucVuServiceInterface;
 import Services.Interface.NhanVienServiceInteface;
 import Services.NhanVienService;
 import ViewModels.NhanVienViewModel;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -26,6 +27,7 @@ public class TTnhanVienView extends javax.swing.JPanel {
 
     private NhanVienServiceInteface nvService;
     private ChucVuServiceInterface cvService;
+    List<NhanVienViewModel> ls;
 
     /**
      * Creates new form TTnhanVienView
@@ -34,14 +36,16 @@ public class TTnhanVienView extends javax.swing.JPanel {
         initComponents();
         this.cvService = new ChucVuSevice();
         this.nvService = new NhanVienService();
+        
         List<ChucVu> cv = cvService.getall();
         cbCV.setModel(new DefaultComboBoxModel(cv.toArray()));
-        loadTableNhanVien();
+        
+        ls = nvService.getall();
+        loadTableNhanVien(ls);
     }
 
-    private void loadTableNhanVien() {
+    private void loadTableNhanVien(List<NhanVienViewModel> Sz) {
         DefaultTableModel modeltb = new DefaultTableModel();
-        List<NhanVienViewModel> Sz = nvService.getall();
         modeltb = (DefaultTableModel) tbNhanVien.getModel();
         modeltb.setRowCount(0);
         for (NhanVienViewModel x : Sz) {
@@ -94,7 +98,6 @@ public class TTnhanVienView extends javax.swing.JPanel {
         jScrollPane15 = new javax.swing.JScrollPane();
         tbNhanVien = new javax.swing.JTable();
         jTextField19 = new javax.swing.JTextField();
-        jButton16 = new javax.swing.JButton();
 
         panel3.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -386,34 +389,32 @@ public class TTnhanVienView extends javax.swing.JPanel {
         });
         jScrollPane15.setViewportView(tbNhanVien);
 
+        jTextField19.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                jTextField19CaretUpdate(evt);
+            }
+        });
         jTextField19.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField19jTextField8ActionPerformed(evt);
             }
         });
 
-        jButton16.setBackground(new java.awt.Color(204, 204, 204));
-        jButton16.setText("TÌM KIẾM");
-
         javax.swing.GroupLayout jPanel38Layout = new javax.swing.GroupLayout(jPanel38);
         jPanel38.setLayout(jPanel38Layout);
         jPanel38Layout.setHorizontalGroup(
             jPanel38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel38Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(504, Short.MAX_VALUE)
                 .addComponent(jTextField19, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46)
-                .addComponent(jButton16)
-                .addGap(211, 211, 211))
+                .addGap(337, 337, 337))
             .addComponent(jScrollPane15, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         jPanel38Layout.setVerticalGroup(
             jPanel38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel38Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField19)
-                    .addComponent(jButton16))
+                .addComponent(jTextField19)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39))
@@ -482,7 +483,12 @@ public class TTnhanVienView extends javax.swing.JPanel {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
+<<<<<<< Updated upstream
 
+=======
+        ChucVuView cv = new ChucVuView();
+        cv.setVisible(true);
+>>>>>>> Stashed changes
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void txtMaNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaNhanVienActionPerformed
@@ -522,7 +528,7 @@ public class TTnhanVienView extends javax.swing.JPanel {
         } else {
             return;
         }
-        loadTableNhanVien();
+        loadTableNhanVien(ls);
     }//GEN-LAST:event_jButton13ActionPerformed
 
     void clearNV() {
@@ -582,7 +588,7 @@ public class TTnhanVienView extends javax.swing.JPanel {
             try {
                 nvService.update(nv);
             } catch (Exception ex) {
-               ex.printStackTrace();
+                ex.printStackTrace();
             }
             JOptionPane.showMessageDialog(this, "Sửa thành công");
         } else if (bb == JOptionPane.NO_OPTION) {
@@ -590,13 +596,13 @@ public class TTnhanVienView extends javax.swing.JPanel {
         } else {
             return;
         }
-        loadTableNhanVien();
+        loadTableNhanVien(ls);
         clearNV();
     }//GEN-LAST:event_jButton14ActionPerformed
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
         // TODO add your handling code here:
-         int row = tbNhanVien.getSelectedRow();
+        int row = tbNhanVien.getSelectedRow();
         if (row == -1) {
             JOptionPane.showMessageDialog(this, "Vui lòng chọn vào trong bảng");
             return;
@@ -619,7 +625,7 @@ public class TTnhanVienView extends javax.swing.JPanel {
             try {
                 nvService.delete(nv);
             } catch (Exception ex) {
-               ex.printStackTrace();
+                ex.printStackTrace();
             }
             JOptionPane.showMessageDialog(this, "Xoá thành công");
         } else if (bb == JOptionPane.NO_OPTION) {
@@ -628,7 +634,7 @@ public class TTnhanVienView extends javax.swing.JPanel {
             return;
         }
 
-        loadTableNhanVien();
+        loadTableNhanVien(ls);
         clearNV();
     }//GEN-LAST:event_jButton15ActionPerformed
 
@@ -656,6 +662,17 @@ public class TTnhanVienView extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField19jTextField8ActionPerformed
 
+    private void jTextField19CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField19CaretUpdate
+        // TODO add your handling code here:
+        List<NhanVienViewModel> nv = new ArrayList<>();
+        for (NhanVienViewModel n : nvService.getall()) {
+            if (n.getHoTenNV().contains(txtTKNV.getText())) {
+                nv.add(n);
+            }
+        }
+        loadTableNhanVien(nv);
+    }//GEN-LAST:event_jTextField19CaretUpdate
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ID;
@@ -664,7 +681,6 @@ public class TTnhanVienView extends javax.swing.JPanel {
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton15;
-    private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel43;

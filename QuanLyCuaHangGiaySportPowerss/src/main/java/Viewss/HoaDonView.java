@@ -4,15 +4,19 @@
  */
 package Viewss;
 
-import Services.HoaDonBanHangService;
-import Services.HoaDonServiceImpl;
-import Services.Interface.HoaDonBanHangServiceInterface;
-import Services.Interface.HoaDonService;
+import Repositories.BanHangRepository;
+import Services.BanHangService;
+import Services.HoaDonService;
 import ViewModels.HoaDonChiTietViewModel;
 import ViewModels.HoaDonViewModel;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
+import Services.Interface.BanHangServiceInterface;
+import Services.Interface.HoaDonServiceInterface;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -20,27 +24,29 @@ import javax.swing.table.DefaultTableModel;
  */
 public class HoaDonView extends javax.swing.JPanel {
 
-    private  HoaDonService hoaDonService;
-    
-    private DefaultTableModel defaultTableModelGioHang;
-    private HoaDonBanHangServiceInterface hoaDonBanHangService;
-    
+    private HoaDonServiceInterface hoaDonService;
+    private BanHangServiceInterface BanHangService;
+    List<HoaDonViewModel> hdlist;
+
     /**
      * Creates new form HoaDonView
      */
     public HoaDonView() {
         initComponents();
-        hoaDonService = new HoaDonServiceImpl();
-        hoaDonBanHangService = new HoaDonBanHangService();
-        loadTableHoaDon();
+        hoaDonService = new HoaDonService();
+        BanHangService = new BanHangService();
+        hdlist = hoaDonService.all();
+        loadTableHoaDon(hdlist);
     }
-    
-     private void showDataChiTietGioHang(ArrayList<HoaDonChiTietViewModel> list) {
-        defaultTableModelGioHang = (DefaultTableModel) tb_hoaDonCT.getModel();
-        defaultTableModelGioHang.setRowCount(0);
+
+    private void showDataChiTietGioHang(ArrayList<HoaDonChiTietViewModel> list) {
+        DefaultTableModel modeltb = new DefaultTableModel();
+        modeltb = (DefaultTableModel) tb_hoaDonCT.getModel();
+        modeltb.setRowCount(0);
         int i = 0;
+
         for (HoaDonChiTietViewModel chiTietHoaDonViewModel : list) {
-            defaultTableModelGioHang.addRow(new Object[]{
+            modeltb.addRow(new Object[]{
                 i++,
                 chiTietHoaDonViewModel.getMaSP(), chiTietHoaDonViewModel.getTenSP(), chiTietHoaDonViewModel.getSoLuong(), chiTietHoaDonViewModel.getDonGia(),
                 chiTietHoaDonViewModel.getSoLuong() * chiTietHoaDonViewModel.getDonGia().doubleValue()
@@ -48,9 +54,8 @@ public class HoaDonView extends javax.swing.JPanel {
         }
     }
 
-    private void loadTableHoaDon() {
+    private void loadTableHoaDon(List<HoaDonViewModel> hd) {
         DefaultTableModel modeltb = new DefaultTableModel();
-        List<HoaDonViewModel> hd = hoaDonService.all();
         modeltb = (DefaultTableModel) tblHoaDon.getModel();
         modeltb.setRowCount(0);
         int i = 0;
@@ -59,13 +64,9 @@ public class HoaDonView extends javax.swing.JPanel {
                 i++,
                 hoaDon.getMaHD(),
                 hoaDon.getMaNV(),
-                hoaDon.getMaKH(),
                 hoaDon.getTenKH(),
                 hoaDon.getNgayTao(),
                 hoaDon.getNgayThanhToan(),
-                hoaDon.getNgayDat(),
-                hoaDon.getNgayShip(),
-                hoaDon.getNgayNhan(),
                 hoaDon.getPTDG() == 0 ? "Tiền mặt" : "Chuyển khoản",
                 hoaDon.getTinhTrang() == 0 ? "Chờ" : "Đã Thanh Toán",
                 hoaDon.getTongTien()
@@ -85,7 +86,7 @@ public class HoaDonView extends javax.swing.JPanel {
 
         jPanel20 = new javax.swing.JPanel();
         jPanel21 = new javax.swing.JPanel();
-        jTextField6 = new javax.swing.JTextField();
+        txtTimKiem = new javax.swing.JTextField();
         jButton10 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
         jScrollPane10 = new javax.swing.JScrollPane();
@@ -99,6 +100,12 @@ public class HoaDonView extends javax.swing.JPanel {
         jPanel21.setBackground(new java.awt.Color(255, 255, 255));
         jPanel21.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Danh sách hóa đơn", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 18))); // NOI18N
         jPanel21.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        txtTimKiem.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtTimKiemCaretUpdate(evt);
+            }
+        });
 
         jButton10.setBackground(new java.awt.Color(204, 204, 204));
         jButton10.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -118,29 +125,36 @@ public class HoaDonView extends javax.swing.JPanel {
             }
         });
 
-        tblHoaDon.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tblHoaDon.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         tblHoaDon.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "STT", "Mã hóa đơn", "Mã nhân viên", "Mã khách hàng", "Tên Khách", "Ngày tạo", "Ngày Thanh Toán", "Ngày Đặt", "Ngày SHIP", "Ngày Nhận", "GD", "Tình Trạng", "Tổng tiền"
+                "STT", "Mã hóa đơn", "Mã nhân viên", "Tên Khách", "Ngày tạo", "Ngày Thanh Toán", "GD", "Tình Trạng", "Tổng tiền"
             }
         ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, true, true, false
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -166,7 +180,7 @@ public class HoaDonView extends javax.swing.JPanel {
                         .addComponent(jButton11))
                     .addGroup(jPanel21Layout.createSequentialGroup()
                         .addGap(456, 456, 456)
-                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel21Layout.createSequentialGroup()
                         .addGap(14, 14, 14)
                         .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 1202, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -175,7 +189,7 @@ public class HoaDonView extends javax.swing.JPanel {
         jPanel21Layout.setVerticalGroup(
             jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel21Layout.createSequentialGroup()
-                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton11)
@@ -287,15 +301,32 @@ public class HoaDonView extends javax.swing.JPanel {
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         // TODO add your handling code here:
+
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void tblHoaDonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHoaDonMouseClicked
         // TODO add your handling code here:
         int row = tblHoaDon.getSelectedRow();
         HoaDonViewModel hoaDon = hoaDonService.all().get(row);
-        List<HoaDonChiTietViewModel> listCTGH = hoaDonBanHangService.getAll(hoaDon.getMaHD());
+        List<HoaDonChiTietViewModel> listCTGH = new ArrayList<>();
+        try {
+            listCTGH = hoaDonService.getListById(hoaDon.getMaHD());
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
         showDataChiTietGioHang((ArrayList<HoaDonChiTietViewModel>) listCTGH);
     }//GEN-LAST:event_tblHoaDonMouseClicked
+
+    private void txtTimKiemCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtTimKiemCaretUpdate
+        // TODO add your handling code here:
+        List<HoaDonViewModel> hd = new ArrayList<>();
+        for (HoaDonViewModel h : hoaDonService.all()) {
+            if (h.getMaHD().contains(txtTimKiem.getText())) {
+                hd.add(h);
+            }
+        }
+        loadTableHoaDon(hd);
+    }//GEN-LAST:event_txtTimKiemCaretUpdate
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -306,8 +337,8 @@ public class HoaDonView extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel22;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
-    private javax.swing.JTextField jTextField6;
     private javax.swing.JTable tb_hoaDonCT;
     private javax.swing.JTable tblHoaDon;
+    private javax.swing.JTextField txtTimKiem;
     // End of variables declaration//GEN-END:variables
 }

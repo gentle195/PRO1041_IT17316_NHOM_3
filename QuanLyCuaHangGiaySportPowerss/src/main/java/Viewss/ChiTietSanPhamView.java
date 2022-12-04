@@ -6,20 +6,15 @@ package Viewss;
 
 import DomainModels.ChatLieu;
 import DomainModels.ChiTietSP;
-import DomainModels.ChucVu;
 import DomainModels.DeGiay;
 import DomainModels.HangGiay;
-import DomainModels.KhachHang;
 import DomainModels.LoaiGiay;
 import DomainModels.SanPham;
 import DomainModels.Size;
 import Services.ChatLieuService;
 import Services.ChiTietSPService;
-import Services.ChucVuSevice;
 import Services.DeGiayService;
-import Services.HDCTService;
 import Services.HangGiayService;
-import Services.HoaDonBanHangService;
 import Services.Interface.ChatLieuServiceInterface;
 import Services.Interface.ChiTietSPServiceInterface;
 import Services.Interface.DeGiayServiceInterface;
@@ -28,11 +23,9 @@ import Services.Interface.LoaiGiayServiceInterface;
 import Services.Interface.SanPhamServiceInterface;
 import Services.Interface.SizeServiceInterface;
 import Services.LoaiGiayService;
-import Services.NhanVienService;
 import Services.SanPhamService;
 import Services.SizeService;
 import ViewModels.ChiTietSPViewModel;
-import ViewModels.NhanVienViewModel;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
@@ -54,6 +47,10 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
     private DeGiayServiceInterface deGiayService;
     private LoaiGiayServiceInterface loaiGiayService;
     private SizeServiceInterface sizeService;
+<<<<<<< Updated upstream
+=======
+    List<ChiTietSPViewModel> list;
+>>>>>>> Stashed changes
 
     /**
      * Creates new form SanPham
@@ -70,6 +67,10 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
         this.loaiGiayService = new LoaiGiayService();
         this.sizeService = new SizeService();
         this.chiTietSPService = new ChiTietSPService();
+<<<<<<< Updated upstream
+=======
+        list = chiTietSPService.all();
+>>>>>>> Stashed changes
 
         List<SanPham> sp = SanPhamService.all();
         cbTenSP.setModel(new DefaultComboBoxModel((sp.toArray())));
@@ -520,6 +521,19 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
         jPanel51.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(255, 255, 255), new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0)), "Sản Phẩm", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
 
         txtSearch2.setName(""); // NOI18N
+<<<<<<< Updated upstream
+=======
+        txtSearch2.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtSearch2CaretUpdate(evt);
+            }
+        });
+        txtSearch2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSearch2ActionPerformed(evt);
+            }
+        });
+>>>>>>> Stashed changes
 
         btnTimKiem2.setBackground(new java.awt.Color(204, 204, 204));
         btnTimKiem2.setText("Tìm Kiếm");
@@ -1010,32 +1024,62 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
     }//GEN-LAST:event_txtMaSPActionPerformed
 
     private void updatespActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatespActionPerformed
+<<<<<<< Updated upstream
 
+=======
+        SanPhamView sp = new SanPhamView();
+        sp.setVisible(true);
+>>>>>>> Stashed changes
     }//GEN-LAST:event_updatespActionPerformed
 
     private void updatesp2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatesp2ActionPerformed
         // TODO add your handling code here:
+<<<<<<< Updated upstream
 
+=======
+        ChatLieuView cl = new ChatLieuView();
+        cl.setVisible(true);
+>>>>>>> Stashed changes
     }//GEN-LAST:event_updatesp2ActionPerformed
 
     private void updatesp3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatesp3ActionPerformed
         // TODO add your handling code here:
+<<<<<<< Updated upstream
 
+=======
+        SizeView s = new SizeView();
+        s.setVisible(true);
+>>>>>>> Stashed changes
     }//GEN-LAST:event_updatesp3ActionPerformed
 
     private void updatesp4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatesp4ActionPerformed
         // TODO add your handling code here:
+<<<<<<< Updated upstream
 
+=======
+        HangGiayView h = new HangGiayView();
+        h.setVisible(true);
+>>>>>>> Stashed changes
     }//GEN-LAST:event_updatesp4ActionPerformed
 
     private void updatesp5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatesp5ActionPerformed
         // TODO add your handling code here:
+<<<<<<< Updated upstream
 
+=======
+        LoaiSPView l = new LoaiSPView();
+        l.setVisible(true);
+>>>>>>> Stashed changes
     }//GEN-LAST:event_updatesp5ActionPerformed
 
     private void updatesp6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatesp6ActionPerformed
         // TODO add your handling code here:
+<<<<<<< Updated upstream
 
+=======
+        DeGiayView d = new DeGiayView();
+        d.setVisible(true);
+>>>>>>> Stashed changes
     }//GEN-LAST:event_updatesp6ActionPerformed
 
     private void tblQLSPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblQLSPMouseClicked
@@ -1138,6 +1182,24 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtMaSPCaretUpdate
 
+<<<<<<< Updated upstream
+=======
+    private void txtSearch2CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtSearch2CaretUpdate
+        // TODO add your handling code here:
+        List<ChiTietSPViewModel> ds = new ArrayList<>();
+        for (ChiTietSPViewModel g : chiTietSPService.all()) {
+            if (g.getSanPham().getTenSP().contains(txtSearch2.getText())) {
+                ds.add(g);
+            }
+        }
+        loadTableChiTietSP(ds);
+    }//GEN-LAST:event_txtSearch2CaretUpdate
+
+    private void txtSearch2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearch2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSearch2ActionPerformed
+
+>>>>>>> Stashed changes
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnNext1;

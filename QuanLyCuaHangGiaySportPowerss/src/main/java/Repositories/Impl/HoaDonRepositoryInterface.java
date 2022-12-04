@@ -1,28 +1,27 @@
-package Repositories.Impl;
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
+package Repositories.Impl;
 
-import DomainModels.ChatLieu;
 import DomainModels.HoaDon;
 import ViewModels.HoaDonBanHangViewModel;
+import ViewModels.HoaDonChiTietViewModel;
 import ViewModels.HoaDonViewModel;
-
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  *
  * @author dinhq
  */
-public interface HoaDonBanHangRepositoryInterface {
+public interface HoaDonRepositoryInterface {
 
-    public List<HoaDonBanHangViewModel> all();
+    ArrayList<HoaDonViewModel> all();
 
-    public void add(HoaDon hoaDon) throws Exception;
+ 
+      
 
-    public void update(HoaDon hoaDon, String ma, String ma1) throws Exception;
-
-    public void delete(String Ma) throws Exception;
+    List<HoaDonChiTietViewModel> getListById(String idhoaDon) throws SQLException;
 }

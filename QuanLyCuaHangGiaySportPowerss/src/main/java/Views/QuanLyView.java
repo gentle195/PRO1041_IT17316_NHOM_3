@@ -23,17 +23,15 @@ import Services.ChatLieuService;
 import Services.ChiTietSPService;
 import Services.ChucVuSevice;
 import Services.DeGiayService;
-import Services.HDCTService;
+
 import Services.HangGiayService;
-import Services.HoaDonBanHangService;
-import Services.HoaDonServiceImpl;
+import Services.BanHangService;
+import Services.HoaDonService;
 import Services.Interface.ChatLieuServiceInterface;
 import Services.Interface.ChiTietSPServiceInterface;
 import Services.Interface.ChucVuServiceInterface;
 import Services.Interface.DeGiayServiceInterface;
 import Services.Interface.HangGiayServiceInterface;
-import Services.Interface.HoaDonBanHangServiceInterface;
-import Services.Interface.HoaDonService;
 import Services.Interface.LoaiGiayServiceInterface;
 import Services.Interface.NhanVienServiceInteface;
 import Services.Interface.SanPhamServiceInterface;
@@ -65,6 +63,8 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
+import Services.Interface.BanHangServiceInterface;
+import Services.Interface.HoaDonServiceInterface;
 
 /**
  *
@@ -81,7 +81,7 @@ public class QuanLyView extends javax.swing.JFrame {
     private ChiTietSPServiceInterface chiTietSPService;
     private ChucVuServiceInterface cvService;
     private NhanVienServiceInteface nvService;
-    private HoaDonBanHangServiceInterface hoaDonBanHangService;
+    private BanHangServiceInterface hoaDonBanHangService;
     private HDCTService HDCT;
     private KhachHangService serviceKH = new KhachHangService();
     private DefaultTableModel dtmKH = new DefaultTableModel();
@@ -93,7 +93,7 @@ public class QuanLyView extends javax.swing.JFrame {
     private List<HoaDonTKViewModel> listTKHD = new ArrayList<>();
     DefaultTableModel dtmTKSP = new DefaultTableModel();
     private List<ChiTietSPViewModel> listTKSP = new ArrayList<>();
-    private HoaDonService hoadonService = new HoaDonServiceImpl();
+    private HoaDonServiceInterface hoadonService = new HoaDonService();
 
     private DefaultTableModel defaultTableModelGioHang;
     private DefaultTableModel tableHoaDon;
@@ -117,7 +117,7 @@ public class QuanLyView extends javax.swing.JFrame {
         this.chiTietSPService = new ChiTietSPService();
         this.cvService = new ChucVuSevice();
         this.nvService = new NhanVienService();
-        this.hoaDonBanHangService = new HoaDonBanHangService();
+        this.hoaDonBanHangService = new BanHangService();
         this.HDCT = new HDCTService();
         this.loadTableSanPham();
         this.loadTableChatLieu();
@@ -170,8 +170,10 @@ public class QuanLyView extends javax.swing.JFrame {
         tblKH.setModel(dtmKH);
         Object[] header = {"Mã", "Họ tên", "Giới tính", "Ngày sinh", "SĐT", "Địa chỉ"};
         dtmKH.setColumnIdentifiers(header);
+        
         tblTkHD.setModel(dtmTKHD);
         tblTkSP.setModel(dtmTKSP);
+        
         Object[] headers = {"STT", "Ngay", "Tong hoa don", "Tong doanh thu"};
         dtmTKHD.setColumnIdentifiers(headers);
         Object[] headersp = {"STT", "Mã SP", "Tên SP", "Số lượng bán ra"};
