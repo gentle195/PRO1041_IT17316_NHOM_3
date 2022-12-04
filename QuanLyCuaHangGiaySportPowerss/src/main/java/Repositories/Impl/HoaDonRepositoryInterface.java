@@ -21,7 +21,5 @@ public interface HoaDonRepositoryInterface {
     ArrayList<HoaDonViewModel> all();
 
  
-      
-
-    List<HoaDonChiTietViewModel> getListById(String idhoaDon) throws SQLException;
+       
 }

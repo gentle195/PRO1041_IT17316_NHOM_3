@@ -705,13 +705,9 @@
               <Properties>
                 <Property name="name" type="java.lang.String" value="" noResource="true"/>
               </Properties>
-<<<<<<< Updated upstream
-=======
               <Events>
                 <EventHandler event="caretUpdate" listener="javax.swing.event.CaretListener" parameters="javax.swing.event.CaretEvent" handler="txtSearch2CaretUpdate"/>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtSearch2ActionPerformed"/>
               </Events>
->>>>>>> Stashed changes
             </Component>
             <Component class="javax.swing.JButton" name="btnTimKiem2">
               <Properties>

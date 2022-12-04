@@ -86,8 +86,7 @@ public class ChiTietSPRepository implements ChiTietSPRepositoryInterface {
         }
 
     }
-
-    @Override
+  
     public void updates1(ChiTietSP ct, String ma) throws Exception {
         try {
             Connection conn = DBConnection.getConnection();
@@ -103,7 +102,6 @@ public class ChiTietSPRepository implements ChiTietSPRepositoryInterface {
         }
     }
 
-    @Override
     public List<ChiTietSPViewModel> search(String ten) {
         String sql = "select SanPham.MaSP, SanPham.TenSP, DonGia, SoLuong, TrangThai "
                 + "from ChiTietSP join SanPham on ChiTietSP.IdSP= SanPham.IdSP "

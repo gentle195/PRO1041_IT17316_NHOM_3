@@ -483,12 +483,10 @@ public class TTnhanVienView extends javax.swing.JPanel {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-<<<<<<< Updated upstream
 
-=======
         ChucVuView cv = new ChucVuView();
         cv.setVisible(true);
->>>>>>> Stashed changes
+
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void txtMaNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaNhanVienActionPerformed

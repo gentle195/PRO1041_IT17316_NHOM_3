@@ -53,7 +53,7 @@ public class HoaDonRepository implements HoaDonRepositoryInterface {
     
   
     
-     @Override
+  
     public List<HoaDonChiTietViewModel> getListById(String idhoaDon) throws SQLException{
         String query = "SELECT  c.MaSP , c.TenSP , a.SoLuong , a.DonGia fROM ChiTietHoaDon a left join ChiTietSP b on a.IdChiTietSP = b.IdCTSP left join SanPham c on c.IdSP = b.IdSP left join HoaDon d on a.IdHD = d.IdHD where d.Ma = ?";
         List<HoaDonChiTietViewModel> list = new ArrayList<>();
@@ -69,6 +69,8 @@ public class HoaDonRepository implements HoaDonRepositoryInterface {
         }
         return null;
     }
+
+   
 
  
     
