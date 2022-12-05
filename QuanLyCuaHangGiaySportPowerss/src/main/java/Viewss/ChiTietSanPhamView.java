@@ -6,20 +6,15 @@ package Viewss;
 
 import DomainModels.ChatLieu;
 import DomainModels.ChiTietSP;
-import DomainModels.ChucVu;
 import DomainModels.DeGiay;
 import DomainModels.HangGiay;
-import DomainModels.KhachHang;
 import DomainModels.LoaiGiay;
 import DomainModels.SanPham;
 import DomainModels.Size;
 import Services.ChatLieuService;
 import Services.ChiTietSPService;
-import Services.ChucVuSevice;
 import Services.DeGiayService;
-import Services.HDCTService;
 import Services.HangGiayService;
-import Services.HoaDonBanHangService;
 import Services.Interface.ChatLieuServiceInterface;
 import Services.Interface.ChiTietSPServiceInterface;
 import Services.Interface.DeGiayServiceInterface;
@@ -28,11 +23,9 @@ import Services.Interface.LoaiGiayServiceInterface;
 import Services.Interface.SanPhamServiceInterface;
 import Services.Interface.SizeServiceInterface;
 import Services.LoaiGiayService;
-import Services.NhanVienService;
 import Services.SanPhamService;
 import Services.SizeService;
 import ViewModels.ChiTietSPViewModel;
-import ViewModels.NhanVienViewModel;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -73,7 +66,7 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
         this.sizeService = new SizeService();
         this.chiTietSPService = new ChiTietSPService();
         list = chiTietSPService.all();
-
+        
         List<SanPham> sp = SanPhamService.all();
         cbTenSP.setModel(new DefaultComboBoxModel((sp.toArray())));
 
@@ -145,7 +138,14 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
 
         loadTableChiTietSP(l);
     }
-
+    void clear(){
+        txtDonGia.setText("");
+        txtID.setText("");
+        txtMaSP.setText("");
+        txtMotaChiTietSP.setText("");
+        txtSoLuongSP.setText("");
+        txtTrongLuong.setText("");
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -341,6 +341,7 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
         lblDonGia3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblDonGia3.setText("Số Lượng");
 
+        txtMaSP.setEditable(false);
         txtMaSP.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
                 txtMaSPCaretUpdate(evt);
@@ -439,7 +440,7 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
                     .addComponent(updatesp4)
                     .addComponent(updatesp6)
                     .addComponent(updatesp))
-                .addGap(126, 126, 126)
+                .addGap(174, 174, 174)
                 .addGroup(jPanel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblDonGia1)
                     .addComponent(lblDonGia)
@@ -910,18 +911,13 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
         } else {
             return;
         }
-
+        clear();
         loadTableChiTietSP(chiTietSPService.all());
 
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         // TODO add your handling code here:
-        int row = tblQLSP.getSelectedRow();
-        if (row == -1) {
-            JOptionPane.showMessageDialog(this, "Vui lòng chọn vào trong bảng");
-            return;
-        }
         int bb = JOptionPane.showConfirmDialog(this, "Thông báo", "Xoá", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION);
         if (bb == JOptionPane.YES_OPTION) {
             ChiTietSP ctsp = new ChiTietSP();
@@ -952,7 +948,7 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
         } else {
             return;
         }
-
+        clear();
         loadTableChiTietSP(chiTietSPService.all());
 
     }//GEN-LAST:event_btnXoaActionPerformed
@@ -1021,7 +1017,7 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
         } else {
             return;
         }
-
+        clear();
         loadTableChiTietSP(chiTietSPService.all());
 
     }//GEN-LAST:event_btnSuaActionPerformed
@@ -1066,38 +1062,143 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
     }//GEN-LAST:event_txtMaSPActionPerformed
 
     private void updatespActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatespActionPerformed
+        
         SanPhamView sp = new SanPhamView();
         sp.setVisible(true);
+        
+        List<SanPham> sp1 = SanPhamService.all();
+        cbTenSP.setModel(new DefaultComboBoxModel((sp1.toArray())));
+
+        List<ChatLieu> cl = chatLieuService.all();
+        cbCL.setModel(new DefaultComboBoxModel((cl.toArray())));
+
+        List<DeGiay> dg = deGiayService.all();
+        cbDe.setModel(new DefaultComboBoxModel((dg.toArray())));
+
+        List<HangGiay> hang = hangGiayService.all();
+        cbHang.setModel(new DefaultComboBoxModel((hang.toArray())));
+
+        List<LoaiGiay> lg = loaiGiayService.all();
+        cbLoai.setModel(new DefaultComboBoxModel((lg.toArray())));
+
+        List<Size> sz = sizeService.all();
+        cbSIZE.setModel(new DefaultComboBoxModel((sz.toArray())));
+        
     }//GEN-LAST:event_updatespActionPerformed
 
     private void updatesp2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatesp2ActionPerformed
         // TODO add your handling code here:
         ChatLieuView cl = new ChatLieuView();
         cl.setVisible(true);
+        List<SanPham> sp = SanPhamService.all();
+        cbTenSP.setModel(new DefaultComboBoxModel((sp.toArray())));
+
+        List<ChatLieu> cl1 = chatLieuService.all();
+        cbCL.setModel(new DefaultComboBoxModel((cl1.toArray())));
+
+        List<DeGiay> dg = deGiayService.all();
+        cbDe.setModel(new DefaultComboBoxModel((dg.toArray())));
+
+        List<HangGiay> hang = hangGiayService.all();
+        cbHang.setModel(new DefaultComboBoxModel((hang.toArray())));
+
+        List<LoaiGiay> lg = loaiGiayService.all();
+        cbLoai.setModel(new DefaultComboBoxModel((lg.toArray())));
+
+        List<Size> sz = sizeService.all();
+        cbSIZE.setModel(new DefaultComboBoxModel((sz.toArray())));
     }//GEN-LAST:event_updatesp2ActionPerformed
 
     private void updatesp3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatesp3ActionPerformed
         // TODO add your handling code here:
         SizeView s = new SizeView();
         s.setVisible(true);
+        List<SanPham> sp = SanPhamService.all();
+        cbTenSP.setModel(new DefaultComboBoxModel((sp.toArray())));
+
+        List<ChatLieu> cl = chatLieuService.all();
+        cbCL.setModel(new DefaultComboBoxModel((cl.toArray())));
+
+        List<DeGiay> dg = deGiayService.all();
+        cbDe.setModel(new DefaultComboBoxModel((dg.toArray())));
+
+        List<HangGiay> hang = hangGiayService.all();
+        cbHang.setModel(new DefaultComboBoxModel((hang.toArray())));
+
+        List<LoaiGiay> lg = loaiGiayService.all();
+        cbLoai.setModel(new DefaultComboBoxModel((lg.toArray())));
+
+        List<Size> sz = sizeService.all();
+        cbSIZE.setModel(new DefaultComboBoxModel((sz.toArray())));
     }//GEN-LAST:event_updatesp3ActionPerformed
 
     private void updatesp4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatesp4ActionPerformed
         // TODO add your handling code here:
         HangGiayView h = new HangGiayView();
         h.setVisible(true);
+        List<SanPham> sp = SanPhamService.all();
+        cbTenSP.setModel(new DefaultComboBoxModel((sp.toArray())));
+
+        List<ChatLieu> cl = chatLieuService.all();
+        cbCL.setModel(new DefaultComboBoxModel((cl.toArray())));
+
+        List<DeGiay> dg = deGiayService.all();
+        cbDe.setModel(new DefaultComboBoxModel((dg.toArray())));
+
+        List<HangGiay> hang = hangGiayService.all();
+        cbHang.setModel(new DefaultComboBoxModel((hang.toArray())));
+
+        List<LoaiGiay> lg = loaiGiayService.all();
+        cbLoai.setModel(new DefaultComboBoxModel((lg.toArray())));
+
+        List<Size> sz = sizeService.all();
+        cbSIZE.setModel(new DefaultComboBoxModel((sz.toArray())));
     }//GEN-LAST:event_updatesp4ActionPerformed
 
     private void updatesp5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatesp5ActionPerformed
         // TODO add your handling code here:
         LoaiSPView l = new LoaiSPView();
         l.setVisible(true);
+        List<SanPham> sp = SanPhamService.all();
+        cbTenSP.setModel(new DefaultComboBoxModel((sp.toArray())));
+
+        List<ChatLieu> cl = chatLieuService.all();
+        cbCL.setModel(new DefaultComboBoxModel((cl.toArray())));
+
+        List<DeGiay> dg = deGiayService.all();
+        cbDe.setModel(new DefaultComboBoxModel((dg.toArray())));
+
+        List<HangGiay> hang = hangGiayService.all();
+        cbHang.setModel(new DefaultComboBoxModel((hang.toArray())));
+
+        List<LoaiGiay> lg = loaiGiayService.all();
+        cbLoai.setModel(new DefaultComboBoxModel((lg.toArray())));
+
+        List<Size> sz = sizeService.all();
+        cbSIZE.setModel(new DefaultComboBoxModel((sz.toArray())));
     }//GEN-LAST:event_updatesp5ActionPerformed
 
     private void updatesp6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatesp6ActionPerformed
         // TODO add your handling code here:
         DeGiayView d = new DeGiayView();
         d.setVisible(true);
+        List<SanPham> sp = SanPhamService.all();
+        cbTenSP.setModel(new DefaultComboBoxModel((sp.toArray())));
+
+        List<ChatLieu> cl = chatLieuService.all();
+        cbCL.setModel(new DefaultComboBoxModel((cl.toArray())));
+
+        List<DeGiay> dg = deGiayService.all();
+        cbDe.setModel(new DefaultComboBoxModel((dg.toArray())));
+
+        List<HangGiay> hang = hangGiayService.all();
+        cbHang.setModel(new DefaultComboBoxModel((hang.toArray())));
+
+        List<LoaiGiay> lg = loaiGiayService.all();
+        cbLoai.setModel(new DefaultComboBoxModel((lg.toArray())));
+
+        List<Size> sz = sizeService.all();
+        cbSIZE.setModel(new DefaultComboBoxModel((sz.toArray())));
     }//GEN-LAST:event_updatesp6ActionPerformed
 
     private void btnNext1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNext1ActionPerformed

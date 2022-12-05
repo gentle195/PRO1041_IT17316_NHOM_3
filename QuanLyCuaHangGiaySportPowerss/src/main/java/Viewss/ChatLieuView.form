@@ -63,11 +63,11 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
+                      <Group type="102" attributes="0">
                           <EmptySpace pref="29" max="32767" attributes="0"/>
                           <Component id="jScrollPane13" min="-2" pref="559" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="1" attributes="0">
+                      <Group type="102" attributes="0">
                           <EmptySpace min="52" pref="52" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
@@ -89,11 +89,12 @@
                               </Group>
                               <Component id="lblMaSp19" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="93" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="btnXoa3" alignment="0" max="32767" attributes="0"/>
                               <Component id="btnSua3" alignment="0" max="32767" attributes="0"/>
                               <Component id="btnThem3" alignment="0" pref="147" max="32767" attributes="0"/>
+                              <Component id="btnXoa4" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -133,6 +134,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblMaSp21" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtMoTaCL" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnXoa4" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jScrollPane13" min="-2" pref="247" max="-2" attributes="0"/>
@@ -164,6 +166,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtMaChatLieu">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtMaChatLieuActionPerformed"/>
           </Events>
@@ -263,6 +268,20 @@
             </Component>
           </SubComponents>
         </Container>
+        <Component class="javax.swing.JButton" name="btnXoa4">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="cc" green="cc" red="cc" type="rgb"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="12" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Exit"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnXoa4ActionPerformed"/>
+          </Events>
+        </Component>
       </SubComponents>
     </Container>
   </SubComponents>

@@ -8,6 +8,7 @@ import DomainModels.SanPham;
 import Services.Interface.SanPhamServiceInterface;
 import Services.SanPhamService;
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -26,7 +27,12 @@ public class SanPhamView extends javax.swing.JFrame {
                this.SanPhamService = new SanPhamService();
          this.loadTableSanPham();
     }
-
+    void clear(){
+      txtIDsp1.setText("");
+      txtMaSP.setText("");
+      txtMoTaSP.setText("");
+      txtTenSP.setText("");
+  }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -50,6 +56,7 @@ public class SanPhamView extends javax.swing.JFrame {
         btnXoa2 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         tbSP = new javax.swing.JTable();
+        btnXoa3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -69,6 +76,7 @@ public class SanPhamView extends javax.swing.JFrame {
         lblMaSp16.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblMaSp16.setText("Mã SP");
 
+        txtMaSP.setEditable(false);
         txtMaSP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtMaSPActionPerformed(evt);
@@ -146,6 +154,15 @@ public class SanPhamView extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(tbSP);
 
+        btnXoa3.setBackground(new java.awt.Color(204, 204, 204));
+        btnXoa3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnXoa3.setText("Exit");
+        btnXoa3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoa3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel36Layout = new javax.swing.GroupLayout(jPanel36);
         jPanel36.setLayout(jPanel36Layout);
         jPanel36Layout.setHorizontalGroup(
@@ -179,7 +196,8 @@ public class SanPhamView extends javax.swing.JFrame {
                         .addGroup(jPanel36Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnXoa2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnSua2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnThem2, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE))
+                            .addComponent(btnThem2, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                            .addComponent(btnXoa3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18))))
         );
         jPanel36Layout.setVerticalGroup(
@@ -207,7 +225,8 @@ public class SanPhamView extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addGroup(jPanel36Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblMaSp18)
-                    .addComponent(txtMoTaSP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtMoTaSP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnXoa3))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -255,6 +274,15 @@ public class SanPhamView extends javax.swing.JFrame {
 
     private void txtTenSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenSPActionPerformed
         // TODO add your handling code here:
+        if(txtTenSP.getText().equals("")){
+            return; 
+        }else{
+            for (int i = 0; i < 5 + 1; i++) {
+                Random rdm = new Random();
+                int rdmm = rdm.nextInt(100) + 1;
+                txtMaSP.setText("SP" + rdmm);
+            }
+        }
     }//GEN-LAST:event_txtTenSPActionPerformed
 
     private void txtMoTaSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMoTaSPActionPerformed
@@ -286,7 +314,7 @@ public class SanPhamView extends javax.swing.JFrame {
         } else {
             return;
         }
-
+        clear();
         loadTableSanPham();
         //        loadCBMaSP();
         //        loadCBTenSP();
@@ -321,7 +349,7 @@ public class SanPhamView extends javax.swing.JFrame {
             return;
 
         }
-
+        clear();
         loadTableSanPham();
         //        loadCBMaSP();
         //        loadCBTenSP();
@@ -351,6 +379,7 @@ public class SanPhamView extends javax.swing.JFrame {
             return;
 
         }
+        clear();
         loadTableSanPham();
         //        loadCBMaSP();
         //        loadCBTenSP();
@@ -364,6 +393,13 @@ public class SanPhamView extends javax.swing.JFrame {
         txtTenSP.setText(tbSP.getValueAt(row, 2).toString());
         txtMoTaSP.setText(tbSP.getValueAt(row, 3).toString());
     }//GEN-LAST:event_tbSPMouseClicked
+
+    private void btnXoa3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoa3ActionPerformed
+        // TODO add your handling code here:
+        ChiTietSanPhamView ql=new ChiTietSanPhamView();
+        ql.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnXoa3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -411,6 +447,7 @@ public class SanPhamView extends javax.swing.JFrame {
     private javax.swing.JButton btnSua2;
     private javax.swing.JButton btnThem2;
     private javax.swing.JButton btnXoa2;
+    private javax.swing.JButton btnXoa3;
     private javax.swing.JPanel jPanel36;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel lblMaSp15;

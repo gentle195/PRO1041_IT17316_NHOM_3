@@ -7,7 +7,9 @@ package Viewss;
 import DomainModels.ChatLieu;
 import Services.ChatLieuService;
 import Services.Interface.ChatLieuServiceInterface;
+import Views.QuanLyView;
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -52,6 +54,7 @@ public class ChatLieuView extends javax.swing.JFrame {
         btnXoa3 = new javax.swing.JButton();
         jScrollPane13 = new javax.swing.JScrollPane();
         tbChatLieu = new javax.swing.JTable();
+        btnXoa4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,6 +74,7 @@ public class ChatLieuView extends javax.swing.JFrame {
         lblMaSp19.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblMaSp19.setText("Mã Chất Liệu");
 
+        txtMaChatLieu.setEditable(false);
         txtMaChatLieu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtMaChatLieuActionPerformed(evt);
@@ -140,6 +144,15 @@ public class ChatLieuView extends javax.swing.JFrame {
         });
         jScrollPane13.setViewportView(tbChatLieu);
 
+        btnXoa4.setBackground(new java.awt.Color(204, 204, 204));
+        btnXoa4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnXoa4.setText("Exit");
+        btnXoa4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoa4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel39Layout = new javax.swing.GroupLayout(jPanel39);
         jPanel39.setLayout(jPanel39Layout);
         jPanel39Layout.setHorizontalGroup(
@@ -166,11 +179,12 @@ public class ChatLieuView extends javax.swing.JFrame {
                                     .addComponent(txtTenChatLieu, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtMaChatLieu, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(lblMaSp19, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
                         .addGroup(jPanel39Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnXoa3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnSua3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnThem3, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE))))
+                            .addComponent(btnThem3, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                            .addComponent(btnXoa4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(18, 18, 18))
         );
         jPanel39Layout.setVerticalGroup(
@@ -198,7 +212,8 @@ public class ChatLieuView extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addGroup(jPanel39Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblMaSp21)
-                    .addComponent(txtMoTaCL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtMoTaCL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnXoa4))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(44, Short.MAX_VALUE))
@@ -235,6 +250,12 @@ public class ChatLieuView extends javax.swing.JFrame {
             });
         }
     }
+  void clear(){
+      txtIDChatLieu.setText("");
+      txtMaChatLieu.setText("");
+      txtMoTaCL.setText("");
+      txtTenChatLieu.setText("");
+  }
     private void txtIDChatLieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDChatLieuActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIDChatLieuActionPerformed
@@ -245,6 +266,15 @@ public class ChatLieuView extends javax.swing.JFrame {
 
     private void txtTenChatLieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenChatLieuActionPerformed
         // TODO add your handling code here:
+        if(txtTenChatLieu.getText().equals("")){
+            return; 
+        }else{
+            for (int i = 0; i < 5 + 1; i++) {
+                Random rdm = new Random();
+                int rdmm = rdm.nextInt(100) + 1;
+                txtMaChatLieu.setText("CL" + rdmm);
+            }
+        }
     }//GEN-LAST:event_txtTenChatLieuActionPerformed
 
     private void txtMoTaCLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMoTaCLActionPerformed
@@ -276,6 +306,7 @@ public class ChatLieuView extends javax.swing.JFrame {
         } else {
             return;
         }
+        clear();
         loadTableChatLieu();
         //        loadCBChatLieu();
     }//GEN-LAST:event_btnThem3ActionPerformed
@@ -308,6 +339,7 @@ public class ChatLieuView extends javax.swing.JFrame {
         } else if (bb == JOptionPane.NO_OPTION) {
             return;
         }
+        clear();
         loadTableChatLieu();
         //        loadCBChatLieu();
     }//GEN-LAST:event_btnSua3ActionPerformed
@@ -337,6 +369,7 @@ public class ChatLieuView extends javax.swing.JFrame {
         } else if (bb == JOptionPane.NO_OPTION) {
             return;
         }
+        clear();
         loadTableChatLieu();
     }//GEN-LAST:event_btnXoa3ActionPerformed
 
@@ -348,6 +381,13 @@ public class ChatLieuView extends javax.swing.JFrame {
         txtTenChatLieu.setText(tbChatLieu.getValueAt(row, 2).toString());
         txtMoTaCL.setText(tbChatLieu.getValueAt(row, 3).toString());
     }//GEN-LAST:event_tbChatLieuMouseClicked
+
+    private void btnXoa4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoa4ActionPerformed
+        // TODO add your handling code here:
+        ChiTietSanPhamView ql=new ChiTietSanPhamView();
+        ql.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnXoa4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -389,6 +429,7 @@ public class ChatLieuView extends javax.swing.JFrame {
     private javax.swing.JButton btnSua3;
     private javax.swing.JButton btnThem3;
     private javax.swing.JButton btnXoa3;
+    private javax.swing.JButton btnXoa4;
     private javax.swing.JPanel jPanel39;
     private javax.swing.JScrollPane jScrollPane13;
     private javax.swing.JLabel lblMaSp18;

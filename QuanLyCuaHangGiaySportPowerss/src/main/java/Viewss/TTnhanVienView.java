@@ -13,6 +13,7 @@ import Services.NhanVienService;
 import ViewModels.NhanVienViewModel;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -52,7 +53,6 @@ public class TTnhanVienView extends javax.swing.JPanel {
 
         }
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -477,6 +477,16 @@ public class TTnhanVienView extends javax.swing.JPanel {
 
     private void txtHoTenNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHoTenNVActionPerformed
         // TODO add your handling code here:
+        if(txtHoTenNV.getText().equals("")){
+            return; 
+        }else{
+            for (int i = 0; i < 5 + 1; i++) {
+                Random rdm = new Random();
+                int rdmm = rdm.nextInt(100) + 1;
+                txtMaNhanVien.setText("NV" + rdmm);
+                txtTKNV.setText(txtMaNhanVien.getText());
+            }
+        }
     }//GEN-LAST:event_txtHoTenNVActionPerformed
 
     private void rdNamNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdNamNVActionPerformed
@@ -526,6 +536,7 @@ public class TTnhanVienView extends javax.swing.JPanel {
         } else {
             return;
         }
+        clearNV();
         loadTableNhanVien();
     }//GEN-LAST:event_jButton13ActionPerformed
 
@@ -538,6 +549,7 @@ public class TTnhanVienView extends javax.swing.JPanel {
         txtTKNV.setText("");
         txtMKNV.setText("");
         txtSDTNhanVien.setText("");
+        buttonGroup1.clearSelection();
     }
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed

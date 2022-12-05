@@ -8,6 +8,7 @@ import DomainModels.DeGiay;
 import Services.DeGiayService;
 import Services.Interface.DeGiayServiceInterface;
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -28,7 +29,12 @@ public class DeGiayView extends javax.swing.JFrame {
         this.deGiayService = new DeGiayService();
         this.loadTableDeGiay();
     }
-
+    void clear(){
+      txtIDDeGiay.setText("");
+      txtLoaiDe.setText("");
+      txtMaDe.setText("");
+      txtMoTaDe.setText("");
+  }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -52,6 +58,7 @@ public class DeGiayView extends javax.swing.JFrame {
         btnXoa7 = new javax.swing.JButton();
         jScrollPane16 = new javax.swing.JScrollPane();
         tbDeGiay = new javax.swing.JTable();
+        btnXoa8 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,6 +78,7 @@ public class DeGiayView extends javax.swing.JFrame {
         lblMaSp36.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblMaSp36.setText("Mã Đế");
 
+        txtMaDe.setEditable(false);
         txtMaDe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtMaDeActionPerformed(evt);
@@ -148,6 +156,15 @@ public class DeGiayView extends javax.swing.JFrame {
         });
         jScrollPane16.setViewportView(tbDeGiay);
 
+        btnXoa8.setBackground(new java.awt.Color(204, 204, 204));
+        btnXoa8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnXoa8.setText("Exit");
+        btnXoa8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoa8ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel41Layout = new javax.swing.GroupLayout(jPanel41);
         jPanel41.setLayout(jPanel41Layout);
         jPanel41Layout.setHorizontalGroup(
@@ -175,11 +192,12 @@ public class DeGiayView extends javax.swing.JFrame {
                                 .addGroup(jPanel41Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtMoTaDe, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtLoaiDe, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel41Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnXoa7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnSua7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnThem7, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE))))
+                            .addComponent(btnThem7, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                            .addComponent(btnXoa8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(18, 18, 18))
         );
         jPanel41Layout.setVerticalGroup(
@@ -207,7 +225,8 @@ public class DeGiayView extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addGroup(jPanel41Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblMaSp38)
-                    .addComponent(txtMoTaDe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtMoTaDe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnXoa8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane16, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(50, Short.MAX_VALUE))
@@ -220,7 +239,7 @@ public class DeGiayView extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addComponent(jPanel41, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(119, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -258,6 +277,15 @@ public class DeGiayView extends javax.swing.JFrame {
 
     private void txtLoaiDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLoaiDeActionPerformed
         // TODO add your handling code here:
+        if(txtLoaiDe.getText().equals("")){
+            return; 
+        }else{
+            for (int i = 0; i < 5 + 1; i++) {
+                Random rdm = new Random();
+                int rdmm = rdm.nextInt(100) + 1;
+                txtMaDe.setText("D" + rdmm);
+            }
+        }
     }//GEN-LAST:event_txtLoaiDeActionPerformed
 
     private void txtMoTaDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMoTaDeActionPerformed
@@ -287,6 +315,7 @@ public class DeGiayView extends javax.swing.JFrame {
         } else {
             return;
         }
+        clear();
         loadTableDeGiay();
         //        loadCBDe();
     }//GEN-LAST:event_btnThem7ActionPerformed
@@ -318,6 +347,7 @@ public class DeGiayView extends javax.swing.JFrame {
         } else if (xacnhan == JOptionPane.NO_OPTION) {
             return;
         }
+        clear();
         loadTableDeGiay();
         //        loadCBDe();
     }//GEN-LAST:event_btnSua7ActionPerformed
@@ -347,6 +377,7 @@ public class DeGiayView extends javax.swing.JFrame {
         } else if (xacnhan == JOptionPane.NO_OPTION) {
             return;
         }
+        clear();
         loadTableDeGiay();
         //        loadCBDe();
     }//GEN-LAST:event_btnXoa7ActionPerformed
@@ -359,6 +390,13 @@ public class DeGiayView extends javax.swing.JFrame {
         txtLoaiDe.setText(tbDeGiay.getValueAt(row, 2).toString());
         txtMoTaDe.setText(tbDeGiay.getValueAt(row, 3).toString());
     }//GEN-LAST:event_tbDeGiayMouseClicked
+
+    private void btnXoa8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoa8ActionPerformed
+        // TODO add your handling code here:
+        ChiTietSanPhamView ql=new ChiTietSanPhamView();
+        ql.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnXoa8ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -400,6 +438,7 @@ public class DeGiayView extends javax.swing.JFrame {
     private javax.swing.JButton btnSua7;
     private javax.swing.JButton btnThem7;
     private javax.swing.JButton btnXoa7;
+    private javax.swing.JButton btnXoa8;
     private javax.swing.JPanel jPanel41;
     private javax.swing.JScrollPane jScrollPane16;
     private javax.swing.JLabel lblMaSp35;

@@ -14,7 +14,6 @@ import DomainModels.ChiTietSP;
 import DomainModels.HoaDon;
 import DomainModels.HoaDonChiTiet;
 import DomainModels.KhachHang;
-import Repositories.HoaDonRepository;
 import Services.ChiTietSPService;
 
 import Services.BanHangService;
@@ -27,23 +26,17 @@ import Services.NhanVienService;
 import ViewModels.ChiTietSPViewModel;
 import ViewModels.HoaDonBanHangViewModel;
 import ViewModels.HoaDonChiTietViewModel;
-import ViewModels.HoaDonViewModel;
-import ViewModels.NhanVienViewModel;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import Services.Interface.BanHangServiceInterface;
 import Services.Interface.HoaDonServiceInterface;
-import java.awt.CardLayout;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JPanel;
 
 /**
@@ -59,11 +52,11 @@ public class QuanLyViews extends javax.swing.JFrame {
     private HoaDonServiceInterface hoaDonService;
     private NhanVienServiceInteface nvService;
     private KhachHangServiceInterface khachHangService;
-
+    DefaultTableModel dtmSpBH = new DefaultTableModel();
     ArrayList<HoaDonChiTietViewModel> listhdct = new ArrayList<>();
     ArrayList<HoaDonChiTiet> listhdctt = new ArrayList<>();
     List<ChiTietSPViewModel> listsp;
-
+    ChiTietSP CT = new ChiTietSP();
     /**
      * Creates new form QuanLyViews
      */
@@ -74,9 +67,8 @@ public class QuanLyViews extends javax.swing.JFrame {
         this.hoaDonService = new HoaDonService();
         this.nvService = new NhanVienService();
         this.khachHangService = new KhachHangService();
-
         loadTableHoaDonBanHang();
-        loadTableChiTietSPBH(chiTietSPService.all());
+        loadTableChiTietSPBH();
         listsp = chiTietSPService.all();
     }
 
@@ -99,14 +91,14 @@ public class QuanLyViews extends javax.swing.JFrame {
         }
     }
 
-    private void loadTableChiTietSPBH(List<ChiTietSPViewModel> Sz) {
-        DefaultTableModel modeltb = new DefaultTableModel();
-        modeltb = (DefaultTableModel) tbldssanpham.getModel();
-        modeltb.setRowCount(0);
+    private void loadTableChiTietSPBH() {
+        List<ChiTietSPViewModel> Sz = chiTietSPService.all();
+        dtmSpBH = (DefaultTableModel) tbldssanpham.getModel();
+        dtmSpBH.setRowCount(0);
         for (ChiTietSPViewModel x : Sz) {
-            modeltb.addRow(new Object[]{
+            dtmSpBH.addRow(new Object[]{
                 x.getSanPham().getMaSP(), x.getSanPham().getTenSP(), x.getDonGia(),
-                x.getSoLuong(), x.getTrangThai() == 1 ? "Còn Hàng" : "Hết Hàng"});
+                x.getSoLuong(), x.getTrangThai() == 0 ? "Còn Hàng" : "Hết Hàng"});
         }
     }
 
@@ -185,8 +177,6 @@ public class QuanLyViews extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(0, 204, 204));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.setPreferredSize(new java.awt.Dimension(210, 549));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\dinhq\\Downloads\\rsz_21artboard_1.png")); // NOI18N
         jPanel1.add(jLabel1);
 
         btnBanHang2.setBackground(new java.awt.Color(204, 255, 255));
@@ -772,7 +762,7 @@ public class QuanLyViews extends javax.swing.JFrame {
                 .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, 789, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel54, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(388, Short.MAX_VALUE))
         );
         pnlBanHangLayout.setVerticalGroup(
             pnlBanHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -860,6 +850,7 @@ public class QuanLyViews extends javax.swing.JFrame {
         int slm = Integer.valueOf(sl);
         HoaDonChiTiet hd = new HoaDonChiTiet();
         int row = tblgiohang.getSelectedRow();
+
         try {
             if (slm < Integer.parseInt(tblgiohang.getValueAt(row, 2).toString())) {
                 for (int i = 0; i < listhdct.size(); i++) {
@@ -872,27 +863,37 @@ public class QuanLyViews extends javax.swing.JFrame {
                         thanhtien = thanhtien + (listhdct.get(i).getSoLuong() * Integer.parseInt(listhdct.get(i).getDonGia().toString()));
                         txtThanhTien1.setText((String.valueOf(thanhtien)));
                         hd.setSoLuong(listhdct.get(i).getSoLuong());
-                        ChiTietSP CT = new ChiTietSP();
-                        CT.setSoLuong(Integer.parseInt(tbldssanpham.getValueAt(row, 3).toString()));
-                        CT.setSoLuong(CT.getSoLuong() + slm);
-                        chiTietSPService.updatesl(CT, tbldssanpham.getValueAt(row, 0).toString());
-                        loadTableChiTietSPBH(listsp);
-                        addTableGioHang(listhdct);
                         banHangService.updateSoLuong(tblgiohang.getValueAt(row, 0).toString(), hd);
+                        for (int j = 0; j < listsp.size(); j++) {
+                            if (listsp.get(j).getSanPham().getMaSP().equals(tblgiohang.getValueAt(row, 0))) {
+                                listsp.get(j).setSoLuong(CT.getSoLuong() + slm);
+                                CT.setSoLuong(listsp.get(j).getSoLuong());
+                                chiTietSPService.updatesl(CT, tblgiohang.getValueAt(row, 0).toString());
+                            }
+                        }
+                        loadTableChiTietSPBH();
+                        addTableGioHang(listhdct);
                     }
                 }
             } else if (slm == Integer.parseInt(tblgiohang.getValueAt(row, 2).toString())) {
                 for (int i = 0; i < listhdct.size(); i++) {
+                    banHangService.deleteSoLuong(tblgiohang.getValueAt(row, 0).toString());
                     if (listhdct.get(i).getMaSP().equals(tblgiohang.getValueAt(row, 0))) {
                         listhdct.remove(i);
+                        for (int j = 0; j < listsp.size(); j++) {
+                            if (listsp.get(j).getSanPham().getMaSP().equals(tblgiohang.getValueAt(row, 0))) {
+                                listsp.get(j).setSoLuong(CT.getSoLuong() + slm);
+                                CT.setSoLuong(listsp.get(j).getSoLuong());
+                                chiTietSPService.updatesl(CT, tblgiohang.getValueAt(row, 0).toString());
+                            }
+                        }
                     }
+
+                    loadTableChiTietSPBH();
+                    addTableGioHang(listhdct);
                 }
-                banHangService.deleteSoLuong(tblgiohang.getValueAt(row, 0).toString());
-                ChiTietSP CT = new ChiTietSP();
-                CT.setSoLuong(Integer.parseInt(tbldssanpham.getValueAt(row, 3).toString()));
-                CT.setSoLuong(CT.getSoLuong() + slm);
-                chiTietSPService.updatesl(CT, tbldssanpham.getValueAt(row, 0).toString());
-                loadTableChiTietSPBH(listsp);
+
+                loadTableChiTietSPBH();
                 addTableGioHang(listhdct);
             } else if (slm > Integer.parseInt(tblgiohang.getValueAt(row, 2).toString())) {
                 JOptionPane.showMessageDialog(this, "Số lượng nhập lớn hơn trong giỏ hàng");
@@ -916,7 +917,7 @@ public class QuanLyViews extends javax.swing.JFrame {
                 sp.add(s);
             }
         }
-        loadTableChiTietSPBH(sp);
+        loadTableChiTietSPBH();
     }//GEN-LAST:event_txttimkiemCaretUpdate
 
     private void btnthemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnthemActionPerformed
@@ -949,7 +950,7 @@ public class QuanLyViews extends javax.swing.JFrame {
             try {
                 chiTietSPService.updatesl(CT, tbldssanpham.getValueAt(row, 0).toString());
                 addTableGioHang(listhdct);
-                loadTableChiTietSPBH(lctsp1);
+                loadTableChiTietSPBH();
                 banHangService.addSanPham(tbldssanpham.getValueAt(row, 0).toString(), tbHoaDonBanHang.getValueAt(r, 0).toString(), hd);
                 int thanhtien = 0;
                 int slsp = 0;
@@ -959,14 +960,6 @@ public class QuanLyViews extends javax.swing.JFrame {
                     }
                     txtThanhTien1.setText((String.valueOf(thanhtien)));
                 }
-                if (tblgiohang.getRowCount() > 0) {
-                    for (int i = 0; i < listhdct.size(); i++) {
-                        slsp = slsp + (listhdct.get(i).getSoLuong());
-                    }
-                    chiTietHoaDonViewModel.setSoLuong(slsp);
-                    //                HDCT.updateSL(hd,id);
-                }
-
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
