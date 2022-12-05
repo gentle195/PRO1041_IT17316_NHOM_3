@@ -6,11 +6,21 @@ package Viewss;
 
 import DomainModels.ChatLieu;
 import Services.ChatLieuService;
+import Services.DeGiayService;
+import Services.HangGiayService;
 import Services.Interface.ChatLieuServiceInterface;
-import Views.QuanLyView;
+import Services.Interface.DeGiayServiceInterface;
+import Services.Interface.HangGiayServiceInterface;
+import Services.Interface.LoaiGiayServiceInterface;
+import Services.Interface.SanPhamServiceInterface;
+import Services.Interface.SizeServiceInterface;
+import Services.LoaiGiayService;
+import Services.SanPhamService;
+import Services.SizeService;
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -23,11 +33,12 @@ public class ChatLieuView extends javax.swing.JFrame {
     /**
      * Creates new form ChatLieuView
      */
-        private ChatLieuServiceInterface chatLieuService;
+    private ChatLieuServiceInterface chatLieuService;
+
     public ChatLieuView() {
         initComponents();
         this.chatLieuService = new ChatLieuService();
-         this.loadTableChatLieu();
+        this.loadTableChatLieu();
 
     }
 
@@ -250,12 +261,13 @@ public class ChatLieuView extends javax.swing.JFrame {
             });
         }
     }
-  void clear(){
-      txtIDChatLieu.setText("");
-      txtMaChatLieu.setText("");
-      txtMoTaCL.setText("");
-      txtTenChatLieu.setText("");
-  }
+
+    void clear() {
+        txtIDChatLieu.setText("");
+        txtMaChatLieu.setText("");
+        txtMoTaCL.setText("");
+        txtTenChatLieu.setText("");
+    }
     private void txtIDChatLieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDChatLieuActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIDChatLieuActionPerformed
@@ -266,9 +278,9 @@ public class ChatLieuView extends javax.swing.JFrame {
 
     private void txtTenChatLieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenChatLieuActionPerformed
         // TODO add your handling code here:
-        if(txtTenChatLieu.getText().equals("")){
-            return; 
-        }else{
+        if (txtTenChatLieu.getText().equals("")) {
+            return;
+        } else {
             for (int i = 0; i < 5 + 1; i++) {
                 Random rdm = new Random();
                 int rdmm = rdm.nextInt(100) + 1;
@@ -384,9 +396,13 @@ public class ChatLieuView extends javax.swing.JFrame {
 
     private void btnXoa4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoa4ActionPerformed
         // TODO add your handling code here:
-        ChiTietSanPhamView ql=new ChiTietSanPhamView();
+        List<ChatLieu> cl = chatLieuService.all();
+        ChiTietSanPhamView.cbCL.setModel(new DefaultComboBoxModel((cl.toArray())));
+        ChiTietSanPhamView ql = new ChiTietSanPhamView();
         ql.setVisible(true);
         this.dispose();
+
+
     }//GEN-LAST:event_btnXoa4ActionPerformed
 
     /**

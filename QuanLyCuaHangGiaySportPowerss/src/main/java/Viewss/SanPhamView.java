@@ -10,6 +10,7 @@ import Services.SanPhamService;
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -21,18 +22,22 @@ public class SanPhamView extends javax.swing.JFrame {
 
     /**
      * Creates new form SanPhamView
-     */private SanPhamServiceInterface SanPhamService;
+     */
+    private SanPhamServiceInterface SanPhamService;
+
     public SanPhamView() {
         initComponents();
-               this.SanPhamService = new SanPhamService();
-         this.loadTableSanPham();
+        this.SanPhamService = new SanPhamService();
+        this.loadTableSanPham();
     }
-    void clear(){
-      txtIDsp1.setText("");
-      txtMaSP.setText("");
-      txtMoTaSP.setText("");
-      txtTenSP.setText("");
-  }
+
+    void clear() {
+        txtIDsp1.setText("");
+        txtMaSP.setText("");
+        txtMoTaSP.setText("");
+        txtTenSP.setText("");
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -251,8 +256,8 @@ public class SanPhamView extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-   
-      private void loadTableSanPham() {
+
+    private void loadTableSanPham() {
         DefaultTableModel modeltb = new DefaultTableModel();
         List<SanPham> sp = SanPhamService.all();
         modeltb = (DefaultTableModel) tbSP.getModel();
@@ -274,9 +279,9 @@ public class SanPhamView extends javax.swing.JFrame {
 
     private void txtTenSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenSPActionPerformed
         // TODO add your handling code here:
-        if(txtTenSP.getText().equals("")){
-            return; 
-        }else{
+        if (txtTenSP.getText().equals("")) {
+            return;
+        } else {
             for (int i = 0; i < 5 + 1; i++) {
                 Random rdm = new Random();
                 int rdmm = rdm.nextInt(100) + 1;
@@ -396,9 +401,14 @@ public class SanPhamView extends javax.swing.JFrame {
 
     private void btnXoa3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoa3ActionPerformed
         // TODO add your handling code here:
-        ChiTietSanPhamView ql=new ChiTietSanPhamView();
+        List<SanPham> sp1 = SanPhamService.all();
+        ChiTietSanPhamView.cbTenSP.setModel(new DefaultComboBoxModel((sp1.toArray())));
+
+        
+        ChiTietSanPhamView ql = new ChiTietSanPhamView();
         ql.setVisible(true);
         this.dispose();
+
     }//GEN-LAST:event_btnXoa3ActionPerformed
 
     /**

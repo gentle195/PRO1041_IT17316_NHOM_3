@@ -10,6 +10,7 @@ import Services.Interface.HangGiayServiceInterface;
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -22,19 +23,23 @@ public class HangGiayView extends javax.swing.JFrame {
     /**
      * Creates new form DeGiay
      */
-     private HangGiayServiceInterface hangGiayService;
+    
+    private HangGiayServiceInterface hangGiayService;
+
     public HangGiayView() {
-        
+
         initComponents();
-          this.hangGiayService = new HangGiayService();
-          this.loadTableHangGiay();
+        this.hangGiayService = new HangGiayService();
+        this.loadTableHangGiay();
     }
-    void clear(){
-      txtIDHang.setText("");
-      txtMaHang.setText("");
-      txtMoTaHang.setText("");
-      txtTenHang.setText("");
-  }
+
+    void clear() {
+        txtIDHang.setText("");
+        txtMaHang.setText("");
+        txtMoTaHang.setText("");
+        txtTenHang.setText("");
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -268,9 +273,9 @@ public class HangGiayView extends javax.swing.JFrame {
 
     private void txtTenHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenHangActionPerformed
         // TODO add your handling code here:
-        if(txtTenHang.getText().equals("")){
-            return; 
-        }else{
+        if (txtTenHang.getText().equals("")) {
+            return;
+        } else {
             for (int i = 0; i < 5 + 1; i++) {
                 Random rdm = new Random();
                 int rdmm = rdm.nextInt(100) + 1;
@@ -390,9 +395,14 @@ public class HangGiayView extends javax.swing.JFrame {
 
     private void btnXoa5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoa5ActionPerformed
         // TODO add your handling code here:
-        ChiTietSanPhamView ql=new ChiTietSanPhamView();
+        
+        List<HangGiay> hang = hangGiayService.all();
+        ChiTietSanPhamView.cbHang.setModel(new DefaultComboBoxModel((hang.toArray())));
+
+        ChiTietSanPhamView ql = new ChiTietSanPhamView();
         ql.setVisible(true);
         this.dispose();
+
     }//GEN-LAST:event_btnXoa5ActionPerformed
 
     /**

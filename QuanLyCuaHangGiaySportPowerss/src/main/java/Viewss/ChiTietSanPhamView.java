@@ -1341,12 +1341,12 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnXoa;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JComboBox<String> cbCL;
-    private javax.swing.JComboBox<String> cbDe;
-    private javax.swing.JComboBox<String> cbHang;
-    private javax.swing.JComboBox<String> cbLoai;
-    private javax.swing.JComboBox<String> cbSIZE;
-    private javax.swing.JComboBox<String> cbTenSP;
+    public static javax.swing.JComboBox<String> cbCL;
+    public static javax.swing.JComboBox<String> cbDe;
+    public static javax.swing.JComboBox<String> cbHang;
+    public static javax.swing.JComboBox<String> cbLoai;
+    public static javax.swing.JComboBox<String> cbSIZE;
+    public static javax.swing.JComboBox<String> cbTenSP;
     private javax.swing.JComboBox<String> cbbChatLieu;
     private javax.swing.JComboBox<String> cbbDe;
     private javax.swing.JComboBox<String> cbbHang;

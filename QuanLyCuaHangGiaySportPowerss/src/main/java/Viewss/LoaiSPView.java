@@ -10,6 +10,7 @@ import Services.LoaiGiayService;
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -22,11 +23,13 @@ public class LoaiSPView extends javax.swing.JFrame {
     /**
      * Creates new form LoaiSPView
      */
-     private LoaiGiayServiceInterface loaiGiayService;
+    
+    private LoaiGiayServiceInterface loaiGiayService;
+
     public LoaiSPView() {
         initComponents();
-         this.loaiGiayService = new LoaiGiayService();
-         this.loadTableLoaiGiay();
+        this.loaiGiayService = new LoaiGiayService();
+        this.loadTableLoaiGiay();
     }
 
     /**
@@ -253,12 +256,13 @@ public class LoaiSPView extends javax.swing.JFrame {
         }
 
     }
-    void clear(){
-      txtIDLoai.setText("");
-      txtMaLoai.setText("");
-      txtMoTaLoaiGiay.setText("");
-      txtTenLoai.setText("");
-  }
+
+    void clear() {
+        txtIDLoai.setText("");
+        txtMaLoai.setText("");
+        txtMoTaLoaiGiay.setText("");
+        txtTenLoai.setText("");
+    }
     private void txtIDLoaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDLoaiActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIDLoaiActionPerformed
@@ -269,9 +273,9 @@ public class LoaiSPView extends javax.swing.JFrame {
 
     private void txtTenLoaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenLoaiActionPerformed
         // TODO add your handling code here:
-        if(txtTenLoai.getText().equals("")){
-            return; 
-        }else{
+        if (txtTenLoai.getText().equals("")) {
+            return;
+        } else {
             for (int i = 0; i < 5 + 1; i++) {
                 Random rdm = new Random();
                 int rdmm = rdm.nextInt(100) + 1;
@@ -386,9 +390,13 @@ public class LoaiSPView extends javax.swing.JFrame {
 
     private void btnXoa6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoa6ActionPerformed
         // TODO add your handling code here:
-        ChiTietSanPhamView ql=new ChiTietSanPhamView();
+        
+        List<LoaiGiay> lg = loaiGiayService.all();
+        ChiTietSanPhamView.cbLoai.setModel(new DefaultComboBoxModel((lg.toArray())));
+        ChiTietSanPhamView ql = new ChiTietSanPhamView();
         ql.setVisible(true);
         this.dispose();
+
     }//GEN-LAST:event_btnXoa6ActionPerformed
 
     /**

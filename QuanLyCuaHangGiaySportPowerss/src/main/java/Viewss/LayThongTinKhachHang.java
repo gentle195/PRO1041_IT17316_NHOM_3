@@ -180,9 +180,10 @@ public class LayThongTinKhachHang extends javax.swing.JFrame {
         int row = tblKhachHang.getSelectedRow();
         KhachHang kh = listKH.get(row);
         String tenKH = kh.getHoTen();
-//        CardLayout layout = (CardLayout) pnlCacGiaoDien.getLayout();
-//        layout.show(pnlCacGiaoDien, "cardBanHang");
+        String SDT=kh.getSdt();
         QuanLyViews.txttenkh.setText(tenKH);
+        QuanLyViews.txtSDTKhachHang.setText(SDT);
+        this.dispose();
 
     }//GEN-LAST:event_btnXacNhanActionPerformed
 

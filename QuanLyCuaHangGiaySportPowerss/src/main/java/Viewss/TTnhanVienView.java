@@ -676,7 +676,7 @@ public class TTnhanVienView extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ID;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JComboBox<String> cbCV;
+    public static javax.swing.JComboBox<String> cbCV;
     private com.toedter.calendar.JDateChooser dateNSNV;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
