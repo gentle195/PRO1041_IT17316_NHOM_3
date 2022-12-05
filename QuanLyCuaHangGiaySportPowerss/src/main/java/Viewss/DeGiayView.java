@@ -10,6 +10,7 @@ import Services.Interface.DeGiayServiceInterface;
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -19,6 +20,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class DeGiayView extends javax.swing.JFrame {
 
+   
     private DeGiayServiceInterface deGiayService;
 
     /**
@@ -26,15 +28,18 @@ public class DeGiayView extends javax.swing.JFrame {
      */
     public DeGiayView() {
         initComponents();
+        
         this.deGiayService = new DeGiayService();
         this.loadTableDeGiay();
     }
-    void clear(){
-      txtIDDeGiay.setText("");
-      txtLoaiDe.setText("");
-      txtMaDe.setText("");
-      txtMoTaDe.setText("");
-  }
+
+    void clear() {
+        txtIDDeGiay.setText("");
+        txtLoaiDe.setText("");
+        txtMaDe.setText("");
+        txtMoTaDe.setText("");
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -277,9 +282,9 @@ public class DeGiayView extends javax.swing.JFrame {
 
     private void txtLoaiDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLoaiDeActionPerformed
         // TODO add your handling code here:
-        if(txtLoaiDe.getText().equals("")){
-            return; 
-        }else{
+        if (txtLoaiDe.getText().equals("")) {
+            return;
+        } else {
             for (int i = 0; i < 5 + 1; i++) {
                 Random rdm = new Random();
                 int rdmm = rdm.nextInt(100) + 1;
@@ -393,9 +398,13 @@ public class DeGiayView extends javax.swing.JFrame {
 
     private void btnXoa8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoa8ActionPerformed
         // TODO add your handling code here:
-        ChiTietSanPhamView ql=new ChiTietSanPhamView();
+
+        List<DeGiay> dg = deGiayService.all();
+        ChiTietSanPhamView.cbDe.setModel(new DefaultComboBoxModel((dg.toArray())));
+        ChiTietSanPhamView ql = new ChiTietSanPhamView();
         ql.setVisible(true);
         this.dispose();
+
     }//GEN-LAST:event_btnXoa8ActionPerformed
 
     /**

@@ -8,9 +8,11 @@ import DomainModels.ChucVu;
 import Services.ChucVuSevice;
 import Services.Interface.ChucVuServiceInterface;
 import Views.NhanVienView;
+import static Viewss.TTnhanVienView.cbCV;
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -315,6 +317,8 @@ private void loadTableChucVu() {
 
     private void btnXoa1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoa1ActionPerformed
         // TODO add your handling code here:
+        List<ChucVu> cv = cvService.getall();
+        cbCV.setModel(new DefaultComboBoxModel(cv.toArray()));
         NhanVienView ql=new NhanVienView();
         ql.setVisible(true);
         this.dispose();

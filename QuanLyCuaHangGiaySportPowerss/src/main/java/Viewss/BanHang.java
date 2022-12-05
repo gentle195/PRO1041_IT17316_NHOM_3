@@ -68,8 +68,6 @@ public class BanHang extends javax.swing.JPanel {
         loadTableHoaDonBanHang();
         loadTableChiTietSPBH(chiTietSPService.all());
         listsp = chiTietSPService.all();
-        
-      
 
     }
 
@@ -743,6 +741,9 @@ public class BanHang extends javax.swing.JPanel {
                 chiTietSPService.updatesl(CT, tbldssanpham.getValueAt(row, 0).toString());
                 loadTableChiTietSPBH(listsp);
                 addTableGioHang(listhdct);
+                if (tblgiohang.getRowCount() == 0) {
+                    txtThanhTien1.setText("0");
+                }
             } else if (slm > Integer.parseInt(tblgiohang.getValueAt(row, 2).toString())) {
                 JOptionPane.showMessageDialog(this, "Số lượng nhập lớn hơn trong giỏ hàng");
             } else {
@@ -823,15 +824,15 @@ public class BanHang extends javax.swing.JPanel {
         try {
             listhdct = (ArrayList<HoaDonChiTietViewModel>) banHangService.getListById(hoaDon.getMaHD());
         } catch (SQLException ex) {
-           ex.printStackTrace();
+            ex.printStackTrace();
         }
         int thanhtien = 0;
-         if (tblgiohang.getRowCount() > 0) {
-                    for (int i = 0; i < listhdct.size(); i++) {
-                        thanhtien = thanhtien + (listhdct.get(i).getSoLuong() * Integer.parseInt(listhdct.get(i).getDonGia().toString()));
-                    }
-                    txtThanhTien1.setText((String.valueOf(thanhtien)));
-                }
+        if (tblgiohang.getRowCount() > 0) {
+            for (int i = 0; i < listhdct.size(); i++) {
+                thanhtien = thanhtien + (listhdct.get(i).getSoLuong() * Integer.parseInt(listhdct.get(i).getDonGia().toString()));
+            }
+            txtThanhTien1.setText((String.valueOf(thanhtien)));
+        }
 
         addTableGioHang(listhdct);
 
@@ -884,7 +885,7 @@ public class BanHang extends javax.swing.JPanel {
         addTableGioHang(listhdct);
         clear();
     }//GEN-LAST:event_btnthanhtoan2ActionPerformed
-    void clear(){
+    void clear() {
         txtGhiChu1.setText("");
         txtKhachTra1.setText("");
         txtMaHdBH.setText("");

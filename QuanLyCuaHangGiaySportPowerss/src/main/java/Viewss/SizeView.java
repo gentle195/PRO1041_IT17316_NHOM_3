@@ -7,9 +7,11 @@ package Viewss;
 import DomainModels.Size;
 import Services.Interface.SizeServiceInterface;
 import Services.SizeService;
+import static Viewss.ChiTietSanPhamView.cbSIZE;
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -18,13 +20,13 @@ import javax.swing.table.DefaultTableModel;
  * @author TUAN ANH
  */
 public class SizeView extends javax.swing.JFrame {
-   private SizeServiceInterface sizeService;
+    private SizeServiceInterface sizeService;
     /**
      * Creates new form SizeView
      */
     public SizeView() {
         initComponents();
-          this.sizeService = new SizeService();
+        this.sizeService = new SizeService();
           this.loadTableSizeGiay();
     }
     void clear(){
@@ -372,9 +374,12 @@ public class SizeView extends javax.swing.JFrame {
 
     private void btnXoa7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoa7ActionPerformed
         // TODO add your handling code here:
+        List<Size> sz = sizeService.all();
+        cbSIZE.setModel(new DefaultComboBoxModel((sz.toArray())));
         ChiTietSanPhamView ql=new ChiTietSanPhamView();
         ql.setVisible(true);
         this.dispose();
+        
     }//GEN-LAST:event_btnXoa7ActionPerformed
 
     /**
