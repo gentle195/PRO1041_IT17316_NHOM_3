@@ -1234,11 +1234,11 @@ public class QuanLyViews extends javax.swing.JFrame {
 //        this.loadTableThongKeSanPham(listTKSP);
 //
 //        this.setDataToChart1(jpnTkHD);
+
         jPanel = new ThongKe();
         panelTong.removeAll();
         panelTong.add(jPanel);
         panelTong.validate();
-
     }//GEN-LAST:event_btnThongKeActionPerformed
 
     /**

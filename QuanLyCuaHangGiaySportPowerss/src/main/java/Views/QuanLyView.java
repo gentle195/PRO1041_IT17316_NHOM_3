@@ -142,6 +142,7 @@ public class QuanLyView extends javax.swing.JFrame {
         this.loadTableNhanVien();
         this.loadTableHoaDonBanHang();
         this.loadTableHoaDon();
+                this.setDataToChart1(jpnTkHD);
 
 //        this.loadCBChatLieu();
 //        this.loadCBDe();
@@ -187,6 +188,7 @@ public class QuanLyView extends javax.swing.JFrame {
         tblKH.setModel(dtmKH);
         Object[] header = {"Mã", "Họ tên", "Giới tính", "Ngày sinh", "SĐT", "Địa chỉ"};
         dtmKH.setColumnIdentifiers(header);
+        
         tblTkHD.setModel(dtmTKHD);
         tblTkSP.setModel(dtmTKSP);
         Object[] headers = {"STT", "Ngay", "Tong hoa don", "Tong doanh thu"};
@@ -5337,7 +5339,7 @@ public class QuanLyView extends javax.swing.JFrame {
         listTKSP = serviceTK.thongKeSP();
         this.loadTableThongKeSanPham(listTKSP);
 
-        this.setDataToChart1(jpnTkHD);
+
     }//GEN-LAST:event_btnThongKeActionPerformed
 
     private void btnDangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangXuatActionPerformed
