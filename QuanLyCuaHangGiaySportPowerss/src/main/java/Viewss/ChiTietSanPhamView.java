@@ -66,7 +66,7 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
         this.sizeService = new SizeService();
         this.chiTietSPService = new ChiTietSPService();
         list = chiTietSPService.all();
-        
+
         List<SanPham> sp = SanPhamService.all();
         cbTenSP.setModel(new DefaultComboBoxModel((sp.toArray())));
 
@@ -100,8 +100,7 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
 
         List<Size> szz = sizeService.all();
         cbbSize.setModel(new DefaultComboBoxModel((szz.toArray())));
-        
-        
+
         AutoCompleteDecorator.decorate(cbCL);
         AutoCompleteDecorator.decorate(cbTenSP);
         AutoCompleteDecorator.decorate(cbDe);
@@ -138,7 +137,8 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
 
         loadTableChiTietSP(l);
     }
-    void clear(){
+
+    void clear() {
         txtDonGia.setText("");
         txtID.setText("");
         txtMaSP.setText("");
@@ -146,6 +146,7 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
         txtSoLuongSP.setText("");
         txtTrongLuong.setText("");
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -429,9 +430,9 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
                             .addComponent(lblMaSp3)
                             .addComponent(lblMaSp6))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                        .addGroup(jPanel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtID)
-                            .addComponent(cbTenSP, 0, 164, Short.MAX_VALUE))))
+                        .addGroup(jPanel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtID, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbTenSP, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(updatesp2)
@@ -477,7 +478,7 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
                         .addGroup(jPanel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblMaSp6))
-                        .addGap(21, 21, 21)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel31Layout.createSequentialGroup()
                                 .addGroup(jPanel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -628,8 +629,6 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
                 cbbSizeActionPerformed(evt);
             }
         });
-
-        jComboBox14.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất cả", "Còn Hàng", "Hết Hàng" }));
 
         lblDanhMuc8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblDanhMuc8.setText("Loại");
@@ -1031,8 +1030,7 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
 
             }
         }
-        loadTableChiTietSP(chiTietSPService.all());
-
+//        loadTableChiTietSP(chiTietSPService.all());
     }//GEN-LAST:event_cbTenSPActionPerformed
 
     private void txtTrongLuongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTrongLuongActionPerformed
@@ -1062,10 +1060,10 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
     }//GEN-LAST:event_txtMaSPActionPerformed
 
     private void updatespActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatespActionPerformed
-        
+
         SanPhamView sp = new SanPhamView();
         sp.setVisible(true);
-        
+
         List<SanPham> sp1 = SanPhamService.all();
         cbTenSP.setModel(new DefaultComboBoxModel((sp1.toArray())));
 
@@ -1083,7 +1081,7 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
 
         List<Size> sz = sizeService.all();
         cbSIZE.setModel(new DefaultComboBoxModel((sz.toArray())));
-        
+
     }//GEN-LAST:event_updatespActionPerformed
 
     private void updatesp2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatesp2ActionPerformed
@@ -1253,26 +1251,27 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
         List<SanPham> sp = SanPhamService.all();
         int row = tblQLSP.getSelectedRow();
         txtID.setText(tblQLSP.getValueAt(row, 0).toString());
-        if (tblQLSP.getValueAt(row, 1) == null) {
-            JOptionPane.showMessageDialog(this, "Nhân viên không có chức vụ ");
-            cbTenSP.setSelectedIndex(0);
-        } else {
-            for (int j = 0; j < sp.size(); j++) {
-                if (sp.get(j).getMaSP().equalsIgnoreCase(tblQLSP.getValueAt(row, 1).toString())) {
-                    cbTenSP.setSelectedIndex(j);
-                }
-            }
-        }
-        if (tblQLSP.getValueAt(row, 2) == null) {
-            JOptionPane.showMessageDialog(this, "Nhân viên không có chức vụ ");
-            cbTenSP.setSelectedIndex(0);
-        } else {
-            for (int j = 0; j < sp.size(); j++) {
-                if (sp.get(j).getTenSP().equalsIgnoreCase(tblQLSP.getValueAt(row, 2).toString())) {
-                    cbTenSP.setSelectedIndex(j);
-                }
-            }
-        }
+        cbTenSP.setSelectedItem(tblQLSP.getValueAt(row, 2).toString());
+//        if (tblQLSP.getValueAt(row, 1) == null) {
+//            JOptionPane.showMessageDialog(this, "Nhân viên không có chức vụ ");
+//            cbTenSP.setSelectedIndex(0);
+//        } else {
+//            for (int j = 0; j < sp.size(); j++) {
+//                if (sp.get(j).getMaSP().equalsIgnoreCase(tblQLSP.getValueAt(row, 1).toString())) {
+//                    cbTenSP.setSelectedIndex(j);
+//                }
+//            }
+//        }
+//        if (tblQLSP.getValueAt(row, 2) == null) {
+//            JOptionPane.showMessageDialog(this, "Nhân viên không có chức vụ ");
+//            cbTenSP.setSelectedIndex(0);
+//        } else {
+//            for (int j = 0; j < sp.size(); j++) {
+//                if (sp.get(j).getTenSP().equalsIgnoreCase(tblQLSP.getValueAt(row, 2).toString())) {
+//                    cbTenSP.setSelectedIndex(j);
+//                }
+//            }
+//        }
         if (tblQLSP.getValueAt(row, 3) == null) {
             JOptionPane.showMessageDialog(this, "Nhân viên không có chức vụ ");
             cbSIZE.setSelectedIndex(0);
