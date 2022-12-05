@@ -4,14 +4,11 @@
  */
 package Viewss;
 
-import Views.*;
 import DomainModels.Login_Result;
 import DomainModels.TaiKhoan;
 import Services.LoginServiceImpl;
 import Services.Interface.LoginService;
-import Views.NhanVienView;
-import Views.QuanLyView;
-import java.util.List;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -19,9 +16,9 @@ import javax.swing.JOptionPane;
  * @author Admin
  */
 public class giaoDienDangNhap extends javax.swing.JFrame {
-
+    
     private LoginService service = new LoginServiceImpl();
-
+    
     public giaoDienDangNhap() {
         initComponents();
     }
@@ -144,12 +141,13 @@ public class giaoDienDangNhap extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
-        TaiKhoan user =new TaiKhoan();
+        TaiKhoan user = new TaiKhoan();
         String username = txtMa.getText();
         String password = new String(txtMK.getPassword());
         Login_Result result = service.doLogin(username, password);
-        if (result.getStatus().equals(Boolean.TRUE)) {
+        if (result.getStatus().equals(Boolean.TRUE)) {        
             this.dispose();
+            QuanLyViews.txtMaNhanVien.setText(username);
         } else {
             JOptionPane.showMessageDialog(this, result.getMessage());
         }

@@ -62,6 +62,7 @@ public class TTnhanVienView extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         panel3 = new java.awt.Panel();
         jPanel34 = new javax.swing.JPanel();
         jLabel26 = new javax.swing.JLabel();
@@ -149,6 +150,7 @@ public class TTnhanVienView extends javax.swing.JPanel {
             }
         });
 
+        buttonGroup1.add(rdNamNV);
         rdNamNV.setText("NAM");
         rdNamNV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -158,6 +160,7 @@ public class TTnhanVienView extends javax.swing.JPanel {
 
         jLabel49.setText("HỌ VÀ TÊN");
 
+        buttonGroup1.add(rdNuNV);
         rdNuNV.setText("NỮ");
 
         jButton4.setText("+");
@@ -372,7 +375,7 @@ public class TTnhanVienView extends javax.swing.JPanel {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, true
+                false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -482,8 +485,8 @@ public class TTnhanVienView extends javax.swing.JPanel {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-ChucVuView cv = new ChucVuView();
-cv.setVisible(true);
+        ChucVuView cv = new ChucVuView();
+        cv.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void txtMaNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaNhanVienActionPerformed
@@ -583,7 +586,7 @@ cv.setVisible(true);
             try {
                 nvService.update(nv);
             } catch (Exception ex) {
-               ex.printStackTrace();
+                ex.printStackTrace();
             }
             JOptionPane.showMessageDialog(this, "Sửa thành công");
         } else if (bb == JOptionPane.NO_OPTION) {
@@ -597,7 +600,7 @@ cv.setVisible(true);
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
         // TODO add your handling code here:
-         int row = tbNhanVien.getSelectedRow();
+        int row = tbNhanVien.getSelectedRow();
         if (row == -1) {
             JOptionPane.showMessageDialog(this, "Vui lòng chọn vào trong bảng");
             return;
@@ -620,7 +623,7 @@ cv.setVisible(true);
             try {
                 nvService.delete(nv);
             } catch (Exception ex) {
-               ex.printStackTrace();
+                ex.printStackTrace();
             }
             JOptionPane.showMessageDialog(this, "Xoá thành công");
         } else if (bb == JOptionPane.NO_OPTION) {
@@ -660,6 +663,7 @@ cv.setVisible(true);
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ID;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cbCV;
     private com.toedter.calendar.JDateChooser dateNSNV;
     private javax.swing.JButton jButton13;
