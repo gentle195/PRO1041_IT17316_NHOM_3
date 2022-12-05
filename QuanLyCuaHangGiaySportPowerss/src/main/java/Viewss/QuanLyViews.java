@@ -44,9 +44,9 @@ import javax.swing.JPanel;
  * @author dinhq
  */
 public class QuanLyViews extends javax.swing.JFrame {
-    
+
     JPanel jPanel;
-    
+
     private ChiTietSPServiceInterface chiTietSPService;
     private BanHangServiceInterface banHangService;
     private HoaDonServiceInterface hoaDonService;
@@ -91,7 +91,7 @@ public class QuanLyViews extends javax.swing.JFrame {
                 hoaDon.getTinhTrang() == 0 ? "Chờ xử lý" : "Ðã thanh toán"});
         }
     }
-    
+
     private void loadTableChiTietSPBH() {
         List<ChiTietSPViewModel> Sz = chiTietSPService.all();
         dtmSpBH = (DefaultTableModel) tbldssanpham.getModel();
@@ -102,7 +102,7 @@ public class QuanLyViews extends javax.swing.JFrame {
                 x.getSoLuong(), x.getTrangThai() == 0 ? "Còn Hàng" : "Hết Hàng"});
         }
     }
-    
+
     private void addTableGioHang(ArrayList<HoaDonChiTietViewModel> list) {
         DefaultTableModel modeltb = new DefaultTableModel();
         modeltb = (DefaultTableModel) tblgiohang.getModel();
@@ -124,6 +124,7 @@ public class QuanLyViews extends javax.swing.JFrame {
         btnSanPham = new javax.swing.JButton();
         btnNhanVien = new javax.swing.JButton();
         btnKhachHang = new javax.swing.JButton();
+        btnThongKe = new javax.swing.JButton();
         btnDangXuat = new javax.swing.JButton();
         panelTong = new javax.swing.JPanel();
         pnlBanHang = new javax.swing.JPanel();
@@ -236,6 +237,17 @@ public class QuanLyViews extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnKhachHang);
+
+        btnThongKe.setBackground(new java.awt.Color(204, 255, 255));
+        btnThongKe.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        btnThongKe.setText("Thống kê");
+        btnThongKe.setPreferredSize(new java.awt.Dimension(170, 50));
+        btnThongKe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThongKeActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnThongKe);
 
         btnDangXuat.setBackground(new java.awt.Color(204, 255, 255));
         btnDangXuat.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
@@ -765,7 +777,7 @@ public class QuanLyViews extends javax.swing.JFrame {
                 .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, 789, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel54, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(388, Short.MAX_VALUE))
+                .addContainerGap(740, Short.MAX_VALUE))
         );
         pnlBanHangLayout.setVerticalGroup(
             pnlBanHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -853,7 +865,7 @@ public class QuanLyViews extends javax.swing.JFrame {
         int slm = Integer.valueOf(sl);
         HoaDonChiTiet hd = new HoaDonChiTiet();
         int row = tblgiohang.getSelectedRow();
-        
+
         try {
             if (slm < Integer.parseInt(tblgiohang.getValueAt(row, 2).toString())) {
                 for (int i = 0; i < listhdct.size(); i++) {
@@ -891,11 +903,11 @@ public class QuanLyViews extends javax.swing.JFrame {
                             }
                         }
                     }
-                    
+
                     loadTableChiTietSPBH();
                     addTableGioHang(listhdct);
                 }
-                
+
                 loadTableChiTietSPBH();
                 addTableGioHang(listhdct);
             } else if (slm > Integer.parseInt(tblgiohang.getValueAt(row, 2).toString())) {
@@ -949,7 +961,7 @@ public class QuanLyViews extends javax.swing.JFrame {
             hd.setDonGia((BigDecimal) tbldssanpham.getValueAt(row, 2));
             listhdct.add(chiTietHoaDonViewModel);
             listhdctt.add(hd);
-            
+
             try {
                 chiTietSPService.updatesl(CT, tbldssanpham.getValueAt(row, 0).toString());
                 addTableGioHang(listhdct);
@@ -974,10 +986,10 @@ public class QuanLyViews extends javax.swing.JFrame {
         int row = tbHoaDonBanHang.getSelectedRow();
         txtMaHdBH.setText(tbHoaDonBanHang.getValueAt(row, 0).toString());
         LBtime.setText(tbHoaDonBanHang.getValueAt(row, 1).toString());
-        
+
         int row1 = tbHoaDonBanHang.getSelectedRow();
         HoaDonBanHangViewModel hoaDon = banHangService.allHoaDonCho().get(row1);
-        
+
         try {
             listhdct = (ArrayList<HoaDonChiTietViewModel>) banHangService.getListById(hoaDon.getMaHD());
         } catch (SQLException ex) {
@@ -990,7 +1002,7 @@ public class QuanLyViews extends javax.swing.JFrame {
             }
             txtThanhTien1.setText((String.valueOf(thanhtien)));
         }
-        
+
         addTableGioHang(listhdct);
     }//GEN-LAST:event_tbHoaDonBanHangMouseClicked
 
@@ -1006,7 +1018,7 @@ public class QuanLyViews extends javax.swing.JFrame {
         //        showDataKH(listKH);
         //        KH1 kh = new KH1();
         //        kh.setVisible(true);
-        
+
         LayThongTinKhachHang l = new LayThongTinKhachHang();
         l.setVisible(true);
     }//GEN-LAST:event_btnxacnhan1ActionPerformed
@@ -1022,10 +1034,10 @@ public class QuanLyViews extends javax.swing.JFrame {
         }
         String ma = txtSDTKhachHang.getText();
         String ma1 = txtMaNhanVien.getText();
-        
+
         hd.setMaHD(txtMaHdBH.getText());
         hd.setNgayThanhToan(new Date());
-        
+
         if (rdTienMat.isSelected()) {
             hd.setPTGD(0);
         } else {
@@ -1039,7 +1051,7 @@ public class QuanLyViews extends javax.swing.JFrame {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        
+
         Document document = new Document();
 //        Font f = new Font();
 //        f.setStyle(Font.BOLD);
@@ -1051,16 +1063,16 @@ public class QuanLyViews extends javax.swing.JFrame {
                 //open
                 document.open();
                 Paragraph p = new Paragraph();
-                
+
                 p.add("Biên Lai");
                 p.setAlignment(Element.ALIGN_CENTER);
-                
+
                 document.add(p);
-                
+
                 Paragraph p2 = new Paragraph();
                 p2.add("Mã HD             :         " + txtMaHdBH.getText()); //no alignment
                 document.add(p2);
-                
+
                 Paragraph p3 = new Paragraph();
                 p3.add("Mã NV             :         " + txtMaNhanVien.getText()); //no alignment
                 document.add(p3);
@@ -1073,26 +1085,26 @@ public class QuanLyViews extends javax.swing.JFrame {
                 Paragraph p6 = new Paragraph();
                 p6.add("So Dien Thoai     :         " + txtSDTKhachHang.getText()); //no alignment
                 document.add(p6);
-                
+
                 Paragraph p7 = new Paragraph();
                 p7.add("Giao Dich         :         " + phuongthucthanhtoan()); //no alignment
                 document.add(p7);
-                
+
                 Paragraph p9 = new Paragraph();
                 p9.add("Tien Khach Tra    :          " + txtKhachTra1.getText()); //no alignment
                 document.add(p9);
-                
+
                 Paragraph p10 = new Paragraph();
                 p10.add("Tien Du          :          " + txtTienDu1.getText()); //no alignment
                 document.add(p10);
-                
+
                 Paragraph p8 = new Paragraph();
                 p8.add("Tong Tien         :          " + txtThanhTien1.getText()); //no alignment
                 document.add(p8);
-                
+
                 document.close();
                 System.out.println("In thành công");
-                
+
             } catch (FileNotFoundException | DocumentException e) {
                 e.printStackTrace();
             } catch (IOException e) {
@@ -1101,7 +1113,7 @@ public class QuanLyViews extends javax.swing.JFrame {
         } else if (tb == JOptionPane.NO_OPTION) {
             return;
         }
-        
+
         listhdct.clear();
         //        loadTableHoaDon();
         loadTableHoaDonBanHang();
@@ -1186,7 +1198,7 @@ public class QuanLyViews extends javax.swing.JFrame {
         for (int j = 0; j < sp.size(); j++) {
             if (sp.get(j).getSdt().equalsIgnoreCase(txtSDTKhachHang.getText())) {
                 txttenkh.setText(sp.get(j).getHoTen());
-                
+
             }
         }
     }//GEN-LAST:event_txtSDTKhachHangCaretUpdate
@@ -1195,7 +1207,7 @@ public class QuanLyViews extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSDTKhachHangActionPerformed
     private static final String FILE_NAME = "D:/itext.pdf";
-    
+
     public String phuongthucthanhtoan() {
         HoaDon hd = new HoaDon();
         if (rdTienMat.isSelected()) {
@@ -1203,13 +1215,31 @@ public class QuanLyViews extends javax.swing.JFrame {
         } else {
             return "Chuyển Khoản";
         }
-        
+
     }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
 
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnThongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThongKeActionPerformed
+        // TODO add your handling code here:
+//        CardLayout layout = (CardLayout) pnlCacGiaoDien.getLayout();
+//        layout.show(pnlCacGiaoDien, "cardThongKe");
+//        listTKHD = serviceTK.thongKeHD();
+//        this.loadTableThongKeHoaDon(listTKHD);
+//
+//        listTKSP = serviceTK.thongKeSP();
+//        this.loadTableThongKeSanPham(listTKSP);
+//
+//        this.setDataToChart1(jpnTkHD);
+        jPanel = new ThongKe();
+        panelTong.removeAll();
+        panelTong.add(jPanel);
+        panelTong.validate();
+
+    }//GEN-LAST:event_btnThongKeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1254,6 +1284,7 @@ public class QuanLyViews extends javax.swing.JFrame {
     private javax.swing.JButton btnKhachHang;
     private javax.swing.JButton btnNhanVien;
     private javax.swing.JButton btnSanPham;
+    private javax.swing.JButton btnThongKe;
     private javax.swing.JButton btnback;
     private javax.swing.JButton btnhuyhd;
     private javax.swing.JButton btnnext;

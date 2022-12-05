@@ -1030,7 +1030,7 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
 
             }
         }
-//        loadTableChiTietSP(chiTietSPService.all());
+
     }//GEN-LAST:event_cbTenSPActionPerformed
 
     private void txtTrongLuongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTrongLuongActionPerformed
