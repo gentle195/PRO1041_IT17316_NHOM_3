@@ -44,9 +44,9 @@ import javax.swing.JPanel;
  * @author dinhq
  */
 public class QuanLyViews extends javax.swing.JFrame {
-
+    
     JPanel jPanel;
-
+    
     private ChiTietSPServiceInterface chiTietSPService;
     private BanHangServiceInterface banHangService;
     private HoaDonServiceInterface hoaDonService;
@@ -57,6 +57,7 @@ public class QuanLyViews extends javax.swing.JFrame {
     ArrayList<HoaDonChiTiet> listhdctt = new ArrayList<>();
     List<ChiTietSPViewModel> listsp;
     ChiTietSP CT = new ChiTietSP();
+
     /**
      * Creates new form QuanLyViews
      */
@@ -90,7 +91,7 @@ public class QuanLyViews extends javax.swing.JFrame {
                 hoaDon.getTinhTrang() == 0 ? "Chờ xử lý" : "Ðã thanh toán"});
         }
     }
-
+    
     private void loadTableChiTietSPBH() {
         List<ChiTietSPViewModel> Sz = chiTietSPService.all();
         dtmSpBH = (DefaultTableModel) tbldssanpham.getModel();
@@ -101,7 +102,7 @@ public class QuanLyViews extends javax.swing.JFrame {
                 x.getSoLuong(), x.getTrangThai() == 0 ? "Còn Hàng" : "Hết Hàng"});
         }
     }
-
+    
     private void addTableGioHang(ArrayList<HoaDonChiTietViewModel> list) {
         DefaultTableModel modeltb = new DefaultTableModel();
         modeltb = (DefaultTableModel) tblgiohang.getModel();
@@ -177,6 +178,8 @@ public class QuanLyViews extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(0, 204, 204));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.setPreferredSize(new java.awt.Dimension(210, 549));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon("D:\\GitHub\\PRO1041_IT17316_NHOM_3\\QuanLyCuaHangGiaySportPowers\\PRO1041_IT17316_NHOM_3\\QuanLyCuaHangGiaySportPowerss\\src\\main\\java\\icon\\rsz_21artboard_1.png")); // NOI18N
         jPanel1.add(jLabel1);
 
         btnBanHang2.setBackground(new java.awt.Color(204, 255, 255));
@@ -850,7 +853,7 @@ public class QuanLyViews extends javax.swing.JFrame {
         int slm = Integer.valueOf(sl);
         HoaDonChiTiet hd = new HoaDonChiTiet();
         int row = tblgiohang.getSelectedRow();
-
+        
         try {
             if (slm < Integer.parseInt(tblgiohang.getValueAt(row, 2).toString())) {
                 for (int i = 0; i < listhdct.size(); i++) {
@@ -888,11 +891,11 @@ public class QuanLyViews extends javax.swing.JFrame {
                             }
                         }
                     }
-
+                    
                     loadTableChiTietSPBH();
                     addTableGioHang(listhdct);
                 }
-
+                
                 loadTableChiTietSPBH();
                 addTableGioHang(listhdct);
             } else if (slm > Integer.parseInt(tblgiohang.getValueAt(row, 2).toString())) {
@@ -946,7 +949,7 @@ public class QuanLyViews extends javax.swing.JFrame {
             hd.setDonGia((BigDecimal) tbldssanpham.getValueAt(row, 2));
             listhdct.add(chiTietHoaDonViewModel);
             listhdctt.add(hd);
-
+            
             try {
                 chiTietSPService.updatesl(CT, tbldssanpham.getValueAt(row, 0).toString());
                 addTableGioHang(listhdct);
@@ -971,10 +974,10 @@ public class QuanLyViews extends javax.swing.JFrame {
         int row = tbHoaDonBanHang.getSelectedRow();
         txtMaHdBH.setText(tbHoaDonBanHang.getValueAt(row, 0).toString());
         LBtime.setText(tbHoaDonBanHang.getValueAt(row, 1).toString());
-
+        
         int row1 = tbHoaDonBanHang.getSelectedRow();
         HoaDonBanHangViewModel hoaDon = banHangService.allHoaDonCho().get(row1);
-
+        
         try {
             listhdct = (ArrayList<HoaDonChiTietViewModel>) banHangService.getListById(hoaDon.getMaHD());
         } catch (SQLException ex) {
@@ -987,7 +990,7 @@ public class QuanLyViews extends javax.swing.JFrame {
             }
             txtThanhTien1.setText((String.valueOf(thanhtien)));
         }
-
+        
         addTableGioHang(listhdct);
     }//GEN-LAST:event_tbHoaDonBanHangMouseClicked
 
@@ -1003,6 +1006,9 @@ public class QuanLyViews extends javax.swing.JFrame {
         //        showDataKH(listKH);
         //        KH1 kh = new KH1();
         //        kh.setVisible(true);
+        
+        LayThongTinKhachHang l = new LayThongTinKhachHang();
+        l.setVisible(true);
     }//GEN-LAST:event_btnxacnhan1ActionPerformed
 
     private void btnthanhtoan2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnthanhtoan2ActionPerformed
@@ -1016,10 +1022,10 @@ public class QuanLyViews extends javax.swing.JFrame {
         }
         String ma = txtSDTKhachHang.getText();
         String ma1 = txtMaNhanVien.getText();
-
+        
         hd.setMaHD(txtMaHdBH.getText());
         hd.setNgayThanhToan(new Date());
-
+        
         if (rdTienMat.isSelected()) {
             hd.setPTGD(0);
         } else {
@@ -1033,7 +1039,7 @@ public class QuanLyViews extends javax.swing.JFrame {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-
+        
         Document document = new Document();
 //        Font f = new Font();
 //        f.setStyle(Font.BOLD);
@@ -1045,16 +1051,16 @@ public class QuanLyViews extends javax.swing.JFrame {
                 //open
                 document.open();
                 Paragraph p = new Paragraph();
-
+                
                 p.add("Biên Lai");
                 p.setAlignment(Element.ALIGN_CENTER);
-
+                
                 document.add(p);
-
+                
                 Paragraph p2 = new Paragraph();
                 p2.add("Mã HD             :         " + txtMaHdBH.getText()); //no alignment
                 document.add(p2);
-
+                
                 Paragraph p3 = new Paragraph();
                 p3.add("Mã NV             :         " + txtMaNhanVien.getText()); //no alignment
                 document.add(p3);
@@ -1067,26 +1073,26 @@ public class QuanLyViews extends javax.swing.JFrame {
                 Paragraph p6 = new Paragraph();
                 p6.add("So Dien Thoai     :         " + txtSDTKhachHang.getText()); //no alignment
                 document.add(p6);
-
+                
                 Paragraph p7 = new Paragraph();
                 p7.add("Giao Dich         :         " + phuongthucthanhtoan()); //no alignment
                 document.add(p7);
-
+                
                 Paragraph p9 = new Paragraph();
                 p9.add("Tien Khach Tra    :          " + txtKhachTra1.getText()); //no alignment
                 document.add(p9);
-
+                
                 Paragraph p10 = new Paragraph();
                 p10.add("Tien Du          :          " + txtTienDu1.getText()); //no alignment
                 document.add(p10);
-
+                
                 Paragraph p8 = new Paragraph();
                 p8.add("Tong Tien         :          " + txtThanhTien1.getText()); //no alignment
                 document.add(p8);
-
+                
                 document.close();
                 System.out.println("In thành công");
-
+                
             } catch (FileNotFoundException | DocumentException e) {
                 e.printStackTrace();
             } catch (IOException e) {
@@ -1095,7 +1101,7 @@ public class QuanLyViews extends javax.swing.JFrame {
         } else if (tb == JOptionPane.NO_OPTION) {
             return;
         }
-
+        
         listhdct.clear();
         //        loadTableHoaDon();
         loadTableHoaDonBanHang();
@@ -1180,7 +1186,7 @@ public class QuanLyViews extends javax.swing.JFrame {
         for (int j = 0; j < sp.size(); j++) {
             if (sp.get(j).getSdt().equalsIgnoreCase(txtSDTKhachHang.getText())) {
                 txttenkh.setText(sp.get(j).getHoTen());
-
+                
             }
         }
     }//GEN-LAST:event_txtSDTKhachHangCaretUpdate
@@ -1189,7 +1195,7 @@ public class QuanLyViews extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSDTKhachHangActionPerformed
     private static final String FILE_NAME = "D:/itext.pdf";
-
+    
     public String phuongthucthanhtoan() {
         HoaDon hd = new HoaDon();
         if (rdTienMat.isSelected()) {
@@ -1197,7 +1203,7 @@ public class QuanLyViews extends javax.swing.JFrame {
         } else {
             return "Chuyển Khoản";
         }
-
+        
     }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -1293,7 +1299,7 @@ public class QuanLyViews extends javax.swing.JFrame {
     private javax.swing.JTextField txtSDTKhachHang;
     private javax.swing.JTextField txtThanhTien1;
     private javax.swing.JLabel txtTienDu1;
-    private javax.swing.JTextField txttenkh;
+    public static javax.swing.JTextField txttenkh;
     private javax.swing.JTextField txttimkiem;
     // End of variables declaration//GEN-END:variables
 }
