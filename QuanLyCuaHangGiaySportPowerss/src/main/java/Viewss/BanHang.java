@@ -847,8 +847,8 @@ public class BanHang extends javax.swing.JPanel {
 //        layout.show(pnlCacGiaoDien, "cardLayThongTin");
 //        listKH = serviceKH.getAll();
 //        showDataKH(listKH);
-        //        KH1 kh = new KH1();
-        //        kh.setVisible(true);
+//                KH1 kh = new KH1();
+//                kh.setVisible(true);
     }//GEN-LAST:event_btnxacnhan1ActionPerformed
 
     private void btnthanhtoan2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnthanhtoan2ActionPerformed
@@ -880,12 +880,21 @@ public class BanHang extends javax.swing.JPanel {
             ex.printStackTrace();
         }
         listhdct.clear();
-//        loadTableHoaDon();
         loadTableHoaDonBanHang();
         addTableGioHang(listhdct);
-
+        clear();
     }//GEN-LAST:event_btnthanhtoan2ActionPerformed
-
+    void clear(){
+        txtGhiChu1.setText("");
+        txtKhachTra1.setText("");
+        txtMaHdBH.setText("");
+        txtMaNhanVienBanHang.setText("");
+        txtSDTKhachHang.setText("");
+        txtThanhTien1.setText("");
+        txtTienDu1.setText("");
+        txttenkh.setText("");
+        LBtime.setText("");
+    }
     private void txtKhachTra1CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtKhachTra1CaretUpdate
         // TODO add your handling code here:
         if (txtKhachTra1.getText().equalsIgnoreCase("")) {

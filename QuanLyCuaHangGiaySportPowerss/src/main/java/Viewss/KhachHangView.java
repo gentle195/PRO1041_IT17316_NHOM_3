@@ -9,6 +9,7 @@ import Services.Interface.KhachHangServiceInterface;
 import Services.KhachHangService;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -121,6 +122,8 @@ public class KhachHangView extends javax.swing.JPanel {
         jLabel37.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel37.setText("Mã khách hàng");
 
+        txtMaKH.setEditable(false);
+
         jLabel38.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel38.setText("Tên khách hàng");
 
@@ -129,6 +132,12 @@ public class KhachHangView extends javax.swing.JPanel {
 
         jLabel40.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel40.setText("Số điện thoại");
+
+        txtTenKH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTenKHActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(rdNam);
         rdNam.setSelected(true);
@@ -509,6 +518,19 @@ public class KhachHangView extends javax.swing.JPanel {
         }
         LoadataTableKH(kh);
     }//GEN-LAST:event_txtSearchCaretUpdate
+
+    private void txtTenKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenKHActionPerformed
+        // TODO add your handling code here:
+        if(txtTenKH.getText().equals("")){
+            return; 
+        }else{
+            for (int i = 0; i < 5 + 1; i++) {
+                Random rdm = new Random();
+                int rdmm = rdm.nextInt(100) + 1;
+                txtMaKH.setText("KH" + rdmm);
+            }
+        }
+    }//GEN-LAST:event_txtTenKHActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

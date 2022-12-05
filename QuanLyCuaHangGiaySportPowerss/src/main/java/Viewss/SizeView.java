@@ -8,6 +8,7 @@ import DomainModels.Size;
 import Services.Interface.SizeServiceInterface;
 import Services.SizeService;
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -26,7 +27,11 @@ public class SizeView extends javax.swing.JFrame {
           this.sizeService = new SizeService();
           this.loadTableSizeGiay();
     }
-
+    void clear(){
+      txtIDSIZE.setText("");
+      txtMaSIZE.setText("");
+      txtSoSize.setText("");
+  }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -48,6 +53,7 @@ public class SizeView extends javax.swing.JFrame {
         btnXoa6 = new javax.swing.JButton();
         jScrollPane18 = new javax.swing.JScrollPane();
         tbSIZE = new javax.swing.JTable();
+        btnXoa7 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -67,6 +73,7 @@ public class SizeView extends javax.swing.JFrame {
         lblMaSp33.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblMaSp33.setText("Mã SIZE");
 
+        txtMaSIZE.setEditable(false);
         txtMaSIZE.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtMaSIZEActionPerformed(evt);
@@ -127,6 +134,15 @@ public class SizeView extends javax.swing.JFrame {
         });
         jScrollPane18.setViewportView(tbSIZE);
 
+        btnXoa7.setBackground(new java.awt.Color(204, 204, 204));
+        btnXoa7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnXoa7.setText("Exit");
+        btnXoa7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoa7ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel50Layout = new javax.swing.GroupLayout(jPanel50);
         jPanel50.setLayout(jPanel50Layout);
         jPanel50Layout.setHorizontalGroup(
@@ -147,10 +163,12 @@ public class SizeView extends javax.swing.JFrame {
                                 .addComponent(lblMaSp33)
                                 .addGap(21, 21, 21)
                                 .addComponent(txtMaSIZE, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel50Layout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel50Layout.createSequentialGroup()
                                 .addComponent(lblMaSp34)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtSoSize, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(25, 25, 25)
+                                .addGroup(jPanel50Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtSoSize)
+                                    .addComponent(btnXoa7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
                         .addGroup(jPanel50Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnXoa6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -180,7 +198,9 @@ public class SizeView extends javax.swing.JFrame {
                         .addComponent(btnSua6)
                         .addGap(33, 33, 33)
                         .addComponent(btnXoa6)))
-                .addGap(68, 68, 68)
+                .addGap(18, 18, 18)
+                .addComponent(btnXoa7)
+                .addGap(28, 28, 28)
                 .addComponent(jScrollPane18, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(44, Short.MAX_VALUE))
         );
@@ -227,6 +247,15 @@ public class SizeView extends javax.swing.JFrame {
 
     private void txtSoSizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSoSizeActionPerformed
         // TODO add your handling code here:
+        if(txtSoSize.getText().equals("")){
+            return; 
+        }else{
+            for (int i = 0; i < 5 + 1; i++) {
+                Random rdm = new Random();
+                int rdmm = rdm.nextInt(100) + 1;
+                txtMaSIZE.setText("S" + rdmm);
+            }
+        }
     }//GEN-LAST:event_txtSoSizeActionPerformed
 
     private void btnThem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThem6ActionPerformed
@@ -261,7 +290,7 @@ public class SizeView extends javax.swing.JFrame {
         } else {
             return;
         }
-
+        clear();
         loadTableSizeGiay();
         //        loadCBSize();
     }//GEN-LAST:event_btnThem6ActionPerformed
@@ -301,6 +330,7 @@ public class SizeView extends javax.swing.JFrame {
             return;
 
         }
+        clear();
         loadTableSizeGiay();
         //        loadCBSize();
     }//GEN-LAST:event_btnSua6ActionPerformed
@@ -327,6 +357,7 @@ public class SizeView extends javax.swing.JFrame {
         } else if (xacnhan == JOptionPane.NO_OPTION) {
             return;
         }
+        clear();
         loadTableSizeGiay();
         //        loadCBSize();
     }//GEN-LAST:event_btnXoa6ActionPerformed
@@ -338,6 +369,13 @@ public class SizeView extends javax.swing.JFrame {
         txtMaSIZE.setText(tbSIZE.getValueAt(row, 1).toString());
         txtSoSize.setText(tbSIZE.getValueAt(row, 2).toString());
     }//GEN-LAST:event_tbSIZEMouseClicked
+
+    private void btnXoa7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoa7ActionPerformed
+        // TODO add your handling code here:
+        ChiTietSanPhamView ql=new ChiTietSanPhamView();
+        ql.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnXoa7ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -379,6 +417,7 @@ public class SizeView extends javax.swing.JFrame {
     private javax.swing.JButton btnSua6;
     private javax.swing.JButton btnThem6;
     private javax.swing.JButton btnXoa6;
+    private javax.swing.JButton btnXoa7;
     private javax.swing.JPanel jPanel50;
     private javax.swing.JScrollPane jScrollPane18;
     private javax.swing.JLabel lblMaSp32;

@@ -7,7 +7,9 @@ package Viewss;
 import DomainModels.ChucVu;
 import Services.ChucVuSevice;
 import Services.Interface.ChucVuServiceInterface;
+import Views.NhanVienView;
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -28,7 +30,11 @@ public class ChucVuView extends javax.swing.JFrame {
          this.cvService = new ChucVuSevice();
          loadTableChucVu();
     }
-
+    void clear(){
+      txtIDChucVu.setText("");
+      txtMaChucVu.setText("");
+      txtTenChucVu.setText("");
+  }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -51,6 +57,7 @@ public class ChucVuView extends javax.swing.JFrame {
         btnSua = new javax.swing.JButton();
         btnThem = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
+        btnXoa1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,7 +65,15 @@ public class ChucVuView extends javax.swing.JFrame {
 
         jLabel7.setText("ID");
 
+        txtMaChucVu.setEditable(false);
+
         jLabel8.setText("Mã");
+
+        txtTenChucVu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTenChucVuActionPerformed(evt);
+            }
+        });
 
         jLabel10.setText("Tên");
 
@@ -110,6 +125,14 @@ public class ChucVuView extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel11.setText("Chức Vụ");
 
+        btnXoa1.setBackground(new java.awt.Color(204, 204, 204));
+        btnXoa1.setText("Exit");
+        btnXoa1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoa1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -122,12 +145,6 @@ public class ChucVuView extends javax.swing.JFrame {
                             .addComponent(jScrollPane19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(56, 56, 56)
-                                    .addComponent(txtTenChucVu, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel2Layout.createSequentialGroup()
                                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(56, 56, 56)
                                     .addComponent(txtMaChucVu, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -138,7 +155,15 @@ public class ChucVuView extends javax.swing.JFrame {
                                     .addGap(56, 56, 56)
                                     .addComponent(txtIDChucVu, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(52, 52, 52)
-                                    .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(56, 56, 56)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(btnXoa1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(txtTenChucVu, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(189, 189, 189)
                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -167,7 +192,9 @@ public class ChucVuView extends javax.swing.JFrame {
                     .addComponent(jLabel10)
                     .addComponent(txtTenChucVu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnXoa))
-                .addGap(79, 79, 79)
+                .addGap(18, 18, 18)
+                .addComponent(btnXoa1)
+                .addGap(39, 39, 39)
                 .addComponent(jScrollPane19, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(33, Short.MAX_VALUE))
         );
@@ -225,6 +252,7 @@ private void loadTableChucVu() {
         } else if (xacnhan == JOptionPane.NO_OPTION) {
             return;
         }
+        clear();
         loadTableChucVu();
     }//GEN-LAST:event_btnXoaActionPerformed
 
@@ -256,6 +284,7 @@ private void loadTableChucVu() {
         } else if (xacnhan == JOptionPane.NO_OPTION) {
             return;
         }
+        clear();
         loadTableChucVu();
     }//GEN-LAST:event_btnSuaActionPerformed
 
@@ -280,8 +309,29 @@ private void loadTableChucVu() {
         } else {
             return;
         }
+        clear();
         loadTableChucVu();
     }//GEN-LAST:event_btnThemActionPerformed
+
+    private void btnXoa1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoa1ActionPerformed
+        // TODO add your handling code here:
+        NhanVienView ql=new NhanVienView();
+        ql.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnXoa1ActionPerformed
+
+    private void txtTenChucVuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenChucVuActionPerformed
+        // TODO add your handling code here:
+        if(txtTenChucVu.getText().equals("")){
+            return; 
+        }else{
+            for (int i = 0; i < 5 + 1; i++) {
+                Random rdm = new Random();
+                int rdmm = rdm.nextInt(100) + 1;
+                txtMaChucVu.setText("CV" + rdmm);
+            }
+        }
+    }//GEN-LAST:event_txtTenChucVuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -323,6 +373,7 @@ private void loadTableChucVu() {
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnXoa;
+    private javax.swing.JButton btnXoa1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel7;

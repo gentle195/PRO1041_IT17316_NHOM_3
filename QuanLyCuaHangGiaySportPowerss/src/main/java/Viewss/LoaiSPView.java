@@ -8,6 +8,7 @@ import DomainModels.LoaiGiay;
 import Services.Interface.LoaiGiayServiceInterface;
 import Services.LoaiGiayService;
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -51,6 +52,7 @@ public class LoaiSPView extends javax.swing.JFrame {
         btnXoa5 = new javax.swing.JButton();
         jScrollPane17 = new javax.swing.JScrollPane();
         tbLoaiGiay = new javax.swing.JTable();
+        btnXoa6 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,6 +72,7 @@ public class LoaiSPView extends javax.swing.JFrame {
         lblMaSp29.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblMaSp29.setText("Mã Loại");
 
+        txtMaLoai.setEditable(false);
         txtMaLoai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtMaLoaiActionPerformed(evt);
@@ -139,6 +142,15 @@ public class LoaiSPView extends javax.swing.JFrame {
         });
         jScrollPane17.setViewportView(tbLoaiGiay);
 
+        btnXoa6.setBackground(new java.awt.Color(204, 204, 204));
+        btnXoa6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnXoa6.setText("Exit");
+        btnXoa6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoa6ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel48Layout = new javax.swing.GroupLayout(jPanel48);
         jPanel48.setLayout(jPanel48Layout);
         jPanel48Layout.setHorizontalGroup(
@@ -172,7 +184,8 @@ public class LoaiSPView extends javax.swing.JFrame {
                         .addGroup(jPanel48Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnXoa5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnSua5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnThem5, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE))
+                            .addComponent(btnThem5, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                            .addComponent(btnXoa6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18))))
         );
         jPanel48Layout.setVerticalGroup(
@@ -200,7 +213,8 @@ public class LoaiSPView extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addGroup(jPanel48Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblMaSp31)
-                    .addComponent(txtMoTaLoaiGiay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtMoTaLoaiGiay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnXoa6))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane17, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(20, Short.MAX_VALUE))
@@ -239,6 +253,12 @@ public class LoaiSPView extends javax.swing.JFrame {
         }
 
     }
+    void clear(){
+      txtIDLoai.setText("");
+      txtMaLoai.setText("");
+      txtMoTaLoaiGiay.setText("");
+      txtTenLoai.setText("");
+  }
     private void txtIDLoaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDLoaiActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIDLoaiActionPerformed
@@ -249,6 +269,15 @@ public class LoaiSPView extends javax.swing.JFrame {
 
     private void txtTenLoaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenLoaiActionPerformed
         // TODO add your handling code here:
+        if(txtTenLoai.getText().equals("")){
+            return; 
+        }else{
+            for (int i = 0; i < 5 + 1; i++) {
+                Random rdm = new Random();
+                int rdmm = rdm.nextInt(100) + 1;
+                txtMaLoai.setText("L" + rdmm);
+            }
+        }
     }//GEN-LAST:event_txtTenLoaiActionPerformed
 
     private void txtMoTaLoaiGiayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMoTaLoaiGiayActionPerformed
@@ -278,6 +307,7 @@ public class LoaiSPView extends javax.swing.JFrame {
         } else {
             return;
         }
+        clear();
         loadTableLoaiGiay();
         //        loadCBLoai();
     }//GEN-LAST:event_btnThem5ActionPerformed
@@ -310,6 +340,7 @@ public class LoaiSPView extends javax.swing.JFrame {
         } else if (xacnhan == JOptionPane.NO_OPTION) {
             return;
         }
+        clear();
         loadTableLoaiGiay();
         //        loadCBLoai();
     }//GEN-LAST:event_btnSua5ActionPerformed
@@ -339,6 +370,7 @@ public class LoaiSPView extends javax.swing.JFrame {
         } else if (xacnhan == JOptionPane.NO_OPTION) {
             return;
         }
+        clear();
         loadTableLoaiGiay();
         //        loadCBLoai();
     }//GEN-LAST:event_btnXoa5ActionPerformed
@@ -351,6 +383,13 @@ public class LoaiSPView extends javax.swing.JFrame {
         txtTenLoai.setText(tbLoaiGiay.getValueAt(row, 2).toString());
         txtMoTaLoaiGiay.setText(tbLoaiGiay.getValueAt(row, 3).toString());
     }//GEN-LAST:event_tbLoaiGiayMouseClicked
+
+    private void btnXoa6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoa6ActionPerformed
+        // TODO add your handling code here:
+        ChiTietSanPhamView ql=new ChiTietSanPhamView();
+        ql.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnXoa6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -392,6 +431,7 @@ public class LoaiSPView extends javax.swing.JFrame {
     private javax.swing.JButton btnSua5;
     private javax.swing.JButton btnThem5;
     private javax.swing.JButton btnXoa5;
+    private javax.swing.JButton btnXoa6;
     private javax.swing.JPanel jPanel48;
     private javax.swing.JScrollPane jScrollPane17;
     private javax.swing.JLabel lblMaSp28;

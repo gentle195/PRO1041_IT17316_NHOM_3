@@ -8,6 +8,7 @@ import DomainModels.HangGiay;
 import Services.HangGiayService;
 import Services.Interface.HangGiayServiceInterface;
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -28,7 +29,12 @@ public class HangGiayView extends javax.swing.JFrame {
           this.hangGiayService = new HangGiayService();
           this.loadTableHangGiay();
     }
-
+    void clear(){
+      txtIDHang.setText("");
+      txtMaHang.setText("");
+      txtMoTaHang.setText("");
+      txtTenHang.setText("");
+  }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -52,6 +58,7 @@ public class HangGiayView extends javax.swing.JFrame {
         btnXoa4 = new javax.swing.JButton();
         jScrollPane14 = new javax.swing.JScrollPane();
         tbHang = new javax.swing.JTable();
+        btnXoa5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,6 +78,7 @@ public class HangGiayView extends javax.swing.JFrame {
         lblMaSp23.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblMaSp23.setText("Mã Hãng");
 
+        txtMaHang.setEditable(false);
         txtMaHang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtMaHangActionPerformed(evt);
@@ -140,6 +148,15 @@ public class HangGiayView extends javax.swing.JFrame {
         });
         jScrollPane14.setViewportView(tbHang);
 
+        btnXoa5.setBackground(new java.awt.Color(204, 204, 204));
+        btnXoa5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnXoa5.setText("Exit");
+        btnXoa5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoa5ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel46Layout = new javax.swing.GroupLayout(jPanel46);
         jPanel46.setLayout(jPanel46Layout);
         jPanel46Layout.setHorizontalGroup(
@@ -173,7 +190,8 @@ public class HangGiayView extends javax.swing.JFrame {
                         .addGroup(jPanel46Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnXoa4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnSua4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnThem4, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE))
+                            .addComponent(btnThem4, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                            .addComponent(btnXoa5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18))))
         );
         jPanel46Layout.setVerticalGroup(
@@ -201,7 +219,8 @@ public class HangGiayView extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addGroup(jPanel46Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblMaSp25)
-                    .addComponent(txtMoTaHang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtMoTaHang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnXoa5))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(44, Short.MAX_VALUE))
@@ -249,6 +268,15 @@ public class HangGiayView extends javax.swing.JFrame {
 
     private void txtTenHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenHangActionPerformed
         // TODO add your handling code here:
+        if(txtTenHang.getText().equals("")){
+            return; 
+        }else{
+            for (int i = 0; i < 5 + 1; i++) {
+                Random rdm = new Random();
+                int rdmm = rdm.nextInt(100) + 1;
+                txtMaHang.setText("H" + rdmm);
+            }
+        }
     }//GEN-LAST:event_txtTenHangActionPerformed
 
     private void txtMoTaHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMoTaHangActionPerformed
@@ -283,6 +311,7 @@ public class HangGiayView extends javax.swing.JFrame {
             } else {
                 return;
             }
+            clear();
             loadTableHangGiay();
             //            loadCBHang();
         }
@@ -317,6 +346,7 @@ public class HangGiayView extends javax.swing.JFrame {
             return;
 
         }
+        clear();
         loadTableHangGiay();
         //        loadCBHang();
     }//GEN-LAST:event_btnSua4ActionPerformed
@@ -344,6 +374,7 @@ public class HangGiayView extends javax.swing.JFrame {
         } else if (bb == JOptionPane.NO_OPTION) {
             return;
         }
+        clear();
         loadTableHangGiay();
         //        loadCBHang();
     }//GEN-LAST:event_btnXoa4ActionPerformed
@@ -356,6 +387,13 @@ public class HangGiayView extends javax.swing.JFrame {
         txtTenHang.setText(tbHang.getValueAt(row, 2).toString());
         txtMoTaHang.setText(tbHang.getValueAt(row, 3).toString());
     }//GEN-LAST:event_tbHangMouseClicked
+
+    private void btnXoa5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoa5ActionPerformed
+        // TODO add your handling code here:
+        ChiTietSanPhamView ql=new ChiTietSanPhamView();
+        ql.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnXoa5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -399,6 +437,7 @@ public class HangGiayView extends javax.swing.JFrame {
     private javax.swing.JButton btnSua4;
     private javax.swing.JButton btnThem4;
     private javax.swing.JButton btnXoa4;
+    private javax.swing.JButton btnXoa5;
     private javax.swing.JPanel jPanel46;
     private javax.swing.JScrollPane jScrollPane14;
     private javax.swing.JLabel lblMaSp22;
