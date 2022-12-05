@@ -16,12 +16,24 @@ public class HoaDonTKViewModel {
     private Date ngayTao;
     private int tongHD;
     private BigDecimal tongTien;
+    private String ngay;
 
     public HoaDonTKViewModel() {
     }
 
     public HoaDonTKViewModel(Date ngayTao, int tongHD, BigDecimal tongTien) {
         this.ngayTao = ngayTao;
+        this.tongHD = tongHD;
+        this.tongTien = tongTien;
+    }
+
+    public HoaDonTKViewModel(String ngay, int tongHD, BigDecimal tongTien) {
+        this.tongHD = tongHD;
+        this.tongTien = tongTien;
+        this.ngay = ngay;
+    }
+
+    public HoaDonTKViewModel(int tongHD, BigDecimal tongTien) {
         this.tongHD = tongHD;
         this.tongTien = tongTien;
     }
@@ -48,6 +60,14 @@ public class HoaDonTKViewModel {
 
     public void setTongTien(BigDecimal tongTien) {
         this.tongTien = tongTien;
+    }
+
+    public String getNgay() {
+        return ngay;
+    }
+
+    public void setNgay(String ngay) {
+        this.ngay = ngay;
     }
 
     @Override

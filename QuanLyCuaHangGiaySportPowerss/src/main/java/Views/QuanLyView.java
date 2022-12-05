@@ -52,6 +52,7 @@ import ViewModels.HoaDonTKViewModel;
 import ViewModels.HoaDonViewModel;
 import ViewModels.NhanVienViewModel;
 import java.awt.CardLayout;
+import java.awt.Dimension;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
@@ -63,8 +64,18 @@ import java.util.logging.Logger;
 import javax.swing.ButtonModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.gantt.Task;
+import org.jfree.data.gantt.TaskSeries;
+import org.jfree.data.gantt.TaskSeriesCollection;
+import org.jfree.data.time.SimpleTimePeriod;
 
 /**
  *
@@ -142,14 +153,14 @@ public class QuanLyView extends javax.swing.JFrame {
         List<SanPham> sp = SanPhamService.all();
         cbTenSP.setModel(new DefaultComboBoxModel((sp.toArray())));
 
-       List<ChatLieu> cl = chatLieuService.all();
+        List<ChatLieu> cl = chatLieuService.all();
         cbCL.setModel(new DefaultComboBoxModel((cl.toArray())));
         cbbCL.setModel(new DefaultComboBoxModel((cl.toArray())));
 
         List<DeGiay> dg = deGiayService.all();
         cbDe.setModel(new DefaultComboBoxModel((dg.toArray())));
         cbbDe.setModel(new DefaultComboBoxModel((dg.toArray())));
-        
+
         List<HangGiay> hang = hangGiayService.all();
         cbHang.setModel(new DefaultComboBoxModel((hang.toArray())));
         //List<HangGiay> hang = hangGiayService.all();
@@ -159,11 +170,9 @@ public class QuanLyView extends javax.swing.JFrame {
         cbLoai.setModel(new DefaultComboBoxModel((lg.toArray())));
         cbbLoai.setModel(new DefaultComboBoxModel((lg.toArray())));
 
-
         List<Size> sz = sizeService.all();
         cbSIZE.setModel(new DefaultComboBoxModel((sz.toArray())));
         cbbSize.setModel(new DefaultComboBoxModel((sz.toArray())));
-
 
         List<ChucVu> cv = cvService.getall();
         cbCV.setModel(new DefaultComboBoxModel(cv.toArray()));
@@ -328,7 +337,8 @@ public class QuanLyView extends javax.swing.JFrame {
 
         }
     }
-  private void loadTableChiTietSP(List<ChiTietSPViewModel> sz) {
+
+    private void loadTableChiTietSP(List<ChiTietSPViewModel> sz) {
 
         DefaultTableModel modeltb = (DefaultTableModel) tblQLSP.getModel();
         modeltb.setRowCount(0);
@@ -342,6 +352,7 @@ public class QuanLyView extends javax.swing.JFrame {
 
         }
     }
+
     private void loadTableChucVu() {
         DefaultTableModel modeltb = new DefaultTableModel();
         List<ChucVu> cv = cvService.getall();
@@ -464,6 +475,21 @@ public class QuanLyView extends javax.swing.JFrame {
         }
     }
 
+    private void loadTableThongKeHoaDonPM(List<HoaDonTKViewModel> listTKHD) {
+        Date bd = jdcNgayBatDau.getDate();
+        Date kt = jdcNgayKetThuc.getDate();
+        dtmTKHD.setRowCount(0);
+        int i = 0;
+        for (HoaDonTKViewModel hd : listTKHD) {
+            dtmTKHD.addRow(new Object[]{
+                i++,
+                //               hd.setNgay(bd"-"kt),
+                hd.getTongHD(),
+                hd.getTongTien()
+            });
+        }
+    }
+
     private void loadTableThongKeSanPham(List<ChiTietSPViewModel> listTKSP) {
         dtmTKSP.setRowCount(0);
         int i = 1;
@@ -475,6 +501,32 @@ public class QuanLyView extends javax.swing.JFrame {
                 sp.getSoLuong()
             });
         }
+    }
+
+    public void setDataToChart1(JPanel jpnItem) {
+        List<HoaDonTKViewModel> listItem = serviceTK.thongKeHD();;
+
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        if (listItem != null) {
+            for (HoaDonTKViewModel hd : listItem) {
+                dataset.addValue(hd.getTongTien(), "Tổng doanh thu", hd.getNgayTao().getMonth() + 1);
+//                dataset.addValue(hd.getTongTien(), "Tổng doanh thu", hd.getNgayTao());
+            }
+        }
+
+        JFreeChart barChart = ChartFactory.createBarChart(
+                "Biểu đồ thống kê doanh thu".toUpperCase(),
+                "Thời gian", "Doanh thu",
+                dataset, PlotOrientation.VERTICAL, false, true, false);
+
+        ChartPanel chartPanel = new ChartPanel(barChart);
+        chartPanel.setPreferredSize(new Dimension(jpnItem.getWidth(), 221));
+
+        jpnItem.removeAll();
+        jpnItem.setLayout(new CardLayout());
+        jpnItem.add(chartPanel);
+        jpnItem.validate();
+        jpnItem.repaint();
     }
 
     /**
@@ -642,12 +694,12 @@ public class QuanLyView extends javax.swing.JFrame {
         tblLoaiThoiGian = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnSearchTK = new javax.swing.JButton();
+        btnClearTK = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        jdcNgayBatDau = new com.toedter.calendar.JDateChooser();
+        jdcNgayKetThuc = new com.toedter.calendar.JDateChooser();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel9 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -657,6 +709,7 @@ public class QuanLyView extends javax.swing.JFrame {
         jPanel8 = new javax.swing.JPanel();
         jPanel13 = new javax.swing.JPanel();
         lblBieuDo = new javax.swing.JLabel();
+        jpnTkHD = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblTkSP = new javax.swing.JTable();
@@ -1232,7 +1285,7 @@ public class QuanLyView extends javax.swing.JFrame {
         jPanel17Layout.setVerticalGroup(
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel17Layout.createSequentialGroup()
-                .addContainerGap(36, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane22, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17))
         );
@@ -1247,7 +1300,7 @@ public class QuanLyView extends javax.swing.JFrame {
                     .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 42, Short.MAX_VALUE))
+                .addGap(0, 39, Short.MAX_VALUE))
         );
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2476,21 +2529,21 @@ public class QuanLyView extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setText("Ngày kết thúc:");
 
-        jButton1.setBackground(new java.awt.Color(204, 204, 204));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton1.setText("Tìm kiếm");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnSearchTK.setBackground(new java.awt.Color(204, 204, 204));
+        btnSearchTK.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnSearchTK.setText("Tìm kiếm");
+        btnSearchTK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnSearchTKActionPerformed(evt);
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(204, 204, 204));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton2.setText("Làm mới");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnClearTK.setBackground(new java.awt.Color(204, 204, 204));
+        btnClearTK.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnClearTK.setText("Làm mới");
+        btnClearTK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnClearTKActionPerformed(evt);
             }
         });
 
@@ -2514,12 +2567,12 @@ public class QuanLyView extends javax.swing.JFrame {
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
-                    .addComponent(jDateChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jdcNgayBatDau, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
+                    .addComponent(jdcNgayKetThuc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(btnSearchTK)
                 .addGap(45, 45, 45)
-                .addComponent(jButton2)
+                .addComponent(btnClearTK)
                 .addGap(34, 34, 34)
                 .addComponent(jButton3)
                 .addGap(44, 44, 44))
@@ -2532,11 +2585,11 @@ public class QuanLyView extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jdcNgayBatDau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jdcNgayKetThuc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(18, Short.MAX_VALUE))
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2544,8 +2597,8 @@ public class QuanLyView extends javax.swing.JFrame {
                         .addGap(37, 37, 37)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton3)
-                            .addComponent(jButton2)
-                            .addComponent(jButton1)))
+                            .addComponent(btnClearTK)
+                            .addComponent(btnSearchTK)))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(41, 41, 41)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -2632,15 +2685,34 @@ public class QuanLyView extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Bảng doanh thu", jPanel9);
 
+        javax.swing.GroupLayout jpnTkHDLayout = new javax.swing.GroupLayout(jpnTkHD);
+        jpnTkHD.setLayout(jpnTkHDLayout);
+        jpnTkHDLayout.setHorizontalGroup(
+            jpnTkHDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1142, Short.MAX_VALUE)
+        );
+        jpnTkHDLayout.setVerticalGroup(
+            jpnTkHDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
         jPanel13Layout.setHorizontalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblBieuDo, javax.swing.GroupLayout.DEFAULT_SIZE, 1316, Short.MAX_VALUE)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addGap(96, 96, 96)
+                .addComponent(jpnTkHD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46)
+                .addComponent(lblBieuDo, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE))
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblBieuDo, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
+            .addComponent(lblBieuDo, javax.swing.GroupLayout.DEFAULT_SIZE, 514, Short.MAX_VALUE)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jpnTkHD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
@@ -2745,7 +2817,7 @@ public class QuanLyView extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel27, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE))
+                    .addComponent(jPanel27, javax.swing.GroupLayout.PREFERRED_SIZE, 113, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -5213,14 +5285,14 @@ public class QuanLyView extends javax.swing.JFrame {
         List<SanPham> sp = SanPhamService.all();
         cbTenSP.setModel(new DefaultComboBoxModel((sp.toArray())));
 
-      List<ChatLieu> cl = chatLieuService.all();
+        List<ChatLieu> cl = chatLieuService.all();
         cbCL.setModel(new DefaultComboBoxModel((cl.toArray())));
         cbbCL.setModel(new DefaultComboBoxModel((cl.toArray())));
 
         List<DeGiay> dg = deGiayService.all();
         cbDe.setModel(new DefaultComboBoxModel((dg.toArray())));
         cbbDe.setModel(new DefaultComboBoxModel((dg.toArray())));
-        
+
         List<HangGiay> hang = hangGiayService.all();
         cbHang.setModel(new DefaultComboBoxModel((hang.toArray())));
         //List<HangGiay> hang = hangGiayService.all();
@@ -5229,7 +5301,6 @@ public class QuanLyView extends javax.swing.JFrame {
         List<LoaiGiay> lg = loaiGiayService.all();
         cbLoai.setModel(new DefaultComboBoxModel((lg.toArray())));
         cbbLoai.setModel(new DefaultComboBoxModel((lg.toArray())));
-
 
         List<Size> sz = sizeService.all();
         cbSIZE.setModel(new DefaultComboBoxModel((sz.toArray())));
@@ -5265,6 +5336,8 @@ public class QuanLyView extends javax.swing.JFrame {
 
         listTKSP = serviceTK.thongKeSP();
         this.loadTableThongKeSanPham(listTKSP);
+
+        this.setDataToChart1(jpnTkHD);
     }//GEN-LAST:event_btnThongKeActionPerformed
 
     private void btnDangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangXuatActionPerformed
@@ -5405,13 +5478,25 @@ public class QuanLyView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField19jTextField8ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnSearchTKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchTKActionPerformed
+        Date bd = jdcNgayBatDau.getDate();
+        Date kt = jdcNgayKetThuc.getDate();
+        listTKHD = serviceTK.tkHDpM(bd, kt);
+        this.loadTableThongKeHoaDon(listTKHD);
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+        listTKSP = serviceTK.tkSPpM(bd, kt);
+        this.loadTableThongKeSanPham(listTKSP);
+    }//GEN-LAST:event_btnSearchTKActionPerformed
+
+    private void btnClearTKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearTKActionPerformed
+        jdcNgayBatDau.setDate(null);
+        jdcNgayKetThuc.setDate(null);
+        listTKHD = serviceTK.thongKeHD();
+        this.loadTableThongKeHoaDon(listTKHD);
+
+        listTKSP = serviceTK.thongKeSP();
+        this.loadTableThongKeSanPham(listTKSP);
+    }//GEN-LAST:event_btnClearTKActionPerformed
 
     private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed
         // TODO add your handling code here:
@@ -7158,7 +7243,7 @@ public class QuanLyView extends javax.swing.JFrame {
 
     private void txtSearch2CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtSearch2CaretUpdate
         // TODO add your handling code here:
-    
+
 
     }//GEN-LAST:event_txtSearch2CaretUpdate
     private void locSP() {
@@ -7169,20 +7254,20 @@ public class QuanLyView extends javax.swing.JFrame {
         ChatLieu IDCL = (ChatLieu) cbbCL.getSelectedItem();
 
         List<ChiTietSPViewModel> l = chiTietSPService.loc(IDCL.getIdCL(), SizeID.getIdSize(), IDHang.getIdHang(), IDDe.getIdDG(), IDLoaiGiay.getIdLoai());
-        
+
         loadTableChiTietSP(l);
     }
 
     private void cbbSizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbSizeActionPerformed
-     locSP();   // TODO add your handling code here:
+        locSP();   // TODO add your handling code here:
     }//GEN-LAST:event_cbbSizeActionPerformed
 
     private void cbbLoaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbLoaiActionPerformed
-       locSP(); // TODO add your handling code here:
+        locSP(); // TODO add your handling code here:
     }//GEN-LAST:event_cbbLoaiActionPerformed
 
     private void cbbHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbHangActionPerformed
-      locSP();  // TODO add your handling code here:
+        locSP();  // TODO add your handling code here:
     }//GEN-LAST:event_cbbHangActionPerformed
 
     private void cbbDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbDeActionPerformed
@@ -7190,8 +7275,8 @@ public class QuanLyView extends javax.swing.JFrame {
     }//GEN-LAST:event_cbbDeActionPerformed
 
     private void cbbCLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbCLActionPerformed
-       locSP();
-               // TODO add your handling code here:
+        locSP();
+        // TODO add your handling code here:
     }//GEN-LAST:event_cbbCLActionPerformed
 
     private void jComboBox12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox12ActionPerformed
@@ -7241,6 +7326,7 @@ public class QuanLyView extends javax.swing.JFrame {
     private javax.swing.JLabel LBtime;
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnBanHang2;
+    private javax.swing.JButton btnClearTK;
     private javax.swing.JButton btnDangXuat;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnHoaDon;
@@ -7251,6 +7337,7 @@ public class QuanLyView extends javax.swing.JFrame {
     private javax.swing.JButton btnSanPham;
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnSearch1;
+    private javax.swing.JButton btnSearchTK;
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnSua1;
     private javax.swing.JButton btnSua2;
@@ -7318,14 +7405,12 @@ public class QuanLyView extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbbLoai;
     private javax.swing.JComboBox<String> cbbSize;
     private com.toedter.calendar.JDateChooser dateNSNV;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton8;
@@ -7333,8 +7418,6 @@ public class QuanLyView extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox12;
     private javax.swing.JComboBox<String> jComboBox14;
     private javax.swing.JComboBox<String> jComboBox2;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
     private com.toedter.calendar.JDateChooser jDateNgayDat;
     private com.toedter.calendar.JDateChooser jDateNgayNhan;
     private com.toedter.calendar.JDateChooser jDateNgaySHIP;
@@ -7472,6 +7555,9 @@ public class QuanLyView extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField19;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField9;
+    private com.toedter.calendar.JDateChooser jdcNgayBatDau;
+    private com.toedter.calendar.JDateChooser jdcNgayKetThuc;
+    private javax.swing.JPanel jpnTkHD;
     private javax.swing.JLabel lbPagination1;
     private javax.swing.JLabel lbTotalProducts1;
     private javax.swing.JLabel lblAnhDaiDien2;

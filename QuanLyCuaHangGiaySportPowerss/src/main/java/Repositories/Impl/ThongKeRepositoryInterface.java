@@ -6,6 +6,7 @@ package Repositories.Impl;
 
 import ViewModels.ChiTietSPViewModel;
 import ViewModels.HoaDonTKViewModel;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -17,4 +18,8 @@ public interface ThongKeRepositoryInterface {
     public List<HoaDonTKViewModel> tkHD();
 
     public List<ChiTietSPViewModel> tkSP();
+
+    public List<HoaDonTKViewModel> tkHDpM(Date bd, Date kt);
+
+    public List<ChiTietSPViewModel> tkSPpM(Date bd, Date kt);
 }
