@@ -124,6 +124,7 @@ public class NhanVienBanHangViews extends javax.swing.JFrame {
         btnHoaDon = new javax.swing.JButton();
         btnSanPham = new javax.swing.JButton();
         btnKhachHang = new javax.swing.JButton();
+        btnNhanVien = new javax.swing.JButton();
         btnDangXuat = new javax.swing.JButton();
         panelTong = new javax.swing.JPanel();
         pnlBanHang = new javax.swing.JPanel();
@@ -221,6 +222,17 @@ public class NhanVienBanHangViews extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnKhachHang);
+
+        btnNhanVien.setBackground(new java.awt.Color(204, 255, 255));
+        btnNhanVien.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        btnNhanVien.setText("Nhân viên");
+        btnNhanVien.setPreferredSize(new java.awt.Dimension(170, 50));
+        btnNhanVien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNhanVienActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnNhanVien);
 
         btnDangXuat.setBackground(new java.awt.Color(204, 255, 255));
         btnDangXuat.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
@@ -1228,6 +1240,14 @@ public class NhanVienBanHangViews extends javax.swing.JFrame {
     private void txtSDTKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSDTKhachHangActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSDTKhachHangActionPerformed
+
+    private void btnNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNhanVienActionPerformed
+        // TODO add your handling code here:
+        jPanel = new TTnhanVienView2();
+        panelTong.removeAll();
+        panelTong.add(jPanel);
+        panelTong.validate();
+    }//GEN-LAST:event_btnNhanVienActionPerformed
     private static final String FILE_NAME = "D:/itext.pdf";
 
     public String phuongthucthanhtoan() {
@@ -1281,6 +1301,7 @@ public class NhanVienBanHangViews extends javax.swing.JFrame {
     private javax.swing.JButton btnDangXuat;
     private javax.swing.JButton btnHoaDon;
     private javax.swing.JButton btnKhachHang;
+    private javax.swing.JButton btnNhanVien;
     private javax.swing.JButton btnSanPham;
     private javax.swing.JButton btnback;
     private javax.swing.JButton btnhuyhd;
