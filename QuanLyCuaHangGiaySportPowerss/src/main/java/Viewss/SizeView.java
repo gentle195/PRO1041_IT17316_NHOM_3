@@ -280,7 +280,7 @@ public class SizeView extends javax.swing.JFrame {
 
             Size s = new Size();
             s.setMaSize(txtMaSIZE.getText());
-            s.setSoSize(Integer.parseInt(txtSoSize.getText()));
+            s.setSoSize(txtSoSize.getText());
             try {
                 sizeService.add(s);
             } catch (Exception ex) {
@@ -321,7 +321,7 @@ public class SizeView extends javax.swing.JFrame {
             Size s = new Size();
             s.setIdSize(UUID.fromString(txtIDSIZE.getText()));
             s.setMaSize(txtMaSIZE.getText());
-            s.setSoSize(Integer.parseInt(txtSoSize.getText()));
+            s.setSoSize(txtSoSize.getText());
             try {
                 sizeService.update(s);
             } catch (Exception ex) {
@@ -349,7 +349,7 @@ public class SizeView extends javax.swing.JFrame {
             Size s = new Size();
             s.setIdSize(UUID.fromString(txtIDSIZE.getText()));
             s.setMaSize(txtMaSIZE.getText());
-            s.setSoSize(Integer.parseInt(txtSoSize.getText()));
+            s.setSoSize(txtSoSize.getText());
             try {
                 sizeService.delete(s);
             } catch (Exception ex) {

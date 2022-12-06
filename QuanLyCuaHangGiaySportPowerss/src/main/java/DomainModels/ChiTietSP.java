@@ -182,5 +182,7 @@ public class ChiTietSP {
     public void setMoTa(String MoTa) {
         this.MoTa = MoTa;
     }
+    
+    
 
 }
