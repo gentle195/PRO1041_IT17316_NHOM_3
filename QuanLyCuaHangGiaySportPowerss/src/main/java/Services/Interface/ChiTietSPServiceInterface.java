@@ -20,6 +20,6 @@ public interface ChiTietSPServiceInterface {
 
     public void updatesl(ChiTietSP ct, String ma) throws Exception;
     
-    List<ChiTietSPViewModel> loc(UUID IDCL, UUID SizeID, UUID IDHang, UUID IDDe, UUID IDLoaiGiay);
+    List<ChiTietSPViewModel> loc(UUID IDCL, UUID SizeID, UUID IDHang, UUID IDDe, UUID IDLoaiGiay,int tt);
 
 }

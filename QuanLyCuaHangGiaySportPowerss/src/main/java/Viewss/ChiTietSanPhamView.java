@@ -112,7 +112,8 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
         cll.add(0, new ChatLieu(null, "", "Tất cả", ""));
         DefaultComboBoxModel chatlieu = new DefaultComboBoxModel((cll.toArray()));
         cbbChatLieu.setModel(chatlieu);
-
+//        List<ChiTietSPViewModel> ct = chiTietSPService.all();
+//        cbbTrangThai.setModel(new DefaultComboBoxModel(ct.toArray()));
         AutoCompleteDecorator.decorate(cbCL);
         AutoCompleteDecorator.decorate(cbTenSP);
         AutoCompleteDecorator.decorate(cbDe);
@@ -145,8 +146,8 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
         Size SizeID = (Size) cbbSize.getSelectedItem();
         DeGiay IDDe = (DeGiay) cbbDe.getSelectedItem();
         ChatLieu IDCL = (ChatLieu) cbbChatLieu.getSelectedItem();
-
-        List<ChiTietSPViewModel> l = chiTietSPService.loc(IDCL.getIdCL(), SizeID.getIdSize(), IDHang.getIdHang(), IDDe.getIdDG(), IDLoaiGiay.getIdLoai());
+        ChiTietSPViewModel ct = new ChiTietSPViewModel();
+        List<ChiTietSPViewModel> l = chiTietSPService.loc(IDCL.getIdCL(), SizeID.getIdSize(), IDHang.getIdHang(), IDDe.getIdDG(), IDLoaiGiay.getIdLoai(), ct.getTrangThai());
         if (cbbHang.getSelectedIndex() == 0) {
             loadTableChiTietSP(chiTietSPService.all());
         }
@@ -161,6 +162,17 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
         }
         if (cbbChatLieu.getSelectedIndex() == 0) {
             loadTableChiTietSP(chiTietSPService.all());
+        }
+        
+        if (cbbTrangThai.getSelectedIndex() == 0) {
+            loadTableChiTietSP(chiTietSPService.all());
+        }
+        if (cbbTrangThai.getSelectedIndex() == 1) {
+            loadTableChiTietSP(l);
+        } 
+        if (cbbTrangThai.getSelectedIndex() == 2) {
+            loadTableChiTietSP(l);
+
         }
         loadTableChiTietSP(l);
     }
@@ -657,6 +669,13 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
         cbbSize.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbbSizeActionPerformed(evt);
+            }
+        });
+
+        cbbTrangThai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất cả", "Het Hang", "Con hang" }));
+        cbbTrangThai.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbbTrangThaiActionPerformed(evt);
             }
         });
 
@@ -1303,7 +1322,6 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
 //            loadTableChiTietSP(ds);
 //        }
 
-
     }//GEN-LAST:event_cbbHangActionPerformed
 
     private void cbbDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbDeActionPerformed
@@ -1318,7 +1336,7 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
 //            }
 //            loadTableChiTietSP(ds);
 //        }   
-locSP();// TODO add your handling code here:
+        locSP();// TODO add your handling code here:
     }//GEN-LAST:event_cbbDeActionPerformed
 
     private void tblQLSPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblQLSPMouseClicked
@@ -1427,12 +1445,17 @@ locSP();// TODO add your handling code here:
 //            }
 //            loadTableChiTietSP(ds);
 //        }
-locSP();
+        locSP();
     }//GEN-LAST:event_cbbChatLieuActionPerformed
 
     private void jComboBox12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox12ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox12ActionPerformed
+
+    private void cbbTrangThaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbTrangThaiActionPerformed
+        // TODO add your handling code here:
+        locSP();
+    }//GEN-LAST:event_cbbTrangThaiActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

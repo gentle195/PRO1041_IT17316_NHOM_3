@@ -72,9 +72,9 @@ public class ChiTietSPService implements ChiTietSPServiceInterface {
     }
 
     @Override
-    public List<ChiTietSPViewModel> loc(UUID IDCL, UUID SizeID, UUID IDHang, UUID IDDe, UUID IDLoaiGiay) {
+    public List<ChiTietSPViewModel> loc(UUID IDCL, UUID SizeID, UUID IDHang, UUID IDDe, UUID IDLoaiGiay,int tt) {
   
-      List<ChiTietSP> listDomainModel = chiTietSPRepo.loc(IDCL, SizeID, IDHang, IDDe, IDLoaiGiay);
+      List<ChiTietSP> listDomainModel = chiTietSPRepo.loc(IDCL, SizeID, IDHang, IDDe, IDLoaiGiay,tt);
         List<ChiTietSPViewModel> listVModel = new ArrayList<>();
         for (ChiTietSP c : listDomainModel) {
             ChiTietSPViewModel vmodel = new ChiTietSPViewModel(c.getIdCTSP(), c.getSanPham(), c.getHangGiay(), c.getChatlieu(), c.getDeGiay(), c.getSize(), c.getLoaigiay(), c.getSoLuong(), c.getDonGia(), c.getTrongLuong(), c.getTrangThai(), c.getMoTa());

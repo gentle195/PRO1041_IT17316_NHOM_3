@@ -12,6 +12,7 @@ import Services.Interface.LoginService;
 import Views.NhanVienView;
 import Views.QuanLyView;
 import Views.giaoDienDN;
+import Viewss.NhanVienBanHangViews;
 import Viewss.QuanLyViews;
 import java.sql.SQLException;
 import java.util.List;
@@ -40,12 +41,14 @@ public class LoginServiceImpl implements LoginService {
                         login.setVisible(false);
                         QuanLyViews ql = new QuanLyViews();
                         ql.setVisible(true);
+                        QuanLyViews.txtMaNhanVien.setText(tk);
                     }
                     
                     if (cv.getTen().contains("Nhân viên")) {
                         login.setVisible(false);
-                        NhanVienView qldsv = new NhanVienView();
+                        NhanVienBanHangViews qldsv = new NhanVienBanHangViews();
                         qldsv.setVisible(true);
+                        NhanVienBanHangViews.txtMaNhanVienbh.setText(tk);
                     }
                     result.setStatus(Boolean.TRUE);
                 } else {

@@ -57,7 +57,6 @@ public class QuanLyViews extends javax.swing.JFrame {
     ArrayList<HoaDonChiTiet> listhdctt = new ArrayList<>();
     List<ChiTietSPViewModel> listsp;
     ChiTietSP CT = new ChiTietSP();
-    
 
     /**
      * Creates new form QuanLyViews
@@ -72,7 +71,7 @@ public class QuanLyViews extends javax.swing.JFrame {
         loadTableHoaDonBanHang();
         loadTableChiTietSPBH(chiTietSPService.all());
         listsp = chiTietSPService.all();
-        
+
     }
 
     /**
@@ -95,7 +94,7 @@ public class QuanLyViews extends javax.swing.JFrame {
     }
 
     private void loadTableChiTietSPBH(List<ChiTietSPViewModel> Sz) {
-         
+
         dtmSpBH = (DefaultTableModel) tbldssanpham.getModel();
         dtmSpBH.setRowCount(0);
         for (ChiTietSPViewModel x : Sz) {
@@ -626,6 +625,8 @@ public class QuanLyViews extends javax.swing.JFrame {
 
         jLabel29.setText("SĐT");
 
+        txtMaNhanVien.setEditable(false);
+
         javax.swing.GroupLayout jPanel54Layout = new javax.swing.GroupLayout(jPanel54);
         jPanel54.setLayout(jPanel54Layout);
         jPanel54Layout.setHorizontalGroup(
@@ -824,7 +825,7 @@ public class QuanLyViews extends javax.swing.JFrame {
         panelTong.add(jPanel);
         panelTong.validate();
         panelTong.repaint();
-        loadTableChiTietSPBH(listsp);
+        loadTableChiTietSPBH(chiTietSPService.all());
         loadTableHoaDonBanHang();
     }//GEN-LAST:event_btnBanHang2ActionPerformed
 
@@ -849,69 +850,76 @@ public class QuanLyViews extends javax.swing.JFrame {
     private void btnxoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnxoaActionPerformed
         // TODO add your handling code here:
         String sl = JOptionPane.showInputDialog("Mời nhập số lượng");
-        if (sl.equals("")) {
-            return;
-        } else {
-            int slm = Integer.valueOf(sl);
-            int thanhtien = 0;
-            HoaDonChiTiet hd = new HoaDonChiTiet();
-            int row = tblgiohang.getSelectedRow();
+        try {
+            if (sl.equals("")) {
+                return;
+            } else if (Integer.valueOf(sl) < 0) {
+                JOptionPane.showMessageDialog(this, "Số lượng nhập phải lớn hơn 0");
+            } else {
+                int slm = Integer.valueOf(sl);
+                int thanhtien = 0;
+                HoaDonChiTiet hd = new HoaDonChiTiet();
+                int row = tblgiohang.getSelectedRow();
 
-            try {
-                if (slm < Integer.parseInt(tblgiohang.getValueAt(row, 2).toString())) {
-                    for (int i = 0; i < listhdct.size(); i++) {
-
-                        if (listhdct.get(i).getMaSP().equals(tblgiohang.getValueAt(row, 0))) {
-                            listhdct.get(i).setMaSP(tblgiohang.getValueAt(row, 0).toString());
-                            listhdct.get(i).setTenSP(tblgiohang.getValueAt(row, 1).toString());
-                            listhdct.get(i).setDonGia((BigDecimal) tblgiohang.getValueAt(row, 3));
-                            listhdct.get(i).setSoLuong(Integer.parseInt(tblgiohang.getValueAt(row, 2).toString()) - slm);
-                            thanhtien = thanhtien + (listhdct.get(i).getSoLuong() * Integer.parseInt(listhdct.get(i).getDonGia().toString()));
-                            txtThanhTien1.setText((String.valueOf(thanhtien)));
-                            hd.setSoLuong(listhdct.get(i).getSoLuong());
-                            banHangService.updateSoLuong(tblgiohang.getValueAt(row, 0).toString(), hd);
-                            for (int j = 0; j < listsp.size(); j++) {
-                                if (listsp.get(j).getSanPham().getMaSP().equals(tblgiohang.getValueAt(row, 0))) {
-                                    listsp.get(j).setSoLuong(CT.getSoLuong() + slm);
-                                    CT.setSoLuong(listsp.get(j).getSoLuong());
-                                    chiTietSPService.updatesl(CT, tblgiohang.getValueAt(row, 0).toString());
+                try {
+                    if (slm < Integer.parseInt(tblgiohang.getValueAt(row, 2).toString())) {
+                        for (int i = 0; i < listhdct.size(); i++) {
+                            if (listhdct.get(i).getMaSP().equals(tblgiohang.getValueAt(row, 0))) {
+                                listhdct.get(i).setMaSP(tblgiohang.getValueAt(row, 0).toString());
+                                listhdct.get(i).setTenSP(tblgiohang.getValueAt(row, 1).toString());
+                                listhdct.get(i).setDonGia((BigDecimal) tblgiohang.getValueAt(row, 3));
+                                listhdct.get(i).setSoLuong(Integer.parseInt(tblgiohang.getValueAt(row, 2).toString()) - slm);
+                                thanhtien = thanhtien + (listhdct.get(i).getSoLuong() * Integer.parseInt(listhdct.get(i).getDonGia().toString()));
+                                txtThanhTien1.setText((String.valueOf(thanhtien)));
+                                hd.setSoLuong(listhdct.get(i).getSoLuong());
+                                banHangService.updateSoLuong(tblgiohang.getValueAt(row, 0).toString(), hd);
+                                for (int j = 0; j < listsp.size(); j++) {
+                                    if (listsp.get(j).getSanPham().getMaSP().equals(tblgiohang.getValueAt(row, 0))) {
+                                        listsp.get(j).setSoLuong(CT.getSoLuong() + slm);
+                                        CT.setSoLuong(listsp.get(j).getSoLuong());
+                                        CT.setTrangThai(0);
+                                        chiTietSPService.updatesl(CT, tblgiohang.getValueAt(row, 0).toString());
+                                    }
+                                }
+                                loadTableChiTietSPBH(chiTietSPService.all());
+                                addTableGioHang(listhdct);
+                            }
+                        }
+                    } else if (slm == Integer.parseInt(tblgiohang.getValueAt(row, 2).toString())) {
+                        for (int i = 0; i < listhdct.size(); i++) {
+                            banHangService.deleteSoLuong(tblgiohang.getValueAt(row, 0).toString());
+                            if (listhdct.get(i).getMaSP().equals(tblgiohang.getValueAt(row, 0))) {
+                                listhdct.remove(i);
+                                for (int j = 0; j < listsp.size(); j++) {
+                                    if (listsp.get(j).getSanPham().getMaSP().equals(tblgiohang.getValueAt(row, 0))) {
+                                        listsp.get(j).setSoLuong(CT.getSoLuong() + slm);
+                                        CT.setSoLuong(listsp.get(j).getSoLuong());
+                                        CT.setTrangThai(0);
+                                        chiTietSPService.updatesl(CT, tblgiohang.getValueAt(row, 0).toString());
+                                    }
                                 }
                             }
                             loadTableChiTietSPBH(chiTietSPService.all());
                             addTableGioHang(listhdct);
                         }
-                    }
-                } else if (slm == Integer.parseInt(tblgiohang.getValueAt(row, 2).toString())) {
-                    for (int i = 0; i < listhdct.size(); i++) {
-                        banHangService.deleteSoLuong(tblgiohang.getValueAt(row, 0).toString());
-                        if (listhdct.get(i).getMaSP().equals(tblgiohang.getValueAt(row, 0))) {
-                            listhdct.remove(i);
-                            for (int j = 0; j < listsp.size(); j++) {
-                                if (listsp.get(j).getSanPham().getMaSP().equals(tblgiohang.getValueAt(row, 0))) {
-                                    listsp.get(j).setSoLuong(CT.getSoLuong() + slm);
-                                    CT.setSoLuong(listsp.get(j).getSoLuong());
-                                    chiTietSPService.updatesl(CT, tblgiohang.getValueAt(row, 0).toString());
-                                }
-                            }
+                        if (tblgiohang.getRowCount() == 0) {
+                            txtThanhTien1.setText("0");
                         }
                         loadTableChiTietSPBH(chiTietSPService.all());
                         addTableGioHang(listhdct);
+                    } else if (slm > Integer.parseInt(tblgiohang.getValueAt(row, 2).toString())) {
+                        JOptionPane.showMessageDialog(this, "Số lượng nhập lớn hơn trong giỏ hàng");
+                    } else {
+                        return;
                     }
-                    if(tblgiohang.getRowCount()==0){
-                        txtThanhTien1.setText("0");
-                    }
-                    loadTableChiTietSPBH(chiTietSPService.all());
-                    addTableGioHang(listhdct);
-                } else if (slm > Integer.parseInt(tblgiohang.getValueAt(row, 2).toString())) {
-                    JOptionPane.showMessageDialog(this, "Số lượng nhập lớn hơn trong giỏ hàng");
-                } else {
-                    return;
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
             }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Chưa nhập đúng số lượng");
+            return;
         }
-
     }//GEN-LAST:event_btnxoaActionPerformed
 
     private void tbldssanphamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbldssanphamMouseClicked
@@ -934,6 +942,7 @@ public class QuanLyViews extends javax.swing.JFrame {
         if (txtMaHdBH.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Mời chọn hóa đơn");
         } else {
+
             int row = tbldssanpham.getSelectedRow();
             int ro = tblgiohang.getSelectedRow();
             int r = tbHoaDonBanHang.getSelectedRow();
@@ -941,41 +950,79 @@ public class QuanLyViews extends javax.swing.JFrame {
             int slsp = 0;
             HoaDonChiTietViewModel chiTietHoaDonViewModel = new HoaDonChiTietViewModel();
             String sl = JOptionPane.showInputDialog("Mời nhập số lượng");
-            if (sl.equals("")) {
-                return;
-            } else {
-                int slm = Integer.valueOf(sl);
-                if (slm > Integer.parseInt(tbldssanpham.getValueAt(row, 3).toString())) {
-                    JOptionPane.showMessageDialog(this, "Số lượng nhập lớn hơn số lượng tồn trong kho");
-                } else {
-                    CT.setSoLuong(Integer.parseInt(tbldssanpham.getValueAt(row, 3).toString()));
-                    CT.setSoLuong(CT.getSoLuong() - slm);
-                    HoaDonChiTiet hd = new HoaDonChiTiet();
-                    try {
-                        chiTietSPService.updatesl(CT, tbldssanpham.getValueAt(row, 0).toString());
-                        listhdct.add(chiTietHoaDonViewModel);
-                        listhdctt.add(hd);
-                        chiTietHoaDonViewModel.setMaSP((String) tbldssanpham.getValueAt(row, 0));
-                        chiTietHoaDonViewModel.setTenSP((String) tbldssanpham.getValueAt(row, 1));
-                        chiTietHoaDonViewModel.setSoLuong(Integer.valueOf(sl));
-                        chiTietHoaDonViewModel.setDonGia((BigDecimal) tbldssanpham.getValueAt(row, 2));
-                        hd.setSoLuong(Integer.valueOf(sl));
-                        hd.setDonGia((BigDecimal) tbldssanpham.getValueAt(row, 2));
-                        banHangService.addSanPham(tbldssanpham.getValueAt(row, 0).toString(), tbHoaDonBanHang.getValueAt(r, 0).toString(), hd);
-                        addTableGioHang(listhdct);
-                        loadTableChiTietSPBH(chiTietSPService.all());
-                        if (tblgiohang.getRowCount() > 0) {
-                            for (int i = 0; i < listhdct.size(); i++) {
-                                thanhtien = thanhtien + (listhdct.get(i).getSoLuong() * Integer.parseInt(listhdct.get(i).getDonGia().toString()));
+            try {
+                if (sl.equals("")) {
+                    return;
+                } else if (Integer.valueOf(sl) < 0) {
+                    JOptionPane.showMessageDialog(this, "Số lượng nhập phải lớn hơn 0");
+                } else if (Integer.valueOf(sl) >= 0) {
+                    int slm = Integer.valueOf(sl);
+                    if (slm > Integer.parseInt(tbldssanpham.getValueAt(row, 3).toString())) {
+                        JOptionPane.showMessageDialog(this, "Số lượng nhập lớn hơn số lượng tồn trong kho");
+                    } else if (slm == Integer.parseInt(tbldssanpham.getValueAt(row, 3).toString())) {
+                        CT.setSoLuong(Integer.parseInt(tbldssanpham.getValueAt(row, 3).toString()));
+                        CT.setSoLuong(CT.getSoLuong() - slm);
+                        CT.setTrangThai(1);
+                        HoaDonChiTiet hd = new HoaDonChiTiet();
+                        try {
+                            chiTietSPService.updatesl(CT, tbldssanpham.getValueAt(row, 0).toString());
+                            listhdct.add(chiTietHoaDonViewModel);
+                            listhdctt.add(hd);
+                            chiTietHoaDonViewModel.setMaSP((String) tbldssanpham.getValueAt(row, 0));
+                            chiTietHoaDonViewModel.setTenSP((String) tbldssanpham.getValueAt(row, 1));
+                            chiTietHoaDonViewModel.setSoLuong(Integer.valueOf(sl));
+                            chiTietHoaDonViewModel.setDonGia((BigDecimal) tbldssanpham.getValueAt(row, 2));
+                            hd.setSoLuong(Integer.valueOf(sl));
+                            hd.setDonGia((BigDecimal) tbldssanpham.getValueAt(row, 2));
+                            banHangService.addSanPham(tbldssanpham.getValueAt(row, 0).toString(), tbHoaDonBanHang.getValueAt(r, 0).toString(), hd);
+                            addTableGioHang(listhdct);
+                            loadTableChiTietSPBH(chiTietSPService.all());
+                            if (tblgiohang.getRowCount() > 0) {
+                                for (int i = 0; i < listhdct.size(); i++) {
+                                    thanhtien = thanhtien + (listhdct.get(i).getSoLuong() * Integer.parseInt(listhdct.get(i).getDonGia().toString()));
+                                }
+                                txtThanhTien1.setText((String.valueOf(thanhtien)));
                             }
-                            txtThanhTien1.setText((String.valueOf(thanhtien)));
+
+                        } catch (Exception ex) {
+                            ex.printStackTrace();
+                        }
+                    } else {
+                        CT.setSoLuong(Integer.parseInt(tbldssanpham.getValueAt(row, 3).toString()));
+                        CT.setSoLuong(CT.getSoLuong() - slm);
+                        CT.setTrangThai(0);
+                        HoaDonChiTiet hd = new HoaDonChiTiet();
+                        try {
+                            chiTietSPService.updatesl(CT, tbldssanpham.getValueAt(row, 0).toString());
+                            listhdct.add(chiTietHoaDonViewModel);
+                            listhdctt.add(hd);
+                            chiTietHoaDonViewModel.setMaSP((String) tbldssanpham.getValueAt(row, 0));
+                            chiTietHoaDonViewModel.setTenSP((String) tbldssanpham.getValueAt(row, 1));
+                            chiTietHoaDonViewModel.setSoLuong(Integer.valueOf(sl));
+                            chiTietHoaDonViewModel.setDonGia((BigDecimal) tbldssanpham.getValueAt(row, 2));
+                            hd.setSoLuong(Integer.valueOf(sl));
+                            hd.setDonGia((BigDecimal) tbldssanpham.getValueAt(row, 2));
+                            banHangService.addSanPham(tbldssanpham.getValueAt(row, 0).toString(), tbHoaDonBanHang.getValueAt(r, 0).toString(), hd);
+                            addTableGioHang(listhdct);
+                            loadTableChiTietSPBH(chiTietSPService.all());
+                            if (tblgiohang.getRowCount() > 0) {
+                                for (int i = 0; i < listhdct.size(); i++) {
+                                    thanhtien = thanhtien + (listhdct.get(i).getSoLuong() * Integer.parseInt(listhdct.get(i).getDonGia().toString()));
+                                }
+                                txtThanhTien1.setText((String.valueOf(thanhtien)));
+                            }
+
+                        } catch (Exception ex) {
+                            ex.printStackTrace();
                         }
 
-                    } catch (Exception ex) {
-                        ex.printStackTrace();
                     }
                 }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Chưa nhập đúng số lượng");
+                return;
             }
+
         }
     }//GEN-LAST:event_btnthemActionPerformed
 
