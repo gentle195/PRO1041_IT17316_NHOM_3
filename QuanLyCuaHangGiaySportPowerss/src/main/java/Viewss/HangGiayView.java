@@ -278,7 +278,7 @@ public class HangGiayView extends javax.swing.JFrame {
         } else {
             for (int i = 0; i < 5 + 1; i++) {
                 Random rdm = new Random();
-                int rdmm = rdm.nextInt(100) + 1;
+                int rdmm = rdm.nextInt(100000) + 1;
                 txtMaHang.setText("H" + rdmm);
             }
         }
