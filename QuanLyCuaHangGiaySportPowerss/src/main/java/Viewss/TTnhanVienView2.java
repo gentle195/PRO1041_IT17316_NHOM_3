@@ -88,14 +88,11 @@ public class TTnhanVienView2 extends javax.swing.JPanel {
         jLabel48 = new javax.swing.JLabel();
         txtSDTNhanVien = new javax.swing.JTextField();
         jPanel36 = new javax.swing.JPanel();
-        jButton13 = new javax.swing.JButton();
         jButton14 = new javax.swing.JButton();
-        jButton15 = new javax.swing.JButton();
         jPanel38 = new javax.swing.JPanel();
         jScrollPane15 = new javax.swing.JScrollPane();
         tbNhanVien = new javax.swing.JTable();
         jTextField19 = new javax.swing.JTextField();
-        jButton16 = new javax.swing.JButton();
 
         panel3.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -295,27 +292,11 @@ public class TTnhanVienView2 extends javax.swing.JPanel {
         jPanel36.setBackground(new java.awt.Color(255, 255, 255));
         jPanel36.setBorder(javax.swing.BorderFactory.createTitledBorder("CHỨC NĂNG"));
 
-        jButton13.setBackground(new java.awt.Color(204, 204, 204));
-        jButton13.setText("THÊM");
-        jButton13.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton13ActionPerformed(evt);
-            }
-        });
-
         jButton14.setBackground(new java.awt.Color(204, 204, 204));
         jButton14.setText("SỬA");
         jButton14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton14ActionPerformed(evt);
-            }
-        });
-
-        jButton15.setBackground(new java.awt.Color(204, 204, 204));
-        jButton15.setText("XÓA");
-        jButton15.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton15ActionPerformed(evt);
             }
         });
 
@@ -325,21 +306,14 @@ public class TTnhanVienView2 extends javax.swing.JPanel {
             jPanel36Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel36Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel36Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(18, Short.MAX_VALUE))
         );
         jPanel36Layout.setVerticalGroup(
             jPanel36Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel36Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton13)
-                .addGap(39, 39, 39)
+                .addGap(67, 67, 67)
                 .addComponent(jButton14)
-                .addGap(34, 34, 34)
-                .addComponent(jButton15)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -395,28 +369,21 @@ public class TTnhanVienView2 extends javax.swing.JPanel {
             }
         });
 
-        jButton16.setBackground(new java.awt.Color(204, 204, 204));
-        jButton16.setText("TÌM KIẾM");
-
         javax.swing.GroupLayout jPanel38Layout = new javax.swing.GroupLayout(jPanel38);
         jPanel38.setLayout(jPanel38Layout);
         jPanel38Layout.setHorizontalGroup(
             jPanel38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel38Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(504, Short.MAX_VALUE)
                 .addComponent(jTextField19, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46)
-                .addComponent(jButton16)
-                .addGap(211, 211, 211))
+                .addGap(337, 337, 337))
             .addComponent(jScrollPane15, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         jPanel38Layout.setVerticalGroup(
             jPanel38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel38Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField19)
-                    .addComponent(jButton16))
+                .addComponent(jTextField19)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39))
@@ -482,7 +449,7 @@ public class TTnhanVienView2 extends javax.swing.JPanel {
         }else{
             for (int i = 0; i < 5 + 1; i++) {
                 Random rdm = new Random();
-                int rdmm = rdm.nextInt(100) + 1;
+                int rdmm = rdm.nextInt(100000) + 1;
                 txtMaNhanVien.setText("NV" + rdmm);
                 txtTKNV.setText(txtMaNhanVien.getText());
             }
@@ -506,39 +473,6 @@ public class TTnhanVienView2 extends javax.swing.JPanel {
     private void txtSDTNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSDTNhanVienActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSDTNhanVienActionPerformed
-
-    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        // TODO add your handling code here:
-        int bb = JOptionPane.showConfirmDialog(this, "Bạn muốn thêm không ?", "Có", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION);
-        if (bb == JOptionPane.YES_OPTION) {
-            NhanVien nv = new NhanVien();
-            nv.setMaNV(txtMaNhanVien.getText());
-            nv.setHoTenNV(txtHoTenNV.getText());
-            if (rdNamNV.isSelected()) {
-                nv.setGioiTinh("Nam");
-            } else {
-                nv.setGioiTinh("Nữ");
-            }
-            nv.setSdt(txtSDTNhanVien.getText());
-            nv.setChucvu((ChucVu) cbCV.getSelectedItem());
-            nv.setDiaChi(txtDCNV.getText());
-            nv.setNgaySinh((Date) dateNSNV.getDate());
-            nv.setMatkhau(txtMKNV.getText());
-            nv.setSdt(txtSDTNhanVien.getText());
-            try {
-                nvService.create(nv);
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-            JOptionPane.showMessageDialog(this, "Thêm thành công");
-        } else if (bb == JOptionPane.NO_OPTION) {
-            return;
-        } else {
-            return;
-        }
-        clearNV();
-        loadTableNhanVien();
-    }//GEN-LAST:event_jButton13ActionPerformed
 
     void clearNV() {
         txtMaNhanVien.setText("");
@@ -610,44 +544,6 @@ public class TTnhanVienView2 extends javax.swing.JPanel {
         clearNV();
     }//GEN-LAST:event_jButton14ActionPerformed
 
-    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
-        // TODO add your handling code here:
-        int row = tbNhanVien.getSelectedRow();
-        if (row == -1) {
-            JOptionPane.showMessageDialog(this, "Vui lòng chọn vào trong bảng");
-            return;
-        }
-        int bb = JOptionPane.showConfirmDialog(this, "Thông báo", "Xoá", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION);
-        if (bb == JOptionPane.YES_OPTION) {
-            NhanVien nv = new NhanVien();
-            nv.setIdNV(UUID.fromString(txtIDNhanVien.getText()));
-            nv.setMaNV(txtMaNhanVien.getText());
-            nv.setHoTenNV(txtHoTenNV.getText());
-            if (rdNamNV.isSelected()) {
-                nv.setGioiTinh("Nam");
-            } else {
-                nv.setGioiTinh("Nữ");
-            }
-            nv.setDiaChi(txtDCNV.getText());
-            nv.setNgaySinh(dateNSNV.getDate());
-            nv.setMatkhau(txtMKNV.getText());
-            nv.setSdt(txtSDTNhanVien.getText());
-            try {
-                nvService.delete(nv);
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-            JOptionPane.showMessageDialog(this, "Xoá thành công");
-        } else if (bb == JOptionPane.NO_OPTION) {
-            return;
-        } else {
-            return;
-        }
-
-        loadTableNhanVien();
-        clearNV();
-    }//GEN-LAST:event_jButton15ActionPerformed
-
     private void tbNhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbNhanVienMouseClicked
         // TODO add your handling code here:
         int row = tbNhanVien.getSelectedRow();
@@ -678,10 +574,7 @@ public class TTnhanVienView2 extends javax.swing.JPanel {
     private javax.swing.ButtonGroup buttonGroup1;
     public static javax.swing.JComboBox<String> cbCV;
     private com.toedter.calendar.JDateChooser dateNSNV;
-    private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
-    private javax.swing.JButton jButton15;
-    private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel43;

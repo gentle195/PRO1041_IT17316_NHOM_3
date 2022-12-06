@@ -11,6 +11,7 @@ import Services.Interface.ChucVuServiceInterface;
 import Services.Interface.NhanVienServiceInteface;
 import Services.NhanVienService;
 import ViewModels.NhanVienViewModel;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
@@ -27,6 +28,7 @@ public class TTnhanVienView extends javax.swing.JPanel {
 
     private NhanVienServiceInteface nvService;
     private ChucVuServiceInterface cvService;
+    private List<NhanVienViewModel> List;
 
     /**
      * Creates new form TTnhanVienView
@@ -35,14 +37,17 @@ public class TTnhanVienView extends javax.swing.JPanel {
         initComponents();
         this.cvService = new ChucVuSevice();
         this.nvService = new NhanVienService();
+
+        List = nvService.getall();
+        loadTableNhanVien(nvService.getall());
+
         List<ChucVu> cv = cvService.getall();
         cbCV.setModel(new DefaultComboBoxModel(cv.toArray()));
-        loadTableNhanVien();
+
     }
 
-    private void loadTableNhanVien() {
+    private void loadTableNhanVien(List<NhanVienViewModel> Sz) {
         DefaultTableModel modeltb = new DefaultTableModel();
-        List<NhanVienViewModel> Sz = nvService.getall();
         modeltb = (DefaultTableModel) tbNhanVien.getModel();
         modeltb.setRowCount(0);
         for (NhanVienViewModel x : Sz) {
@@ -53,6 +58,7 @@ public class TTnhanVienView extends javax.swing.JPanel {
 
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -94,8 +100,7 @@ public class TTnhanVienView extends javax.swing.JPanel {
         jPanel38 = new javax.swing.JPanel();
         jScrollPane15 = new javax.swing.JScrollPane();
         tbNhanVien = new javax.swing.JTable();
-        jTextField19 = new javax.swing.JTextField();
-        jButton16 = new javax.swing.JButton();
+        txtSreach = new javax.swing.JTextField();
 
         panel3.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -389,35 +394,33 @@ public class TTnhanVienView extends javax.swing.JPanel {
         });
         jScrollPane15.setViewportView(tbNhanVien);
 
-        jTextField19.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField19jTextField8ActionPerformed(evt);
+        txtSreach.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtSreachCaretUpdate(evt);
             }
         });
-
-        jButton16.setBackground(new java.awt.Color(204, 204, 204));
-        jButton16.setText("TÌM KIẾM");
+        txtSreach.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSreachjTextField8ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel38Layout = new javax.swing.GroupLayout(jPanel38);
         jPanel38.setLayout(jPanel38Layout);
         jPanel38Layout.setHorizontalGroup(
             jPanel38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel38Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jTextField19, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46)
-                .addComponent(jButton16)
-                .addGap(211, 211, 211))
-            .addComponent(jScrollPane15, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jScrollPane15, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1043, Short.MAX_VALUE)
+            .addGroup(jPanel38Layout.createSequentialGroup()
+                .addGap(159, 159, 159)
+                .addComponent(txtSreach, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel38Layout.setVerticalGroup(
             jPanel38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel38Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField19)
-                    .addComponent(jButton16))
-                .addGap(18, 18, 18)
+                .addGap(12, 12, 12)
+                .addComponent(txtSreach)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39))
         );
@@ -477,12 +480,12 @@ public class TTnhanVienView extends javax.swing.JPanel {
 
     private void txtHoTenNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHoTenNVActionPerformed
         // TODO add your handling code here:
-        if(txtHoTenNV.getText().equals("")){
-            return; 
-        }else{
+        if (txtHoTenNV.getText().equals("")) {
+            return;
+        } else {
             for (int i = 0; i < 5 + 1; i++) {
                 Random rdm = new Random();
-                int rdmm = rdm.nextInt(100) + 1;
+                int rdmm = rdm.nextInt(100000) + 1;
                 txtMaNhanVien.setText("NV" + rdmm);
                 txtTKNV.setText(txtMaNhanVien.getText());
             }
@@ -537,7 +540,7 @@ public class TTnhanVienView extends javax.swing.JPanel {
             return;
         }
         clearNV();
-        loadTableNhanVien();
+        loadTableNhanVien(nvService.getall());
     }//GEN-LAST:event_jButton13ActionPerformed
 
     void clearNV() {
@@ -606,7 +609,7 @@ public class TTnhanVienView extends javax.swing.JPanel {
         } else {
             return;
         }
-        loadTableNhanVien();
+        loadTableNhanVien(nvService.getall());
         clearNV();
     }//GEN-LAST:event_jButton14ActionPerformed
 
@@ -644,7 +647,7 @@ public class TTnhanVienView extends javax.swing.JPanel {
             return;
         }
 
-        loadTableNhanVien();
+        loadTableNhanVien(nvService.getall());
         clearNV();
     }//GEN-LAST:event_jButton15ActionPerformed
 
@@ -668,9 +671,20 @@ public class TTnhanVienView extends javax.swing.JPanel {
         txtSDTNhanVien.setText(tbNhanVien.getValueAt(row, 9).toString());
     }//GEN-LAST:event_tbNhanVienMouseClicked
 
-    private void jTextField19jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField19jTextField8ActionPerformed
+    private void txtSreachjTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSreachjTextField8ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField19jTextField8ActionPerformed
+    }//GEN-LAST:event_txtSreachjTextField8ActionPerformed
+
+    private void txtSreachCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtSreachCaretUpdate
+        // TODO add your handling code here:
+        List<NhanVienViewModel> nv = new ArrayList<>();
+        for (NhanVienViewModel n : nvService.getall()) {
+            if (n.getHoTenNV().contains(txtSreach.getText())) {
+                nv.add(n);
+            }
+        }
+        loadTableNhanVien(nv);
+    }//GEN-LAST:event_txtSreachCaretUpdate
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -681,7 +695,6 @@ public class TTnhanVienView extends javax.swing.JPanel {
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton15;
-    private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel43;
@@ -696,7 +709,6 @@ public class TTnhanVienView extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel36;
     private javax.swing.JPanel jPanel38;
     private javax.swing.JScrollPane jScrollPane15;
-    private javax.swing.JTextField jTextField19;
     private java.awt.Panel panel3;
     private javax.swing.JRadioButton rdNamNV;
     private javax.swing.JRadioButton rdNuNV;
@@ -707,6 +719,7 @@ public class TTnhanVienView extends javax.swing.JPanel {
     private javax.swing.JTextField txtMKNV;
     private javax.swing.JTextField txtMaNhanVien;
     private javax.swing.JTextField txtSDTNhanVien;
+    private javax.swing.JTextField txtSreach;
     private javax.swing.JTextField txtTKNV;
     // End of variables declaration//GEN-END:variables
 }

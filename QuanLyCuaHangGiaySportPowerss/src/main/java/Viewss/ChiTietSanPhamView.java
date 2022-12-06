@@ -49,7 +49,7 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
     private DeGiayServiceInterface deGiayService;
     private LoaiGiayServiceInterface loaiGiayService;
     private SizeServiceInterface sizeService;
-    List< ChiTietSPViewModel> list;
+    List<ChiTietSPViewModel> list;
     private DefaultComboBoxModel defaultComboBoxModel;
 
     /**
