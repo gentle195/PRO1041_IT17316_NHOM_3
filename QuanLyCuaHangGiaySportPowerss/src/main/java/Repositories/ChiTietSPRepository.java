@@ -124,7 +124,8 @@ public class ChiTietSPRepository implements ChiTietSPRepositoryInterface {
         }
         return null;
     }
-  public List<ChiTietSP> loc(UUID IDCL, UUID SizeID, UUID IDHang, UUID IDDe, UUID IDLoaiGiay) {
+
+    public List<ChiTietSP> loc(UUID IDCL, UUID SizeID, UUID IDHang, UUID IDDe, UUID IDLoaiGiay) {
         String sql = "select ct from ChiTietSP ct\n"
                 + "left join ct.hangGiay\n"
                 + "left join ct.chatlieu\n"
@@ -199,7 +200,5 @@ public class ChiTietSPRepository implements ChiTietSPRepositoryInterface {
         List<ChiTietSP> list = q.getResultList();
         return list;
     }
-
-   
 
 }

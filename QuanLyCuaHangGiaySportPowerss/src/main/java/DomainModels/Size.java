@@ -36,7 +36,7 @@ public class Size {
     private String MaSize;
 
     @Column(name = "SoSize")
-    private int SoSize;
+    private String SoSize;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "size")
     private Set<ChiTietSP> list = new HashSet<>();
@@ -52,12 +52,13 @@ public class Size {
     public Size() {
     }
 
-    public Size(UUID IdSize, String MaSize, int SoSize) {
+    public Size(UUID IdSize, String MaSize, String SoSize) {
         this.IdSize = IdSize;
         this.MaSize = MaSize;
         this.SoSize = SoSize;
     }
 
+   
     public UUID getIdSize() {
         return IdSize;
     }
@@ -74,14 +75,15 @@ public class Size {
         this.MaSize = MaSize;
     }
 
-    public int getSoSize() {
+    public String getSoSize() {
         return SoSize;
     }
 
-    public void setSoSize(int SoSize) {
+    public void setSoSize(String SoSize) {
         this.SoSize = SoSize;
     }
 
+   
     @Override
     public String toString() {
         return "" + SoSize ;
