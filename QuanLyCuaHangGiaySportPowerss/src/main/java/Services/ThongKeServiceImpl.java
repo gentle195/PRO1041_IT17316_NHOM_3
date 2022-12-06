@@ -39,4 +39,14 @@ public class ThongKeServiceImpl implements ThongKeServiceInterface {
         return tkRepo.tkSPpM(bd, kt);
     }
 
+    @Override
+    public List<HoaDonTKViewModel> tkTHD() {
+        return tkRepo.tkTHD();
+    }
+
+    @Override
+    public List<HoaDonTKViewModel> tkTDT() {
+        return tkRepo.tkTDT();
+    }
+
 }
