@@ -1,114 +1,118 @@
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\ViewModels\HoaDonChiTietViewModel.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Services\HangGiayService.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Viewss\KhachHangView.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Repositories\BanHangRepository.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\ViewModels\LoaiGiayViewModel.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Repositories\Impl\KhachHangRepositoryInterface.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Services\KhachHangService.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Repositories\SizeRepository.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Services\Interface\ThongKeServiceInterface.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Viewss\ChatLieuView.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Repositories\Impl\ChatLieuRepositoryInterface.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Repositories\LoaiGiayRepository.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Repositories\HoaDonRepository.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Services\Interface\LoaiGiayServiceInterface.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Services\HDCTService.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Repositories\DeGiayRepository.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Services\Interface\KhachHangServiceInterface.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Viewss\QuanLyViews.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Repositories\HoaDonChiTietRepository.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Services\Interface\LoginService.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Repositories\Impl\SanPhamRepositoryInterface.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Services\SanPhamService.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\DomainModels\ChiTietSP.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Services\Interface\DeGiayServiceInterface.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Repositories\Impl\DeGiayRepositoryInterface.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Repositories\Impl\ChucVuRepositoryInterface.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Viewss\BanHang.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\DomainModels\DeGiay.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\DomainModels\NhanVien.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Viewss\ChucVuView.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\DomainModels\Time.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Repositories\HoaDonBanHangRepository.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\DomainModels\ChiTietSP1.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Viewss\HangGiayView.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\DomainModels\HoaDon.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\DomainModels\LoaiGiay.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Repositories\HangGiayRepository.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Services\Interface\SanPhamServiceInterface.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Repositories\Impl\NhanVienRepositoryInterface.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\ViewModels\ChiTietSPViewModel.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Repositories\KhachHangRepository.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\ViewModels\SanPhamViewModel.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Services\LoginServiceImpl.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\DomainModels\ChucVuLG.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Viewss\DeGiayView.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Viewss\SanPhamView.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Services\SizeService.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\ViewModels\SizeViewModel.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Repositories\ChiTietSPRepository.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Services\HoaDonService.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Repositories\Impl\BanHangRepositoryInterface.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Services\Interface\BanHangServiceInterface.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Repositories\Impl\ThongKeRepositoryInterface.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Viewss\ChiTietSanPhamView.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\DomainModels\KhachHang.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Services\NhanVienService.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\DomainModels\ChucVu.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Repositories\Impl\HoaDonBanHangRepositoryInterface.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Views\giaoDienDN.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\ViewModels\ChucVuViewModel.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\ViewModels\HoaDonTKViewModel.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Repositories\ChatLieuRepository.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Repositories\NhanVienRepository.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\DomainModels\SanPham.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Viewss\giaoDienDangNhap.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Viewss\ThongKe.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Services\Interface\NhanVienServiceInteface.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Services\ChiTietSPService.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Services\Interface\HoaDonBanHangServiceInterface.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Repositories\LoginRepository.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\ViewModels\NhanVienViewModel.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Services\Interface\ChatLieuServiceInterface.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\ViewModels\HoaDonBanHangViewModel.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Services\Interface\HangGiayServiceInterface.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Viewss\LoaiSPView.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\DomainModels\HoaDonChiTiet.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Services\DeGiayService.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Repositories\SanPhamRepository.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Services\HoaDonBanHangService.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Viewss\LayThongTinKhachHang.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\DomainModels\HangGiay.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Services\LoaiGiayService.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\ViewModels\DeGiayViewModel.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Utilities\DBConnection.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Repositories\Impl\HangGiayRepositoryInterface.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Utilities\JpaUtil.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Services\ThongKeServiceImpl.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Services\Interface\SizeServiceInterface.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Views\QuanLyView.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\ViewModels\HoaDonViewModel.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Services\Interface\HoaDonService.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Services\BanHangService.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Services\ChatLieuService.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Viewss\TTnhanVienView.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Repositories\ThongKeRepositoryImpl.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\DomainModels\Login_Result.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Viewss\HoaDonView.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\DomainModels\ChatLieu.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Repositories\Impl\HoaDonRepositoryInterface.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Repositories\Impl\SizeRepositoryInterface.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\ViewModels\HangGiayViewModel.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Services\ChucVuSevice.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Services\Interface\ChucVuServiceInterface.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\DomainModels\TaiKhoan.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Repositories\Impl\LoaiGiayRepositoryInterface.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Services\Interface\HoaDonServiceInterface.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Viewss\SizeView.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Repositories\Impl\ChiTietSPRepositoryInterface.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Services\Interface\ChiTietSPServiceInterface.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\ViewModels\ChatLieuViewModel.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Views\NhanVienView.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\DomainModels\Size.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Services\HoaDonServiceImpl.java
-E:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Repositories\ChucVuRepository.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Viewss\HoaDonView.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Services\Interface\SanPhamServiceInterface.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Services\Interface\HangGiayServiceInterface.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Services\DeGiayService.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Services\ChatLieuService.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Services\HoaDonBanHangService.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Services\Interface\LoginService.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Views\QuanLyView.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\DomainModels\HangGiay.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Services\LoaiGiayService.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\ViewModels\DeGiayViewModel.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Viewss\ThongKe.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Repositories\LoaiGiayRepository.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Viewss\LoaiSPView.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Services\HDCTService.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Repositories\ChiTietSPRepository.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Repositories\Impl\ChatLieuRepositoryInterface.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Repositories\Impl\SanPhamRepositoryInterface.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Utilities\DBConnection.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\ViewModels\LoaiGiayViewModel.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Services\Interface\NhanVienServiceInteface.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\DomainModels\ChiTietSP1.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Services\SizeService.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Repositories\Impl\KhachHangRepositoryInterface.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\DomainModels\DeGiay.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Services\ChiTietSPService.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Repositories\Impl\HoaDonRepositoryInterface.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\DomainModels\HoaDonChiTiet.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\ViewModels\ChatLieuViewModel.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Repositories\SizeRepository.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\ViewModels\HoaDonChiTietViewModel.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Services\ChucVuSevice.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Views\giaoDienDN.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Services\Interface\HoaDonServiceInterface.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Viewss\TimSanPham.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\DomainModels\ChiTietSP.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Repositories\Impl\NhanVienRepositoryInterface.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Repositories\ChucVuRepository.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\DomainModels\Login_Result.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Repositories\Impl\HangGiayRepositoryInterface.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Services\Interface\ChucVuServiceInterface.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\DomainModels\ChucVuLG.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Services\Interface\BanHangServiceInterface.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Services\SanPhamService.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Viewss\HangGiayView.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Repositories\Impl\BanHangRepositoryInterface.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Repositories\Impl\ThongKeRepositoryInterface.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Repositories\BanHangRepository.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Services\Interface\HoaDonService.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Viewss\KhachHang2Views.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Viewss\SizeView.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Repositories\HoaDonRepository.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\DomainModels\NhanVien.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Repositories\ThongKeRepositoryImpl.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Services\BanHangService.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\ViewModels\HangGiayViewModel.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Repositories\DeGiayRepository.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Repositories\Impl\SizeRepositoryInterface.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Repositories\KhachHangRepository.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\DomainModels\ChatLieu.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Repositories\Impl\ChiTietSPRepositoryInterface.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Utilities\JpaUtil.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Viewss\TTnhanVienView.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\DomainModels\Time.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Viewss\KhachHangView.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Viewss\giaoDienDangNhap.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Viewss\SanPhamView.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\DomainModels\TaiKhoan.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Services\Interface\ChiTietSPServiceInterface.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Repositories\Impl\HoaDonBanHangRepositoryInterface.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Views\NhanVienView.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Services\HoaDonServiceImpl.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Repositories\ChatLieuRepository.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Services\KhachHangService.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Repositories\NhanVienRepository.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\ViewModels\HoaDonTKViewModel.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Services\Interface\LoaiGiayServiceInterface.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\ViewModels\HoaDonViewModel.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Repositories\HoaDonChiTietRepository.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Viewss\NhanVienBanHangViews.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Services\ThongKeServiceImpl.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Viewss\LayThongTinKhachHang.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Services\Interface\SizeServiceInterface.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\DomainModels\SanPham.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\DomainModels\Size.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Repositories\SanPhamRepository.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Services\HoaDonService.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Services\LoginServiceImpl.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Viewss\ChiTietSanPhamView.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Services\Interface\DeGiayServiceInterface.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Viewss\ChucVuView.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Repositories\HoaDonBanHangRepository.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Viewss\TTnhanVienView2.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Services\HangGiayService.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Services\Interface\ThongKeServiceInterface.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\DomainModels\KhachHang.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Repositories\HangGiayRepository.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Repositories\LoginRepository.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\ViewModels\HoaDonBanHangViewModel.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\DomainModels\HoaDon.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Repositories\Impl\ChucVuRepositoryInterface.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\DomainModels\LoaiGiay.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\ViewModels\ChucVuViewModel.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Repositories\Impl\DeGiayRepositoryInterface.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Services\Interface\HoaDonBanHangServiceInterface.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Viewss\DeGiayView.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\DomainModels\ChucVu.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\ViewModels\ChiTietSPViewModel.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Services\Interface\ChatLieuServiceInterface.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\ViewModels\NhanVienViewModel.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\ViewModels\SizeViewModel.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Viewss\ChatLieuView.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Services\Interface\KhachHangServiceInterface.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Viewss\BanHang.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Repositories\Impl\LoaiGiayRepositoryInterface.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Services\NhanVienService.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\Viewss\QuanLyViews.java
+G:\Semester 4\BLOCK 2\DuAn1\PRO1041_IT17316_NHOM_3\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\ViewModels\SanPhamViewModel.java

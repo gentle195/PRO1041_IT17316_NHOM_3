@@ -34,61 +34,58 @@ public class KhachHangService implements KhachHangServiceInterface {
         List<KhachHang> lstKH = KHRepo.all();
         for (KhachHang khachHangtrc : lstKH) {
             if (kh.getMa().equals(khachHangtrc.getMa())) {
-                return "mã trùng";
+                return "Mã khách hàng không được trùng";
             }
         }
         if (kh.getMa().equals("")) {
-            return "Mã null";
+            return "Mã khách hàng không được để trống!";
         }
         if (kh.getHoTen().equals("")) {
-            return "Tên null";
-        }
-        if (kh.getDiaChi().equals("")) {
-            return "Địa chỉ null";
+            return "Tên khách hàng không được để trống!";
         }
         if (kh.getSdt().equals("")) {
-            return "Sđt null";
+            return "Sđt khách hàng không được để trống!";
         }
-        if (!kh.getSdt().matches(".*[^0-9].*") && kh.getSdt().length() == 10) {
-            return "Sđt sai";
+        if (!(kh.getSdt().matches(".*[^0-9].*") || kh.getSdt().length() == 10)) {
+            return "Sđt phải gồm 10 chữ số";
         }
-        if (kh.getGioiTinh().equals("")) {
-            return "gt null";
+        if (kh.getNgaySinh() == null) {
+            return "Ngày sinh khách hàng không được để trống!";
         }
-        if (kh.getNgaySinh().toString().equals("")) {
-            return "ns null";
+        if (kh.getDiaChi().equals("")) {
+            return "Địa chỉ khách hàng không được để trống!";
         }
         if (KHRepo.create(kh) == true) {
-            return "Them thanh cong";
+            return "Thêm thành công ^^";
         } else {
-            return "Them that bai";
+            return "Thêm thất bại";
         }
     }
 
     @Override
     public String update(KhachHang kh) throws Exception {
-        if (kh.getHoTen().equals("")) {
-            return "Tên null";
+        if (kh.getMa().equals("")) {
+            return "Mã khách hàng không được để trống!";
         }
-        if (kh.getDiaChi().equals("")) {
-            return "Địa chỉ null";
+        if (kh.getHoTen().equals("")) {
+            return "Tên khách hàng không được để trống!";
         }
         if (kh.getSdt().equals("")) {
-            return "Sđt null";
+            return "Sđt khách hàng không được để trống!";
         }
-        if (!kh.getSdt().matches(".*[^0-9].*") && kh.getSdt().length() == 10) {
-            return "Sđt sai";
+        if (!(kh.getSdt().matches(".*[^0-9].*") || kh.getSdt().length() == 10)) {
+            return "Sđt phải gồm 10 chữ số";
         }
-        if (kh.getGioiTinh().equals("")) {
-            return "gt null";
+        if (kh.getNgaySinh() == null) {
+            return "Ngày sinh khách hàng không được để trống!";
         }
-        if (kh.getNgaySinh().toString().equals("")) {
-            return "ns null";
+        if (kh.getDiaChi().equals("")) {
+            return "Địa chỉ khách hàng không được để trống!";
         }
         if (KHRepo.update(kh) == true) {
-            return "Update thanh cong";
+            return "Sửa thành công ^^";
         } else {
-            return "Update that bai";
+            return "Sửa thất bại";
         }
     }
 
