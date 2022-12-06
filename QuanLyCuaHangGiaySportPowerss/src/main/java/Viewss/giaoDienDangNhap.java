@@ -16,9 +16,9 @@ import javax.swing.JOptionPane;
  * @author Admin
  */
 public class giaoDienDangNhap extends javax.swing.JFrame {
-    
+
     private LoginService service = new LoginServiceImpl();
-    
+
     public giaoDienDangNhap() {
         initComponents();
     }
@@ -145,9 +145,8 @@ public class giaoDienDangNhap extends javax.swing.JFrame {
         String username = txtMa.getText();
         String password = new String(txtMK.getPassword());
         Login_Result result = service.doLogin(username, password);
-        if (result.getStatus().equals(Boolean.TRUE)) {        
+        if (result.getStatus().equals(Boolean.TRUE)) {
             this.dispose();
-            QuanLyViews.txtMaNhanVien.setText(username);
         } else {
             JOptionPane.showMessageDialog(this, result.getMessage());
         }

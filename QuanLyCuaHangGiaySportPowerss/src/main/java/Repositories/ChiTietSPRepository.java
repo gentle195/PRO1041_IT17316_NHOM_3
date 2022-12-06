@@ -4,19 +4,14 @@ package Repositories;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-import DomainModels.ChatLieu;
 import DomainModels.ChiTietSP;
-import DomainModels.ChiTietSP1;
 import Utilities.JpaUtil;
 import DomainModels.SanPham;
-import Repositories.Impl.ChatLieuRepositoryInterface;
 import Repositories.Impl.ChiTietSPRepositoryInterface;
-import Repositories.Impl.SanPhamRepositoryInterface;
 import Utilities.DBConnection;
 import ViewModels.ChiTietSPViewModel;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
-import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -93,11 +88,12 @@ public class ChiTietSPRepository implements ChiTietSPRepositoryInterface {
     public void updates1(ChiTietSP ct, String ma) throws Exception {
         try {
             Connection conn = DBConnection.getConnection();
-            String insert = "update ChiTietSp set SoLuong=? where IdSP like(Select IdSP from SanPham where MaSP=?)";
+            String insert = "update ChiTietSp set SoLuong=?,TrangThai=? where IdSP like(Select IdSP from SanPham where MaSP=?)";
 //                    "update  ChiTietHoaDon set SoLuong=? where IDChiTietSP like(Select IDCTSP from ChiTietSP CT left join SanPham SP on CT.IdSP=SP.IdSP where MaSP=?)";
             PreparedStatement ps = conn.prepareStatement(insert);
             ps.setObject(1, ct.getSoLuong());
-            ps.setObject(2, ma);
+            ps.setObject(2, ct.getTrangThai());
+            ps.setObject(3, ma);
             ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(ChiTietSPRepository.class.getName()).log(Level.SEVERE, null, ex);
@@ -125,7 +121,7 @@ public class ChiTietSPRepository implements ChiTietSPRepositoryInterface {
         return null;
     }
 
-    public List<ChiTietSP> loc(UUID IDCL, UUID SizeID, UUID IDHang, UUID IDDe, UUID IDLoaiGiay) {
+    public List<ChiTietSP> loc(UUID IDCL, UUID SizeID, UUID IDHang, UUID IDDe, UUID IDLoaiGiay,int tt) {
         String sql = "select ct from ChiTietSP ct\n"
                 + "left join ct.hangGiay\n"
                 + "left join ct.chatlieu\n"
@@ -174,6 +170,14 @@ public class ChiTietSPRepository implements ChiTietSPRepositoryInterface {
                 sql += " and ct.deGiay.IdDG=:d";
             }
         }
+        if (String.valueOf(tt) != null) {
+            if (loc) {
+                loc = false;
+                sql += " where ct.TrangThai=:tt";
+            } else {
+                sql += " and ct.TrangThai=:tt";
+            }
+        }
         // }
         //   this.em.clear();
         JpaUtil.getEntityManager();
@@ -195,7 +199,9 @@ public class ChiTietSPRepository implements ChiTietSPRepositoryInterface {
         if (IDLoaiGiay != null) {
             q.setParameter("l", IDLoaiGiay);
         }
-
+        if (String.valueOf(tt) != null) {
+            q.setParameter("tt", tt);
+        }
         q.getResultList();
         List<ChiTietSP> list = q.getResultList();
         return list;

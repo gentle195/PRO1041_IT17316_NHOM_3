@@ -8,7 +8,6 @@ import DomainModels.ChiTietSP;
 import DomainModels.HoaDon;
 import DomainModels.HoaDonChiTiet;
 import DomainModels.KhachHang;
-import Repositories.HoaDonRepository;
 import Services.ChiTietSPService;
 
 import Services.BanHangService;
@@ -21,22 +20,16 @@ import Services.NhanVienService;
 import ViewModels.ChiTietSPViewModel;
 import ViewModels.HoaDonBanHangViewModel;
 import ViewModels.HoaDonChiTietViewModel;
-import ViewModels.HoaDonViewModel;
-import ViewModels.NhanVienViewModel;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
-import java.util.UUID;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import Services.Interface.BanHangServiceInterface;
 import Services.Interface.HoaDonServiceInterface;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -53,7 +46,7 @@ public class BanHang extends javax.swing.JPanel {
     ArrayList<HoaDonChiTietViewModel> listhdct = new ArrayList<>();
     ArrayList<HoaDonChiTiet> listhdctt = new ArrayList<>();
     List<ChiTietSPViewModel> listsp;
-
+    ChiTietSP CT = new ChiTietSP();
     /**
      * Creates new form BanHang
      */
@@ -766,48 +759,76 @@ public class BanHang extends javax.swing.JPanel {
             int row = tbldssanpham.getSelectedRow();
             int ro = tblgiohang.getSelectedRow();
             int r = tbHoaDonBanHang.getSelectedRow();
+            int thanhtien = 0;
+            int slsp = 0;
             HoaDonChiTietViewModel chiTietHoaDonViewModel = new HoaDonChiTietViewModel();
-            List<ChiTietSPViewModel> lctsp1 = chiTietSPService.all();
-            ChiTietSPViewModel ctsp = lctsp1.get(row);
-            UUID id = ctsp.getIdCTSP();
-            ChiTietSP CT = new ChiTietSP();
             String sl = JOptionPane.showInputDialog("Mời nhập số lượng");
-            int slm = Integer.valueOf(sl);
-            CT.setSoLuong(Integer.parseInt(tbldssanpham.getValueAt(row, 3).toString()));
-            CT.setSoLuong(CT.getSoLuong() - slm);
-            chiTietHoaDonViewModel.setMaSP((String) tbldssanpham.getValueAt(row, 0));
-            chiTietHoaDonViewModel.setTenSP((String) tbldssanpham.getValueAt(row, 1));
-            chiTietHoaDonViewModel.setSoLuong(Integer.valueOf(sl));
-            chiTietHoaDonViewModel.setDonGia((BigDecimal) tbldssanpham.getValueAt(row, 2));
-            HoaDonChiTiet hd = new HoaDonChiTiet();
-            hd.setSoLuong(Integer.valueOf(sl));
-            hd.setDonGia((BigDecimal) tbldssanpham.getValueAt(row, 2));
-            listhdct.add(chiTietHoaDonViewModel);
-            listhdctt.add(hd);
+            if (sl.equals("")) {
+                return;
+            } else if (Integer.valueOf(sl) < 0) {
+                JOptionPane.showMessageDialog(this, "Số lượng nhập phải lớn hơn 0");
+            } else {
+                int slm = Integer.valueOf(sl);
+                if (slm > Integer.parseInt(tbldssanpham.getValueAt(row, 3).toString())) {
+                    JOptionPane.showMessageDialog(this, "Số lượng nhập lớn hơn số lượng tồn trong kho");
+                } else if (slm == Integer.parseInt(tbldssanpham.getValueAt(row, 3).toString())) {
+                    CT.setSoLuong(Integer.parseInt(tbldssanpham.getValueAt(row, 3).toString()));
+                    CT.setSoLuong(CT.getSoLuong() - slm);
+                    CT.setTrangThai(1);
+                    HoaDonChiTiet hd = new HoaDonChiTiet();
+                    try {
+                        chiTietSPService.updatesl(CT, tbldssanpham.getValueAt(row, 0).toString());
+                        listhdct.add(chiTietHoaDonViewModel);
+                        listhdctt.add(hd);
+                        chiTietHoaDonViewModel.setMaSP((String) tbldssanpham.getValueAt(row, 0));
+                        chiTietHoaDonViewModel.setTenSP((String) tbldssanpham.getValueAt(row, 1));
+                        chiTietHoaDonViewModel.setSoLuong(Integer.valueOf(sl));
+                        chiTietHoaDonViewModel.setDonGia((BigDecimal) tbldssanpham.getValueAt(row, 2));
+                        hd.setSoLuong(Integer.valueOf(sl));
+                        hd.setDonGia((BigDecimal) tbldssanpham.getValueAt(row, 2));
+                        banHangService.addSanPham(tbldssanpham.getValueAt(row, 0).toString(), tbHoaDonBanHang.getValueAt(r, 0).toString(), hd);
+                        addTableGioHang(listhdct);
+                        loadTableChiTietSPBH(chiTietSPService.all());
+                        if (tblgiohang.getRowCount() > 0) {
+                            for (int i = 0; i < listhdct.size(); i++) {
+                                thanhtien = thanhtien + (listhdct.get(i).getSoLuong() * Integer.parseInt(listhdct.get(i).getDonGia().toString()));
+                            }
+                            txtThanhTien1.setText((String.valueOf(thanhtien)));
+                        }
 
-            try {
-                chiTietSPService.updatesl(CT, tbldssanpham.getValueAt(row, 0).toString());
-                addTableGioHang(listhdct);
-                loadTableChiTietSPBH(lctsp1);
-                banHangService.addSanPham(tbldssanpham.getValueAt(row, 0).toString(), tbHoaDonBanHang.getValueAt(r, 0).toString(), hd);
-                int thanhtien = 0;
-                int slsp = 0;
-                if (tblgiohang.getRowCount() > 0) {
-                    for (int i = 0; i < listhdct.size(); i++) {
-                        thanhtien = thanhtien + (listhdct.get(i).getSoLuong() * Integer.parseInt(listhdct.get(i).getDonGia().toString()));
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
                     }
-                    txtThanhTien1.setText((String.valueOf(thanhtien)));
-                }
-                if (tblgiohang.getRowCount() > 0) {
-                    for (int i = 0; i < listhdct.size(); i++) {
-                        slsp = slsp + (listhdct.get(i).getSoLuong());
-                    }
-                    chiTietHoaDonViewModel.setSoLuong(slsp);
-                    //                HDCT.updateSL(hd,id);
-                }
+                } else {
+                    CT.setSoLuong(Integer.parseInt(tbldssanpham.getValueAt(row, 3).toString()));
+                    CT.setSoLuong(CT.getSoLuong() - slm);
+                    CT.setTrangThai(1);
+                    HoaDonChiTiet hd = new HoaDonChiTiet();
+                    try {
+                        chiTietSPService.updatesl(CT, tbldssanpham.getValueAt(row, 0).toString());
+                        listhdct.add(chiTietHoaDonViewModel);
+                        listhdctt.add(hd);
+                        chiTietHoaDonViewModel.setMaSP((String) tbldssanpham.getValueAt(row, 0));
+                        chiTietHoaDonViewModel.setTenSP((String) tbldssanpham.getValueAt(row, 1));
+                        chiTietHoaDonViewModel.setSoLuong(Integer.valueOf(sl));
+                        chiTietHoaDonViewModel.setDonGia((BigDecimal) tbldssanpham.getValueAt(row, 2));
+                        hd.setSoLuong(Integer.valueOf(sl));
+                        hd.setDonGia((BigDecimal) tbldssanpham.getValueAt(row, 2));
+                        banHangService.addSanPham(tbldssanpham.getValueAt(row, 0).toString(), tbHoaDonBanHang.getValueAt(r, 0).toString(), hd);
+                        addTableGioHang(listhdct);
+                        loadTableChiTietSPBH(chiTietSPService.all());
+                        if (tblgiohang.getRowCount() > 0) {
+                            for (int i = 0; i < listhdct.size(); i++) {
+                                thanhtien = thanhtien + (listhdct.get(i).getSoLuong() * Integer.parseInt(listhdct.get(i).getDonGia().toString()));
+                            }
+                            txtThanhTien1.setText((String.valueOf(thanhtien)));
+                        }
 
-            } catch (Exception ex) {
-                ex.printStackTrace();
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+
+                }
             }
         }
     }//GEN-LAST:event_btnthemActionPerformed

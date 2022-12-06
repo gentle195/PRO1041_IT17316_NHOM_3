@@ -34,12 +34,34 @@ public class ChiTietSP1 {
     @JoinColumn(name = "IdSP", nullable = false)
     private SanPham sanPham1;
 
-   
+    @ManyToOne
+    @JoinColumn(name = "IdHang", nullable = false)
+    private HangGiay hangGiay;
+
+    @ManyToOne
+    @JoinColumn(name = "IdCL", nullable = false)
+    private ChatLieu chatlieu;
+
+    @ManyToOne
+    @JoinColumn(name = "IdDeGiay", nullable = false)
+    private DeGiay deGiay;
+
+    @ManyToOne
+    @JoinColumn(name = "IdSize", nullable = false)
+    private Size size;
+
+    @ManyToOne
+    @JoinColumn(name = "IdLoai", nullable = false)
+    private LoaiGiay loaigiay;
+
     @Column(name = "SoLuong")
     private int SoLuong;
 
     @Column(name = "DonGia")
     private BigDecimal DonGia;
+
+    @Column(name = "TrongLuong")
+    private int TrongLuong;
 
     @Column(name = "TrangThai")
     private int TrangThai;
@@ -50,11 +72,17 @@ public class ChiTietSP1 {
     public ChiTietSP1() {
     }
 
-    public ChiTietSP1(UUID IdCTSP, SanPham sanPham1, int SoLuong, BigDecimal DonGia, int TrangThai, String MoTa) {
+    public ChiTietSP1(UUID IdCTSP, SanPham sanPham1, HangGiay hangGiay, ChatLieu chatlieu, DeGiay deGiay, Size size, LoaiGiay loaigiay, int SoLuong, BigDecimal DonGia, int TrongLuong, int TrangThai, String MoTa) {
         this.IdCTSP = IdCTSP;
         this.sanPham1 = sanPham1;
+        this.hangGiay = hangGiay;
+        this.chatlieu = chatlieu;
+        this.deGiay = deGiay;
+        this.size = size;
+        this.loaigiay = loaigiay;
         this.SoLuong = SoLuong;
         this.DonGia = DonGia;
+        this.TrongLuong = TrongLuong;
         this.TrangThai = TrangThai;
         this.MoTa = MoTa;
     }
@@ -67,12 +95,52 @@ public class ChiTietSP1 {
         this.IdCTSP = IdCTSP;
     }
 
-    public SanPham getSanPham() {
+    public SanPham getSanPham1() {
         return sanPham1;
     }
 
-    public void setSanPham(SanPham sanPham2) {
+    public void setSanPham1(SanPham sanPham1) {
         this.sanPham1 = sanPham1;
+    }
+
+    public HangGiay getHangGiay() {
+        return hangGiay;
+    }
+
+    public void setHangGiay(HangGiay hangGiay) {
+        this.hangGiay = hangGiay;
+    }
+
+    public ChatLieu getChatlieu() {
+        return chatlieu;
+    }
+
+    public void setChatlieu(ChatLieu chatlieu) {
+        this.chatlieu = chatlieu;
+    }
+
+    public DeGiay getDeGiay() {
+        return deGiay;
+    }
+
+    public void setDeGiay(DeGiay deGiay) {
+        this.deGiay = deGiay;
+    }
+
+    public Size getSize() {
+        return size;
+    }
+
+    public void setSize(Size size) {
+        this.size = size;
+    }
+
+    public LoaiGiay getLoaigiay() {
+        return loaigiay;
+    }
+
+    public void setLoaigiay(LoaiGiay loaigiay) {
+        this.loaigiay = loaigiay;
     }
 
     public int getSoLuong() {
@@ -91,6 +159,14 @@ public class ChiTietSP1 {
         this.DonGia = DonGia;
     }
 
+    public int getTrongLuong() {
+        return TrongLuong;
+    }
+
+    public void setTrongLuong(int TrongLuong) {
+        this.TrongLuong = TrongLuong;
+    }
+
     public int getTrangThai() {
         return TrangThai;
     }
@@ -106,7 +182,5 @@ public class ChiTietSP1 {
     public void setMoTa(String MoTa) {
         this.MoTa = MoTa;
     }
-
-    
 
 }

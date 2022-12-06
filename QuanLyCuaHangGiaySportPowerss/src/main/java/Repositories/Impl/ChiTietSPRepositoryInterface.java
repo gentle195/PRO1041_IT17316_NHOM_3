@@ -31,7 +31,7 @@ public interface ChiTietSPRepositoryInterface {
 
     public List<ChiTietSPViewModel> search(String ten);
 
-    List<ChiTietSP> loc(UUID IDCL, UUID SizeID, UUID IDHang, UUID IDDe, UUID IDLoaiGiay);
+    List<ChiTietSP> loc(UUID IDCL, UUID SizeID, UUID IDHang, UUID IDDe, UUID IDLoaiGiay,int tt);
     
    
 }

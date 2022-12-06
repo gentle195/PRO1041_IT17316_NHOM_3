@@ -53,6 +53,10 @@ public class ChiTietSPViewModel {
     public ChiTietSPViewModel() {
     }
 
+    public ChiTietSPViewModel(int TrangThai) {
+        this.TrangThai = TrangThai;
+    }
+    
     public ChiTietSPViewModel(UUID IdCTSP, SanPham sanPham, HangGiay hangGiay, ChatLieu chatlieu, DeGiay deGiay, Size size, LoaiGiay loaigiay, int SoLuong, BigDecimal DonGia, int TrongLuong, int TrangThai, String MoTa) {
         this.IdCTSP = IdCTSP;
         this.sanPham = sanPham;
@@ -191,5 +195,8 @@ public class ChiTietSPViewModel {
     public Object[] toDataRow() {
         return new Object[]{sanPham.getMaSP(), sanPham.getTenSP(), DonGia, SoLuong, TrangThai == 0 ? "Hết hàng" : "Còn hàng"};
     }
-
+    @Override
+    public String toString() {
+        return ""+TrangThai;
+    }
 }
