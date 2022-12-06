@@ -38,6 +38,14 @@ public class HoaDonTKViewModel {
         this.tongTien = tongTien;
     }
 
+    public HoaDonTKViewModel(int tongHD) {
+        this.tongHD = tongHD;
+    }
+
+    public HoaDonTKViewModel(BigDecimal tongTien) {
+        this.tongTien = tongTien;
+    }
+
     public Date getNgayTao() {
         return ngayTao;
     }

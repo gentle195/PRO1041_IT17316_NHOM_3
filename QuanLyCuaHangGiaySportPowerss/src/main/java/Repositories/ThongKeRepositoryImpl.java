@@ -118,10 +118,43 @@ public class ThongKeRepositoryImpl implements ThongKeRepositoryInterface {
         return null;
     }
 
-    public static void main(String[] args) {
-        List<ChiTietSPViewModel> listhd = new ThongKeRepositoryImpl().tkSP();
-        for (ChiTietSPViewModel hoaDonTKViewModel : listhd) {
-            System.out.println(hoaDonTKViewModel.toString());
+    @Override
+    public List<HoaDonTKViewModel> tkTHD() {
+        String query = "select count(IdHD) as SLHD\n"
+                + "from HoaDon where TinhTrang=1";
+        try (Connection conn = DBConnection.getConnection();
+                PreparedStatement ps = conn.prepareStatement(query)) {
+            ResultSet rs = ps.executeQuery();
+            List<HoaDonTKViewModel> listhd = new ArrayList<>();
+            while (rs.next()) {
+                HoaDonTKViewModel hdtk = new HoaDonTKViewModel(rs.getInt(1));
+                listhd.add(hdtk);
+            }
+            return listhd;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+        return null;
+    }
+
+    @Override
+    public List<HoaDonTKViewModel> tkTDT() {
+        String query = "select SUM(tongTien) as TongDoanhThu \n"
+                + "from HoaDon where TinhTrang=1";
+        try (Connection conn = DBConnection.getConnection();
+                PreparedStatement ps = conn.prepareStatement(query)) {
+            ResultSet rs = ps.executeQuery();
+            List<HoaDonTKViewModel> listhd = new ArrayList<>();
+            while (rs.next()) {
+                HoaDonTKViewModel hdtk = new HoaDonTKViewModel(rs.getBigDecimal(1));
+                listhd.add(hdtk);
+            }
+            return listhd;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

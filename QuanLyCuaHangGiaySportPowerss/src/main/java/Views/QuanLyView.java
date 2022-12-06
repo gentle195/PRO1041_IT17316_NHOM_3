@@ -142,7 +142,7 @@ public class QuanLyView extends javax.swing.JFrame {
         this.loadTableNhanVien();
         this.loadTableHoaDonBanHang();
         this.loadTableHoaDon();
-                this.setDataToChart1(jpnTkHD);
+        this.setDataToChart1(jpnTkHD);
 
 //        this.loadCBChatLieu();
 //        this.loadCBDe();
@@ -188,7 +188,7 @@ public class QuanLyView extends javax.swing.JFrame {
         tblKH.setModel(dtmKH);
         Object[] header = {"Mã", "Họ tên", "Giới tính", "Ngày sinh", "SĐT", "Địa chỉ"};
         dtmKH.setColumnIdentifiers(header);
-        
+
         tblTkHD.setModel(dtmTKHD);
         tblTkSP.setModel(dtmTKSP);
         Object[] headers = {"STT", "Ngay", "Tong hoa don", "Tong doanh thu"};
@@ -684,12 +684,12 @@ public class QuanLyView extends javax.swing.JFrame {
         pnlThongKe = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jPanel27 = new javax.swing.JPanel();
-        jLabel18 = new javax.swing.JLabel();
+        txtThd = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
+        txtTDT = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -2447,8 +2447,8 @@ public class QuanLyView extends javax.swing.JFrame {
         jPanel27.setBackground(new java.awt.Color(204, 255, 255));
         jPanel27.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        jLabel18.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jLabel18.setText("200 hóa đơn");
+        txtThd.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtThd.setText("200 hóa đơn");
 
         jLabel25.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         jLabel25.setText("Tổng số hóa đơn");
@@ -2465,7 +2465,7 @@ public class QuanLyView extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel18))
+                    .addComponent(txtThd))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
         jPanel27Layout.setVerticalGroup(
@@ -2476,7 +2476,7 @@ public class QuanLyView extends javax.swing.JFrame {
                     .addGroup(jPanel27Layout.createSequentialGroup()
                         .addComponent(jLabel25)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel18))
+                        .addComponent(txtThd))
                     .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35))
         );
@@ -2487,8 +2487,8 @@ public class QuanLyView extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         jLabel9.setText("Tổng doanh thu");
 
-        jLabel13.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jLabel13.setText("100.000.000 VND");
+        txtTDT.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtTDT.setText("100.000.000 VND");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -2500,7 +2500,7 @@ public class QuanLyView extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel13))
+                    .addComponent(txtTDT))
                 .addContainerGap(44, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
@@ -2512,7 +2512,7 @@ public class QuanLyView extends javax.swing.JFrame {
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtTDT, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
@@ -5339,6 +5339,17 @@ public class QuanLyView extends javax.swing.JFrame {
         listTKSP = serviceTK.thongKeSP();
         this.loadTableThongKeSanPham(listTKSP);
 
+        List<HoaDonTKViewModel> listTKHDD = serviceTK.tkTHD();
+        HoaDonTKViewModel hd = new HoaDonTKViewModel();
+        hd = listTKHDD.get(0);
+        String thd = String.valueOf(hd.getTongHD());
+        txtThd.setText(thd);
+
+        List<HoaDonTKViewModel> listTKHDDT = serviceTK.tkTDT();
+        HoaDonTKViewModel hddt = new HoaDonTKViewModel();
+        hddt = listTKHDDT.get(0);
+        String tdt = String.valueOf(hddt.getTongTien());
+        txtTDT.setText(tdt);
 
     }//GEN-LAST:event_btnThongKeActionPerformed
 
@@ -5498,6 +5509,8 @@ public class QuanLyView extends javax.swing.JFrame {
 
         listTKSP = serviceTK.thongKeSP();
         this.loadTableThongKeSanPham(listTKSP);
+
+
     }//GEN-LAST:event_btnClearTKActionPerformed
 
     private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed
@@ -7427,11 +7440,9 @@ public class QuanLyView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel21;
@@ -7708,6 +7719,7 @@ public class QuanLyView extends javax.swing.JFrame {
     private javax.swing.JTextField txtSoLuongSP;
     private javax.swing.JTextField txtSoLuongSP1;
     private javax.swing.JTextField txtSoSize;
+    private javax.swing.JLabel txtTDT;
     private javax.swing.JTextField txtTKNV;
     private javax.swing.JTextField txtTenChatLieu;
     private javax.swing.JTextField txtTenChucVu;
@@ -7716,6 +7728,7 @@ public class QuanLyView extends javax.swing.JFrame {
     private javax.swing.JTextField txtTenLoai;
     private javax.swing.JTextField txtTenSP;
     private javax.swing.JTextField txtThanhTien1;
+    private javax.swing.JLabel txtThd;
     private javax.swing.JLabel txtTienDu1;
     private javax.swing.JTextField txtTrongLuong;
     private javax.swing.JTextField txtTrongLuong1;
