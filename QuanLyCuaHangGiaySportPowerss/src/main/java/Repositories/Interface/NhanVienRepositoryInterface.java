@@ -21,4 +21,6 @@ public interface NhanVienRepositoryInterface {
     public void update(NhanVien nv) throws Exception;
 
     public void delete(NhanVien nv) throws Exception;
+
+    List<NhanVien> getallNhanVien(String ma);
 }

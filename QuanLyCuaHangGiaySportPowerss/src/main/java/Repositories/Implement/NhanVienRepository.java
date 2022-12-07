@@ -70,4 +70,18 @@ public class NhanVienRepository implements NhanVienRepositoryInterface{
         }
 
     }
+    
+    @Override
+    public List<NhanVien> getallNhanVien(String ma) {
+        String jpql = "SELECT cate FROM NhanVien cate where cate.MaNV =:ma ";
+        
+       
+       JpaUtil.getEntityManager();
+        TypedQuery q = JpaUtil.getEntityManager().createQuery(jpql, NhanVien.class);
+        q.setParameter("ma", ma);
+        
+        q.getResultList();
+     
+        return q.getResultList();
+    }
 }
