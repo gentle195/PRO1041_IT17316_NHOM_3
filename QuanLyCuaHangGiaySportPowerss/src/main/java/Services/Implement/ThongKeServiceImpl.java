@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Services;
+package Services.Implement;
 
-import Repositories.ThongKeRepositoryImpl;
+import Repositories.Implement.ThongKeRepositoryImpl;
 import ViewModels.HoaDonTKViewModel;
 import java.util.List;
 import Services.Interface.ThongKeServiceInterface;

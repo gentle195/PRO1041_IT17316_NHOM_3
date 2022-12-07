@@ -5,10 +5,11 @@
 package Viewss;
 
 import DomainModels.HoaDon;
+import Services.HDCTService;
 import Services.HoaDonServiceImpl;
 import Services.Interface.HoaDonService;
 import Services.Interface.ThongKeServiceInterface;
-import Services.ThongKeServiceImpl;
+import Services.Implement.ThongKeServiceImpl;
 import ViewModels.ChiTietSPViewModel;
 import ViewModels.HoaDonTKViewModel;
 import java.awt.CardLayout;
@@ -113,14 +114,17 @@ public class ThongKe extends javax.swing.JPanel {
     }
 
     public void setDataToChart1(JPanel jpnItem) {
-        List<HoaDonTKViewModel> listItem = serviceTK.thongKeHD();;
+        List<HoaDonTKViewModel> listItem = new ArrayList<>();
+        listItem = serviceTK.thongKeHD();
+//        HoaDonTKViewModel hd = new HoaDonTKViewModel();
+        List<HoaDonTKViewModel> listTKHDDT = serviceTK.tkTDT();
+        HoaDonTKViewModel hddt = new HoaDonTKViewModel();
+        hddt = listTKHDDT.get(0);
 
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        if (listItem != null) {
-            for (HoaDonTKViewModel hd : listItem) {
-                dataset.addValue(hd.getTongTien(), "Tổng doanh thu", hd.getNgayTao().getMonth() + 1);
-//                dataset.addValue(hd.getTongTien(), "Tổng doanh thu", hd.getNgayTao());
-            }
+        for (HoaDonTKViewModel hd : listItem) {
+            dataset.addValue(hddt.getTongTien(), "Tổng doanh thu", hd.getNgayTao().getMonth() + 1);
+            System.out.println(hd.getNgayTao());
         }
 
         JFreeChart barChart = ChartFactory.createBarChart(
