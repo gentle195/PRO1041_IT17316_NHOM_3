@@ -21,4 +21,6 @@ public interface NhanVienServiceInteface {
     public void update(NhanVien nv) throws Exception;
 
     public void delete(NhanVien nv) throws Exception;
+    
+        public List<NhanVienViewModel> getallNhanVien(String ma);
 }

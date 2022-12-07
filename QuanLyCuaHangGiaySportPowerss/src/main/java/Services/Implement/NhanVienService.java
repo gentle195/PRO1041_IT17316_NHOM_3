@@ -47,4 +47,15 @@ public class NhanVienService implements NhanVienServiceInteface{
         NVrepo.delete(nv);
       
     }
+    
+     @Override
+    public List<NhanVienViewModel> getallNhanVien(String ma) {
+         List<NhanVien> listDomainModel = this.NVrepo.getallNhanVien(ma);
+        List<NhanVienViewModel> listVModel = new ArrayList<>();
+        for (NhanVien c : listDomainModel) {
+            NhanVienViewModel vmodel = new NhanVienViewModel(c.getIdNV(), c.getMaNV(), c.getHoTenNV(), c.getGioiTinh(), c.getNgaySinh(), c.getDiaChi(), c.getSdt(), c.getChucvu(), c.getMatkhau());
+            listVModel.add(vmodel);
+        }
+        return listVModel;
+    }
 }
