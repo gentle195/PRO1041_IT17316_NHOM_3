@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package DomainModels;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -20,6 +21,7 @@ import java.util.List;
 import java.util.Set;
 
 import java.util.UUID;
+
 /**
  *
  * @author Admin
@@ -27,7 +29,7 @@ import java.util.UUID;
 @Entity
 @Table(name = "ChucVu")
 public class ChucVu {
-    
+
     @Id
     @Column(name = "IdCV")
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -61,6 +63,10 @@ public class ChucVu {
         this.MaCV = MaCV;
         this.TenCV = TenCV;
         this.MoTaCV = MoTaCV;
+    }
+
+    public ChucVu(String TenCV) {
+        this.TenCV = TenCV;
     }
 
     public UUID getIdCV() {
@@ -97,7 +103,7 @@ public class ChucVu {
 
     @Override
     public String toString() {
-        return  TenCV ;
+        return TenCV;
     }
-    
+
 }
