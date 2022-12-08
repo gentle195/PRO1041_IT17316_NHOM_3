@@ -33,8 +33,8 @@ public class ChiTietSPService implements ChiTietSPServiceInterface {
     }
 
     @Override
-    public List<ChiTietSPViewModel> all() {
-        List<ChiTietSP> listDomainModel = this.chiTietSPRepo.getall();
+    public List<ChiTietSPViewModel> all(int min, int max) {
+        List<ChiTietSP> listDomainModel = this.chiTietSPRepo.getall(min, max);
         List<ChiTietSPViewModel> listVModel = new ArrayList<>();
         for (ChiTietSP c : listDomainModel) {
             ChiTietSPViewModel vmodel = new ChiTietSPViewModel(c.getIdCTSP(), c.getSanPham(), c.getHangGiay(), c.getChatlieu(), c.getDeGiay(), c.getSize(), c.getLoaigiay(), c.getSoLuong(), c.getDonGia(), c.getTrongLuong(), c.getTrangThai(), c.getMoTa());
@@ -72,16 +72,21 @@ public class ChiTietSPService implements ChiTietSPServiceInterface {
     }
 
     @Override
-    public List<ChiTietSPViewModel> loc(UUID IDCL, UUID SizeID, UUID IDHang, UUID IDDe, UUID IDLoaiGiay,int tt) {
-  
-      List<ChiTietSP> listDomainModel = chiTietSPRepo.loc(IDCL, SizeID, IDHang, IDDe, IDLoaiGiay,tt);
+    public List<ChiTietSPViewModel> loc(UUID IDCL, UUID SizeID, UUID IDHang, UUID IDDe, UUID IDLoaiGiay, int tt) {
+
+        List<ChiTietSP> listDomainModel = chiTietSPRepo.loc(IDCL, SizeID, IDHang, IDDe, IDLoaiGiay, tt);
         List<ChiTietSPViewModel> listVModel = new ArrayList<>();
         for (ChiTietSP c : listDomainModel) {
             ChiTietSPViewModel vmodel = new ChiTietSPViewModel(c.getIdCTSP(), c.getSanPham(), c.getHangGiay(), c.getChatlieu(), c.getDeGiay(), c.getSize(), c.getLoaigiay(), c.getSoLuong(), c.getDonGia(), c.getTrongLuong(), c.getTrangThai(), c.getMoTa());
             listVModel.add(vmodel);
         }
 
-        return listVModel;}
-  
+        return listVModel;
+    }
+
+    @Override
+    public long dem() {
+        return chiTietSPRepo.dem();
+    }
 
 }

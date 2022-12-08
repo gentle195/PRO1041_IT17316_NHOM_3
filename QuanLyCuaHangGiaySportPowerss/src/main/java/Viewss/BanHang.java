@@ -42,11 +42,15 @@ public class BanHang extends javax.swing.JPanel {
     private HoaDonServiceInterface hoaDonService;
     private NhanVienServiceInteface nvService;
     private KhachHangServiceInterface khachHangService;
-
+    DefaultTableModel dtmSpBH = new DefaultTableModel();
     ArrayList<HoaDonChiTietViewModel> listhdct = new ArrayList<>();
     ArrayList<HoaDonChiTiet> listhdctt = new ArrayList<>();
     List<ChiTietSPViewModel> listsp;
     ChiTietSP CT = new ChiTietSP();
+    long count;
+    int trang;
+    int sotrang=1;
+    int start = 0, end = 7;
     /**
      * Creates new form BanHang
      */
@@ -57,10 +61,10 @@ public class BanHang extends javax.swing.JPanel {
         this.hoaDonService = new HoaDonService();
         this.nvService = new NhanVienService();
         this.khachHangService = new KhachHangService();
-
         loadTableHoaDonBanHang();
-        loadTableChiTietSPBH(chiTietSPService.all());
-        listsp = chiTietSPService.all();
+        listsp = chiTietSPService.all(start, end);
+        count = chiTietSPService.dem();
+        loadTableChiTietSPBH(chiTietSPService.all(start, end));
 
     }
 
@@ -92,8 +96,14 @@ public class BanHang extends javax.swing.JPanel {
                 x.getSanPham().getMaSP(), x.getSanPham().getTenSP(), x.getDonGia(),
                 x.getSoLuong(), x.getTrangThai() == 1 ? "Còn Hàng" : "Hết Hàng"});
         }
+        trang = (int) (count / end) + 1;
+        setStatePagination();
     }
-
+    private void setStatePagination() {
+        btnback.setEnabled(start > 1);
+        btnnext.setEnabled(start < trang);
+        jTrang.setText(sotrang + "/" + trang);
+    }
     private void addTableGioHang(ArrayList<HoaDonChiTietViewModel> list) {
         DefaultTableModel modeltb = new DefaultTableModel();
         modeltb = (DefaultTableModel) tblgiohang.getModel();
@@ -121,7 +131,7 @@ public class BanHang extends javax.swing.JPanel {
         jScrollPane5 = new javax.swing.JScrollPane();
         tbldssanpham = new javax.swing.JTable();
         txttimkiem = new javax.swing.JTextField();
-        jLabel36 = new javax.swing.JLabel();
+        jTrang = new javax.swing.JLabel();
         btnthem = new javax.swing.JButton();
         btnback = new javax.swing.JButton();
         jLabel24 = new javax.swing.JLabel();
@@ -239,6 +249,13 @@ public class BanHang extends javax.swing.JPanel {
         jPanel19.setBackground(new java.awt.Color(255, 255, 255));
         jPanel19.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Sản Phẩm"));
 
+        btnnext.setText(">");
+        btnnext.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnnextActionPerformed(evt);
+            }
+        });
+
         tbldssanpham.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -286,13 +303,20 @@ public class BanHang extends javax.swing.JPanel {
             }
         });
 
-        jLabel36.setText("1/3");
+        jTrang.setText("1/3");
 
         btnthem.setBackground(new java.awt.Color(204, 204, 204));
         btnthem.setText("Thêm vào giỏ Hàng");
         btnthem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnthemActionPerformed(evt);
+            }
+        });
+
+        btnback.setText("<");
+        btnback.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbackActionPerformed(evt);
             }
         });
 
@@ -307,7 +331,7 @@ public class BanHang extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnback, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTrang, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnnext, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(105, 105, 105)
@@ -338,7 +362,7 @@ public class BanHang extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnback)
-                    .addComponent(jLabel36)
+                    .addComponent(jTrang)
                     .addComponent(btnnext)
                     .addComponent(btnthem))
                 .addContainerGap())
@@ -788,7 +812,7 @@ public class BanHang extends javax.swing.JPanel {
                         hd.setDonGia((BigDecimal) tbldssanpham.getValueAt(row, 2));
                         banHangService.addSanPham(tbldssanpham.getValueAt(row, 0).toString(), tbHoaDonBanHang.getValueAt(r, 0).toString(), hd);
                         addTableGioHang(listhdct);
-                        loadTableChiTietSPBH(chiTietSPService.all());
+                        loadTableChiTietSPBH(chiTietSPService.all(start, end));
                         if (tblgiohang.getRowCount() > 0) {
                             for (int i = 0; i < listhdct.size(); i++) {
                                 thanhtien = thanhtien + (listhdct.get(i).getSoLuong() * Integer.parseInt(listhdct.get(i).getDonGia().toString()));
@@ -816,7 +840,7 @@ public class BanHang extends javax.swing.JPanel {
                         hd.setDonGia((BigDecimal) tbldssanpham.getValueAt(row, 2));
                         banHangService.addSanPham(tbldssanpham.getValueAt(row, 0).toString(), tbHoaDonBanHang.getValueAt(r, 0).toString(), hd);
                         addTableGioHang(listhdct);
-                        loadTableChiTietSPBH(chiTietSPService.all());
+                        loadTableChiTietSPBH(chiTietSPService.all(start, end));
                         if (tblgiohang.getRowCount() > 0) {
                             for (int i = 0; i < listhdct.size(); i++) {
                                 thanhtien = thanhtien + (listhdct.get(i).getSoLuong() * Integer.parseInt(listhdct.get(i).getDonGia().toString()));
@@ -1009,13 +1033,31 @@ public class BanHang extends javax.swing.JPanel {
     private void txttimkiemCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txttimkiemCaretUpdate
         // TODO add your handling code here:
         List<ChiTietSPViewModel> sp = new ArrayList<>();
-        for (ChiTietSPViewModel s : chiTietSPService.all()) {
+        for (ChiTietSPViewModel s : chiTietSPService.all(start, end)) {
             if (s.getSanPham().getTenSP().contains(txttimkiem.getText())) {
                 sp.add(s);
             }
         }
         loadTableChiTietSPBH(sp);
     }//GEN-LAST:event_txttimkiemCaretUpdate
+
+    private void btnnextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnextActionPerformed
+        // TODO add your handling code here:
+        if (start < trang) {
+            start = start + 7;
+            sotrang++;
+        }
+        loadTableChiTietSPBH(chiTietSPService.all(start, end));
+    }//GEN-LAST:event_btnnextActionPerformed
+
+    private void btnbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbackActionPerformed
+        // TODO add your handling code here:
+        if (start > 1) {
+            start=start - 7;
+            sotrang--;
+        }
+        loadTableChiTietSPBH(chiTietSPService.all(start, end));
+    }//GEN-LAST:event_btnbackActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1033,7 +1075,6 @@ public class BanHang extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
-    private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel51;
     private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel6;
@@ -1048,6 +1089,7 @@ public class BanHang extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane22;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JLabel jTrang;
     private javax.swing.JPanel pnlBanHang;
     private javax.swing.JRadioButton rdChuyenKhoan;
     private javax.swing.JRadioButton rdTienMat;

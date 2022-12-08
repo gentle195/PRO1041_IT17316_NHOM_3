@@ -19,7 +19,7 @@ import java.util.UUID;
  */
 public interface ChiTietSPRepositoryInterface {
 
-    public List<ChiTietSP> getall();
+    public List<ChiTietSP> getall(int min,int max);
 
     public void create(ChiTietSP chiTietSP) throws Exception;
 
@@ -32,6 +32,6 @@ public interface ChiTietSPRepositoryInterface {
     public List<ChiTietSPViewModel> search(String ten);
 
     List<ChiTietSP> loc(UUID IDCL, UUID SizeID, UUID IDHang, UUID IDDe, UUID IDLoaiGiay,int tt);
-    
+    public long dem();
    
 }

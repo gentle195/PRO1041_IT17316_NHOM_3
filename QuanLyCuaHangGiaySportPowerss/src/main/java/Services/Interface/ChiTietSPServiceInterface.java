@@ -8,7 +8,7 @@ import java.util.UUID;
 
 public interface ChiTietSPServiceInterface {
 
-    public List<ChiTietSPViewModel> all();
+    public List<ChiTietSPViewModel> all(int min,int max);
 
     public List<ChiTietSPViewModel> search(String ten);
 
@@ -21,5 +21,5 @@ public interface ChiTietSPServiceInterface {
     public void updatesl(ChiTietSP ct, String ma) throws Exception;
     
     List<ChiTietSPViewModel> loc(UUID IDCL, UUID SizeID, UUID IDHang, UUID IDDe, UUID IDLoaiGiay,int tt);
-
+    public long dem();
 }
