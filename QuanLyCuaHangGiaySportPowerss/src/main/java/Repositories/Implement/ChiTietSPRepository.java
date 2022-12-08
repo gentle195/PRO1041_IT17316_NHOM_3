@@ -16,6 +16,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import java.util.List;
@@ -30,16 +31,19 @@ import java.util.logging.Logger;
 public class ChiTietSPRepository implements ChiTietSPRepositoryInterface {
 
     private EntityManager em;
+    private static final Connection con = DBConnection.getConnection();
 
     public ChiTietSPRepository() {
         this.em = JpaUtil.getEntityManager();
     }
 
     @Override
-    public List<ChiTietSP> getall() {
+    public List<ChiTietSP> getall(int min, int max) {
         String jpql = "SELECT cate FROM ChiTietSP cate";
-        this.em.clear();
         TypedQuery<ChiTietSP> query = this.em.createQuery(jpql, ChiTietSP.class);
+        query.setFirstResult(min);
+        query.setMaxResults(max);
+        this.em.clear();
         return query.getResultList();
     }
 
@@ -121,7 +125,7 @@ public class ChiTietSPRepository implements ChiTietSPRepositoryInterface {
         return null;
     }
 
-    public List<ChiTietSP> loc(UUID IDCL, UUID SizeID, UUID IDHang, UUID IDDe, UUID IDLoaiGiay,int tt) {
+    public List<ChiTietSP> loc(UUID IDCL, UUID SizeID, UUID IDHang, UUID IDDe, UUID IDLoaiGiay, int tt) {
         String sql = "select ct from ChiTietSP ct\n"
                 + "left join ct.hangGiay\n"
                 + "left join ct.chatlieu\n"
@@ -205,6 +209,24 @@ public class ChiTietSPRepository implements ChiTietSPRepositoryInterface {
         q.getResultList();
         List<ChiTietSP> list = q.getResultList();
         return list;
+    }
+
+    @Override
+    public long dem() {
+        long count = 0;
+        try {
+            String pr = "select count(*) from ChiTietSP";
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(pr);
+            while (rs.next()) {
+                count = rs.getLong(1);
+            }
+            rs.close();
+            st.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return count;
     }
 
 }

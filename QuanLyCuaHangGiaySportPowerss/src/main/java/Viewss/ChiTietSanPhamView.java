@@ -51,7 +51,10 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
     private SizeServiceInterface sizeService;
     List<ChiTietSPViewModel> list;
     private DefaultComboBoxModel defaultComboBoxModel;
-
+    long count;
+    int trang;
+    int sotrang=1;
+    int start = 0, end = 14;
     /**
      * Creates new form SanPham
      */
@@ -59,7 +62,6 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
         initComponents();
 
         this.chiTietSPService = new ChiTietSPService();
-        loadTableChiTietSP(chiTietSPService.all());
         this.SanPhamService = new SanPhamService();
         this.chatLieuService = new ChatLieuService();
         this.hangGiayService = new HangGiayService();
@@ -67,7 +69,7 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
         this.loaiGiayService = new LoaiGiayService();
         this.sizeService = new SizeService();
         this.chiTietSPService = new ChiTietSPService();
-        list = chiTietSPService.all();
+        list = chiTietSPService.all(start,end);
 
         List<SanPham> sp = SanPhamService.all();
         cbTenSP.setModel(new DefaultComboBoxModel((sp.toArray())));
@@ -120,9 +122,15 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
         AutoCompleteDecorator.decorate(cbHang);
         AutoCompleteDecorator.decorate(cbSIZE);
         AutoCompleteDecorator.decorate(cbLoai);
-
+        count = chiTietSPService.dem();
+        lbTotalProducts1.setText("Total: " + count);
+        loadTableChiTietSP(chiTietSPService.all(start, end));
     }
-
+    private void setStatePagination() {
+        btnPrevious1.setEnabled(start > 1);
+        btnNext1.setEnabled(start < trang);
+        lbPagination1.setText(sotrang + "/" + trang);
+    }
     private void loadTableChiTietSP(List<ChiTietSPViewModel> Sz) {
         DefaultTableModel modeltb = new DefaultTableModel();
 
@@ -137,6 +145,8 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
             });
 
         }
+        trang = (int) (count / end) + 1;
+        setStatePagination();
     }
 
     private void locSP() {
@@ -149,23 +159,23 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
         ChiTietSPViewModel ct = new ChiTietSPViewModel();
         List<ChiTietSPViewModel> l = chiTietSPService.loc(IDCL.getIdCL(), SizeID.getIdSize(), IDHang.getIdHang(), IDDe.getIdDG(), IDLoaiGiay.getIdLoai(), ct.getTrangThai());
         if (cbbHang.getSelectedIndex() == 0) {
-            loadTableChiTietSP(chiTietSPService.all());
+            loadTableChiTietSP(chiTietSPService.all(start, end));
         }
         if (cbbLoai.getSelectedIndex() == 0) {
-            loadTableChiTietSP(chiTietSPService.all());
+            loadTableChiTietSP(chiTietSPService.all(start, end));
         }
         if (cbbSize.getSelectedIndex() == 0) {
-            loadTableChiTietSP(chiTietSPService.all());
+            loadTableChiTietSP(chiTietSPService.all(start, end));
         }
         if (cbbDe.getSelectedIndex() == 0) {
-            loadTableChiTietSP(chiTietSPService.all());
+            loadTableChiTietSP(chiTietSPService.all(start, end));
         }
         if (cbbChatLieu.getSelectedIndex() == 0) {
-            loadTableChiTietSP(chiTietSPService.all());
+            loadTableChiTietSP(chiTietSPService.all(start, end));
         }
         
         if (cbbTrangThai.getSelectedIndex() == 0) {
-            loadTableChiTietSP(chiTietSPService.all());
+            loadTableChiTietSP(chiTietSPService.all(start, end));
         }
         if (cbbTrangThai.getSelectedIndex() == 1) {
             loadTableChiTietSP(l);
@@ -809,12 +819,12 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
                                 .addComponent(jScrollPane20, javax.swing.GroupLayout.PREFERRED_SIZE, 974, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel51Layout.createSequentialGroup()
                                 .addGap(334, 334, 334)
-                                .addComponent(btnPrevious1)
-                                .addGap(82, 82, 82)
+                                .addComponent(btnPrevious1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(65, 65, 65)
                                 .addComponent(lbPagination1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(67, 67, 67)
-                                .addComponent(btnNext1)
-                                .addGap(63, 63, 63)
+                                .addGap(56, 56, 56)
+                                .addComponent(btnNext1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(27, 27, 27)
                                 .addComponent(lbTotalProducts1)))
                         .addGap(18, 18, 18)
                         .addComponent(jPanel52, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -832,17 +842,13 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
                 .addGroup(jPanel51Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane20, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel52, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel51Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel51Layout.createSequentialGroup()
-                        .addGap(7, 7, 7)
-                        .addGroup(jPanel51Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnPrevious1)
-                            .addComponent(btnNext1)
-                            .addComponent(lbTotalProducts1)))
-                    .addGroup(jPanel51Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lbPagination1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(66, 66, 66))
+                .addGap(7, 7, 7)
+                .addGroup(jPanel51Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnPrevious1)
+                    .addComponent(btnNext1)
+                    .addComponent(lbTotalProducts1)
+                    .addComponent(lbPagination1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(65, 65, 65))
         );
 
         javax.swing.GroupLayout pnlSanPhamLayout = new javax.swing.GroupLayout(pnlSanPham);
@@ -962,7 +968,7 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
             return;
         }
         clear();
-        loadTableChiTietSP(chiTietSPService.all());
+        loadTableChiTietSP(chiTietSPService.all(start, end));
 
     }//GEN-LAST:event_btnThemActionPerformed
 
@@ -999,7 +1005,7 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
             return;
         }
         clear();
-        loadTableChiTietSP(chiTietSPService.all());
+        loadTableChiTietSP(chiTietSPService.all(start, end));
 
     }//GEN-LAST:event_btnXoaActionPerformed
 
@@ -1068,7 +1074,7 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
             return;
         }
         clear();
-        loadTableChiTietSP(chiTietSPService.all());
+        loadTableChiTietSP(chiTietSPService.all(start, end));
 
     }//GEN-LAST:event_btnSuaActionPerformed
 
@@ -1253,20 +1259,31 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
 
     private void btnNext1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNext1ActionPerformed
         // TODO add your handling code here:
+        if (start < trang) {
+            start = start + 14;
+            sotrang++;
+        }
+        loadTableChiTietSP(chiTietSPService.all(start, end));
     }//GEN-LAST:event_btnNext1ActionPerformed
 
     private void btnPrevious1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrevious1ActionPerformed
         // TODO add your handling code here:
+        if (start > 1) {
+            start=start - 14;
+            sotrang--;
+        }
+        loadTableChiTietSP(chiTietSPService.all(start, end));
     }//GEN-LAST:event_btnPrevious1ActionPerformed
 
     private void txtMaSPCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtMaSPCaretUpdate
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_txtMaSPCaretUpdate
 
     private void txtSearch2CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtSearch2CaretUpdate
         // TODO add your handling code here:
         List<ChiTietSPViewModel> ds = new ArrayList<>();
-        for (ChiTietSPViewModel g : chiTietSPService.all()) {
+        for (ChiTietSPViewModel g : chiTietSPService.all(start, end)) {
             if (g.getSanPham().getTenSP().contains(txtSearch2.getText())) {
                 ds.add(g);
             }
@@ -1351,7 +1368,7 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
         txtID.setText(tblQLSP.getValueAt(row, 0).toString());
 //        cbTenSP.setSelectedItem(tblQLSP.getValueAt(row, 2).toString());
         if (tblQLSP.getValueAt(row, 1) == null) {
-            JOptionPane.showMessageDialog(this, "Nhân viên không có chức vụ ");
+            JOptionPane.showMessageDialog(this, "Sản phẩm không tên ");
             cbTenSP.setSelectedIndex(0);
         } else {
             for (int j = 0; j < sp.size(); j++) {
@@ -1361,7 +1378,7 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
             }
         }
         if (tblQLSP.getValueAt(row, 2) == null) {
-            JOptionPane.showMessageDialog(this, "Nhân viên không có chức vụ ");
+            JOptionPane.showMessageDialog(this, "Sản phẩm không mã ");
             cbTenSP.setSelectedIndex(0);
         } else {
             for (int j = 0; j < sp.size(); j++) {
@@ -1371,7 +1388,7 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
             }
         }
         if (tblQLSP.getValueAt(row, 3) == null) {
-            JOptionPane.showMessageDialog(this, "Nhân viên không có chức vụ ");
+            JOptionPane.showMessageDialog(this, "Sản phẩm không size ");
             cbSIZE.setSelectedIndex(0);
         } else {
             for (int j = 0; j < Sz.size(); j++) {
@@ -1381,7 +1398,7 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
             }
         }
         if (tblQLSP.getValueAt(row, 4) == null) {
-            JOptionPane.showMessageDialog(this, "Nhân viên không có chức vụ ");
+            JOptionPane.showMessageDialog(this, "Sản phẩm không loại ");
             cbLoai.setSelectedIndex(0);
         } else {
             for (int j = 0; j < lg.size(); j++) {
@@ -1391,7 +1408,7 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
             }
         }
         if (tblQLSP.getValueAt(row, 5) == null) {
-            JOptionPane.showMessageDialog(this, "Nhân viên không có chức vụ ");
+            JOptionPane.showMessageDialog(this, "Sản phẩm không hãng");
             cbHang.setSelectedIndex(0);
         } else {
             for (int j = 0; j < hang.size(); j++) {
@@ -1401,7 +1418,7 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
             }
         }
         if (tblQLSP.getValueAt(row, 6) == null) {
-            JOptionPane.showMessageDialog(this, "Nhân viên không có chức vụ ");
+            JOptionPane.showMessageDialog(this, "Sản phẩm không đế");
             cbDe.setSelectedIndex(0);
         } else {
             for (int j = 0; j < dg.size(); j++) {
@@ -1411,7 +1428,7 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
             }
         }
         if (tblQLSP.getValueAt(row, 7) == null) {
-            JOptionPane.showMessageDialog(this, "Nhân viên không có chức vụ ");
+            JOptionPane.showMessageDialog(this, "Sản phẩm không chất liệu ");
             cbCL.setSelectedIndex(0);
         } else {
             for (int j = 0; j < cl.size(); j++) {

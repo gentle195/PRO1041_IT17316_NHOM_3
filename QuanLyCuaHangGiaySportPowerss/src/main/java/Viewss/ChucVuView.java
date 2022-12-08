@@ -98,6 +98,11 @@ public class ChucVuView extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tbChucVu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbChucVuMouseClicked(evt);
+            }
+        });
         jScrollPane19.setViewportView(tbChucVu);
 
         btnXoa.setBackground(new java.awt.Color(204, 204, 204));
@@ -319,7 +324,7 @@ private void loadTableChucVu() {
         // TODO add your handling code here:
         List<ChucVu> cv = cvService.getall();
         cbCV.setModel(new DefaultComboBoxModel(cv.toArray()));
-        NhanVienView ql=new NhanVienView();
+        TTnhanVienView ql=new TTnhanVienView();
         ql.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnXoa1ActionPerformed
@@ -336,6 +341,14 @@ private void loadTableChucVu() {
             }
         }
     }//GEN-LAST:event_txtTenChucVuActionPerformed
+
+    private void tbChucVuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbChucVuMouseClicked
+        // TODO add your handling code here:
+        int row =tbChucVu.getSelectedRow();
+        txtIDChucVu.setText(tbChucVu.getValueAt(row, 0).toString());
+        txtMaChucVu.setText(tbChucVu.getValueAt(row, 1).toString());
+        txtTenChucVu.setText(tbChucVu.getValueAt(row, 2).toString());
+    }//GEN-LAST:event_tbChucVuMouseClicked
 
     /**
      * @param args the command line arguments

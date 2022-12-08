@@ -26,7 +26,6 @@ import javax.swing.table.DefaultTableModel;
 public class TTnhanVienView2 extends javax.swing.JPanel {
 
     private NhanVienServiceInteface nvService;
-    private ChucVuServiceInterface cvService;
 
     /**
      * Creates new form TTnhanVienView
@@ -34,9 +33,9 @@ public class TTnhanVienView2 extends javax.swing.JPanel {
     public TTnhanVienView2() {
         initComponents();
         txtMaNhanVien.setText(giaoDienDangNhap.ma);
-        this.cvService = new ChucVuSevice();
+       
         this.nvService = new NhanVienService();
-        List<ChucVu> cv = cvService.getall();
+        
         
         Getall();
     }
@@ -289,18 +288,7 @@ public class TTnhanVienView2 extends javax.swing.JPanel {
         int bb = JOptionPane.showConfirmDialog(this, "Bạn muốn sửa lại không ?", "Có", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION);
         if (bb == JOptionPane.YES_OPTION) {
             NhanVien nv = new NhanVien();
-
-            //            nv.setMaNV(txtMaNhanVien.getText());
-            //            nv.setHoTenNV(txtHoTenNV.getText());
-
-            //            if (rdNamNV.isSelected()) {
-                //                nv.setGioiTinh("Nam");
-                //            } else {
-                //                nv.setGioiTinh("Nữ");
-                //            }
             nv.setDiaChi(txtDCNV.getText());
-            //            nv.setNgaySinh(dateNSNV.getDate());
-            //            nv.setMatkhau(txtMKNV.getText());
             nv.setSdt(txtSDTNhanVien.getText());
             try {
                 nvService.update(nv);
