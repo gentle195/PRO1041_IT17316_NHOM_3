@@ -145,7 +145,7 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
             });
 
         }
-        trang = (int) (count / end) + 1;
+        trang = (int) (count / end)+1;
         setStatePagination();
     }
 
@@ -657,6 +657,9 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
             }
         });
         jScrollPane20.setViewportView(tblQLSP);
+        if (tblQLSP.getColumnModel().getColumnCount() > 0) {
+            tblQLSP.getColumnModel().getColumn(1).setHeaderValue("Mã SP");
+        }
 
         jPanel52.setBackground(new java.awt.Color(255, 255, 255));
         jPanel52.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(255, 255, 255), new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0)), "Lọc", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
@@ -1367,13 +1370,13 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
         int row = tblQLSP.getSelectedRow();
         txtID.setText(tblQLSP.getValueAt(row, 0).toString());
 //        cbTenSP.setSelectedItem(tblQLSP.getValueAt(row, 2).toString());
-        if (tblQLSP.getValueAt(row, 1) == null) {
+        if (tblQLSP.getValueAt(row, 2) == null) {
             JOptionPane.showMessageDialog(this, "Sản phẩm không tên ");
             cbTenSP.setSelectedIndex(0);
         } else {
             for (int j = 0; j < sp.size(); j++) {
                 if (sp.get(j).getMaSP().equalsIgnoreCase(tblQLSP.getValueAt(row, 1).toString())) {
-                    cbTenSP.setSelectedIndex(j);
+                   txtMaSP.setText(tblQLSP.getValueAt(row, 1).toString());
                 }
             }
         }

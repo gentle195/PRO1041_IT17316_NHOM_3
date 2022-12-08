@@ -9,7 +9,11 @@ import DomainModels.ChucVu;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import Repositories.Impl.NhanVienRepositoryInterface;
+import Utilities.DBConnection;
 import ViewModels.NhanVienViewModel;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.List;
 /**
  *
@@ -18,15 +22,17 @@ import java.util.List;
 public class NhanVienRepository implements NhanVienRepositoryInterface{
     
     private EntityManager em;
-
+    private static final Connection con = DBConnection.getConnection();
     public NhanVienRepository() {
         this.em = JpaUtil.getEntityManager();
     }
 
     @Override
-    public List<NhanVien> getall() {
+    public List<NhanVien> getall(int min , int max) {
         String jpql = "SELECT cate FROM NhanVien cate";
         TypedQuery<NhanVien> query = this.em.createQuery(jpql, NhanVien.class);
+        query.setFirstResult(min);
+        query.setMaxResults(max);
         return query.getResultList();
     }
 
@@ -83,5 +89,23 @@ public class NhanVienRepository implements NhanVienRepositoryInterface{
         q.getResultList();
      
         return q.getResultList();
+    }
+
+    @Override
+    public long dem() {
+        long count = 0;
+        try {
+            String pr = "select count(*) from NhanVien";
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(pr);
+            while (rs.next()) {
+                count = rs.getLong(1);
+            }
+            rs.close();
+            st.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return count;
     }
 }

@@ -29,6 +29,18 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import Services.Interface.BanHangServiceInterface;
 import Services.Interface.HoaDonServiceInterface;
+import static Viewss.QuanLyViews.txtMaNhanVien;
+import static Viewss.QuanLyViews.txtSDTKhachHang;
+import static Viewss.QuanLyViews.txttenkh;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.SQLException;
 
 /**
@@ -49,8 +61,9 @@ public class BanHang extends javax.swing.JPanel {
     ChiTietSP CT = new ChiTietSP();
     long count;
     int trang;
-    int sotrang=1;
+    int sotrang = 1;
     int start = 0, end = 7;
+
     /**
      * Creates new form BanHang
      */
@@ -99,11 +112,13 @@ public class BanHang extends javax.swing.JPanel {
         trang = (int) (count / end) + 1;
         setStatePagination();
     }
+
     private void setStatePagination() {
         btnback.setEnabled(start > 1);
         btnnext.setEnabled(start < trang);
         jTrang.setText(sotrang + "/" + trang);
     }
+
     private void addTableGioHang(ArrayList<HoaDonChiTietViewModel> list) {
         DefaultTableModel modeltb = new DefaultTableModel();
         modeltb = (DefaultTableModel) tblgiohang.getModel();
@@ -906,29 +921,56 @@ public class BanHang extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Vui lòng chọn trong dòng");
             return;
         }
-        String ma = txtSDTKhachHang.getText();
-        String ma1 = txtMaNhanVienBanHang.getText();
+        int bb = JOptionPane.showConfirmDialog(this, "Bạn muốn thanh toán không ?", "Có", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION);
+        if (bb == JOptionPane.YES_OPTION) {
+            String ma = txtSDTKhachHang.getText();
+            String ma1 = txtMaNhanVien.getText();
+            if (txtSDTKhachHang.getText().equals("")) {
+                JOptionPane.showMessageDialog(this, "Số điện thoại khách đang trống");
+                return;
+            }
+            if (txttenkh.getText().equals("")) {
+                JOptionPane.showMessageDialog(this, "Tên khách hàng đang trống");
+                return;
+            }
+            if (txtKhachTra1.getText().equals("")) {
+                JOptionPane.showMessageDialog(this, "Chưa nhập số tiền khách đưa");
+                return;
+            }
+            try {
+                if (Double.parseDouble(txtKhachTra1.getText().toString()) < 0) {
+                    JOptionPane.showMessageDialog(this, "Tiền khách trả phải lớn hơn 0");
+                    return;
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Tiền khách trả phải là số");
+                return;
+            }
+            hd.setMaHD(txtMaHdBH.getText());
+            hd.setNgayThanhToan(new Date());
 
-        hd.setMaHD(txtMaHdBH.getText());
-        hd.setNgayThanhToan(new Date());
-
-        if (rdTienMat.isSelected()) {
-            hd.setPTGD(0);
+            if (rdTienMat.isSelected()) {
+                hd.setPTGD(0);
+            } else {
+                hd.setPTGD(1);
+            }
+            hd.setTinhTrang(1);
+            hd.setTongTien(BigDecimal.valueOf(Double.parseDouble(txtThanhTien1.getText())));
+            try {
+                banHangService.updateThanhToan(hd, ma, ma1);
+                JOptionPane.showMessageDialog(this, "Thanh Toán Thành Công");
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        } else if (bb == JOptionPane.NO_OPTION) {
+            return;
         } else {
-            hd.setPTGD(1);
-        }
-        hd.setTinhTrang(1);
-        hd.setTongTien(BigDecimal.valueOf(Double.parseDouble(txtThanhTien1.getText())));
-        try {
-            banHangService.updateThanhToan(hd, ma, ma1);
-            JOptionPane.showMessageDialog(this, "Thanh Toán Thành Công");
-        } catch (Exception ex) {
-            ex.printStackTrace();
+            return;
         }
         listhdct.clear();
+        clear();
         loadTableHoaDonBanHang();
         addTableGioHang(listhdct);
-        clear();
     }//GEN-LAST:event_btnthanhtoan2ActionPerformed
     void clear() {
         txtGhiChu1.setText("");
@@ -1053,7 +1095,7 @@ public class BanHang extends javax.swing.JPanel {
     private void btnbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbackActionPerformed
         // TODO add your handling code here:
         if (start > 1) {
-            start=start - 7;
+            start = start - 7;
             sotrang--;
         }
         loadTableChiTietSPBH(chiTietSPService.all(start, end));

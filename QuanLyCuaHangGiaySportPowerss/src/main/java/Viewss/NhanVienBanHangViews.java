@@ -552,6 +552,8 @@ public class NhanVienBanHangViews extends javax.swing.JFrame {
 
         jLabel6.setText("Mã hóa đơn");
 
+        txtMaHdBH.setEditable(false);
+
         jLabel51.setText("Hình thức TT");
 
         rdTienMat.setText("Tiền mặt");
@@ -707,7 +709,7 @@ public class NhanVienBanHangViews extends javax.swing.JFrame {
                 .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtSDTKhachHang)
-                .addGap(163, 163, 163))
+                .addGap(160, 160, 160))
             .addGroup(jPanel54Layout.createSequentialGroup()
                 .addGap(143, 143, 143)
                 .addComponent(btnthanhtoan2)
@@ -1091,88 +1093,114 @@ public class NhanVienBanHangViews extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Vui lòng chọn trong dòng");
             return;
         }
-        String ma = txtSDTKhachHang.getText();
-        String ma1 = txtMaNhanVienbh.getText();
+        int bb = JOptionPane.showConfirmDialog(this, "Bạn muốn thanh toán không ?", "Có", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION);
+        if (bb == JOptionPane.YES_OPTION) {
+            String ma = txtSDTKhachHang.getText();
+            String ma1 = txtMaNhanVienbh.getText();
+            if(txtSDTKhachHang.getText().equals("")){
+                JOptionPane.showMessageDialog(this, "Số điện thoại khách đang trống");
+                return;
+            }
+            if(txttenkh.getText().equals("")){
+                JOptionPane.showMessageDialog(this, "Tên khách hàng đang trống");
+                return;
+            }
+            if(txtKhachTra1.getText().equals("")){
+                JOptionPane.showMessageDialog(this, "Chưa nhập số tiền khách đưa");
+                return;
+            }
+            try {
+                if(Double.parseDouble(txtKhachTra1.getText().toString())<0){
+                    JOptionPane.showMessageDialog(this, "Tiền khách trả phải lớn hơn 0");
+                    return;
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Tiền khách trả phải là số");
+                    return;
+            }
+            hd.setMaHD(txtMaHdBH.getText());
+            hd.setNgayThanhToan(new Date());
 
-        hd.setMaHD(txtMaHdBH.getText());
-        hd.setNgayThanhToan(new Date());
+            if (rdTienMat.isSelected()) {
+                hd.setPTGD(0);
+            } else {
+                hd.setPTGD(1);
+            }
+            hd.setTinhTrang(1);
+            hd.setTongTien(BigDecimal.valueOf(Double.parseDouble(txtThanhTien1.getText())));
+            try {
+                banHangService.updateThanhToan(hd, ma, ma1);
+                JOptionPane.showMessageDialog(this, "Thanh Toán Thành Công");
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
 
-        if (rdTienMat.isSelected()) {
-            hd.setPTGD(0);
-        } else {
-            hd.setPTGD(1);
-        }
-        hd.setTinhTrang(1);
-        hd.setTongTien(BigDecimal.valueOf(Double.parseDouble(txtThanhTien1.getText())));
-        try {
-            banHangService.updateThanhToan(hd, ma, ma1);
-            JOptionPane.showMessageDialog(this, "Thanh Toán Thành Công");
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-
-        Document document = new Document();
+            Document document = new Document();
 //        Font f = new Font();
 //        f.setStyle(Font.BOLD);
 //        f.setSize(10);
-        int tb = JOptionPane.showConfirmDialog(this, "Có in ra hoá đơn", "Thông báo", JOptionPane.YES_NO_OPTION);
-        if (tb == JOptionPane.YES_OPTION) {
-            try {
-                PdfWriter.getInstance(document, new FileOutputStream(new File(FILE_NAME)));
-                //open
-                document.open();
-                Paragraph p = new Paragraph();
+            int tb = JOptionPane.showConfirmDialog(this, "Có in ra hoá đơn", "Thông báo", JOptionPane.YES_NO_OPTION);
+            if (tb == JOptionPane.YES_OPTION) {
+                try {
+                    PdfWriter.getInstance(document, new FileOutputStream(new File(FILE_NAME)));
+                    //open
+                    document.open();
+                    Paragraph p = new Paragraph();
 
-                p.add("Biên Lai");
-                p.setAlignment(Element.ALIGN_CENTER);
+                    p.add("Biên Lai");
+                    p.setAlignment(Element.ALIGN_CENTER);
 
-                document.add(p);
+                    document.add(p);
 
-                Paragraph p2 = new Paragraph();
-                p2.add("Mã HD             :         " + txtMaHdBH.getText()); //no alignment
-                document.add(p2);
+                    Paragraph p2 = new Paragraph();
+                    p2.add("Mã HD             :         " + txtMaHdBH.getText()); //no alignment
+                    document.add(p2);
 
-                Paragraph p3 = new Paragraph();
-                p3.add("Mã NV             :         " + txtMaNhanVienbh.getText()); //no alignment
-                document.add(p3);
-                Paragraph p4 = new Paragraph();
-                p4.add("Ngay Tao          :         " + LBtime.getText()); //no alignment
-                document.add(p4);
-                Paragraph p5 = new Paragraph();
-                p5.add("Ten Khach         :         " + txttenkh.getText()); //no alignment
-                document.add(p5);
-                Paragraph p6 = new Paragraph();
-                p6.add("So Dien Thoai     :         " + txtSDTKhachHang.getText()); //no alignment
-                document.add(p6);
+                    Paragraph p3 = new Paragraph();
+                    p3.add("Mã NV             :         " + txtMaNhanVienbh.getText()); //no alignment
+                    document.add(p3);
+                    Paragraph p4 = new Paragraph();
+                    p4.add("Ngay Tao          :         " + LBtime.getText()); //no alignment
+                    document.add(p4);
+                    Paragraph p5 = new Paragraph();
+                    p5.add("Ten Khach         :         " + txttenkh.getText()); //no alignment
+                    document.add(p5);
+                    Paragraph p6 = new Paragraph();
+                    p6.add("So Dien Thoai     :         " + txtSDTKhachHang.getText()); //no alignment
+                    document.add(p6);
 
-                Paragraph p7 = new Paragraph();
-                p7.add("Giao Dich         :         " + phuongthucthanhtoan()); //no alignment
-                document.add(p7);
+                    Paragraph p7 = new Paragraph();
+                    p7.add("Giao Dich         :         " + phuongthucthanhtoan()); //no alignment
+                    document.add(p7);
 
-                Paragraph p9 = new Paragraph();
-                p9.add("Tien Khach Tra    :          " + txtKhachTra1.getText()); //no alignment
-                document.add(p9);
+                    Paragraph p9 = new Paragraph();
+                    p9.add("Tien Khach Tra    :          " + txtKhachTra1.getText()); //no alignment
+                    document.add(p9);
 
-                Paragraph p10 = new Paragraph();
-                p10.add("Tien Du          :          " + txtTienDu1.getText()); //no alignment
-                document.add(p10);
+                    Paragraph p10 = new Paragraph();
+                    p10.add("Tien Du          :          " + txtTienDu1.getText()); //no alignment
+                    document.add(p10);
 
-                Paragraph p8 = new Paragraph();
-                p8.add("Tong Tien         :          " + txtThanhTien1.getText()); //no alignment
-                document.add(p8);
+                    Paragraph p8 = new Paragraph();
+                    p8.add("Tong Tien         :          " + txtThanhTien1.getText()); //no alignment
+                    document.add(p8);
 
-                document.close();
-                System.out.println("In thành công");
+                    document.close();
+                    System.out.println("In thành công");
 
-            } catch (FileNotFoundException | DocumentException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
+                } catch (FileNotFoundException | DocumentException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else if (tb == JOptionPane.NO_OPTION) {
+                return;
             }
-        } else if (tb == JOptionPane.NO_OPTION) {
+        } else if (bb == JOptionPane.NO_OPTION) {
+            return;
+        } else {
             return;
         }
-
         listhdct.clear();
         clear();
         loadTableHoaDonBanHang();

@@ -25,18 +25,26 @@ public class ChucVuView extends javax.swing.JFrame {
     /**
      * Creates new form ChucVuView
      */
-       private ChucVuServiceInterface cvService;
-       
+    private ChucVuServiceInterface cvService;
+
     public ChucVuView() {
         initComponents();
-         this.cvService = new ChucVuSevice();
-         loadTableChucVu();
+        this.cvService = new ChucVuSevice();
+        loadTableChucVu();
     }
-    void clear(){
-      txtIDChucVu.setText("");
-      txtMaChucVu.setText("");
-      txtTenChucVu.setText("");
-  }
+
+    void clear() {
+        txtIDChucVu.setText("");
+        txtMaChucVu.setText("");
+        txtTenChucVu.setText("");
+    }
+    void check(){
+        if(txtTenChucVu.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Chưa nhập tên chức vụ");
+            return;
+        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -233,12 +241,12 @@ private void loadTableChucVu() {
         for (ChucVu s : cv) {
             modeltb.addRow(new Object[]{
                 s.getIdCV(),
-                s.getMaCV(),  s.getTenCV()
+                s.getMaCV(), s.getTenCV()
             });
         }
     }
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-           int row = tbChucVu.getSelectedRow();
+        int row = tbChucVu.getSelectedRow();
         if (row == -1) {
             JOptionPane.showMessageDialog(this, "Vui lòng chọn vào trong bảng");
             return;
@@ -247,15 +255,16 @@ private void loadTableChucVu() {
         // TODO add your handling code here:
         int xacnhan = JOptionPane.showConfirmDialog(this, "Bạn muốn xóa hay không?", "Có", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION);
         if (xacnhan == JOptionPane.YES_OPTION) {// TODO add your handling code here:
-        ChucVu cv = new ChucVu();
-        cv.setIdCV(UUID.fromString(txtIDChucVu.getText()));
-        cv.setMaCV(txtMaChucVu.getText());
-        cv.setTenCV(txtTenChucVu.getText());
-        try {
-            cvService.delete(cv);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        } JOptionPane.showMessageDialog(this, "Xóa thành công");
+            ChucVu cv = new ChucVu();
+            cv.setIdCV(UUID.fromString(txtIDChucVu.getText()));
+            cv.setMaCV(txtMaChucVu.getText());
+            cv.setTenCV(txtTenChucVu.getText());
+            try {
+                cvService.delete(cv);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+            JOptionPane.showMessageDialog(this, "Xóa thành công");
         } else if (xacnhan == JOptionPane.NO_OPTION) {
             return;
         }
@@ -268,8 +277,8 @@ private void loadTableChucVu() {
         if (row == -1) {
             JOptionPane.showMessageDialog(this, "Vui lòng chọn vào trong bảng");
             return;
-        } 
-        
+        }
+
         if (txtMaChucVu.getText().equals("") || txtTenChucVu.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Ban Chưa nhập đủ dữ liệu");
             return;
@@ -277,16 +286,17 @@ private void loadTableChucVu() {
         // TODO add your handling code here:
         int xacnhan = JOptionPane.showConfirmDialog(this, "Bạn muốn sửa hay không?", "Có", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION);
         if (xacnhan == JOptionPane.YES_OPTION) {
-         // TODO add your handling code here:
-        ChucVu cv = new ChucVu();
-        cv.setIdCV(UUID.fromString(txtIDChucVu.getText()));
-        cv.setMaCV(txtMaChucVu.getText());
-        cv.setTenCV(txtTenChucVu.getText());
-        try {
-            cvService.update(cv);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-          }
+            // TODO add your handling code here:
+            ChucVu cv = new ChucVu();
+            check();
+            cv.setIdCV(UUID.fromString(txtIDChucVu.getText()));
+            cv.setMaCV(txtMaChucVu.getText());
+            cv.setTenCV(txtTenChucVu.getText());
+            try {
+                cvService.update(cv);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
             JOptionPane.showMessageDialog(this, "sửa thành công");
         } else if (xacnhan == JOptionPane.NO_OPTION) {
             return;
@@ -297,15 +307,17 @@ private void loadTableChucVu() {
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
-          if (txtMaChucVu.getText().equals("") || txtTenChucVu.getText().equals("")) {
+        if (txtMaChucVu.getText().equals("") || txtTenChucVu.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Ban Chưa nhập đủ dữ liệu");
             return;
-        }       int xacnhan = JOptionPane.showConfirmDialog(this, "Bạn muốn thêm hay không?", "Có", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION);
-        if (xacnhan == JOptionPane.YES_OPTION) {  
-        ChucVu cv = new ChucVu();
-        cv.setMaCV(txtMaChucVu.getText());
-        cv.setTenCV(txtTenChucVu.getText());
-        try {
+        }
+        int xacnhan = JOptionPane.showConfirmDialog(this, "Bạn muốn thêm hay không?", "Có", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION);
+        if (xacnhan == JOptionPane.YES_OPTION) {
+            ChucVu cv = new ChucVu();
+            check();
+            cv.setMaCV(txtMaChucVu.getText());
+            cv.setTenCV(txtTenChucVu.getText());
+            try {
                 cvService.create(cv);
             } catch (Exception ex) {
                 ex.printStackTrace();
@@ -324,16 +336,16 @@ private void loadTableChucVu() {
         // TODO add your handling code here:
         List<ChucVu> cv = cvService.getall();
         cbCV.setModel(new DefaultComboBoxModel(cv.toArray()));
-        TTnhanVienView ql=new TTnhanVienView();
+        TTnhanVienView ql = new TTnhanVienView();
         ql.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnXoa1ActionPerformed
 
     private void txtTenChucVuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenChucVuActionPerformed
         // TODO add your handling code here:
-        if(txtTenChucVu.getText().equals("")){
-            return; 
-        }else{
+        if (txtTenChucVu.getText().equals("")) {
+            return;
+        } else {
             for (int i = 0; i < 5 + 1; i++) {
                 Random rdm = new Random();
                 int rdmm = rdm.nextInt(100000) + 1;
@@ -344,7 +356,7 @@ private void loadTableChucVu() {
 
     private void tbChucVuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbChucVuMouseClicked
         // TODO add your handling code here:
-        int row =tbChucVu.getSelectedRow();
+        int row = tbChucVu.getSelectedRow();
         txtIDChucVu.setText(tbChucVu.getValueAt(row, 0).toString());
         txtMaChucVu.setText(tbChucVu.getValueAt(row, 1).toString());
         txtTenChucVu.setText(tbChucVu.getValueAt(row, 2).toString());

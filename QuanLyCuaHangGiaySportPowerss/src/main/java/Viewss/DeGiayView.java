@@ -39,7 +39,16 @@ public class DeGiayView extends javax.swing.JFrame {
         txtMaDe.setText("");
         txtMoTaDe.setText("");
     }
-
+    void check(){
+        if(txtLoaiDe.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Chưa nhập tên loại đế");
+            return;
+        }
+        if(txtMoTaDe.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Chưa nhập mô tả loại đế");
+            return;
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -306,6 +315,7 @@ public class DeGiayView extends javax.swing.JFrame {
         int xacnhan = JOptionPane.showConfirmDialog(this, "Bạn muốn thêm hay không?", "Có", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION);
         if (xacnhan == JOptionPane.YES_OPTION) {
             DeGiay dg = new DeGiay();
+            check();
             dg.setMaCL(txtMaDe.getText());
             dg.setLoaiDe(txtLoaiDe.getText());
             dg.setMoTaDG(txtMoTaDe.getText());
@@ -339,6 +349,7 @@ public class DeGiayView extends javax.swing.JFrame {
         int xacnhan = JOptionPane.showConfirmDialog(this, "Bạn muốn sửa hay không?", "Có", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION);
         if (xacnhan == JOptionPane.YES_OPTION) {
             DeGiay dg = new DeGiay();
+            check();
             dg.setIdDG(UUID.fromString(txtIDDeGiay.getText()));
             dg.setMaCL(txtMaDe.getText());
             dg.setLoaiDe(txtLoaiDe.getText());

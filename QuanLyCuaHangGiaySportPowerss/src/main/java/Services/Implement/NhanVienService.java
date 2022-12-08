@@ -3,29 +3,32 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Services;
+
 import DomainModels.NhanVien;
 import Repositories.NhanVienRepository;
 import Services.Interface.NhanVienServiceInteface;
 import ViewModels.NhanVienViewModel;
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  *
  * @author Admin
  */
-public class NhanVienService implements NhanVienServiceInteface{
+public class NhanVienService implements NhanVienServiceInteface {
+
     private NhanVienRepository NVrepo;
 
-    public  NhanVienService (){
+    public NhanVienService() {
         this.NVrepo = new NhanVienRepository();
     }
 
     @Override
-    public List<NhanVienViewModel> getall() {
-        List<NhanVien> listDomainModel = this.NVrepo.getall();
+    public List<NhanVienViewModel> getall(int min, int max) {
+        List<NhanVien> listDomainModel = this.NVrepo.getall(min, max);
         List<NhanVienViewModel> listVModel = new ArrayList<>();
         for (NhanVien c : listDomainModel) {
-            NhanVienViewModel vmodel = new NhanVienViewModel(c.getIdNV(),c.getMaNV(),c.getHoTenNV(),c.getGioiTinh(),c.getNgaySinh(),c.getDiaChi(),c.getSdt(),c.getChucvu(),c.getMatkhau());
+            NhanVienViewModel vmodel = new NhanVienViewModel(c.getIdNV(), c.getMaNV(), c.getHoTenNV(), c.getGioiTinh(), c.getNgaySinh(), c.getDiaChi(), c.getSdt(), c.getChucvu(), c.getMatkhau());
             listVModel.add(vmodel);
         }
 
@@ -33,7 +36,7 @@ public class NhanVienService implements NhanVienServiceInteface{
     }
 
     @Override
-    public void create (NhanVien nv) throws Exception {
+    public void create(NhanVien nv) throws Exception {
         NVrepo.create(nv);
     }
 
@@ -45,17 +48,22 @@ public class NhanVienService implements NhanVienServiceInteface{
     @Override
     public void delete(NhanVien nv) throws Exception {
         NVrepo.delete(nv);
-      
+
     }
-    
-     @Override
+
+    @Override
     public List<NhanVienViewModel> getallNhanVien(String ma) {
-         List<NhanVien> listDomainModel = this.NVrepo.getallNhanVien(ma);
+        List<NhanVien> listDomainModel = this.NVrepo.getallNhanVien(ma);
         List<NhanVienViewModel> listVModel = new ArrayList<>();
         for (NhanVien c : listDomainModel) {
             NhanVienViewModel vmodel = new NhanVienViewModel(c.getIdNV(), c.getMaNV(), c.getHoTenNV(), c.getGioiTinh(), c.getNgaySinh(), c.getDiaChi(), c.getSdt(), c.getChucvu(), c.getMatkhau());
             listVModel.add(vmodel);
         }
         return listVModel;
+    }
+
+    @Override
+    public long dem() {
+        return NVrepo.dem();
     }
 }
