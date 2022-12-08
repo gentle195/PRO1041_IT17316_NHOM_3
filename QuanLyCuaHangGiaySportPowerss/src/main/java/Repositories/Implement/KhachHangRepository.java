@@ -18,7 +18,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
+import java.sql.*;
 /**
  *
  * @author trxua
@@ -26,7 +26,7 @@ import java.util.ArrayList;
 public class KhachHangRepository implements KhachHangRepositoryInterface {
 
     private EntityManager em;
-
+    private static final Connection con = DBConnection.getConnection();
     public KhachHangRepository() {
         this.em = JpaUtil.getEntityManager();
     }
@@ -82,8 +82,7 @@ public class KhachHangRepository implements KhachHangRepositoryInterface {
 
     public List<KhachHang> search(String ten) {
         String query = "SELECT * FROM KhachHang where hoten =?";
-        try (Connection conn = DBConnection.getConnection();
-                PreparedStatement ps = conn.prepareStatement(query)) {
+        try ( Connection conn = DBConnection.getConnection();  PreparedStatement ps = conn.prepareStatement(query)) {
             ps.setObject(1, ten);
             ResultSet rs = ps.executeQuery();
             List<KhachHang> listKhachHang = new ArrayList<>();
@@ -100,5 +99,6 @@ public class KhachHangRepository implements KhachHangRepositoryInterface {
         }
         return null;
     }
+
 
 }

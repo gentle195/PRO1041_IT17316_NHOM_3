@@ -13,14 +13,15 @@ import java.util.List;
  * @author Admin
  */
 public interface NhanVienServiceInteface {
-    
-    public List<NhanVienViewModel> getall();
+
+    public List<NhanVienViewModel> getall(int min, int max);
 
     public void create(NhanVien nv) throws Exception;
 
     public void update(NhanVien nv) throws Exception;
 
     public void delete(NhanVien nv) throws Exception;
-    
-        public List<NhanVienViewModel> getallNhanVien(String ma);
+
+    public List<NhanVienViewModel> getallNhanVien(String ma);
+    public long dem();
 }

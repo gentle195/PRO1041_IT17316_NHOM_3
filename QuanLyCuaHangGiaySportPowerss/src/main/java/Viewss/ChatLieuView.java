@@ -268,6 +268,16 @@ public class ChatLieuView extends javax.swing.JFrame {
         txtMoTaCL.setText("");
         txtTenChatLieu.setText("");
     }
+    void check(){
+        if(txtTenChatLieu.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Chưa nhập tên chất liệu");
+            return;
+        }
+        if(txtMoTaCL.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Chưa nhập mô tả");
+            return;
+        }
+    }
     private void txtIDChatLieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDChatLieuActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIDChatLieuActionPerformed
@@ -302,6 +312,7 @@ public class ChatLieuView extends javax.swing.JFrame {
 
         int xacnhan = JOptionPane.showConfirmDialog(this, "Bạn muốn thêm hay không?", "Có", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION);
         if (xacnhan == JOptionPane.YES_OPTION) {
+            check();
             ChatLieu cl = new ChatLieu();
             cl.setMaCL(txtMaChatLieu.getText());
             cl.setTenCL(txtTenChatLieu.getText());
@@ -337,6 +348,7 @@ public class ChatLieuView extends javax.swing.JFrame {
         int bb = JOptionPane.showConfirmDialog(this, "Thông báo", "Sửa", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION);
         if (bb == JOptionPane.YES_OPTION) {
             ChatLieu cl = new ChatLieu();
+            check();
             cl.setIdCL(UUID.fromString(txtIDChatLieu.getText()));
             cl.setMaCL(txtMaChatLieu.getText());
             cl.setTenCL(txtTenChatLieu.getText());

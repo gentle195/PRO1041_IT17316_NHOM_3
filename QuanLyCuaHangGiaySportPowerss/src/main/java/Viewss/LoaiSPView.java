@@ -31,7 +31,16 @@ public class LoaiSPView extends javax.swing.JFrame {
         this.loaiGiayService = new LoaiGiayService();
         this.loadTableLoaiGiay();
     }
-
+    void check(){
+        if(txtTenLoai.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Chưa nhập tên loại sản phẩm");
+            return;
+        }
+        if(txtMoTaLoaiGiay.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Chưa nhập mô tả loại sản phẩm");
+            return;
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -297,6 +306,7 @@ public class LoaiSPView extends javax.swing.JFrame {
         int xacnhan = JOptionPane.showConfirmDialog(this, "Bạn muốn thêm hay không?", "Có", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION);
         if (xacnhan == JOptionPane.YES_OPTION) {
             LoaiGiay lg = new LoaiGiay();
+            check();
             lg.setMaLoai(txtMaLoai.getText());
             lg.setTenLoai(txtTenLoai.getText());
             lg.setMoTa(txtMoTaLoaiGiay.getText());
@@ -331,6 +341,7 @@ public class LoaiSPView extends javax.swing.JFrame {
         int xacnhan = JOptionPane.showConfirmDialog(this, "Bạn muốn sửa hay không?", "Có", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION);
         if (xacnhan == JOptionPane.YES_OPTION) {
             LoaiGiay lg = new LoaiGiay();
+            check();
             lg.setIdLoai(UUID.fromString(txtIDLoai.getText()));
             lg.setMaLoai(txtMaLoai.getText());
             lg.setTenLoai(txtTenLoai.getText());

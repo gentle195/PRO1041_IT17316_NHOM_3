@@ -757,7 +757,7 @@
                           <Renderer/>
                         </Column>
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title/>
+                          <Title value="M&#xe3; SP"/>
                           <Editor/>
                           <Renderer/>
                         </Column>

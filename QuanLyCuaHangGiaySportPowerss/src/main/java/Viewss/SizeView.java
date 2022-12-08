@@ -20,20 +20,24 @@ import javax.swing.table.DefaultTableModel;
  * @author TUAN ANH
  */
 public class SizeView extends javax.swing.JFrame {
+
     private SizeServiceInterface sizeService;
+
     /**
      * Creates new form SizeView
      */
     public SizeView() {
         initComponents();
         this.sizeService = new SizeService();
-          this.loadTableSizeGiay();
+        this.loadTableSizeGiay();
     }
-    void clear(){
-      txtIDSIZE.setText("");
-      txtMaSIZE.setText("");
-      txtSoSize.setText("");
-  }
+
+    void clear() {
+        txtIDSIZE.setText("");
+        txtMaSIZE.setText("");
+        txtSoSize.setText("");
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -249,9 +253,9 @@ public class SizeView extends javax.swing.JFrame {
 
     private void txtSoSizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSoSizeActionPerformed
         // TODO add your handling code here:
-        if(txtSoSize.getText().equals("")){
-            return; 
-        }else{
+        if (txtSoSize.getText().equals("")) {
+            return;
+        } else {
             for (int i = 0; i < 5 + 1; i++) {
                 Random rdm = new Random();
                 int rdmm = rdm.nextInt(100000) + 1;
@@ -376,10 +380,10 @@ public class SizeView extends javax.swing.JFrame {
         // TODO add your handling code here:
         List<Size> sz = sizeService.all();
         cbSIZE.setModel(new DefaultComboBoxModel((sz.toArray())));
-        ChiTietSanPhamView ql=new ChiTietSanPhamView();
+        ChiTietSanPhamView ql = new ChiTietSanPhamView();
         ql.setVisible(true);
         this.dispose();
-        
+
     }//GEN-LAST:event_btnXoa7ActionPerformed
 
     /**

@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface NhanVienRepositoryInterface {
 
-    public List<NhanVien> getall();
+    public List<NhanVien> getall(int min,int max);
 
     public void create(NhanVien nv) throws Exception;
 
@@ -23,4 +23,5 @@ public interface NhanVienRepositoryInterface {
     public void delete(NhanVien nv) throws Exception;
 
     List<NhanVien> getallNhanVien(String ma);
+    public long dem();
 }

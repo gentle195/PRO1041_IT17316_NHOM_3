@@ -37,7 +37,16 @@ public class SanPhamView extends javax.swing.JFrame {
         txtMoTaSP.setText("");
         txtTenSP.setText("");
     }
-
+    void check(){
+        if(txtTenSP.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Chưa nhập tên sản phẩm");
+            return;
+        }
+        if(txtMoTaSP.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Chưa nhập mô tả sản phẩm");
+            return;
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -304,6 +313,7 @@ public class SanPhamView extends javax.swing.JFrame {
         int xacnhan = JOptionPane.showConfirmDialog(this, "Bạn muốn thêm hay không?", "Có", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION);
         if (xacnhan == JOptionPane.YES_OPTION) {
             SanPham sp = new SanPham();
+            check();
             sp.setMaSP(txtMaSP.getText());
             sp.setTenSP(txtTenSP.getText());
             sp.setMoTa(txtMoTaSP.getText());
@@ -339,6 +349,7 @@ public class SanPhamView extends javax.swing.JFrame {
         int bb = JOptionPane.showConfirmDialog(this, "Thông báo", "Sửa", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION);
         if (bb == JOptionPane.YES_OPTION) {
             SanPham sp = new SanPham();
+            check();
             sp.setIdSP(UUID.fromString(txtIDsp1.getText()));
             sp.setMaSP(txtMaSP.getText());
             sp.setTenSP(txtTenSP.getText());
