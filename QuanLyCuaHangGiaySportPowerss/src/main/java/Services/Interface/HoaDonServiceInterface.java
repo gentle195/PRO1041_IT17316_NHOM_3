@@ -9,6 +9,7 @@ import ViewModels.HoaDonBanHangViewModel;
 import ViewModels.HoaDonChiTietViewModel;
 import ViewModels.HoaDonViewModel;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -18,6 +19,8 @@ import java.util.List;
 public interface HoaDonServiceInterface {
 
     public List<HoaDonViewModel> all();
-   
+
     List<HoaDonChiTietViewModel> getListById(String idhoaDon) throws SQLException;
+
+    List<HoaDonViewModel> ListHdSearch(Date bd, Date kt);
 }

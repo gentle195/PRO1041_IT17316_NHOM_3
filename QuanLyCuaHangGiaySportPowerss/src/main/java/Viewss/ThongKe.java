@@ -14,11 +14,19 @@ import ViewModels.ChiTietSPViewModel;
 import ViewModels.HoaDonTKViewModel;
 import java.awt.CardLayout;
 import java.awt.Dimension;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -168,6 +176,7 @@ public class ThongKe extends javax.swing.JPanel {
         jSeparator1 = new javax.swing.JSeparator();
         jdcNgayBatDau = new com.toedter.calendar.JDateChooser();
         jdcNgayKetThuc = new com.toedter.calendar.JDateChooser();
+        btnReport = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel9 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -286,6 +295,14 @@ public class ThongKe extends javax.swing.JPanel {
             }
         });
 
+        btnReport.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnReport.setText("Xuất báo cáo");
+        btnReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReportActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -305,7 +322,9 @@ public class ThongKe extends javax.swing.JPanel {
                 .addComponent(btnSearchTK)
                 .addGap(45, 45, 45)
                 .addComponent(btnClearTK)
-                .addGap(181, 181, 181))
+                .addGap(30, 30, 30)
+                .addComponent(btnReport)
+                .addGap(74, 74, 74))
             .addComponent(jSeparator1)
         );
         jPanel5Layout.setVerticalGroup(
@@ -325,7 +344,8 @@ public class ThongKe extends javax.swing.JPanel {
                 .addGap(37, 37, 37)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnClearTK)
-                    .addComponent(btnSearchTK))
+                    .addComponent(btnSearchTK)
+                    .addComponent(btnReport))
                 .addContainerGap(49, Short.MAX_VALUE))
         );
 
@@ -402,8 +422,7 @@ public class ThongKe extends javax.swing.JPanel {
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(4, 4, 4)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 425, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -590,9 +609,59 @@ public class ThongKe extends javax.swing.JPanel {
         this.loadTableThongKeSanPham(listTKSP);
     }//GEN-LAST:event_btnClearTKActionPerformed
 
+    private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
+        listTKHD = serviceTK.thongKeHD();
+        XSSFWorkbook workbook = new XSSFWorkbook();
+        XSSFSheet sheet = workbook.createSheet("THỐNG KÊ HÓA ĐƠN");
+        int rowNum = 0;
+        int i = 0;
+        Row titleRow = sheet.createRow(rowNum);
+
+        Cell STT = titleRow.createCell(0);
+        STT.setCellValue("STT");
+
+        Cell ngay = titleRow.createCell(1);
+        ngay.setCellValue("NGÀY");
+
+        Cell tongHD = titleRow.createCell(2);
+        tongHD.setCellValue("TỔNG SỐ HÓA ĐƠN");
+
+        Cell tongDT = titleRow.createCell(3);
+        tongDT.setCellValue("TỔNG DOANH THU");
+
+        for (HoaDonTKViewModel hd : listTKHD) {
+           
+            rowNum++;
+            Row row = sheet.createRow(rowNum);
+            Cell stt = row.createCell(0);
+            stt.setCellValue(i++);
+
+            Cell Ngay = row.createCell(1);
+            Ngay.setCellValue(String.valueOf(hd.getNgayTao().toString()));
+
+            Cell TongHD = row.createCell(2);
+            TongHD.setCellValue(hd.getTongHD());
+
+            Cell TongDT = row.createCell(3);
+            TongDT.setCellValue(String.valueOf(hd.getTongTien()));
+        }
+
+        FileOutputStream fos;
+        try {
+            fos = new FileOutputStream("ThongKeHoaDon.xlsx");
+            workbook.write(fos);
+            JOptionPane.showMessageDialog(this, "Xuất báo cáo thành công");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_btnReportActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClearTK;
+    private javax.swing.JButton btnReport;
     private javax.swing.JButton btnSearchTK;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
