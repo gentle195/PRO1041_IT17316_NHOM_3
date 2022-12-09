@@ -14,6 +14,7 @@ import ViewModels.HoaDonBanHangViewModel;
 import ViewModels.HoaDonChiTietViewModel;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -33,11 +34,14 @@ public class HoaDonService implements HoaDonServiceInterface {
         return hoaDonRepository.all();
     }
 
-    
-
     @Override
     public List<HoaDonChiTietViewModel> getListById(String idhoaDon) throws SQLException {
         return hoaDonRepository.getListById(idhoaDon);
+    }
+
+    @Override
+    public List<HoaDonViewModel> ListHdSearch(Date bd, Date kt) {
+        return hoaDonRepository.ListHdSearch(bd, kt);
     }
 
 }

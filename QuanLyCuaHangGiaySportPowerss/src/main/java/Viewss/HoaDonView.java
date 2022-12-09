@@ -15,6 +15,7 @@ import javax.swing.table.DefaultTableModel;
 import Services.Interface.BanHangServiceInterface;
 import Services.Interface.HoaDonServiceInterface;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -89,6 +90,12 @@ public class HoaDonView extends javax.swing.JPanel {
         txtTimKiem = new javax.swing.JTextField();
         jScrollPane10 = new javax.swing.JScrollPane();
         tblHoaDon = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jdcNgayKetThuc = new com.toedter.calendar.JDateChooser();
+        jdcNgayBatDau = new com.toedter.calendar.JDateChooser();
+        btnSearchTK = new javax.swing.JButton();
+        btnClearTK = new javax.swing.JButton();
         jPanel22 = new javax.swing.JPanel();
         jScrollPane11 = new javax.swing.JScrollPane();
         tb_hoaDonCT = new javax.swing.JTable();
@@ -147,34 +154,85 @@ public class HoaDonView extends javax.swing.JPanel {
         });
         jScrollPane10.setViewportView(tblHoaDon);
 
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setText("Ngày bắt đầu:");
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel3.setText("Ngày kết thúc:");
+
+        btnSearchTK.setBackground(new java.awt.Color(204, 204, 204));
+        btnSearchTK.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnSearchTK.setText("Tìm kiếm");
+        btnSearchTK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchTKActionPerformed(evt);
+            }
+        });
+
+        btnClearTK.setBackground(new java.awt.Color(204, 204, 204));
+        btnClearTK.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnClearTK.setText("Làm mới");
+        btnClearTK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearTKActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel21Layout = new javax.swing.GroupLayout(jPanel21);
         jPanel21.setLayout(jPanel21Layout);
         jPanel21Layout.setHorizontalGroup(
             jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel21Layout.createSequentialGroup()
-                .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel21Layout.createSequentialGroup()
-                        .addGap(456, 456, 456)
-                        .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel21Layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 1202, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(14, 14, 14)
+                .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 1202, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel21Layout.createSequentialGroup()
+                .addGap(64, 64, 64)
+                .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jdcNgayBatDau, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
+                    .addComponent(jdcNgayKetThuc, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(58, 58, 58)
+                .addComponent(btnSearchTK)
+                .addGap(32, 32, 32)
+                .addComponent(btnClearTK)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
+                .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(320, 320, 320))
         );
         jPanel21Layout.setVerticalGroup(
             jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel21Layout.createSequentialGroup()
-                .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel21Layout.createSequentialGroup()
+                        .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jdcNgayBatDau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                        .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jdcNgayKetThuc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel21Layout.createSequentialGroup()
+                        .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(btnSearchTK)
+                                .addComponent(btnClearTK))
+                            .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 26, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel20Layout = new javax.swing.GroupLayout(jPanel20);
         jPanel20.setLayout(jPanel20Layout);
         jPanel20Layout.setHorizontalGroup(
             jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1238, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
             .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel20Layout.createSequentialGroup()
                     .addComponent(jPanel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -290,13 +348,35 @@ public class HoaDonView extends javax.swing.JPanel {
         loadTableHoaDon(hd);
     }//GEN-LAST:event_txtTimKiemCaretUpdate
 
+    private void btnSearchTKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchTKActionPerformed
+        Date bd = jdcNgayBatDau.getDate();
+        Date kt = jdcNgayKetThuc.getDate();
+        List<HoaDonViewModel> hdlistSearch;
+        hdlistSearch = hoaDonService.ListHdSearch(bd, kt);
+        this.loadTableHoaDon(hdlistSearch);
+
+    }//GEN-LAST:event_btnSearchTKActionPerformed
+
+    private void btnClearTKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearTKActionPerformed
+        jdcNgayBatDau.setDate(null);
+        jdcNgayKetThuc.setDate(null);
+        hdlist = hoaDonService.all();
+        loadTableHoaDon(hdlist);
+    }//GEN-LAST:event_btnClearTKActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnClearTK;
+    private javax.swing.JButton btnSearchTK;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel20;
     private javax.swing.JPanel jPanel21;
     private javax.swing.JPanel jPanel22;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
+    private com.toedter.calendar.JDateChooser jdcNgayBatDau;
+    private com.toedter.calendar.JDateChooser jdcNgayKetThuc;
     private javax.swing.JTable tb_hoaDonCT;
     private javax.swing.JTable tblHoaDon;
     private javax.swing.JTextField txtTimKiem;

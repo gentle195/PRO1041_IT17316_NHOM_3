@@ -10,6 +10,7 @@ import ViewModels.HoaDonChiTietViewModel;
 import ViewModels.HoaDonViewModel;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -20,6 +21,6 @@ public interface HoaDonRepositoryInterface {
 
     ArrayList<HoaDonViewModel> all();
 
- 
-       
+    List<HoaDonViewModel> ListHdSearch(Date bd, Date kt);
+
 }

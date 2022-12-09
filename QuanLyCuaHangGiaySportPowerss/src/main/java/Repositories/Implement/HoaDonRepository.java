@@ -20,7 +20,7 @@ import java.util.Date;
 import java.util.List;
 
 public class HoaDonRepository implements HoaDonRepositoryInterface {
- 
+
     @Override
     public ArrayList<HoaDonViewModel> all() {
         ArrayList<HoaDonViewModel> list = new ArrayList<>();
@@ -41,7 +41,7 @@ public class HoaDonRepository implements HoaDonRepositoryInterface {
                 hoaDon.setNgayNhan(rs.getDate(9));
                 hoaDon.setTinhTrang(rs.getInt(10));
                 hoaDon.setTongTien(rs.getBigDecimal(11));
-                
+
                 list.add(hoaDon);
             }
         } catch (Exception e) {
@@ -50,14 +50,11 @@ public class HoaDonRepository implements HoaDonRepositoryInterface {
 
         return list;
     }
-    
-  
-    
-  
-    public List<HoaDonChiTietViewModel> getListById(String idhoaDon) throws SQLException{
+
+    public List<HoaDonChiTietViewModel> getListById(String idhoaDon) throws SQLException {
         String query = "SELECT  c.MaSP , c.TenSP , a.SoLuong , a.DonGia fROM ChiTietHoaDon a left join ChiTietSP b on a.IdChiTietSP = b.IdCTSP left join SanPham c on c.IdSP = b.IdSP left join HoaDon d on a.IdHD = d.IdHD where d.Ma = ?";
         List<HoaDonChiTietViewModel> list = new ArrayList<>();
-        try ( Connection con = DBConnection.getConnection();  PreparedStatement ps = con.prepareStatement(query)) {
+        try (Connection con = DBConnection.getConnection(); PreparedStatement ps = con.prepareStatement(query)) {
             ps.setObject(1, idhoaDon);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -70,8 +67,39 @@ public class HoaDonRepository implements HoaDonRepositoryInterface {
         return null;
     }
 
-   
+    @Override
+    public List<HoaDonViewModel> ListHdSearch(Date bd, Date kt) {
+        List<HoaDonViewModel> list = new ArrayList<>();
+        String sql = "select a.Ma,b.MaNV,c.MaKH,c.HoTen,a.NgayTao,a.NgayDat,a.NgayThanhToan,a.NgayShip,a.NgayNhan,a.TinhTrang,a.TongTien from HoaDon a left join NhanVien b on a.IdNV = b.IdNV left join  KhachHang c on a.IdKH = c.IdKH\n"
+                + "where NgayTao between  ? and ?\n"
+                + "order by a.Ma asc";
+        try (Connection con = DBConnection.getConnection();
+                PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setObject(1, bd);
+            ps.setObject(2, kt);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                HoaDonViewModel hoaDon = new HoaDonViewModel();
+                hoaDon.setMaHD(rs.getString(1));
+                hoaDon.setMaNV(rs.getString(2));
+                hoaDon.setMaKH(rs.getString(3));
+                hoaDon.setTenKH(rs.getString(4));
+                hoaDon.setNgayTao(rs.getDate(5));
+                hoaDon.setNgayDat(rs.getDate(6));
+                hoaDon.setNgayThanhToan(rs.getDate(7));
+                hoaDon.setNgayShip(rs.getDate(8));
+                hoaDon.setNgayNhan(rs.getDate(9));
+                hoaDon.setTinhTrang(rs.getInt(10));
+                hoaDon.setTongTien(rs.getBigDecimal(11));
 
- 
-    
+                list.add(hoaDon);
+            }
+        } catch (Exception e) {
+            e.getMessage();
+        }
+
+        return list;
+
+    }
+
 }
