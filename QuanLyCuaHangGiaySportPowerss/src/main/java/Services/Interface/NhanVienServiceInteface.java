@@ -6,6 +6,7 @@ package Services.Interface;
 
 import DomainModels.NhanVien;
 import ViewModels.NhanVienViewModel;
+import ViewModels.NhanVienViewModel1;
 import java.util.List;
 
 /**
@@ -22,6 +23,7 @@ public interface NhanVienServiceInteface {
 
     public void delete(NhanVien nv) throws Exception;
 
-    public List<NhanVienViewModel> getallNhanVien(String ma);
+    public List<NhanVienViewModel1> getallNhanVien(String ma);
+    public String updatett(NhanVien nv,String ma);
     public long dem();
 }

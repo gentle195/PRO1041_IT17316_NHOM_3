@@ -10,14 +10,12 @@ import Services.ChucVuSevice;
 import Services.Interface.ChucVuServiceInterface;
 import Services.Interface.NhanVienServiceInteface;
 import Services.NhanVienService;
-import ViewModels.NhanVienViewModel;
+import ViewModels.NhanVienViewModel1;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
-import java.util.UUID;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -26,6 +24,7 @@ import javax.swing.table.DefaultTableModel;
 public class TTnhanVienView2 extends javax.swing.JPanel {
 
     private NhanVienServiceInteface nvService;
+    private ChucVuServiceInterface cvService;
 
     /**
      * Creates new form TTnhanVienView
@@ -34,14 +33,8 @@ public class TTnhanVienView2 extends javax.swing.JPanel {
         initComponents();
         txtMaNhanVien.setText(giaoDienDangNhap.ma);
         this.nvService = new NhanVienService();
-        Getall();
-    }
-
-    
-
-    private void Getall() {
-        List<NhanVienViewModel> nv = nvService.getallNhanVien(txtMaNhanVien.getText());
-
+        this.cvService = new ChucVuSevice();
+        List<NhanVienViewModel1> nv = nvService.getallNhanVien(txtMaNhanVien.getText());
         txtHoTenNV.setText(nv.get(0).getHoTenNV());
         if (nv.get(0).getGioiTinh().equals("Nam")) {
             rdNamNV.setSelected(true);
@@ -52,8 +45,12 @@ public class TTnhanVienView2 extends javax.swing.JPanel {
         dateNSNV.setDate(nv.get(0).getNgaySinh());
         txtMKNV.setText(nv.get(0).getMatkhau());
         txtDCNV.setText(nv.get(0).getDiaChi());
-        DefaultComboBoxModel de = new DefaultComboBoxModel(nv.get(0).getChucvu().getTenCV());
+        List<ChucVu> cv = cvService.getall();
+        cv.add(0, new ChucVu(String.valueOf(nv.get(0).getChucvu().getTenCV())));
+        DefaultComboBoxModel de = new DefaultComboBoxModel((cv.toArray()));
         cbCV.setModel(de);
+//        DefaultComboBoxModel df = new DefaultComboBoxModel(nv.toArray());
+//        cbCV.setModel(df);
     }
 
     /**
@@ -293,28 +290,47 @@ public class TTnhanVienView2 extends javax.swing.JPanel {
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         // TODO add your handling code here:
 
-        if (txtDCNV.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Vui lòng nhập địa chỉ");
-            return;
-        }
-
-        if (txtSDTNhanVien.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Vui lòng nhập SDT");
-            return;
-        }
-        
         int bb = JOptionPane.showConfirmDialog(this, "Bạn muốn sửa lại không ?", "Có", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION);
         if (bb == JOptionPane.YES_OPTION) {
             NhanVien nv = new NhanVien();
+            if(txtHoTenNV.getText().equals("")){
+                JOptionPane.showMessageDialog(this, "Không để trống tên");
+                return;
+            }
+            if(txtDCNV.getText().equals("")){
+                JOptionPane.showMessageDialog(this, "Không để trống địa chỉ");
+                return;
+            }
+            if(txtMKNV.getText().equals("")){
+                JOptionPane.showMessageDialog(this, "Không để trống mật khẩu");
+                return;
+            }
+            if(dateNSNV.getDate()==null){
+                JOptionPane.showMessageDialog(this, "Không để trống ngày sinh");
+                return;
+            }
+            
+            if(txtSDTNhanVien.getText().equals("")){
+                JOptionPane.showMessageDialog(this, "Không để trống số điện thoại");
+                return; 
+            }
+            nv.setMaNV(txtMaNhanVien.getText());
+            nv.setHoTenNV(txtHoTenNV.getText());
+            if (rdNamNV.isSelected()) {
+                nv.setGioiTinh("Nam");
+            } else {
+                nv.setGioiTinh("Nữ");
+            }
+            nv.setChucvu((ChucVu) cbCV.getSelectedItem());
             nv.setDiaChi(txtDCNV.getText());
-            nv.setChucvu((ChucVu) txtSDTNhanVien1.getText());
+            nv.setNgaySinh((Date) dateNSNV.getDate());
+            nv.setMatkhau(txtMKNV.getText());
             if(txtSDTNhanVien.getText().matches("^0\\d{9,10}")){
                  nv.setSdt(txtSDTNhanVien.getText());
             }else{
                 JOptionPane.showMessageDialog(this, "Số điện thoại nhập chưa đúng");
                 return;
             }
-            nv.setMatkhau(txtMKNV.getText());
             try {
                 nvService.update(nv);
             } catch (Exception ex) {
