@@ -55,7 +55,6 @@ public class NhanVienRepository implements NhanVienRepositoryInterface {
             this.em.merge(nv);
             this.em.getTransaction().commit();
         } catch (Exception e) {
-            e.printStackTrace();
             this.em.getTransaction().rollback();
             throw e;
         }
@@ -103,22 +102,5 @@ public class NhanVienRepository implements NhanVienRepositoryInterface {
         }
         return count;
     }
-
-    @Override
-    public String updatett(NhanVien nv,String ma) {
-        try {
-            String pr="update NhanVien set DiaChi=?,Sđt=?,MatKhau=? where MaNV=?";
-            PreparedStatement ps=con.prepareStatement(pr);
-            ps.setObject(1, nv.getDiaChi());
-            ps.setObject(2, nv.getSdt());
-            ps.setObject(3, nv.getMatkhau());
-            ps.setObject(4, ma);
-            ps.executeUpdate();
-            return "Sửa thành công";
-        } catch (Exception e) {
-            return "Sửa thất bại";
-        }
-    }
-
    
 }

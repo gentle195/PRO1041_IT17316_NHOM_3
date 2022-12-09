@@ -185,12 +185,17 @@ public class NhanVienBanHangViews extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(0, 204, 204));
+        jPanel1.setBackground(new java.awt.Color(0, 255, 204));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.setPreferredSize(new java.awt.Dimension(210, 549));
-        jPanel1.add(jLabel1);
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnBanHang2.setBackground(new java.awt.Color(204, 255, 255));
+        jLabel1.setIcon(new javax.swing.ImageIcon("E:\\GitHub\\PRO1041_IT17316_NHOM_3\\QuanLyCuaHangGiaySportPowerss\\src\\main\\java\\icon\\rsz_21artboard_1.png")); // NOI18N
+        jLabel1.setMaximumSize(new java.awt.Dimension(240, 130));
+        jLabel1.setMinimumSize(new java.awt.Dimension(240, 130));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-25, 6, -1, -1));
+
+        btnBanHang2.setBackground(new java.awt.Color(255, 255, 204));
         btnBanHang2.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         btnBanHang2.setText("Bán Hàng");
         btnBanHang2.setPreferredSize(new java.awt.Dimension(170, 50));
@@ -199,9 +204,9 @@ public class NhanVienBanHangViews extends javax.swing.JFrame {
                 btnBanHang2ActionPerformed(evt);
             }
         });
-        jPanel1.add(btnBanHang2);
+        jPanel1.add(btnBanHang2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, -1));
 
-        btnHoaDon.setBackground(new java.awt.Color(204, 255, 255));
+        btnHoaDon.setBackground(new java.awt.Color(255, 255, 204));
         btnHoaDon.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         btnHoaDon.setText("Hóa đơn");
         btnHoaDon.setPreferredSize(new java.awt.Dimension(170, 50));
@@ -210,20 +215,20 @@ public class NhanVienBanHangViews extends javax.swing.JFrame {
                 btnHoaDonActionPerformed(evt);
             }
         });
-        jPanel1.add(btnHoaDon);
+        jPanel1.add(btnHoaDon, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, -1, -1));
 
-        btnSanPham.setBackground(new java.awt.Color(204, 255, 255));
+        btnSanPham.setBackground(new java.awt.Color(255, 255, 204));
         btnSanPham.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
-        btnSanPham.setText("Sản phẩm");
+        btnSanPham.setText("Tìm kiếm sản phẩm");
         btnSanPham.setPreferredSize(new java.awt.Dimension(170, 50));
         btnSanPham.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSanPhamActionPerformed(evt);
             }
         });
-        jPanel1.add(btnSanPham);
+        jPanel1.add(btnSanPham, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 370, -1, -1));
 
-        btnKhachHang.setBackground(new java.awt.Color(204, 255, 255));
+        btnKhachHang.setBackground(new java.awt.Color(255, 255, 204));
         btnKhachHang.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         btnKhachHang.setText("Khách hàng");
         btnKhachHang.setPreferredSize(new java.awt.Dimension(170, 50));
@@ -232,20 +237,20 @@ public class NhanVienBanHangViews extends javax.swing.JFrame {
                 btnKhachHangActionPerformed(evt);
             }
         });
-        jPanel1.add(btnKhachHang);
+        jPanel1.add(btnKhachHang, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 480, -1, -1));
 
-        btnNhanVien.setBackground(new java.awt.Color(204, 255, 255));
+        btnNhanVien.setBackground(new java.awt.Color(255, 255, 204));
         btnNhanVien.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
-        btnNhanVien.setText("Nhân viên");
+        btnNhanVien.setText("Thông tin cá nhân");
         btnNhanVien.setPreferredSize(new java.awt.Dimension(170, 50));
         btnNhanVien.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNhanVienActionPerformed(evt);
             }
         });
-        jPanel1.add(btnNhanVien);
+        jPanel1.add(btnNhanVien, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 590, -1, -1));
 
-        btnDangXuat.setBackground(new java.awt.Color(204, 255, 255));
+        btnDangXuat.setBackground(new java.awt.Color(255, 255, 204));
         btnDangXuat.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         btnDangXuat.setText("Đăng xuất");
         btnDangXuat.setPreferredSize(new java.awt.Dimension(170, 50));
@@ -254,7 +259,7 @@ public class NhanVienBanHangViews extends javax.swing.JFrame {
                 btnDangXuatActionPerformed(evt);
             }
         });
-        jPanel1.add(btnDangXuat);
+        jPanel1.add(btnDangXuat, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 690, -1, -1));
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.LINE_START);
 
@@ -777,7 +782,7 @@ public class NhanVienBanHangViews extends javax.swing.JFrame {
                 .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, 789, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel54, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(740, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlBanHangLayout.setVerticalGroup(
             pnlBanHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

@@ -31,8 +31,9 @@ public class TTnhanVienView extends javax.swing.JPanel {
     private List<NhanVienViewModel> List;
     long count;
     int trang;
-    int sotrang=1;
+    int sotrang = 1;
     int start = 0, end = 14;
+
     /**
      * Creates new form TTnhanVienView
      */
@@ -41,7 +42,7 @@ public class TTnhanVienView extends javax.swing.JPanel {
         this.cvService = new ChucVuSevice();
         this.nvService = new NhanVienService();
 
-        List = nvService.getall(start,end);
+        List = nvService.getall(start, end);
         List<ChucVu> cv = cvService.getall();
         cv.add(0, new ChucVu(null, "", "Tất cả", ""));
         DefaultComboBoxModel de = new DefaultComboBoxModel((cv.toArray()));
@@ -63,9 +64,10 @@ public class TTnhanVienView extends javax.swing.JPanel {
             });
 
         }
-        trang = (int) (count / end) +1;
+        trang = (int) (count / end) + 1;
         setStatePagination();
     }
+
     private void setStatePagination() {
         jButton1.setEnabled(start > 1);
         jButton2.setEnabled(start < trang);
@@ -570,30 +572,30 @@ public class TTnhanVienView extends javax.swing.JPanel {
         int bb = JOptionPane.showConfirmDialog(this, "Bạn muốn thêm không ?", "Có", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION);
         if (bb == JOptionPane.YES_OPTION) {
             NhanVien nv = new NhanVien();
-            if(txtHoTenNV.getText().equals("")){
+            if (txtHoTenNV.getText().equals("")) {
                 JOptionPane.showMessageDialog(this, "Không để trống tên");
                 return;
             }
-            if(txtDCNV.getText().equals("")){
+            if (txtDCNV.getText().equals("")) {
                 JOptionPane.showMessageDialog(this, "Không để trống địa chỉ");
                 return;
             }
-            if(txtMKNV.getText().equals("")){
+            if (txtMKNV.getText().equals("")) {
                 JOptionPane.showMessageDialog(this, "Không để trống mật khẩu");
                 return;
             }
-            if(dateNSNV.getDate()==null){
+            if (dateNSNV.getDate() == null) {
                 JOptionPane.showMessageDialog(this, "Không để trống ngày sinh");
                 return;
             }
-            
-            if(cbCV.getSelectedIndex()==0){
+
+            if (cbCV.getSelectedIndex() == 0) {
                 JOptionPane.showMessageDialog(this, "Không để trống chức vụ");
                 return;
             }
-            if(txtSDTNhanVien.getText().equals("")){
+            if (txtSDTNhanVien.getText().equals("")) {
                 JOptionPane.showMessageDialog(this, "Không để trống số điện thoại");
-                return; 
+                return;
             }
             nv.setMaNV(txtMaNhanVien.getText());
             nv.setHoTenNV(txtHoTenNV.getText());
@@ -606,13 +608,13 @@ public class TTnhanVienView extends javax.swing.JPanel {
             nv.setDiaChi(txtDCNV.getText());
             nv.setNgaySinh((Date) dateNSNV.getDate());
             nv.setMatkhau(txtMKNV.getText());
-            if(txtSDTNhanVien.getText().matches("^0\\d{9,10}")){
-                 nv.setSdt(txtSDTNhanVien.getText());
-            }else{
+            if (txtSDTNhanVien.getText().matches("^0\\d{9,10}")) {
+                nv.setSdt(txtSDTNhanVien.getText());
+            } else {
                 JOptionPane.showMessageDialog(this, "Số điện thoại nhập chưa đúng");
                 return;
             }
-           
+
             try {
                 nvService.create(nv);
             } catch (Exception ex) {
@@ -625,10 +627,11 @@ public class TTnhanVienView extends javax.swing.JPanel {
             return;
         }
         clearNV();
-        loadTableNhanVien(nvService.getall(start,end));
+        loadTableNhanVien(nvService.getall(start, end));
     }//GEN-LAST:event_jButton13ActionPerformed
 
     void clearNV() {
+        txtIDNhanVien.setText("");
         txtMaNhanVien.setText("");
         txtHoTenNV.setText("");
         cbCV.setSelectedIndex(0);
@@ -650,31 +653,31 @@ public class TTnhanVienView extends javax.swing.JPanel {
         int bb = JOptionPane.showConfirmDialog(this, "Bạn muốn sửa lại không ?", "Có", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION);
         if (bb == JOptionPane.YES_OPTION) {
             NhanVien nv = new NhanVien();
-            if(txtHoTenNV.getText().equals("")){
+            if (txtHoTenNV.getText().equals("")) {
                 JOptionPane.showMessageDialog(this, "Không để trống tên");
                 return;
             }
-            if(txtDCNV.getText().equals("")){
+            if (txtDCNV.getText().equals("")) {
                 JOptionPane.showMessageDialog(this, "Không để trống địa chỉ");
                 return;
             }
-            if(txtMKNV.getText().equals("")){
+            if (txtMKNV.getText().equals("")) {
                 JOptionPane.showMessageDialog(this, "Không để trống mật khẩu");
                 return;
             }
-            if(dateNSNV.getDate()==null){
+            if (dateNSNV.getDate() == null) {
                 JOptionPane.showMessageDialog(this, "Không để trống ngày sinh");
                 return;
             }
-            
-            if(cbCV.getSelectedIndex()==0){
+            if (cbCV.getSelectedIndex() == 0) {
                 JOptionPane.showMessageDialog(this, "Không để trống chức vụ");
                 return;
             }
-            if(txtSDTNhanVien.getText().equals("")){
+            if (txtSDTNhanVien.getText().equals("")) {
                 JOptionPane.showMessageDialog(this, "Không để trống số điện thoại");
-                return; 
+                return;
             }
+            nv.setIdNV(UUID.fromString( txtIDNhanVien.getText()));
             nv.setMaNV(txtMaNhanVien.getText());
             nv.setHoTenNV(txtHoTenNV.getText());
             if (rdNamNV.isSelected()) {
@@ -686,9 +689,9 @@ public class TTnhanVienView extends javax.swing.JPanel {
             nv.setDiaChi(txtDCNV.getText());
             nv.setNgaySinh((Date) dateNSNV.getDate());
             nv.setMatkhau(txtMKNV.getText());
-            if(txtSDTNhanVien.getText().matches("^0\\d{9,10}")){
-                 nv.setSdt(txtSDTNhanVien.getText());
-            }else{
+            if (txtSDTNhanVien.getText().matches("^0\\d{9,10}")) {
+                nv.setSdt(txtSDTNhanVien.getText());
+            } else {
                 JOptionPane.showMessageDialog(this, "Số điện thoại nhập chưa đúng");
                 return;
             }
@@ -703,7 +706,7 @@ public class TTnhanVienView extends javax.swing.JPanel {
         } else {
             return;
         }
-        loadTableNhanVien(nvService.getall(start,end));
+        loadTableNhanVien(nvService.getall(start, end));
         clearNV();
     }//GEN-LAST:event_jButton14ActionPerformed
 
@@ -741,7 +744,7 @@ public class TTnhanVienView extends javax.swing.JPanel {
             return;
         }
 
-        loadTableNhanVien(nvService.getall(start,end));
+        loadTableNhanVien(nvService.getall(start, end));
         clearNV();
     }//GEN-LAST:event_jButton15ActionPerformed
 
@@ -772,7 +775,7 @@ public class TTnhanVienView extends javax.swing.JPanel {
     private void txtSreachCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtSreachCaretUpdate
         // TODO add your handling code here:
         List<NhanVienViewModel> nv = new ArrayList<>();
-        for (NhanVienViewModel n : nvService.getall(start,end)) {
+        for (NhanVienViewModel n : nvService.getall(start, end)) {
             if (n.getHoTenNV().contains(txtSreach.getText())) {
                 nv.add(n);
             }
@@ -787,13 +790,13 @@ public class TTnhanVienView extends javax.swing.JPanel {
             sotrang++;
         }
         loadTableNhanVien(nvService.getall(start, end));
-        
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-         if (start > 1) {
-            start=start - 14;
+        if (start > 1) {
+            start = start - 14;
             sotrang--;
         }
         loadTableNhanVien(nvService.getall(start, end));
