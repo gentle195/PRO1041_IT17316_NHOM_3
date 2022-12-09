@@ -2,60 +2,31 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package DomainModels;
+package ViewModels;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import java.util.UUID;
+import DomainModels.ChucVu;
 import java.util.Date;
+import java.util.UUID;
 
 /**
  *
  * @author Admin
  */
-@Entity
-@Table(name = "NhanVien")
-public class NhanVien {
-
-    @Id
-    @Column(name = "IdNV")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+public class NhanVienViewModel1 {
     private UUID IdNV;
-
-    @Column(name = "MaNV")
     private String MaNV;
-
-    @Column(name = "HoTenNV")
     private String HoTenNV;
-
-    @Column(name = "GioiTinh")
     private String GioiTinh;
-
-    @Column(name = "NgaySinh")
     private Date NgaySinh;
-
-    @Column(name = "DiaChi")
     private String DiaChi;
-
-    @Column(name = "Sdt")
     private String Sdt;
-    @ManyToOne
-    @JoinColumn(name = "IdCV", nullable = false)
     private ChucVu chucvu;
-
-    @Column(name = "Matkhau")
     private String Matkhau;
 
-    public NhanVien() {
+    public NhanVienViewModel1() {
     }
 
-    public NhanVien(UUID IdNV, String MaNV, String HoTenNV, String GioiTinh, Date NgaySinh, String DiaChi, String Sdt, ChucVu chucvu, String Matkhau) {
+    public NhanVienViewModel1(UUID IdNV, String MaNV, String HoTenNV, String GioiTinh, Date NgaySinh, String DiaChi, String Sdt, ChucVu chucvu, String Matkhau) {
         this.IdNV = IdNV;
         this.MaNV = MaNV;
         this.HoTenNV = HoTenNV;
@@ -141,7 +112,8 @@ public class NhanVien {
 
     @Override
     public String toString() {
-        return MaNV;
+        return  chucvu.getTenCV() ;
     }
-
+    
+    
 }

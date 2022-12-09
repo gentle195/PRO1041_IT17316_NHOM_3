@@ -756,7 +756,7 @@ public class TTnhanVienView extends javax.swing.JPanel {
         } else {
             rdNuNV.setSelected(true);
         }
-        cbCV.setSelectedItem(tbNhanVien.getValueAt(row, 4).toString());
+        cbCV.setSelectedItem(tbNhanVien.getValueAt(row, 4));
         txtDCNV.setText(tbNhanVien.getValueAt(row, 5).toString());
         dateNSNV.setDate((Date) tbNhanVien.getValueAt(row, 6));
 

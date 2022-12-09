@@ -3,32 +3,31 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Repositories;
+
 import DomainModels.NhanVien;
 import Utilities.JpaUtil;
-import DomainModels.ChucVu;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import Repositories.Impl.NhanVienRepositoryInterface;
 import Utilities.DBConnection;
-import ViewModels.NhanVienViewModel;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.List;
+
 /**
  *
  * @author Admin
  */
-public class NhanVienRepository implements NhanVienRepositoryInterface{
-    
+public class NhanVienRepository implements NhanVienRepositoryInterface {
+
     private EntityManager em;
     private static final Connection con = DBConnection.getConnection();
+
     public NhanVienRepository() {
         this.em = JpaUtil.getEntityManager();
     }
 
     @Override
-    public List<NhanVien> getall(int min , int max) {
+    public List<NhanVien> getall(int min, int max) {
         String jpql = "SELECT cate FROM NhanVien cate";
         TypedQuery<NhanVien> query = this.em.createQuery(jpql, NhanVien.class);
         query.setFirstResult(min);
@@ -76,18 +75,14 @@ public class NhanVienRepository implements NhanVienRepositoryInterface{
         }
 
     }
-    
+
     @Override
     public List<NhanVien> getallNhanVien(String ma) {
         String jpql = "SELECT cate FROM NhanVien cate where cate.MaNV =:ma ";
-        
-       
-       JpaUtil.getEntityManager();
+        JpaUtil.getEntityManager();
         TypedQuery q = JpaUtil.getEntityManager().createQuery(jpql, NhanVien.class);
         q.setParameter("ma", ma);
-        
         q.getResultList();
-     
         return q.getResultList();
     }
 
@@ -108,4 +103,22 @@ public class NhanVienRepository implements NhanVienRepositoryInterface{
         }
         return count;
     }
+
+    @Override
+    public String updatett(NhanVien nv,String ma) {
+        try {
+            String pr="update NhanVien set DiaChi=?,Sđt=?,MatKhau=? where MaNV=?";
+            PreparedStatement ps=con.prepareStatement(pr);
+            ps.setObject(1, nv.getDiaChi());
+            ps.setObject(2, nv.getSdt());
+            ps.setObject(3, nv.getMatkhau());
+            ps.setObject(4, ma);
+            ps.executeUpdate();
+            return "Sửa thành công";
+        } catch (Exception e) {
+            return "Sửa thất bại";
+        }
+    }
+
+   
 }
