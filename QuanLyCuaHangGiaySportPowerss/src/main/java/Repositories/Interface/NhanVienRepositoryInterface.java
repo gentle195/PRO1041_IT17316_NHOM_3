@@ -23,6 +23,6 @@ public interface NhanVienRepositoryInterface {
     public void delete(NhanVien nv) throws Exception;
 
     List<NhanVien> getallNhanVien(String ma);
-    public String updatett(NhanVien nv,String ma);
+   
     public long dem();
 }

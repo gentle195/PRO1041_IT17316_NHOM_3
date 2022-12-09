@@ -53,8 +53,9 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
     private DefaultComboBoxModel defaultComboBoxModel;
     long count;
     int trang;
-    int sotrang=1;
+    int sotrang = 1;
     int start = 0, end = 14;
+
     /**
      * Creates new form SanPham
      */
@@ -69,7 +70,7 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
         this.loaiGiayService = new LoaiGiayService();
         this.sizeService = new SizeService();
         this.chiTietSPService = new ChiTietSPService();
-        list = chiTietSPService.all(start,end);
+        list = chiTietSPService.all(start, end);
 
         List<SanPham> sp = SanPhamService.all();
         cbTenSP.setModel(new DefaultComboBoxModel((sp.toArray())));
@@ -126,11 +127,13 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
         lbTotalProducts1.setText("Total: " + count);
         loadTableChiTietSP(chiTietSPService.all(start, end));
     }
+
     private void setStatePagination() {
         btnPrevious1.setEnabled(start > 1);
         btnNext1.setEnabled(start < trang);
         lbPagination1.setText(sotrang + "/" + trang);
     }
+
     private void loadTableChiTietSP(List<ChiTietSPViewModel> Sz) {
         DefaultTableModel modeltb = new DefaultTableModel();
 
@@ -145,7 +148,7 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
             });
 
         }
-        trang = (int) (count / end)+1;
+        trang = (int) (count / end) + 1;
         setStatePagination();
     }
 
@@ -173,13 +176,13 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
         if (cbbChatLieu.getSelectedIndex() == 0) {
             loadTableChiTietSP(chiTietSPService.all(start, end));
         }
-        
+
         if (cbbTrangThai.getSelectedIndex() == 0) {
             loadTableChiTietSP(chiTietSPService.all(start, end));
         }
         if (cbbTrangThai.getSelectedIndex() == 1) {
             loadTableChiTietSP(l);
-        } 
+        }
         if (cbbTrangThai.getSelectedIndex() == 2) {
             loadTableChiTietSP(l);
 
@@ -917,24 +920,39 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Vui lòng nhập đơn giá");
             return;
         }
-        if (Double.parseDouble(txtDonGia.getText()) <= 0) {
-            JOptionPane.showMessageDialog(this, "Đơn giá phải lớn hơn 0");
+        try {
+            if (Double.parseDouble(txtDonGia.getText().toString()) < 0) {
+                JOptionPane.showMessageDialog(this, "Đơn giá phải lớn hơn 0");
+                return;
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Đơn giá phải là số");
             return;
         }
         if (txtTrongLuong.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Vui lòng nhập trọng lượng");
             return;
         }
-        if (Integer.parseInt(txtTrongLuong.getText()) <= 0) {
-            JOptionPane.showMessageDialog(this, "Trọng lượng phải lớn hơn 0");
+        try {
+            if (Integer.parseInt(txtTrongLuong.getText().toString()) <= 0) {
+                JOptionPane.showMessageDialog(this, "Trọng lượng phải lớn hơn 0");
+                return;
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Trọng lượng phải là số");
             return;
         }
         if (txtSoLuongSP.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Vui lòng nhập số lượng");
             return;
         }
-        if (Integer.parseInt(txtSoLuongSP.getText()) < 0) {
-            JOptionPane.showMessageDialog(this, "Số lượng lượng không được âm");
+        try {
+            if (Integer.parseInt(txtSoLuongSP.getText().toString()) <= 0) {
+                JOptionPane.showMessageDialog(this, "Số lượng lượng không được âm");
+                return;
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Số lượng phải là số");
             return;
         }
         if (txtMotaChiTietSP.getText().equals("")) {
@@ -977,6 +995,53 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         // TODO add your handling code here:
+        if (txtMaSP.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập Mã");
+            return;
+        }
+        if (txtDonGia.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập đơn giá");
+            return;
+        }
+        try {
+            if (Double.parseDouble(txtDonGia.getText().toString()) < 0) {
+                JOptionPane.showMessageDialog(this, "Đơn giá phải lớn hơn 0");
+                return;
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Đơn giá phải là số");
+            return;
+        }
+        if (txtTrongLuong.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập trọng lượng");
+            return;
+        }
+        try {
+            if (Integer.parseInt(txtTrongLuong.getText().toString()) <= 0) {
+                JOptionPane.showMessageDialog(this, "Trọng lượng phải lớn hơn 0");
+                return;
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Trọng lượng phải là số");
+            return;
+        }
+        if (txtSoLuongSP.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập số lượng");
+            return;
+        }
+        try {
+            if (Integer.parseInt(txtSoLuongSP.getText().toString()) <= 0) {
+                JOptionPane.showMessageDialog(this, "Số lượng lượng không được âm");
+                return;
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Số lượng phải là số");
+            return;
+        }
+        if (txtMotaChiTietSP.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập mô tả");
+            return;
+        }
         int bb = JOptionPane.showConfirmDialog(this, "Thông báo", "Xoá", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION);
         if (bb == JOptionPane.YES_OPTION) {
             ChiTietSP ctsp = new ChiTietSP();
@@ -1022,24 +1087,39 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Vui lòng nhập đơn giá");
             return;
         }
-        if (Double.parseDouble(txtDonGia.getText()) <= 0) {
-            JOptionPane.showMessageDialog(this, "Đơn giá phải lớn hơn 0");
+        try {
+            if (Double.parseDouble(txtDonGia.getText().toString()) < 0) {
+                JOptionPane.showMessageDialog(this, "Đơn giá phải lớn hơn 0");
+                return;
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Đơn giá phải là số");
             return;
         }
         if (txtTrongLuong.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Vui lòng nhập trọng lượng");
             return;
         }
-        if (Integer.parseInt(txtTrongLuong.getText()) <= 0) {
-            JOptionPane.showMessageDialog(this, "Trọng lượng phải lớn hơn 0");
+        try {
+            if (Integer.parseInt(txtTrongLuong.getText().toString()) <= 0) {
+                JOptionPane.showMessageDialog(this, "Trọng lượng phải lớn hơn 0");
+                return;
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Trọng lượng phải là số");
             return;
         }
         if (txtSoLuongSP.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Vui lòng nhập số lượng");
             return;
         }
-        if (Integer.parseInt(txtSoLuongSP.getText()) < 0) {
-            JOptionPane.showMessageDialog(this, "Số lượng lượng không được âm");
+        try {
+            if (Integer.parseInt(txtSoLuongSP.getText().toString()) <= 0) {
+                JOptionPane.showMessageDialog(this, "Số lượng lượng không được âm");
+                return;
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Số lượng phải là số");
             return;
         }
         if (txtMotaChiTietSP.getText().equals("")) {
@@ -1272,7 +1352,7 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
     private void btnPrevious1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrevious1ActionPerformed
         // TODO add your handling code here:
         if (start > 1) {
-            start=start - 14;
+            start = start - 14;
             sotrang--;
         }
         loadTableChiTietSP(chiTietSPService.all(start, end));
@@ -1280,7 +1360,7 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
 
     private void txtMaSPCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtMaSPCaretUpdate
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_txtMaSPCaretUpdate
 
     private void txtSearch2CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtSearch2CaretUpdate
@@ -1376,7 +1456,7 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
         } else {
             for (int j = 0; j < sp.size(); j++) {
                 if (sp.get(j).getMaSP().equalsIgnoreCase(tblQLSP.getValueAt(row, 1).toString())) {
-                   txtMaSP.setText(tblQLSP.getValueAt(row, 1).toString());
+                    txtMaSP.setText(tblQLSP.getValueAt(row, 1).toString());
                 }
             }
         }

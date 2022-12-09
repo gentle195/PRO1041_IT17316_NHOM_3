@@ -189,9 +189,10 @@ public class QuanLyViews extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 204));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.setPreferredSize(new java.awt.Dimension(210, 549));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setIcon(new javax.swing.ImageIcon("E:\\GitHub\\PRO1041_IT17316_NHOM_3\\QuanLyCuaHangGiaySportPowerss\\src\\main\\java\\icon\\rsz_21artboard_1.png")); // NOI18N
-        jPanel1.add(jLabel1);
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-25, 6, -1, -1));
 
         btnBanHang2.setBackground(new java.awt.Color(204, 255, 255));
         btnBanHang2.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
@@ -202,7 +203,7 @@ public class QuanLyViews extends javax.swing.JFrame {
                 btnBanHang2ActionPerformed(evt);
             }
         });
-        jPanel1.add(btnBanHang2);
+        jPanel1.add(btnBanHang2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 141, -1, -1));
 
         btnHoaDon.setBackground(new java.awt.Color(204, 255, 255));
         btnHoaDon.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
@@ -213,7 +214,7 @@ public class QuanLyViews extends javax.swing.JFrame {
                 btnHoaDonActionPerformed(evt);
             }
         });
-        jPanel1.add(btnHoaDon);
+        jPanel1.add(btnHoaDon, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, -1, -1));
 
         btnSanPham.setBackground(new java.awt.Color(204, 255, 255));
         btnSanPham.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
@@ -224,7 +225,7 @@ public class QuanLyViews extends javax.swing.JFrame {
                 btnSanPhamActionPerformed(evt);
             }
         });
-        jPanel1.add(btnSanPham);
+        jPanel1.add(btnSanPham, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, -1, -1));
 
         btnNhanVien.setBackground(new java.awt.Color(204, 255, 255));
         btnNhanVien.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
@@ -235,7 +236,7 @@ public class QuanLyViews extends javax.swing.JFrame {
                 btnNhanVienActionPerformed(evt);
             }
         });
-        jPanel1.add(btnNhanVien);
+        jPanel1.add(btnNhanVien, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, -1, -1));
 
         btnKhachHang.setBackground(new java.awt.Color(204, 255, 255));
         btnKhachHang.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
@@ -246,7 +247,7 @@ public class QuanLyViews extends javax.swing.JFrame {
                 btnKhachHangActionPerformed(evt);
             }
         });
-        jPanel1.add(btnKhachHang);
+        jPanel1.add(btnKhachHang, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 480, -1, -1));
 
         btnThongKe.setBackground(new java.awt.Color(204, 255, 255));
         btnThongKe.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
@@ -257,7 +258,7 @@ public class QuanLyViews extends javax.swing.JFrame {
                 btnThongKeActionPerformed(evt);
             }
         });
-        jPanel1.add(btnThongKe);
+        jPanel1.add(btnThongKe, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 560, -1, -1));
 
         btnDangXuat.setBackground(new java.awt.Color(204, 255, 255));
         btnDangXuat.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
@@ -268,7 +269,7 @@ public class QuanLyViews extends javax.swing.JFrame {
                 btnDangXuatActionPerformed(evt);
             }
         });
-        jPanel1.add(btnDangXuat);
+        jPanel1.add(btnDangXuat, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 640, -1, -1));
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.LINE_START);
 
