@@ -249,6 +249,7 @@ public class NhanVienBanHangViews extends javax.swing.JFrame {
         btnKhachHang = new javax.swing.JButton();
         btnNhanVien = new javax.swing.JButton();
         btnDangXuat = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
         panelTong = new javax.swing.JPanel();
         pnlBanHang = new javax.swing.JPanel();
         jPanel15 = new javax.swing.JPanel();
@@ -302,7 +303,6 @@ public class NhanVienBanHangViews extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(210, 549));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("E:\\GitHub\\PRO1041_IT17316_NHOM_3\\QuanLyCuaHangGiaySportPowerss\\src\\main\\java\\icon\\rsz_21artboard_1.png")); // NOI18N
         jLabel1.setMaximumSize(new java.awt.Dimension(240, 130));
         jLabel1.setMinimumSize(new java.awt.Dimension(240, 130));
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-25, 6, -1, -1));
@@ -373,6 +373,10 @@ public class NhanVienBanHangViews extends javax.swing.JFrame {
         });
         jPanel1.add(btnDangXuat, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 690, -1, -1));
 
+        jLabel2.setIcon(new javax.swing.ImageIcon("D:\\GitHub\\PRO1041_IT17316_NHOM_3\\QuanLyCuaHangGiaySportPowers\\PRO1041_IT17316_NHOM_3\\QuanLyCuaHangGiaySportPowerss\\src\\main\\java\\icon\\rsz_21artboard_1.png")); // NOI18N
+        jLabel2.setText("Ảnh");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-30, 0, 270, 120));
+
         getContentPane().add(jPanel1, java.awt.BorderLayout.LINE_START);
 
         panelTong.setBackground(new java.awt.Color(255, 255, 255));
@@ -380,7 +384,7 @@ public class NhanVienBanHangViews extends javax.swing.JFrame {
         panelTong.setLayout(new java.awt.CardLayout());
 
         pnlBanHang.setBackground(new java.awt.Color(255, 255, 255));
-        pnlBanHang.setPreferredSize(new java.awt.Dimension(1070, 760));
+        pnlBanHang.setPreferredSize(new java.awt.Dimension(1220, 750));
 
         jPanel15.setBackground(new java.awt.Color(255, 255, 255));
         jPanel15.setPreferredSize(new java.awt.Dimension(1070, 760));
@@ -615,7 +619,7 @@ public class NhanVienBanHangViews extends javax.swing.JFrame {
         jPanel17Layout.setVerticalGroup(
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel17Layout.createSequentialGroup()
-                .addContainerGap(36, Short.MAX_VALUE)
+                .addContainerGap(34, Short.MAX_VALUE)
                 .addComponent(jScrollPane22, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17))
         );
@@ -645,7 +649,7 @@ public class NhanVienBanHangViews extends javax.swing.JFrame {
         );
 
         jPanel54.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel54.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "thông tin chung", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
+        jPanel54.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Thông tin chung", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
 
         txttenkh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -894,7 +898,7 @@ public class NhanVienBanHangViews extends javax.swing.JFrame {
                 .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, 789, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel54, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
         pnlBanHangLayout.setVerticalGroup(
             pnlBanHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1509,6 +1513,7 @@ public class NhanVienBanHangViews extends javax.swing.JFrame {
     private javax.swing.JButton btnxacnhan1;
     private javax.swing.JButton btnxoa;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;

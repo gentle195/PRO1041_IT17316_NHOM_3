@@ -283,39 +283,45 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="cbbDe" alignment="0" pref="113" max="32767" attributes="0"/>
-                              <Component id="lblDanhMuc10" alignment="0" max="32767" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="cbbChatLieu" max="32767" attributes="0"/>
-                              <Component id="lblDanhMuc11" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="170" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="cbbSize" max="32767" attributes="0"/>
-                              <Component id="lblDanhMuc7" min="-2" pref="113" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="156" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="cbbLoai" pref="113" max="32767" attributes="0"/>
-                              <Component id="lblDanhMuc8" max="32767" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="cbbHang" pref="113" max="32767" attributes="0"/>
-                              <Component id="lblDanhMuc9" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="cbbDe" alignment="0" pref="113" max="32767" attributes="0"/>
+                                      <Component id="lblDanhMuc10" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace pref="122" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="cbbChatLieu" max="32767" attributes="0"/>
+                                      <Component id="lblDanhMuc11" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="170" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="cbbSize" max="32767" attributes="0"/>
+                                      <Component id="lblDanhMuc7" min="-2" pref="113" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="156" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="cbbLoai" pref="113" max="32767" attributes="0"/>
+                                      <Component id="lblDanhMuc8" max="32767" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace pref="123" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="cbbHang" pref="113" max="32767" attributes="0"/>
+                                      <Component id="lblDanhMuc9" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="lblDanhMuc12" min="-2" pref="243" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="396" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="txtSearch2" max="32767" attributes="0"/>
-                              <Component id="lblDanhMuc12" min="-2" pref="243" max="-2" attributes="0"/>
-                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="txtSearch2" min="-2" pref="243" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -351,9 +357,9 @@
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                           <Component id="lblDanhMuc12" min="-2" pref="22" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
                           <Component id="txtSearch2" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>

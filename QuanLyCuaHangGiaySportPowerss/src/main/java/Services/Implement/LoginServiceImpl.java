@@ -9,11 +9,9 @@ import DomainModels.Login_Result;
 import DomainModels.TaiKhoan;
 import Repositories.LoginRepository;
 import Services.Interface.LoginService;
-import Views.NhanVienView;
-import Views.QuanLyView;
-import Views.giaoDienDN;
 import Viewss.NhanVienBanHangViews;
 import Viewss.QuanLyViews;
+import Viewss.giaoDienDangNhap;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -36,7 +34,7 @@ public class LoginServiceImpl implements LoginService {
             if (user.getMa() != null) {
                 if (user.getMa().equals(tk)
                         && user.getMatKhau().equals(ma)) {
-                    giaoDienDN login = new giaoDienDN();
+                    giaoDienDangNhap login = new giaoDienDangNhap();
                     if (cv.getTen().contains("Quản lý")) {
                         login.setVisible(false);
                         QuanLyViews ql = new QuanLyViews();
