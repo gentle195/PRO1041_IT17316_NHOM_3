@@ -968,11 +968,13 @@ public class QuanLyViews extends javax.swing.JFrame {
 
     private void btnthemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnthemActionPerformed
         // TODO add your handling code here:
+        int row = this.tbldssanpham.getSelectedRow();
+        if (row == -1) {
+            JOptionPane.showMessageDialog(this, "Mời chọn sản phẩm cần thêm");
+        }
         if (txtMaHdBH.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Mời chọn hóa đơn");
         } else {
-
-            int row = tbldssanpham.getSelectedRow();
             int ro = tblgiohang.getSelectedRow();
             int r = tbHoaDonBanHang.getSelectedRow();
             int thanhtien = 0;
