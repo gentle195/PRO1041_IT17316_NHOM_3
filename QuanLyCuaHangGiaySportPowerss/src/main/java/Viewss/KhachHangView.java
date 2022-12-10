@@ -24,14 +24,16 @@ public class KhachHangView extends javax.swing.JPanel {
     private DefaultTableModel dtmKH = new DefaultTableModel();
     private KhachHangService serviceKH = new KhachHangService();
     private List<KhachHang> listKH = new ArrayList<>();
+    int i = 1;
 
     public KhachHangView() {
         initComponents();
         tblKH.setModel(dtmKH);
-        Object[] header = {"Mã", "Họ tên", "Giới tính", "Ngày sinh", "SĐT", "Địa chỉ"};
+        Object[] header = { "Mã", "Họ tên", "Giới tính", "Ngày sinh", "SĐT", "Địa chỉ"};
         dtmKH.setColumnIdentifiers(header);
         listKH = serviceKH.getAll();
         showDataKH(listKH);
+
     }
 
     private void showDataKH(List<KhachHang> list) {
@@ -43,6 +45,7 @@ public class KhachHangView extends javax.swing.JPanel {
 
     private void fillDataKH(int index) {
         KhachHang kh = listKH.get(index);
+        
         this.txtIdKH.setText(kh.getID().toString());
         this.txtMaKH.setText(kh.getMa());
         this.txtTenKH.setText(kh.getHoTen());
@@ -105,6 +108,7 @@ public class KhachHangView extends javax.swing.JPanel {
         jScrollPane6 = new javax.swing.JScrollPane();
         tblKH = new javax.swing.JTable();
         txtSearch = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
         pnlKhachHang.setBackground(new java.awt.Color(153, 255, 51));
         pnlKhachHang.setPreferredSize(new java.awt.Dimension(1070, 760));
@@ -318,6 +322,8 @@ public class KhachHangView extends javax.swing.JPanel {
 
         pnlKhachHang.add(jPanel12, java.awt.BorderLayout.PAGE_START);
 
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+
         jPanel11.setBackground(new java.awt.Color(255, 255, 255));
         jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Danh sách khách hàng", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 18))); // NOI18N
 
@@ -361,25 +367,31 @@ public class KhachHangView extends javax.swing.JPanel {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel1.setText("Tìm tên khách hàng");
+
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane6)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 1241, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(jPanel11Layout.createSequentialGroup()
-                .addGap(176, 176, 176)
+                .addGap(236, 236, 236)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
                 .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(848, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(114, 114, 114))
         );
@@ -394,7 +406,10 @@ public class KhachHangView extends javax.swing.JPanel {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         pnlKhachHang.add(jPanel3, java.awt.BorderLayout.CENTER);
@@ -426,16 +441,16 @@ public class KhachHangView extends javax.swing.JPanel {
     }//GEN-LAST:event_rdNamActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        if(txtDC.getText().equals("")){
+        if (txtDC.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Không để trống địa chỉ khách hàng");
         }
-        if(txtSDT.getText().equals("")){
+        if (txtSDT.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Không để trống số điện thoại khách hàng");
         }
-        if(txtTenKH.getText().equals("")){
+        if (txtTenKH.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Không để trống tên khách hàng");
         }
-        if(txtNgaySinh.getDate()==null){
+        if (txtNgaySinh.getDate() == null) {
             JOptionPane.showMessageDialog(this, "Không để trống ngày sinh khách hàng");
         }
         int bb = JOptionPane.showConfirmDialog(this, "Bạn muốn thêm không ?", "Có", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION);
@@ -508,16 +523,16 @@ public class KhachHangView extends javax.swing.JPanel {
         if (row == -1) {
             JOptionPane.showMessageDialog(this, "Mời chọn dòng mà bạn muốn chỉnh sửa^^");
         }
-        if(txtDC.getText().equals("")){
+        if (txtDC.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Không để trống địa chỉ khách hàng");
         }
-        if(txtSDT.getText().equals("")){
+        if (txtSDT.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Không để trống số điện thoại khách hàng");
         }
-        if(txtTenKH.getText().equals("")){
+        if (txtTenKH.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Không để trống tên khách hàng");
         }
-        if(txtNgaySinh.getDate()==null){
+        if (txtNgaySinh.getDate() == null) {
             JOptionPane.showMessageDialog(this, "Không để trống ngày sinh khách hàng");
         }
         int bb = JOptionPane.showConfirmDialog(this, "Bạn muốn sửa không ?", "Có", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION);
@@ -587,6 +602,7 @@ public class KhachHangView extends javax.swing.JPanel {
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnUpdate;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel39;

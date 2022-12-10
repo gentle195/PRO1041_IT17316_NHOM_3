@@ -7,7 +7,7 @@ package Viewss;
 import DomainModels.ChucVu;
 import Services.ChucVuSevice;
 import Services.Interface.ChucVuServiceInterface;
-import Views.NhanVienView;
+
 import static Viewss.TTnhanVienView.cbCV;
 import java.util.List;
 import java.util.Random;

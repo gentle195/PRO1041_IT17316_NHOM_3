@@ -81,7 +81,7 @@ public class ThongKe extends javax.swing.JPanel {
 
     private void loadTableThongKeHoaDon(List<HoaDonTKViewModel> listTKHD) {
         dtmTKHD.setRowCount(0);
-        int i = 0;
+        int i = 1;
         for (HoaDonTKViewModel hd : listTKHD) {
             System.out.println(hd.toString());
             dtmTKHD.addRow(new Object[]{
@@ -97,7 +97,7 @@ public class ThongKe extends javax.swing.JPanel {
         Date bd = jdcNgayBatDau.getDate();
         Date kt = jdcNgayKetThuc.getDate();
         dtmTKHD.setRowCount(0);
-        int i = 0;
+        int i = 1;
         for (HoaDonTKViewModel hd : listTKHD) {
             dtmTKHD.addRow(new Object[]{
                 i++,
