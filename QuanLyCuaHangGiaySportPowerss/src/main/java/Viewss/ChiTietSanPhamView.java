@@ -947,7 +947,7 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
             return;
         }
         try {
-            if (Integer.parseInt(txtSoLuongSP.getText().toString()) <= 0) {
+            if (Integer.parseInt(txtSoLuongSP.getText().toString()) < 0) {
                 JOptionPane.showMessageDialog(this, "Số lượng lượng không được âm");
                 return;
             }
