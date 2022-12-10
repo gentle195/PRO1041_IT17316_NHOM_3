@@ -598,31 +598,49 @@
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="updatesp">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Update"/>
+              </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="updatespActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="updatesp2">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Update"/>
+              </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="updatesp2ActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="updatesp3">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Update"/>
+              </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="updatesp3ActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="updatesp4">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Update"/>
+              </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="updatesp4ActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="updatesp5">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Update"/>
+              </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="updatesp5ActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="updatesp6">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Update"/>
+              </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="updatesp6ActionPerformed"/>
               </Events>
@@ -859,10 +877,6 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="lblDonGia7" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="lblTrangThai3" alignment="1" max="32767" attributes="0"/>
-                              </Group>
                               <Component id="lblDanhMuc11" alignment="0" min="-2" pref="58" max="-2" attributes="0"/>
                               <Component id="lblDanhMuc10" alignment="0" min="-2" pref="58" max="-2" attributes="0"/>
                               <Component id="lblDanhMuc9" alignment="0" min="-2" pref="58" max="-2" attributes="0"/>
@@ -876,10 +890,6 @@
                               <Component id="cbbHang" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
                               <Component id="cbbDe" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
                               <Component id="cbbChatLieu" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
-                              <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="cbbTrangThai" alignment="0" pref="113" max="32767" attributes="0"/>
-                                  <Component id="jComboBox12" alignment="0" max="32767" attributes="0"/>
-                              </Group>
                           </Group>
                           <EmptySpace pref="37" max="32767" attributes="0"/>
                       </Group>
@@ -890,35 +900,25 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="lblDonGia7" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jComboBox12" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="lblTrangThai3" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="cbbTrangThai" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="lblDanhMuc7" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                               <Component id="cbbSize" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="lblDanhMuc8" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                               <Component id="cbbLoai" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="lblDanhMuc9" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                               <Component id="cbbHang" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="lblDanhMuc10" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                               <Component id="cbbDe" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="lblDanhMuc11" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                               <Component id="cbbChatLieu" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -929,22 +929,6 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JLabel" name="lblDonGia7">
-                  <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Segoe UI" size="12" style="1"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="&#x110;&#x1a1;n gi&#xe1;"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="lblTrangThai3">
-                  <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Segoe UI" size="12" style="1"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="Tr&#x1ea1;ng th&#xe1;i"/>
-                  </Properties>
-                </Component>
                 <Component class="javax.swing.JLabel" name="lblDanhMuc7">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -952,19 +936,6 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Size"/>
                   </Properties>
-                </Component>
-                <Component class="javax.swing.JComboBox" name="jComboBox12">
-                  <Properties>
-                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="0"/>
-                    </Property>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBox12ActionPerformed"/>
-                  </Events>
-                  <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-                  </AuxValues>
                 </Component>
                 <Component class="javax.swing.JComboBox" name="cbbSize">
                   <Properties>
@@ -974,23 +945,6 @@
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbbSizeActionPerformed"/>
-                  </Events>
-                  <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-                  </AuxValues>
-                </Component>
-                <Component class="javax.swing.JComboBox" name="cbbTrangThai">
-                  <Properties>
-                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="3">
-                        <StringItem index="0" value="T&#x1ea5;t c&#x1ea3;"/>
-                        <StringItem index="1" value="Het Hang"/>
-                        <StringItem index="2" value="Con hang"/>
-                      </StringArray>
-                    </Property>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbbTrangThaiActionPerformed"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>

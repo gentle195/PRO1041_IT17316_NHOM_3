@@ -180,13 +180,18 @@ public class LayThongTinKhachHang extends javax.swing.JFrame {
         int row = tblKhachHang.getSelectedRow();
         KhachHang kh = listKH.get(row);
         String tenKH = kh.getHoTen();
-        String SDT=kh.getSdt();
- 
-        QuanLyViews.txttenkh.setText(tenKH);
-        QuanLyViews.txtSDTKhachHang.setText(SDT);
-        NhanVienBanHangViews.txttenkh.setText(tenKH);
-        NhanVienBanHangViews.txtSDTKhachHang.setText(SDT);
-        this.dispose();
+        String SDT = kh.getSdt();
+        if (QuanLyViews.txtMaNhanVien != null) {
+            QuanLyViews.txttenkh.setText(tenKH);
+            QuanLyViews.txtSDTKhachHang.setText(SDT);
+            this.dispose();
+        } else if (NhanVienBanHangViews.txtMaNhanVienbh != null) {
+            NhanVienBanHangViews.txttenkh.setText(tenKH);
+            NhanVienBanHangViews.txtSDTKhachHang.setText(SDT);
+            this.dispose();
+        }else{
+            return;
+        }
 
     }//GEN-LAST:event_btnXacNhanActionPerformed
 
@@ -194,7 +199,7 @@ public class LayThongTinKhachHang extends javax.swing.JFrame {
         // TODO add your handling code here:
         List<KhachHang> kh = new ArrayList<>();
         for (KhachHang k : khachHangService.getAll()) {
-            if(k.getHoTen().contains(txtSearch1.getText())){
+            if (k.getHoTen().contains(txtSearch1.getText())) {
                 kh.add(k);
             }
         }

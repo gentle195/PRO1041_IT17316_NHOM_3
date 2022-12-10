@@ -176,17 +176,6 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
         if (cbbChatLieu.getSelectedIndex() == 0) {
             loadTableChiTietSP(chiTietSPService.all(start, end));
         }
-
-        if (cbbTrangThai.getSelectedIndex() == 0) {
-            loadTableChiTietSP(chiTietSPService.all(start, end));
-        }
-        if (cbbTrangThai.getSelectedIndex() == 1) {
-            loadTableChiTietSP(l);
-        }
-        if (cbbTrangThai.getSelectedIndex() == 2) {
-            loadTableChiTietSP(l);
-
-        }
         loadTableChiTietSP(l);
     }
 
@@ -253,12 +242,8 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
         jScrollPane20 = new javax.swing.JScrollPane();
         tblQLSP = new javax.swing.JTable();
         jPanel52 = new javax.swing.JPanel();
-        lblDonGia7 = new javax.swing.JLabel();
-        lblTrangThai3 = new javax.swing.JLabel();
         lblDanhMuc7 = new javax.swing.JLabel();
-        jComboBox12 = new javax.swing.JComboBox<>();
         cbbSize = new javax.swing.JComboBox<>();
-        cbbTrangThai = new javax.swing.JComboBox<>();
         lblDanhMuc8 = new javax.swing.JLabel();
         cbbLoai = new javax.swing.JComboBox<>();
         lblDanhMuc9 = new javax.swing.JLabel();
@@ -406,36 +391,42 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
             }
         });
 
+        updatesp.setText("Update");
         updatesp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 updatespActionPerformed(evt);
             }
         });
 
+        updatesp2.setText("Update");
         updatesp2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 updatesp2ActionPerformed(evt);
             }
         });
 
+        updatesp3.setText("Update");
         updatesp3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 updatesp3ActionPerformed(evt);
             }
         });
 
+        updatesp4.setText("Update");
         updatesp4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 updatesp4ActionPerformed(evt);
             }
         });
 
+        updatesp5.setText("Update");
         updatesp5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 updatesp5ActionPerformed(evt);
             }
         });
 
+        updatesp6.setText("Update");
         updatesp6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 updatesp6ActionPerformed(evt);
@@ -667,31 +658,12 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
         jPanel52.setBackground(new java.awt.Color(255, 255, 255));
         jPanel52.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(255, 255, 255), new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0)), "Lọc", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
 
-        lblDonGia7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lblDonGia7.setText("Đơn giá");
-
-        lblTrangThai3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lblTrangThai3.setText("Trạng thái");
-
         lblDanhMuc7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblDanhMuc7.setText("Size");
-
-        jComboBox12.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox12ActionPerformed(evt);
-            }
-        });
 
         cbbSize.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbbSizeActionPerformed(evt);
-            }
-        });
-
-        cbbTrangThai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất cả", "Het Hang", "Con hang" }));
-        cbbTrangThai.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbbTrangThaiActionPerformed(evt);
             }
         });
 
@@ -739,9 +711,6 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
             .addGroup(jPanel52Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel52Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel52Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(lblDonGia7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblTrangThai3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(lblDanhMuc11, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblDanhMuc10, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblDanhMuc9, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -753,10 +722,7 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
                     .addComponent(cbbLoai, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbbHang, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbbDe, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbbChatLieu, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel52Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(cbbTrangThai, 0, 113, Short.MAX_VALUE)
-                        .addComponent(jComboBox12, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(cbbChatLieu, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(37, Short.MAX_VALUE))
         );
         jPanel52Layout.setVerticalGroup(
@@ -764,29 +730,21 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
             .addGroup(jPanel52Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel52Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblDonGia7)
-                    .addComponent(jComboBox12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel52Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblTrangThai3)
-                    .addComponent(cbbTrangThai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel52Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDanhMuc7, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbbSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel52Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDanhMuc8, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbbLoai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel52Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDanhMuc9, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbbHang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(17, 17, 17)
                 .addGroup(jPanel52Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDanhMuc10, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbbDe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel52Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDanhMuc11, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbbChatLieu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1548,15 +1506,6 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
         locSP();
     }//GEN-LAST:event_cbbChatLieuActionPerformed
 
-    private void jComboBox12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox12ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox12ActionPerformed
-
-    private void cbbTrangThaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbTrangThaiActionPerformed
-        // TODO add your handling code here:
-        locSP();
-    }//GEN-LAST:event_cbbTrangThaiActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnNext1;
@@ -1576,8 +1525,6 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> cbbHang;
     private javax.swing.JComboBox<String> cbbLoai;
     private javax.swing.JComboBox<String> cbbSize;
-    private javax.swing.JComboBox<String> cbbTrangThai;
-    private javax.swing.JComboBox<String> jComboBox12;
     private javax.swing.JPanel jPanel31;
     private javax.swing.JPanel jPanel51;
     private javax.swing.JPanel jPanel52;
@@ -1593,7 +1540,6 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
     private javax.swing.JLabel lblDonGia;
     private javax.swing.JLabel lblDonGia1;
     private javax.swing.JLabel lblDonGia3;
-    private javax.swing.JLabel lblDonGia7;
     private javax.swing.JLabel lblMaSp;
     private javax.swing.JLabel lblMaSp1;
     private javax.swing.JLabel lblMaSp2;
@@ -1604,7 +1550,6 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
     private javax.swing.JLabel lblMaSp6;
     private javax.swing.JLabel lblMoTa;
     private javax.swing.JLabel lblTrangThai;
-    private javax.swing.JLabel lblTrangThai3;
     private javax.swing.JPanel pnlSanPham;
     private javax.swing.JRadioButton rdoConHang;
     private javax.swing.JRadioButton rdoHetHang;
