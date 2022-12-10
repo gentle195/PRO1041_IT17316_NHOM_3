@@ -181,8 +181,11 @@ public class LayThongTinKhachHang extends javax.swing.JFrame {
         KhachHang kh = listKH.get(row);
         String tenKH = kh.getHoTen();
         String SDT=kh.getSdt();
+ 
         QuanLyViews.txttenkh.setText(tenKH);
         QuanLyViews.txtSDTKhachHang.setText(SDT);
+        NhanVienBanHangViews.txttenkh.setText(tenKH);
+        NhanVienBanHangViews.txtSDTKhachHang.setText(SDT);
         this.dispose();
 
     }//GEN-LAST:event_btnXacNhanActionPerformed

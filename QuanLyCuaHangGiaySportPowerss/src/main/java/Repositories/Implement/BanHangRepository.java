@@ -116,7 +116,7 @@ public class BanHangRepository implements BanHangRepositoryInterface {
     public void updateThanhToan(HoaDon hoaDon, String ma, String ma1) throws Exception {
         try {
             String sql = "Declare @Idkh UNIQUEIDENTIFIER \n"
-                    + "set @Idkh = (select IdKH from KhachHang where MaKH = ?)\n"
+                    + "set @Idkh = (select IdKH from KhachHang where Sdt = ?)\n"
                     + "Declare @Idnv UNIQUEIDENTIFIER \n"
                     + "set @Idnv = (select IdNV from NhanVien where MaNV = ?)"
                     + "update HoaDon set IdKH = @Idkh , IdNV = @Idnv, NgayThanhToan = ?,NgayDat = ?,NgayShip = ?,NgayNhan = ?,PTGH = ?,TinhTrang= ?,TongTien = ? where Ma = ?";

@@ -4,8 +4,7 @@
  */
 package Viewss;
 
-import com.itextpdf.text.*;
-import com.itextpdf.text.pdf.PdfWriter;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -38,7 +37,21 @@ import Services.Interface.BanHangServiceInterface;
 import Services.Interface.HoaDonServiceInterface;
 import java.sql.SQLException;
 import javax.swing.JPanel;
-
+import com.itextpdf.kernel.color.Color;
+import com.itextpdf.kernel.color.DeviceRgb;
+import com.itextpdf.kernel.font.PdfFont;
+import com.itextpdf.kernel.font.PdfFontFactory;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.border.Border;
+import com.itextpdf.layout.element.Cell;
+import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.text.pdf.BaseFont;
+import com.itextpdf.layout.element.Table;
+import com.itextpdf.layout.property.TextAlignment;
+import com.itextpdf.layout.property.VerticalAlignment;
+import java.text.SimpleDateFormat;
 /**
  *
  * @author dinhq
@@ -77,6 +90,13 @@ public class NhanVienBanHangViews extends javax.swing.JFrame {
         count = chiTietSPService.dem();
         loadTableChiTietSPBH(chiTietSPService.all(start, end));
 
+    }
+    private String hinhThucThanhToan(){
+        if(rdTienMat.isSelected()){
+            return "Tiền mặt";
+        }else{
+            return "Chuyển khoản";
+        }
     }
 
     /**
@@ -124,6 +144,98 @@ public class NhanVienBanHangViews extends javax.swing.JFrame {
                 chiTietHoaDonViewModel.getMaSP(), chiTietHoaDonViewModel.getTenSP(), chiTietHoaDonViewModel.getSoLuong(), chiTietHoaDonViewModel.getDonGia(),
                 chiTietHoaDonViewModel.getSoLuong() * chiTietHoaDonViewModel.getDonGia().doubleValue()
             });
+        }
+    }
+    
+    public static final String pathUnicode = "font\\unicode.ttf";
+
+    public void exportBill() {
+//        int row = tblgiohang.getSelectedRow();
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+            String date = sdf.format(new Date());
+            String path = "hoa_don" + date + ".pdf";
+            PdfWriter pdfWriter = new PdfWriter(path);
+            PdfDocument pdfDocument = new PdfDocument(pdfWriter);
+            Document document = new Document(pdfDocument);
+            float col = 280f;
+            float columWidth[] = {col, col};
+
+            PdfFont font = PdfFontFactory.createFont(pathUnicode, BaseFont.IDENTITY_H);
+
+            Table table = new Table(columWidth);
+            table.setBackgroundColor(new DeviceRgb(63, 169, 219)).setFontColor(Color.WHITE);
+            table.setFont(font);
+
+            table.addCell(new Cell().add("Bill SPORT-POWERS").setTextAlignment(TextAlignment.CENTER)
+                    .setVerticalAlignment(VerticalAlignment.MIDDLE)
+                    .setMarginTop(30f)
+                    .setMarginBottom(30f)
+                    .setFontSize(30f)
+                    .setBorder(Border.NO_BORDER));
+            table.addCell(new Cell().add("Mã hóa đơn: "
+                    + txtMaHdBH.getText()).setTextAlignment(TextAlignment.RIGHT)
+                    .setMarginTop(30f)
+                    .setMarginBottom(30f)
+                    .setBorder(Border.NO_BORDER)
+                    .setMarginRight(10f));
+
+            float colWidth[] = {80, 250, 200, 200};
+            Table customerInforTable = new Table(colWidth);
+            customerInforTable.setFont(font);
+            customerInforTable.addCell(new Cell(0, 4)
+                    .add("Thông tin khách hàng").setBold().setBorder(Border.NO_BORDER));
+
+            customerInforTable.addCell(new Cell().add("Họ tên:").setBorder(Border.NO_BORDER));
+            customerInforTable.addCell(new Cell().add(txttenkh.getText()).setBorder(Border.NO_BORDER));
+            customerInforTable.addCell(new Cell().add("Số điện thoại:").setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT));
+            customerInforTable.addCell(new Cell().add(txtSDTKhachHang.getText()).setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT));
+            customerInforTable.addCell(new Cell().add("HT Thanh Toán:").setBorder(Border.NO_BORDER));
+            customerInforTable.addCell(new Cell().add(hinhThucThanhToan()).setBorder(Border.NO_BORDER));
+            customerInforTable.addCell(new Cell().add("Ngày thanh toán:").setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT));
+            customerInforTable.addCell(new Cell().add(LBtime.getText()).setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT));
+
+            float itemColWidth[] = {15, 110, 110, 110, 110, 110};
+            Table itemTable = new Table(itemColWidth);
+            itemTable.setFont(font);
+            itemTable.addCell(new Cell().add("STT").setBackgroundColor(new DeviceRgb(63, 169, 219)).setFontColor(Color.WHITE));
+            itemTable.addCell(new Cell().add("Mã Sản Phẩm").setBackgroundColor(new DeviceRgb(63, 169, 219)).setFontColor(Color.WHITE));
+            itemTable.addCell(new Cell().add("Tên Sản Phẩm").setBackgroundColor(new DeviceRgb(63, 169, 219)).setFontColor(Color.WHITE));
+            itemTable.addCell(new Cell().add("Số lượng").setBackgroundColor(new DeviceRgb(63, 169, 219)).setFontColor(Color.WHITE));
+            itemTable.addCell(new Cell().add("Giá bán").setBackgroundColor(new DeviceRgb(63, 169, 219)).setFontColor(Color.WHITE));
+            itemTable.addCell(new Cell().add("Thành tiền").setBackgroundColor(new DeviceRgb(63, 169, 219)).setFontColor(Color.WHITE));
+
+//            itemTable.addCell(new Cell().add("1"));
+            for (int i = 0; i < tblgiohang.getRowCount(); i++) {
+                itemTable.addCell(new Cell().add(tblgiohang.getValueAt(i, 0).toString()));
+                itemTable.addCell(new Cell().add(tblgiohang.getValueAt(i, 1).toString()));
+                itemTable.addCell(new Cell().add(tblgiohang.getValueAt(i, 2).toString()));
+                itemTable.addCell(new Cell().add(tblgiohang.getValueAt(i, 3).toString()));
+                itemTable.addCell(new Cell().add(tblgiohang.getValueAt(i, 4).toString()));
+                itemTable.addCell(new Cell().add(tblgiohang.getValueAt(i, 5).toString()));
+
+            }
+
+//            itemTable.addCell(new Cell().add("Vans Màu trắng Size 40"));
+//            itemTable.addCell(new Cell().add("2"));
+//            itemTable.addCell(new Cell().add("250,000 Vnđ"));
+//            itemTable.addCell(new Cell().add("500,000 Vnđ"));
+            itemTable.addCell(new Cell().add("").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBorder(Border.NO_BORDER));
+            itemTable.addCell(new Cell().add("").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBorder(Border.NO_BORDER));
+            itemTable.addCell(new Cell().add("").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBorder(Border.NO_BORDER));
+            itemTable.addCell(new Cell().add("").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBorder(Border.NO_BORDER));
+            itemTable.addCell(new Cell().add("Tổng tiền").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBorder(Border.NO_BORDER).setFontColor(Color.WHITE));
+            itemTable.addCell(new Cell().add(txtThanhTien1.getText()).setBackgroundColor(new DeviceRgb(63, 169, 219)).setBorder(Border.NO_BORDER).setFontColor(Color.WHITE));
+
+            document.add(table);
+            document.add(new Paragraph("\n"));
+            document.add(customerInforTable);
+            document.add(new Paragraph("\n"));
+            document.add(itemTable);
+            document.close();
+            System.out.println("Export successfully");
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -1091,7 +1203,7 @@ public class NhanVienBanHangViews extends javax.swing.JFrame {
     }
     private void btnthanhtoan2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnthanhtoan2ActionPerformed
         // TODO add your handling code here:
-        Date date = new Date(System.currentTimeMillis());
+          Date date = new Date(System.currentTimeMillis());
         HoaDon hd = new HoaDon();
         int row = tbHoaDonBanHang.getSelectedRow();
         if (row == -1) {
@@ -1102,30 +1214,31 @@ public class NhanVienBanHangViews extends javax.swing.JFrame {
         if (bb == JOptionPane.YES_OPTION) {
             String ma = txtSDTKhachHang.getText();
             String ma1 = txtMaNhanVienbh.getText();
-            if(txtSDTKhachHang.getText().equals("")){
+            if (txtSDTKhachHang.getText().equals("")) {
                 JOptionPane.showMessageDialog(this, "Số điện thoại khách đang trống");
                 return;
             }
-            if(txttenkh.getText().equals("")){
+            if (txttenkh.getText().equals("")) {
                 JOptionPane.showMessageDialog(this, "Tên khách hàng đang trống");
                 return;
             }
-            if(txtKhachTra1.getText().equals("")){
+            if (txtKhachTra1.getText().equals("")) {
                 JOptionPane.showMessageDialog(this, "Chưa nhập số tiền khách đưa");
                 return;
             }
             try {
-                if(Double.parseDouble(txtKhachTra1.getText().toString())<0){
+                if (Double.parseDouble(txtKhachTra1.getText().toString()) < 0) {
                     JOptionPane.showMessageDialog(this, "Tiền khách trả phải lớn hơn 0");
                     return;
                 }
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "Tiền khách trả phải là số");
-                    return;
+                return;
             }
             hd.setMaHD(txtMaHdBH.getText());
             hd.setNgayThanhToan(new Date());
-
+            hd.setTenNguoiNhan(txttenkh.getText());
+            hd.setSDT(txtSDTKhachHang.getText());
             if (rdTienMat.isSelected()) {
                 hd.setPTGD(0);
             } else {
@@ -1140,68 +1253,76 @@ public class NhanVienBanHangViews extends javax.swing.JFrame {
                 ex.printStackTrace();
             }
 
-            Document document = new Document();
-//        Font f = new Font();
-//        f.setStyle(Font.BOLD);
-//        f.setSize(10);
-            int tb = JOptionPane.showConfirmDialog(this, "Có in ra hoá đơn", "Thông báo", JOptionPane.YES_NO_OPTION);
-            if (tb == JOptionPane.YES_OPTION) {
-                try {
-                    PdfWriter.getInstance(document, new FileOutputStream(new File(FILE_NAME)));
-                    //open
-                    document.open();
-                    Paragraph p = new Paragraph();
-
-                    p.add("Biên Lai");
-                    p.setAlignment(Element.ALIGN_CENTER);
-
-                    document.add(p);
-
-                    Paragraph p2 = new Paragraph();
-                    p2.add("Mã HD             :         " + txtMaHdBH.getText()); //no alignment
-                    document.add(p2);
-
-                    Paragraph p3 = new Paragraph();
-                    p3.add("Mã NV             :         " + txtMaNhanVienbh.getText()); //no alignment
-                    document.add(p3);
-                    Paragraph p4 = new Paragraph();
-                    p4.add("Ngay Tao          :         " + LBtime.getText()); //no alignment
-                    document.add(p4);
-                    Paragraph p5 = new Paragraph();
-                    p5.add("Ten Khach         :         " + txttenkh.getText()); //no alignment
-                    document.add(p5);
-                    Paragraph p6 = new Paragraph();
-                    p6.add("So Dien Thoai     :         " + txtSDTKhachHang.getText()); //no alignment
-                    document.add(p6);
-
-                    Paragraph p7 = new Paragraph();
-                    p7.add("Giao Dich         :         " + phuongthucthanhtoan()); //no alignment
-                    document.add(p7);
-
-                    Paragraph p9 = new Paragraph();
-                    p9.add("Tien Khach Tra    :          " + txtKhachTra1.getText()); //no alignment
-                    document.add(p9);
-
-                    Paragraph p10 = new Paragraph();
-                    p10.add("Tien Du          :          " + txtTienDu1.getText()); //no alignment
-                    document.add(p10);
-
-                    Paragraph p8 = new Paragraph();
-                    p8.add("Tong Tien         :          " + txtThanhTien1.getText()); //no alignment
-                    document.add(p8);
-
-                    document.close();
-                    System.out.println("In thành công");
-
-                } catch (FileNotFoundException | DocumentException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            } else if (tb == JOptionPane.NO_OPTION) {
-                return;
-            }
+//            Document document = new Document();
+////        Font f = new Font();
+////        f.setStyle(Font.BOLD);
+////        f.setSize(10);
+//            int tb = JOptionPane.showConfirmDialog(this, "Có in ra hoá đơn", "Thông báo", JOptionPane.YES_NO_OPTION);
+//            if (tb == JOptionPane.YES_OPTION) {
+//                try {
+//                    PdfWriter.getInstance(document, new FileOutputStream(new File(FILE_NAME)));
+//                    //open
+//                    document.open();
+//                    Paragraph p = new Paragraph();
+//
+//                    p.add("Biên Lai");
+//                    p.setAlignment(Element.ALIGN_CENTER);
+//
+//                    document.add(p);
+//
+//                    Paragraph p2 = new Paragraph();
+//                    p2.add("Mã HD             :         " + txtMaHdBH.getText()); //no alignment
+//                    document.add(p2);
+//
+//                    Paragraph p3 = new Paragraph();
+//                    p3.add("Mã NV             :         " + txtMaNhanVien.getText()); //no alignment
+//                    document.add(p3);
+//                    Paragraph p4 = new Paragraph();
+//                    p4.add("Ngay Tao          :         " + LBtime.getText()); //no alignment
+//                    document.add(p4);
+//                    Paragraph p5 = new Paragraph();
+//                    p5.add("Ten Khach         :         " + txttenkh.getText()); //no alignment
+//                    document.add(p5);
+//                    Paragraph p6 = new Paragraph();
+//                    p6.add("So Dien Thoai     :         " + txtSDTKhachHang.getText()); //no alignment
+//                    document.add(p6);
+//
+//                    Paragraph p7 = new Paragraph();
+//                    p7.add("Giao Dich         :         " + phuongthucthanhtoan()); //no alignment
+//                    document.add(p7);
+//
+//                    Paragraph p9 = new Paragraph();
+//                    p9.add("Tien Khach Tra    :          " + txtKhachTra1.getText()); //no alignment
+//                    document.add(p9);
+//
+//                    Paragraph p10 = new Paragraph();
+//                    p10.add("Tien Du          :          " + txtTienDu1.getText()); //no alignment
+//                    document.add(p10);
+//
+//                    Paragraph p8 = new Paragraph();
+//                    p8.add("Tong Tien         :          " + txtThanhTien1.getText()); //no alignment
+//                    document.add(p8);
+//
+//                    document.close();
+//                    System.out.println("In thành công");
+//
+//                } catch (FileNotFoundException | DocumentException e) {
+//                    e.printStackTrace();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            } else if (tb == JOptionPane.NO_OPTION) {
+//                return;
+//            }
         } else if (bb == JOptionPane.NO_OPTION) {
+            return;
+        } else {
+            return;
+        }
+        int tb = JOptionPane.showConfirmDialog(this, "Có in ra hoá đơn", "Thông báo", JOptionPane.YES_NO_OPTION);
+        if (tb == JOptionPane.YES_OPTION) {
+            exportBill();
+        } else if (tb == JOptionPane.NO_OPTION) {
             return;
         } else {
             return;
