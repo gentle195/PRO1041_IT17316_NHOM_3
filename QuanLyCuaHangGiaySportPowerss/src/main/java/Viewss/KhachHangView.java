@@ -25,21 +25,24 @@ public class KhachHangView extends javax.swing.JPanel {
     private KhachHangService serviceKH = new KhachHangService();
     private List<KhachHang> listKH = new ArrayList<>();
     int i = 1;
-
-    public KhachHangView() {
+    
+    
+      public KhachHangView() {
         initComponents();
-        tblKH.setModel(dtmKH);
-        Object[] header = { "Mã", "Họ tên", "Giới tính", "Ngày sinh", "SĐT", "Địa chỉ"};
-        dtmKH.setColumnIdentifiers(header);
+        serviceKH = new KhachHangService();
         listKH = serviceKH.getAll();
-        showDataKH(listKH);
+        LoadataTableKH(listKH);
 
     }
 
-    private void showDataKH(List<KhachHang> list) {
-        dtmKH.setRowCount(0);
-        for (KhachHang kh : list) {
-            dtmKH.addRow(kh.toDataRow());
+   private void LoadataTableKH(List<KhachHang> kh) {
+        DefaultTableModel model = new DefaultTableModel();
+        model = (DefaultTableModel) tblKH.getModel();
+        model.setRowCount(0);
+        for (KhachHang x : kh) {
+            model.addRow(new Object[]{
+                i++, x.getMa(), x.getHoTen(), x.getGioiTinh(), x.getNgaySinh(), x.getSdt(), x.getDiaChi()
+            });
         }
     }
 
@@ -114,6 +117,7 @@ public class KhachHangView extends javax.swing.JPanel {
         pnlKhachHang.setPreferredSize(new java.awt.Dimension(1070, 760));
         pnlKhachHang.setLayout(new java.awt.BorderLayout());
 
+        jPanel12.setBackground(new java.awt.Color(255, 255, 255));
         jPanel12.setPreferredSize(new java.awt.Dimension(1271, 300));
 
         jPanel23.setBackground(new java.awt.Color(255, 255, 255));
@@ -329,29 +333,29 @@ public class KhachHangView extends javax.swing.JPanel {
 
         tblKH.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Mã khách hàng", "Tên khách hàng", "Giới tính", "Ngày Sinh", "Số điện thoại", "Địa chỉ"
+                "STT", "Mã khách hàng", "Tên khách hàng", "Giới tính", "Ngày Sinh", "Số điện thoại", "Địa chỉ"
             }
         ));
         tblKH.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -478,7 +482,7 @@ public class KhachHangView extends javax.swing.JPanel {
                 Logger.getLogger(KhachHangView.class.getName()).log(Level.SEVERE, null, ex);
             }
             listKH = serviceKH.getAll();
-            showDataKH(listKH);
+            LoadataTableKH(serviceKH.getAll());
         } else if (bb == JOptionPane.NO_OPTION) {
             return;
         } else {
@@ -515,7 +519,7 @@ public class KhachHangView extends javax.swing.JPanel {
             return;
         }
         listKH = serviceKH.getAll();
-        showDataKH(listKH);
+        LoadataTableKH(serviceKH.getAll());
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
@@ -560,7 +564,7 @@ public class KhachHangView extends javax.swing.JPanel {
                 Logger.getLogger(KhachHangView.class.getName()).log(Level.SEVERE, null, ex);
             }
             listKH = serviceKH.getAll();
-            showDataKH(listKH);
+        LoadataTableKH(serviceKH.getAll());
         } else if (bb == JOptionPane.NO_OPTION) {
             return;
         } else {
@@ -580,7 +584,7 @@ public class KhachHangView extends javax.swing.JPanel {
                 kh.add(k);
             }
         }
-        showDataKH(kh);
+        LoadataTableKH(serviceKH.getAll());
     }//GEN-LAST:event_txtSearchCaretUpdate
 
     private void txtTenKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenKHActionPerformed
