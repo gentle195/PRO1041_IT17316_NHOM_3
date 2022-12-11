@@ -937,7 +937,7 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel32">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="M&#xe3; nh&#xe2;n vi&#xea;n"/>
+                    <Property name="text" type="java.lang.String" value="M&#xe3; qu&#x1ea3;n l&#xfd;"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel6">

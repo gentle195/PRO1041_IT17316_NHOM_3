@@ -55,6 +55,7 @@ public class TimSanPham extends javax.swing.JPanel {
     int trang;
     int sotrang=1;
     int start = 0, end = 14;
+    int i =1;
     /**
      * Creates new form SanPham
      */
@@ -109,7 +110,7 @@ public class TimSanPham extends javax.swing.JPanel {
         modeltb.setRowCount(0);
         for (ChiTietSPViewModel x : Sz) {
             modeltb.addRow(new Object[]{
-                x.getIdCTSP(), x.getSanPham().getMaSP(), x.getSanPham().getTenSP(), x.getSize(), x.getLoaigiay(), x.getHangGiay(), x.getDeGiay(),
+              i++, x.getSanPham().getMaSP(), x.getSanPham().getTenSP(), x.getSize(), x.getLoaigiay(), x.getHangGiay(), x.getDeGiay(),
                 x.getChatlieu(), x.getSoLuong(), x.getDonGia(), x.getTrongLuong(),
                 x.getTrangThai() == 0 ? "Còn Hàng" : "Hết Hàng",
                 x.getMoTa()
@@ -211,7 +212,7 @@ public class TimSanPham extends javax.swing.JPanel {
                 {null, null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Mã SP", "Tên SP", "SIZE", "Loại", "Hãng", "Đê Giày", "Chất Liệu", "Số Lượng", "Ðơn Giá", "Trọng Lượng", "Trạng Thái", "Mô Tả"
+                "STT", "Mã SP", "Tên SP", "SIZE", "Loại", "Hãng", "Đê Giày", "Chất Liệu", "Số Lượng", "Ðơn Giá", "Trọng Lượng", "Trạng Thái", "Mô Tả"
             }
         ) {
             Class[] types = new Class [] {
@@ -301,9 +302,9 @@ public class TimSanPham extends javax.swing.JPanel {
         jPanel52Layout.setHorizontalGroup(
             jPanel52Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel52Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel52Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel52Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(jPanel52Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(cbbDe, 0, 113, Short.MAX_VALUE)
                             .addComponent(lblDanhMuc10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -324,14 +325,11 @@ public class TimSanPham extends javax.swing.JPanel {
                             .addComponent(cbbHang, 0, 113, Short.MAX_VALUE)
                             .addComponent(lblDanhMuc9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel52Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblDanhMuc12, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel52Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblDanhMuc12, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtSearch2, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(jPanel52Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(txtSearch2, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel52Layout.setVerticalGroup(
             jPanel52Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

@@ -125,6 +125,10 @@ public class QuenMk2 extends javax.swing.JFrame {
 
         List<NhanVienViewModel> nv = nvService.getall(start, end);
         for (int j = 0; j < nv.size(); j++) {
+//            if(txtSdt.getText().toString() != nv.get(j).getSdt().equalsIgnoreCase(txtSdt.getText())){
+//            } else {
+//                
+//            }
             if (nv.get(j).getMaNV().equalsIgnoreCase(txtTenTK.getText()) && nv.get(j).getSdt().equalsIgnoreCase(txtSdt.getText())) {
                 JOptionPane.showMessageDialog(this,"Mật khẩu bạn là : "+ nv.get(j).getMatkhau());
             }
