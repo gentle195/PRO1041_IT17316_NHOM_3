@@ -18,6 +18,7 @@ import java.sql.SQLException;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -362,12 +363,18 @@ public class HoaDonView extends javax.swing.JPanel {
     }//GEN-LAST:event_txtTimKiemCaretUpdate
 
     private void btnSearchTKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchTKActionPerformed
-        Date bd = jdcNgayBatDau.getDate();
-        Date kt = jdcNgayKetThuc.getDate();
-        List<HoaDonViewModel> hdlistSearch;
-        hdlistSearch = hoaDonService.ListHdSearch(bd, kt);
-        this.loadTableHoaDon(hdlistSearch);
-
+        if (jdcNgayBatDau.getDate() == null) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn ngày bắt đầu");
+        }
+        if (jdcNgayKetThuc.getDate() == null) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn ngày kết thúc");
+        } else {
+            Date bd = jdcNgayBatDau.getDate();
+            Date kt = jdcNgayKetThuc.getDate();
+            List<HoaDonViewModel> hdlistSearch;
+            hdlistSearch = hoaDonService.ListHdSearch(bd, kt);
+            this.loadTableHoaDon(hdlistSearch);
+        }
     }//GEN-LAST:event_btnSearchTKActionPerformed
 
     private void btnClearTKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearTKActionPerformed

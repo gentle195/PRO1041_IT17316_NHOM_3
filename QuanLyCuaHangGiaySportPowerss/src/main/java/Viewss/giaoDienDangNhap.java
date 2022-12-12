@@ -7,9 +7,9 @@ package Viewss;
 import DomainModels.Login_Result;
 import DomainModels.TaiKhoan;
 import Services.LoginServiceImpl;
-import Services.Interface.LoginService;
 
 import javax.swing.JOptionPane;
+import Services.Interface.LoginServiceInterface;
 
 /**
  *
@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
  */
 public class giaoDienDangNhap extends javax.swing.JFrame {
 
-    private LoginService service = new LoginServiceImpl();
+    private LoginServiceInterface service = new LoginServiceImpl();
     public static Login_Result tk;
     public static String ma;
 

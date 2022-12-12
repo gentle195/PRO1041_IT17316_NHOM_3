@@ -4,7 +4,7 @@
  */
 package Services.Implement;
 
-import Repositories.Implement.ThongKeRepositoryImpl;
+import Repositories.Implement.ThongKeRepository;
 import ViewModels.HoaDonTKViewModel;
 import java.util.List;
 import Services.Interface.ThongKeServiceInterface;
@@ -17,7 +17,7 @@ import java.util.Date;
  */
 public class ThongKeServiceImpl implements ThongKeServiceInterface {
 
-    ThongKeRepositoryImpl tkRepo = new ThongKeRepositoryImpl();
+    ThongKeRepository tkRepo = new ThongKeRepository();
 
     @Override
     public List<HoaDonTKViewModel> thongKeHD() {

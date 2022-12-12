@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author trxua
  */
-public interface LoginService {
+public interface LoginServiceInterface {
 
     public Login_Result doLogin(String tk, String ma);
 }

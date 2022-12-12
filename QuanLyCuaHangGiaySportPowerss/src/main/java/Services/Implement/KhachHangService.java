@@ -46,7 +46,13 @@ public class KhachHangService implements KhachHangServiceInterface {
         if (kh.getSdt().equals("")) {
             return "Sđt khách hàng không được để trống!";
         }
-        if (!(kh.getSdt().matches(".*[^0-9].*") || kh.getSdt().length() == 10)) {
+//        if (!(kh.getSdt().matches(".*[^0-9].*") || kh.getSdt().length() == 10)) {
+//            return "Sđt phải gồm 10 chữ số";
+//        }
+        if (!(kh.getSdt().matches(".*[^0-9].*"))) {
+            return "Sđt phải là chữ số";
+        }
+        if (!(kh.getSdt().length() == 10)) {
             return "Sđt phải gồm 10 chữ số";
         }
         if (kh.getNgaySinh() == null) {
