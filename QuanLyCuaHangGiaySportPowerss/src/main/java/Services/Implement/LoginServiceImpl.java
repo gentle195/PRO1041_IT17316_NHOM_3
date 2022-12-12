@@ -8,7 +8,6 @@ import DomainModels.ChucVuLG;
 import DomainModels.Login_Result;
 import DomainModels.TaiKhoan;
 import Repositories.LoginRepository;
-import Services.Interface.LoginService;
 import Viewss.NhanVienBanHangViews;
 import Viewss.QuanLyViews;
 import Viewss.giaoDienDangNhap;
@@ -16,12 +15,13 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import Services.Interface.LoginServiceInterface;
 
 /**
  *
  * @author trxua
  */
-public class LoginServiceImpl implements LoginService {
+public class LoginServiceImpl implements LoginServiceInterface {
 
     private LoginRepository repo = new LoginRepository();
 
@@ -41,7 +41,7 @@ public class LoginServiceImpl implements LoginService {
                         ql.setVisible(true);
                         QuanLyViews.txtMaNhanVien.setText(tk);
                     }
-                    
+
                     if (cv.getTen().contains("Nhân viên")) {
                         login.setVisible(false);
                         NhanVienBanHangViews qldsv = new NhanVienBanHangViews();

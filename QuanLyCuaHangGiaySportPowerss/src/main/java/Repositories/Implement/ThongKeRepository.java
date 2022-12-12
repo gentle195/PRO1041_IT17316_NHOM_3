@@ -22,7 +22,7 @@ import java.util.Date;
  *
  * @author trxua
  */
-public class ThongKeRepositoryImpl implements ThongKeRepositoryInterface {
+public class ThongKeRepository implements ThongKeRepositoryInterface {
 
     @Override
     public List<HoaDonTKViewModel> tkHD() {
