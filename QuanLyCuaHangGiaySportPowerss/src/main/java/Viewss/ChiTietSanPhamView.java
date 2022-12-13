@@ -29,6 +29,7 @@ import ViewModels.ChiTietSPViewModel;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
@@ -123,15 +124,7 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
         AutoCompleteDecorator.decorate(cbHang);
         AutoCompleteDecorator.decorate(cbSIZE);
         AutoCompleteDecorator.decorate(cbLoai);
-        count = chiTietSPService.dem();
-        lbTotalProducts1.setText("Total: " + count);
         loadTableChiTietSP(chiTietSPService.all(start, end));
-    }
-
-    private void setStatePagination() {
-        btnPrevious1.setEnabled(start > 1);
-        btnNext1.setEnabled(start < trang);
-        lbPagination1.setText(sotrang + "/" + trang);
     }
 
     private void loadTableChiTietSP(List<ChiTietSPViewModel> Sz) {
@@ -139,7 +132,7 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
 
         modeltb = (DefaultTableModel) tblQLSP.getModel();
         modeltb.setRowCount(0);
-     
+
         for (ChiTietSPViewModel x : Sz) {
             modeltb.addRow(new Object[]{
                 x.getIdCTSP(), x.getMaSP(), x.getSanPham().getTenSP(), x.getSize(), x.getLoaigiay(), x.getHangGiay(), x.getDeGiay(),
@@ -149,8 +142,10 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
             });
 
         }
+        count = chiTietSPService.dem();
+        lbTotalProducts1.setText("Total: " + count);
         trang = (int) (count / end) + 1;
-        setStatePagination();
+        lbPagination1.setText(sotrang + "/" + trang);
     }
 
     private void locSP() {
@@ -330,6 +325,12 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
 
         lblMaSp1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblMaSp1.setText("SIZE");
+
+        cbCL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbCLActionPerformed(evt);
+            }
+        });
 
         lblMaSp2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblMaSp2.setText("Chất Liệu");
@@ -949,6 +950,7 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
             return;
         }
         clear();
+        count = count + 1;
         loadTableChiTietSP(chiTietSPService.all(start, end));
 
     }//GEN-LAST:event_btnThemActionPerformed
@@ -1034,6 +1036,7 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
             return;
         }
         clear();
+        count = count - 1;
         loadTableChiTietSP(chiTietSPService.all(start, end));
 
     }//GEN-LAST:event_btnXoaActionPerformed
@@ -1128,10 +1131,14 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
 //        List<SanPham> sp = SanPhamService.all();
 //        for (int j = 0; j < sp.size(); j++) {
 //            if (sp.get(j).getTenSP().equalsIgnoreCase(cbTenSP.getSelectedItem().toString())) {
-//                txtMaSP.setText(sp.get(j).getMaSP());
-//
+//                   for (int i = 0; i < 5 + 1; i++) {
+//                Random rdm = new Random();
+//                int rdmm = rdm.nextInt(100000) + 1;
+//                txtMaSP.setText("SP" + rdmm);
+//            }
 //            }
 //        }
+
 
     }//GEN-LAST:event_cbTenSPActionPerformed
 
@@ -1304,7 +1311,9 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
 
     private void btnNext1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNext1ActionPerformed
         // TODO add your handling code here:
-        if (start < trang) {
+        if (start + 14 > count) {
+            btnNext1.setEnabled(false);
+        } else if (start < trang + start) {
             start = start + 14;
             sotrang++;
         }
@@ -1317,11 +1326,21 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
             start = start - 14;
             sotrang--;
         }
+        if (start < count) {
+            btnNext1.setEnabled(true);
+        }
         loadTableChiTietSP(chiTietSPService.all(start, end));
     }//GEN-LAST:event_btnPrevious1ActionPerformed
 
     private void txtMaSPCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtMaSPCaretUpdate
         // TODO add your handling code here:
+        if(!cbTenSP.getSelectedItem().equals("")){
+            for (int i = 0; i < 5 + 1; i++) {
+                Random rdm = new Random();
+                int rdmm = rdm.nextInt(100000) + 1;
+                txtMaSP.setText("SP" + rdmm);
+            }
+        }
 
     }//GEN-LAST:event_txtMaSPCaretUpdate
 
@@ -1403,6 +1422,7 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
 
     private void tblQLSPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblQLSPMouseClicked
         // TODO add your handling code here:
+        cbTenSPActionPerformed(null);
         List<Size> Sz = sizeService.all();
         List<LoaiGiay> lg = loaiGiayService.all();
         List<DeGiay> dg = deGiayService.all();
@@ -1411,17 +1431,7 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
         List<SanPham> sp = SanPhamService.all();
         int row = tblQLSP.getSelectedRow();
         txtID.setText(tblQLSP.getValueAt(row, 0).toString());
-//        cbTenSP.setSelectedItem(tblQLSP.getValueAt(row, 2).toString());
-//        if (tblQLSP.getValueAt(row, 2) == null) {
-//            JOptionPane.showMessageDialog(this, "Sản phẩm không tên ");
-//            cbTenSP.setSelectedIndex(0);
-//        } else {
-//            for (int j = 0; j < sp.size(); j++) {
-//                if (sp.get(j).getMaSP().equalsIgnoreCase(tblQLSP.getValueAt(row, 1).toString())) {
-                    txtMaSP.setText(tblQLSP.getValueAt(row, 1).toString());
-//                }
-//            }
-//        }
+        txtMaSP.setText(tblQLSP.getValueAt(row, 1).toString());
         if (tblQLSP.getValueAt(row, 2) == null) {
             JOptionPane.showMessageDialog(this, "Sản phẩm không mã ");
             cbTenSP.setSelectedIndex(0);
@@ -1509,6 +1519,10 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
 //        }
         locSP();
     }//GEN-LAST:event_cbbChatLieuActionPerformed
+
+    private void cbCLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCLActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbCLActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
