@@ -579,9 +579,6 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtMaSP">
-              <Properties>
-                <Property name="editable" type="boolean" value="false"/>
-              </Properties>
               <Events>
                 <EventHandler event="caretUpdate" listener="javax.swing.event.CaretListener" parameters="javax.swing.event.CaretEvent" handler="txtMaSPCaretUpdate"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtMaSPActionPerformed"/>
@@ -753,7 +750,7 @@
                     </Property>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="13" rowCount="16">
-                        <Column editable="false" title="STT" type="java.lang.Object"/>
+                        <Column editable="false" title="ID" type="java.lang.Object"/>
                         <Column editable="false" title="M&#xe3; SP" type="java.lang.Object"/>
                         <Column editable="false" title="T&#xea;n SP" type="java.lang.Object"/>
                         <Column editable="false" title="SIZE" type="java.lang.Object"/>

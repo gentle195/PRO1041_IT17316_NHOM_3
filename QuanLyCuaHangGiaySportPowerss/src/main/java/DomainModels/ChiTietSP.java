@@ -54,6 +54,9 @@ public class ChiTietSP {
     @JoinColumn(name = "IdLoai", nullable = false)
     private LoaiGiay loaigiay;
 
+    @Column(name = "MaSP")
+    private String maSP;
+    
     @Column(name = "SoLuong")
     private int SoLuong;
 
@@ -72,7 +75,7 @@ public class ChiTietSP {
     public ChiTietSP() {
     }
 
-    public ChiTietSP(UUID IdCTSP, SanPham sanPham, HangGiay hangGiay, ChatLieu chatlieu, DeGiay deGiay, Size size, LoaiGiay loaigiay, int SoLuong, BigDecimal DonGia, int TrongLuong, int TrangThai, String MoTa) {
+    public ChiTietSP(UUID IdCTSP, SanPham sanPham, HangGiay hangGiay, ChatLieu chatlieu, DeGiay deGiay, Size size, LoaiGiay loaigiay, String maSP, int SoLuong, BigDecimal DonGia, int TrongLuong, int TrangThai, String MoTa) {
         this.IdCTSP = IdCTSP;
         this.sanPham = sanPham;
         this.hangGiay = hangGiay;
@@ -80,6 +83,7 @@ public class ChiTietSP {
         this.deGiay = deGiay;
         this.size = size;
         this.loaigiay = loaigiay;
+        this.maSP = maSP;
         this.SoLuong = SoLuong;
         this.DonGia = DonGia;
         this.TrongLuong = TrongLuong;
@@ -143,6 +147,14 @@ public class ChiTietSP {
         this.loaigiay = loaigiay;
     }
 
+    public String getMaSP() {
+        return maSP;
+    }
+
+    public void setMaSP(String maSP) {
+        this.maSP = maSP;
+    }
+
     public int getSoLuong() {
         return SoLuong;
     }
@@ -183,4 +195,12 @@ public class ChiTietSP {
         this.MoTa = MoTa;
     }
 
+    @Override
+    public String toString() {
+        return "ChiTietSP{" + "sanPham=" + sanPham + '}';
+    }
+
+    
+
+   
 }

@@ -90,6 +90,7 @@ public class QuanLyViews extends javax.swing.JFrame {
         listsp = chiTietSPService.all(start, end);
         count = chiTietSPService.dem();
         loadTableChiTietSPBH(chiTietSPService.all(start, end));
+
     }
 
     private String hinhThucThanhToan() {
@@ -100,7 +101,6 @@ public class QuanLyViews extends javax.swing.JFrame {
         }
     }
 
-  
     @SuppressWarnings("unchecked")
     private void loadTableHoaDonBanHang() {
         DefaultTableModel modeltb = new DefaultTableModel();
@@ -123,18 +123,16 @@ public class QuanLyViews extends javax.swing.JFrame {
         int r = 1;
         for (ChiTietSPViewModel x : Sz) {
             dtmSpBH.addRow(new Object[]{
-                r++, x.getSanPham().getMaSP(), x.getSanPham().getTenSP(), x.getDonGia(),
+                r++, x.getMaSP(), x.getSanPham().getTenSP(), x.getDonGia(),
                 x.getSoLuong(), x.getTrangThai() == 0 ? "Còn Hàng" : "Hết Hàng"});
         }
         trang = (int) (count / end) + 1;
-        setStatePagination();
+        jTrang.setText(sotrang + "/" + trang);
+       
+
     }
 
-    private void setStatePagination() {
-        btnback.setEnabled(start > 1);
-        btnnext.setEnabled(start < trang);
-        jTrang.setText(sotrang + "/" + trang);
-    }
+   
 
     private void addTableGioHang(ArrayList<HoaDonChiTietViewModel> list) {
         DefaultTableModel modeltb = new DefaultTableModel();
@@ -1421,7 +1419,9 @@ public class QuanLyViews extends javax.swing.JFrame {
 
     private void btnnextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnextActionPerformed
         // TODO add your handling code here:
-        if (start < trang) {
+      if (start + 7 > count) {
+            btnnext.setEnabled(false);
+        } else if (start < trang + start) {
             start = start + 7;
             sotrang++;
         }
@@ -1433,6 +1433,9 @@ public class QuanLyViews extends javax.swing.JFrame {
         if (start > 1) {
             start = start - 7;
             sotrang--;
+        }
+        if (start < count) {
+            btnnext.setEnabled(true);
         }
         loadTableChiTietSPBH(chiTietSPService.all(start, end));
     }//GEN-LAST:event_btnbackActionPerformed

@@ -139,10 +139,10 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
 
         modeltb = (DefaultTableModel) tblQLSP.getModel();
         modeltb.setRowCount(0);
-        int  i = 1;
+     
         for (ChiTietSPViewModel x : Sz) {
             modeltb.addRow(new Object[]{
-                i++, x.getSanPham().getMaSP(), x.getSanPham().getTenSP(), x.getSize(), x.getLoaigiay(), x.getHangGiay(), x.getDeGiay(),
+                x.getIdCTSP(), x.getMaSP(), x.getSanPham().getTenSP(), x.getSize(), x.getLoaigiay(), x.getHangGiay(), x.getDeGiay(),
                 x.getChatlieu(), x.getSoLuong(), x.getDonGia(), x.getTrongLuong(),
                 x.getTrangThai() == 0 ? "Còn Hàng" : "Hết Hàng",
                 x.getMoTa()
@@ -381,7 +381,6 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
         lblDonGia3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblDonGia3.setText("Số Lượng");
 
-        txtMaSP.setEditable(false);
         txtMaSP.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
                 txtMaSPCaretUpdate(evt);
@@ -620,7 +619,7 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
                 {null, null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "STT", "Mã SP", "Tên SP", "SIZE", "Loại", "Hãng", "Đê Giày", "Chất Liệu", "Số Lượng", "Ðơn Giá", "Trọng Lượng", "Trạng Thái", "Mô Tả"
+                "ID", "Mã SP", "Tên SP", "SIZE", "Loại", "Hãng", "Đê Giày", "Chất Liệu", "Số Lượng", "Ðơn Giá", "Trọng Lượng", "Trạng Thái", "Mô Tả"
             }
         ) {
             Class[] types = new Class [] {
@@ -923,6 +922,7 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
         if (bb == JOptionPane.YES_OPTION) {
             ChiTietSP ctsp = new ChiTietSP();
             ctsp.setSanPham((SanPham) cbTenSP.getSelectedItem());
+            ctsp.setMaSP(txtMaSP.getText());
             ctsp.setChatlieu((ChatLieu) cbCL.getSelectedItem());
             ctsp.setHangGiay((HangGiay) cbHang.getSelectedItem());
             ctsp.setSize((Size) cbSIZE.getSelectedItem());
@@ -1007,6 +1007,7 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
             ChiTietSP ctsp = new ChiTietSP();
             ctsp.setIdCTSP(UUID.fromString(txtID.getText()));
             ctsp.setSanPham((SanPham) cbTenSP.getSelectedItem());
+            ctsp.setMaSP(txtMaSP.getText());
             ctsp.setChatlieu((ChatLieu) cbCL.getSelectedItem());
             ctsp.setHangGiay((HangGiay) cbHang.getSelectedItem());
             ctsp.setSize((Size) cbSIZE.getSelectedItem());
@@ -1091,6 +1092,7 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
             ChiTietSP ctsp = new ChiTietSP();
             ctsp.setIdCTSP(UUID.fromString(txtID.getText()));
             ctsp.setSanPham((SanPham) cbTenSP.getSelectedItem());
+            ctsp.setMaSP(txtMaSP.getText());
             ctsp.setChatlieu((ChatLieu) cbCL.getSelectedItem());
             ctsp.setHangGiay((HangGiay) cbHang.getSelectedItem());
             ctsp.setSize((Size) cbSIZE.getSelectedItem());
@@ -1123,13 +1125,13 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
 
     private void cbTenSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTenSPActionPerformed
         // TODO add your handling code here:
-        List<SanPham> sp = SanPhamService.all();
-        for (int j = 0; j < sp.size(); j++) {
-            if (sp.get(j).getTenSP().equalsIgnoreCase(cbTenSP.getSelectedItem().toString())) {
-                txtMaSP.setText(sp.get(j).getMaSP());
-
-            }
-        }
+//        List<SanPham> sp = SanPhamService.all();
+//        for (int j = 0; j < sp.size(); j++) {
+//            if (sp.get(j).getTenSP().equalsIgnoreCase(cbTenSP.getSelectedItem().toString())) {
+//                txtMaSP.setText(sp.get(j).getMaSP());
+//
+//            }
+//        }
 
     }//GEN-LAST:event_cbTenSPActionPerformed
 
@@ -1410,16 +1412,16 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
         int row = tblQLSP.getSelectedRow();
         txtID.setText(tblQLSP.getValueAt(row, 0).toString());
 //        cbTenSP.setSelectedItem(tblQLSP.getValueAt(row, 2).toString());
-        if (tblQLSP.getValueAt(row, 2) == null) {
-            JOptionPane.showMessageDialog(this, "Sản phẩm không tên ");
-            cbTenSP.setSelectedIndex(0);
-        } else {
-            for (int j = 0; j < sp.size(); j++) {
-                if (sp.get(j).getMaSP().equalsIgnoreCase(tblQLSP.getValueAt(row, 1).toString())) {
+//        if (tblQLSP.getValueAt(row, 2) == null) {
+//            JOptionPane.showMessageDialog(this, "Sản phẩm không tên ");
+//            cbTenSP.setSelectedIndex(0);
+//        } else {
+//            for (int j = 0; j < sp.size(); j++) {
+//                if (sp.get(j).getMaSP().equalsIgnoreCase(tblQLSP.getValueAt(row, 1).toString())) {
                     txtMaSP.setText(tblQLSP.getValueAt(row, 1).toString());
-                }
-            }
-        }
+//                }
+//            }
+//        }
         if (tblQLSP.getValueAt(row, 2) == null) {
             JOptionPane.showMessageDialog(this, "Sản phẩm không mã ");
             cbTenSP.setSelectedIndex(0);
