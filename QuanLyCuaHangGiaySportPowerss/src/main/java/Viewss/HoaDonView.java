@@ -368,6 +368,9 @@ public class HoaDonView extends javax.swing.JPanel {
         }
         if (jdcNgayKetThuc.getDate() == null) {
             JOptionPane.showMessageDialog(this, "Vui lòng chọn ngày kết thúc");
+        }
+        if (jdcNgayKetThuc.getDate().before(jdcNgayBatDau.getDate())) {
+            JOptionPane.showMessageDialog(this, "Ngày bắt đầu không thể lớn hơn ngày kết thúc");
         } else {
             Date bd = jdcNgayBatDau.getDate();
             Date kt = jdcNgayKetThuc.getDate();
