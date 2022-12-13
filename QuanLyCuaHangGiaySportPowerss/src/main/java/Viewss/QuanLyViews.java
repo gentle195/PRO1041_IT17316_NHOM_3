@@ -384,7 +384,6 @@ public class QuanLyViews extends javax.swing.JFrame {
         });
         jPanel1.add(btnDangXuat, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 640, -1, -1));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("D:\\GitHub\\PRO1041_IT17316_NHOM_3\\QuanLyCuaHangGiaySportPowers\\PRO1041_IT17316_NHOM_3\\QuanLyCuaHangGiaySportPowerss\\src\\main\\java\\icon\\rsz_21artboard_1.png")); // NOI18N
         jLabel2.setText("Ảnh");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-30, 0, 270, 120));
 
@@ -630,7 +629,7 @@ public class QuanLyViews extends javax.swing.JFrame {
         jPanel17Layout.setVerticalGroup(
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel17Layout.createSequentialGroup()
-                .addContainerGap(34, Short.MAX_VALUE)
+                .addContainerGap(36, Short.MAX_VALUE)
                 .addComponent(jScrollPane22, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17))
         );
@@ -1008,7 +1007,7 @@ public class QuanLyViews extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Số lượng nhập phải lớn hơn 0");
             } else {
                 int slm = Integer.valueOf(sl);
-                int thanhtien = 0;
+                int thanhtien=0;
                 HoaDonChiTiet hd = new HoaDonChiTiet();
 
                 try {
@@ -1017,12 +1016,12 @@ public class QuanLyViews extends javax.swing.JFrame {
                             if (listhdct.get(i).getMaSP().equals(tblgiohang.getValueAt(row, 1))) {
                                 listhdct.get(i).setMaSP(tblgiohang.getValueAt(row, 1).toString());
                                 listhdct.get(i).setTenSP(tblgiohang.getValueAt(row, 2).toString());
-                                listhdct.get(i).setDonGia((BigDecimal) tblgiohang.getValueAt(row, 3));
+                                listhdct.get(i).setDonGia((BigDecimal) tblgiohang.getValueAt(row, 4));
                                 listhdct.get(i).setSoLuong(Integer.parseInt(tblgiohang.getValueAt(row, 3).toString()) - slm);
-                                thanhtien = thanhtien + (listhdct.get(i).getSoLuong() * Integer.parseInt(listhdct.get(i).getDonGia().toString()));
-                                txtThanhTien1.setText((String.valueOf(thanhtien)));
                                 hd.setSoLuong(listhdct.get(i).getSoLuong());
                                 banHangService.updateSoLuong(tblgiohang.getValueAt(row, 1).toString(), hd);
+                                thanhtien = thanhtien + (listhdct.get(i).getSoLuong() * Integer.parseInt(listhdct.get(i).getDonGia().toString()));
+                                txtThanhTien1.setText((String.valueOf(thanhtien)));
                                 for (int j = 0; j < listsp.size(); j++) {
                                     if (listsp.get(j).getSanPham().getMaSP().equals(tblgiohang.getValueAt(row, 1))) {
                                         listsp.get(j).setSoLuong(CT.getSoLuong() + slm);
@@ -1339,6 +1338,7 @@ public class QuanLyViews extends javax.swing.JFrame {
             }
         }
         loadTableHoaDonBanHang();
+        listhdct.clear();
         addTableGioHang(listhdct);
     }//GEN-LAST:event_btnhuyhdActionPerformed
 

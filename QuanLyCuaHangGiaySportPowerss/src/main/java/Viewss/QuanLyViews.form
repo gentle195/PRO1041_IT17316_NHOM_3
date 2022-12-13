@@ -213,9 +213,6 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="D:\GitHub\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowers\PRO1041_IT17316_NHOM_3\QuanLyCuaHangGiaySportPowerss\src\main\java\icon\rsz_21artboard_1.png"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="&#x1ea2;nh"/>
           </Properties>
           <Constraints>
@@ -663,7 +660,7 @@
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace pref="34" max="32767" attributes="0"/>
+                              <EmptySpace pref="36" max="32767" attributes="0"/>
                               <Component id="jScrollPane22" min="-2" pref="145" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                           </Group>

@@ -24,7 +24,7 @@ public class BanHangRepository implements BanHangRepositoryInterface {
     public void addSanPham(String ma, String mahd, HoaDonChiTiet nv) throws Exception {
         try {
             String sql = "declare @idctsp UNIQUEIDENTIFIER\n"
-                    + "set @idctsp=(select a.IdCTSP from ChiTietSP a left join SanPham b on a.IdSP=b.IdSP where b.MaSP=?)\n"
+                    + "set @idctsp=(select IdCTSP from ChiTietSP where MaSP=?)\n"
                     + "declare @idhd UNIQUEIDENTIFIER\n" + "set @idhd=(select IdHD from HoaDon where Ma=?) "
                     + "insert into ChiTietHoaDon(IdHD,IdChiTietSP,SoLuong,DonGia) values(@idhd,@idctsp,?,?)";
             Connection cn = DBConnection.getConnection();
@@ -41,7 +41,9 @@ public class BanHangRepository implements BanHangRepositoryInterface {
 
     @Override
     public void updateSoLuong(String ma, HoaDonChiTiet hd) throws Exception {
-        String sql = "declare @idctsp UNIQUEIDENTIFIER set @idctsp=(select a.IdHoaDonCT from ChiTietHoaDon a left join ChiTietSP b on a.IdChiTietSP=b.IdCTSP where IdChiTietSP = (Select IdCTSP from ChiTietSP b join SanPham c on b.IdSP=c.IdSP  where c.MaSP=?)) UPDATE ChiTietHoaDon SET SoLuong = ? WHERE IdHoaDonCT= @idctsp";
+        String sql = "declare @idctsp UNIQUEIDENTIFIER "
+                + "set @idctsp=(select a.IdHoaDonCT from ChiTietHoaDon a left join ChiTietSP b on a.IdChiTietSP=b.IdCTSP where IdChiTietSP = (Select IdCTSP from ChiTietSP where MaSP=?)) "
+                + "UPDATE ChiTietHoaDon SET SoLuong = ? WHERE IdHoaDonCT= @idctsp";
         Connection cn = DBConnection.getConnection();
         try {
             PreparedStatement ps = cn.prepareStatement(sql);
@@ -56,7 +58,7 @@ public class BanHangRepository implements BanHangRepositoryInterface {
     @Override
     public void deleteSoLuong(String ma) throws Exception {
         String sql = "declare @idctsp UNIQUEIDENTIFIER\n"
-                + "set @idctsp=(select a.IdCTSP from ChiTietSP a left join SanPham b on a.IdSP=b.IdSP where b.MaSP=?)\n"
+                + "set @idctsp=(select IdCTSP from ChiTietSP where MaSP=?)\n"
                 + "Delete ChiTietHoaDon where IdChiTietSP=@idctsp";
         try {
             PreparedStatement ps = DBConnection.getConnection().prepareStatement(sql);
