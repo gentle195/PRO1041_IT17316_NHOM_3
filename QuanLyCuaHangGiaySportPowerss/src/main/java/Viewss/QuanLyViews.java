@@ -1219,7 +1219,6 @@ public class QuanLyViews extends javax.swing.JFrame {
         txtGhiChu1.setText("");
         txtKhachTra1.setText("");
         txtMaHdBH.setText("");
-        txtMaNhanVien.setText("");
         txtSDTKhachHang.setText("");
         txtThanhTien1.setText("");
         txtTienDu1.setText("");
@@ -1277,6 +1276,10 @@ public class QuanLyViews extends javax.swing.JFrame {
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
+            listhdct.clear();
+            clear();
+            loadTableHoaDonBanHang();
+            addTableGioHang(listhdct);
 
         } else if (bb == JOptionPane.NO_OPTION) {
             return;
@@ -1291,10 +1294,7 @@ public class QuanLyViews extends javax.swing.JFrame {
         } else {
             return;
         }
-        listhdct.clear();
-        clear();
-        loadTableHoaDonBanHang();
-        addTableGioHang(listhdct);
+
     }//GEN-LAST:event_btnthanhtoan2ActionPerformed
 
     private void txtKhachTra1CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtKhachTra1CaretUpdate

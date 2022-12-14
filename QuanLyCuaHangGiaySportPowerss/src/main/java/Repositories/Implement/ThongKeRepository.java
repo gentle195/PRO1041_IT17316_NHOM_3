@@ -161,7 +161,7 @@ public class ThongKeRepository implements ThongKeRepositoryInterface {
     @Override
     public List<HoaDonTKViewModel> tkTDTpM(Date bd) {
         String query = "select NgayThanhToan,  SUM(tongTien) as TongDoanhThu \n"
-                + "from HoaDon where TinhTrang=1 and MONTH(HoaDon.NgayThanhToan) =MONTH(?)";
+                + "from HoaDon where TinhTrang=1 and MONTH(NgayThanhToan) =MONTH(?)";
         try (Connection conn = DBConnection.getConnection();
                 PreparedStatement ps = conn.prepareStatement(query)) {
             ps.setObject(1, bd);
