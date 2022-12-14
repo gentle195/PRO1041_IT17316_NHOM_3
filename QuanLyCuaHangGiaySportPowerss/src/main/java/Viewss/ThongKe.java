@@ -126,8 +126,10 @@ public class ThongKe extends javax.swing.JPanel {
     public void setDataToChart1(JPanel jpnItem) {
         List<HoaDonTKViewModel> listItem = new ArrayList<>();
         listItem = serviceTK.thongKeHD();
+        HoaDonTKViewModel hdd = listItem.get(0);
+        Date bd = hdd.getNgayTao();
 //        HoaDonTKViewModel hd = new HoaDonTKViewModel();
-        List<HoaDonTKViewModel> listTKHDDT = serviceTK.tkTDT();
+        List<HoaDonTKViewModel> listTKHDDT = serviceTK.tkTDTpM(bd);
         HoaDonTKViewModel hddt = new HoaDonTKViewModel();
         hddt = listTKHDDT.get(0);
 
