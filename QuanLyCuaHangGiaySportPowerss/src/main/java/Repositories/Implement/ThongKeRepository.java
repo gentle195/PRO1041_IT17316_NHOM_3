@@ -157,4 +157,25 @@ public class ThongKeRepository implements ThongKeRepositoryInterface {
         }
         return null;
     }
+
+    @Override
+    public List<HoaDonTKViewModel> tkTDTpM(Date bd) {
+        String query = "select NgayThanhToan,  SUM(tongTien) as TongDoanhThu \n"
+                + "from HoaDon where TinhTrang=1 and MONTH(HoaDon.NgayThanhToan) =MONTH(?)";
+        try (Connection conn = DBConnection.getConnection();
+                PreparedStatement ps = conn.prepareStatement(query)) {
+            ps.setObject(1, bd);
+            ResultSet rs = ps.executeQuery();
+            List<HoaDonTKViewModel> listhd = new ArrayList<>();
+            while (rs.next()) {
+                HoaDonTKViewModel hdtk = new HoaDonTKViewModel(rs.getBigDecimal(2));
+                listhd.add(hdtk);
+            }
+            return listhd;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

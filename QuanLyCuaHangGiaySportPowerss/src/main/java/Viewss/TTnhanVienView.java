@@ -11,6 +11,7 @@ import Services.Interface.ChucVuServiceInterface;
 import Services.Interface.NhanVienServiceInteface;
 import Services.NhanVienService;
 import ViewModels.NhanVienViewModel;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -33,6 +34,7 @@ public class TTnhanVienView extends javax.swing.JPanel {
     int trang;
     int sotrang = 1;
     int start = 0, end = 14;
+    SimpleDateFormat spd = new SimpleDateFormat("dd-MM-yyyy");
 
     /**
      * Creates new form TTnhanVienView
@@ -55,10 +57,10 @@ public class TTnhanVienView extends javax.swing.JPanel {
         DefaultTableModel modeltb = new DefaultTableModel();
         modeltb = (DefaultTableModel) tbNhanVien.getModel();
         modeltb.setRowCount(0);
-        int i =1;
+        int i = 1;
         for (NhanVienViewModel x : Sz) {
             modeltb.addRow(new Object[]{
-           x.getIdNV(), x.getMaNV(), x.getHoTenNV(), x.getGioiTinh(), x.getChucvu(), x.getDiaChi(), x.getNgaySinh(),
+                x.getIdNV(), x.getMaNV(), x.getHoTenNV(), x.getGioiTinh(), x.getChucvu(), x.getDiaChi(), spd.format(x.getNgaySinh()),
                 x.getMaNV(), x.getMatkhau(), x.getSdt()
             });
 
@@ -671,7 +673,7 @@ public class TTnhanVienView extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Không để trống số điện thoại");
                 return;
             }
-            nv.setIdNV(UUID.fromString( txtIDNhanVien.getText()));
+            nv.setIdNV(UUID.fromString(txtIDNhanVien.getText()));
             nv.setMaNV(txtMaNhanVien.getText());
             nv.setHoTenNV(txtHoTenNV.getText());
             if (rdNamNV.isSelected()) {

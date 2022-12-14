@@ -49,4 +49,9 @@ public class ThongKeServiceImpl implements ThongKeServiceInterface {
         return tkRepo.tkTDT();
     }
 
+    @Override
+    public List<HoaDonTKViewModel> tkTDTpM(Date bd) {
+        return tkRepo.tkTDTpM(bd);
+    }
+
 }

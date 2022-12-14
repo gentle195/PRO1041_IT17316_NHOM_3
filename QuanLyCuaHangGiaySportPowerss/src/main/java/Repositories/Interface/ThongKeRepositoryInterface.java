@@ -22,8 +22,10 @@ public interface ThongKeRepositoryInterface {
     public List<HoaDonTKViewModel> tkHDpM(Date bd, Date kt);
 
     public List<ChiTietSPViewModel> tkSPpM(Date bd, Date kt);
-    
+
     public List<HoaDonTKViewModel> tkTHD();
-    
+
     public List<HoaDonTKViewModel> tkTDT();
+
+    public List<HoaDonTKViewModel> tkTDTpM(Date bd);
 }

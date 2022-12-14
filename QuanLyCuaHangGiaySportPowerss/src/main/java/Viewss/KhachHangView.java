@@ -6,6 +6,7 @@ package Viewss;
 
 import DomainModels.KhachHang;
 import Services.KhachHangService;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -25,6 +26,7 @@ public class KhachHangView extends javax.swing.JPanel {
     private KhachHangService serviceKH = new KhachHangService();
     private List<KhachHang> listKH = new ArrayList<>();
     int i = 1;
+    SimpleDateFormat spd = new SimpleDateFormat("dd-MM-yyyy");
 
     public KhachHangView() {
         initComponents();
@@ -40,7 +42,7 @@ public class KhachHangView extends javax.swing.JPanel {
         model.setRowCount(0);
         for (KhachHang x : kh) {
             model.addRow(new Object[]{
-                x.getID(), x.getMa(), x.getHoTen(), x.getGioiTinh(), x.getNgaySinh(), x.getSdt(), x.getDiaChi()
+                x.getID(), x.getMa(), x.getHoTen(), x.getGioiTinh(), spd.format(x.getNgaySinh()), x.getSdt(), x.getDiaChi()
             });
         }
     }
@@ -539,15 +541,15 @@ public class KhachHangView extends javax.swing.JPanel {
         }
         if (txtSDT.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Không để trống số điện thoại khách hàng");
-               return;
+            return;
         }
         if (txtTenKH.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Không để trống tên khách hàng");
-               return;
+            return;
         }
         if (txtNgaySinh.getDate() == null) {
             JOptionPane.showMessageDialog(this, "Không để trống ngày sinh khách hàng");
-               return;
+            return;
         }
         int bb = JOptionPane.showConfirmDialog(this, "Bạn muốn sửa không ?", "Có", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION);
         if (bb == JOptionPane.YES_OPTION) {
@@ -570,7 +572,7 @@ public class KhachHangView extends javax.swing.JPanel {
             }
             try {
                 JOptionPane.showMessageDialog(this, serviceKH.update(kh));
-              
+
             } catch (Exception ex) {
                 Logger.getLogger(KhachHangView.class.getName()).log(Level.SEVERE, null, ex);
             }

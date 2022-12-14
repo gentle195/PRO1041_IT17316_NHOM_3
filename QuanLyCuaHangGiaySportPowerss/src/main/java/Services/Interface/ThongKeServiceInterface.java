@@ -26,4 +26,6 @@ public interface ThongKeServiceInterface {
     public List<HoaDonTKViewModel> tkTHD();
 
     public List<HoaDonTKViewModel> tkTDT();
+
+    public List<HoaDonTKViewModel> tkTDTpM(Date bd);
 }
