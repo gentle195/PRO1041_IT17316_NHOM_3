@@ -127,14 +127,14 @@ public class ThongKe extends javax.swing.JPanel {
         List<HoaDonTKViewModel> listItem = new ArrayList<>();
         listItem = serviceTK.thongKeHD();
 //        HoaDonTKViewModel hd = new HoaDonTKViewModel();
-        List<HoaDonTKViewModel> listTKHDDT = serviceTK.tkTDT();
-        HoaDonTKViewModel hddt = new HoaDonTKViewModel();
-        hddt = listTKHDDT.get(0);
+//        List<HoaDonTKViewModel> listTKHDDT = serviceTK.tkTDT();
+//        HoaDonTKViewModel hddt = new HoaDonTKViewModel();
+//        hddt = listTKHDDT.get(0);
 
 //        List<HoaDonTKViewModel> listTKHD= serviceTK.thongKeHD();
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         for (HoaDonTKViewModel hd : listItem) {
-            dataset.addValue(hddt.getTongTien(), "Tổng doanh thu", hd.getNgayTao().getMonth() + 1);
+            dataset.addValue(hd.getTongTien(), "Tổng doanh thu", hd.getNgayTao().getMonth() + 1);
             System.out.println(hd.getNgayTao());
         }
 
