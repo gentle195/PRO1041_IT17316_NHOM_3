@@ -40,7 +40,7 @@ public class KhachHang2Views extends javax.swing.JPanel {
         model.setRowCount(0);
         for (KhachHang x : kh) {
             model.addRow(new Object[]{
-               x.getID(), x.getMa(), x.getHoTen(), x.getGioiTinh(), x.getNgaySinh(), x.getSdt(), x.getDiaChi()
+                x.getID(), x.getMa(), x.getHoTen(), x.getGioiTinh(), x.getNgaySinh(), x.getSdt(), x.getDiaChi()
             });
         }
     }
@@ -436,7 +436,7 @@ public class KhachHang2Views extends javax.swing.JPanel {
     }//GEN-LAST:event_rdNamActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-       if (txtDC.getText().equals("")) {
+        if (txtDC.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Không để trống địa chỉ khách hàng");
             return;
         }
@@ -472,7 +472,7 @@ public class KhachHang2Views extends javax.swing.JPanel {
             }
             try {
                 JOptionPane.showMessageDialog(this, khachHangService.create(kh));
-//            clearTblKH();
+                clearTblKH();
             } catch (Exception ex) {
                 Logger.getLogger(KhachHangView.class.getName()).log(Level.SEVERE, null, ex);
             }

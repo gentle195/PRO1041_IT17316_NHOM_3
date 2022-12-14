@@ -92,8 +92,7 @@ public class ChiTietSPRepository implements ChiTietSPRepositoryInterface {
     public void updates1(ChiTietSP ct, String ma) throws Exception {
         try {
             Connection conn = DBConnection.getConnection();
-            String insert = "update ChiTietSp set SoLuong=?,TrangThai=? where MaSP=?";
-//                    "update  ChiTietHoaDon set SoLuong=? where IDChiTietSP like(Select IDCTSP from ChiTietSP CT left join SanPham SP on CT.IdSP=SP.IdSP where MaSP=?)";
+            String insert = "update ChiTietSP set SoLuong=?,TrangThai=? where MaSP=?";
             PreparedStatement ps = conn.prepareStatement(insert);
             ps.setObject(1, ct.getSoLuong());
             ps.setObject(2, ct.getTrangThai());

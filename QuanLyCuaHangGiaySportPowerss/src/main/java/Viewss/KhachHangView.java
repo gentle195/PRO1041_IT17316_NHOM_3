@@ -491,6 +491,7 @@ public class KhachHangView extends javax.swing.JPanel {
         } else {
             return;
         }
+        clearTblKH();
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
@@ -523,6 +524,7 @@ public class KhachHangView extends javax.swing.JPanel {
         }
         listKH = serviceKH.getAll();
         LoadataTableKH(serviceKH.getAll());
+        clearTblKH();
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
@@ -579,6 +581,7 @@ public class KhachHangView extends javax.swing.JPanel {
         } else {
             return;
         }
+        clearTblKH();
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void tblKHMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblKHMouseClicked

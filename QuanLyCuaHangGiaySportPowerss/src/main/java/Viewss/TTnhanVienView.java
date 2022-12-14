@@ -46,9 +46,7 @@ public class TTnhanVienView extends javax.swing.JPanel {
         List<ChucVu> cv = cvService.getall();
         cv.add(0, new ChucVu(null, "", "Tất cả", ""));
         DefaultComboBoxModel de = new DefaultComboBoxModel((cv.toArray()));
-        cbCV.setModel(de);
-        count = nvService.dem();
-        lbsoluong.setText("Total: " + count);
+        
         loadTableNhanVien(nvService.getall(start, end));
 
     }
@@ -65,13 +63,9 @@ public class TTnhanVienView extends javax.swing.JPanel {
             });
 
         }
+        count = nvService.dem();
+        lbsoluong.setText("Total: " + count);
         trang = (int) (count / end) + 1;
-        setStatePagination();
-    }
-
-    private void setStatePagination() {
-        jButton1.setEnabled(start > 1);
-        jButton2.setEnabled(start < trang);
         lbtrang.setText(sotrang + "/" + trang);
     }
 
@@ -432,14 +426,14 @@ public class TTnhanVienView extends javax.swing.JPanel {
 
         lbtrang.setText("jLabel1");
 
-        jButton1.setText("     <");
+        jButton1.setText("<");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jButton2.setText("     >");
+        jButton2.setText(">");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -457,11 +451,11 @@ public class TTnhanVienView extends javax.swing.JPanel {
             .addComponent(jScrollPane15, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1043, Short.MAX_VALUE)
             .addGroup(jPanel38Layout.createSequentialGroup()
                 .addGap(370, 370, 370)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lbtrang, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(lbtrang, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lbsoluong, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(75, 75, 75))
@@ -597,11 +591,6 @@ public class TTnhanVienView extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Không để trống ngày sinh");
                 return;
             }
-
-            if (cbCV.getSelectedIndex() == 0) {
-                JOptionPane.showMessageDialog(this, "Không để trống chức vụ");
-                return;
-            }
             if (txtSDTNhanVien.getText().equals("")) {
                 JOptionPane.showMessageDialog(this, "Không để trống số điện thoại");
                 return;
@@ -676,10 +665,6 @@ public class TTnhanVienView extends javax.swing.JPanel {
             }
             if (dateNSNV.getDate() == null) {
                 JOptionPane.showMessageDialog(this, "Không để trống ngày sinh");
-                return;
-            }
-            if (cbCV.getSelectedIndex() == 0) {
-                JOptionPane.showMessageDialog(this, "Không để trống chức vụ");
                 return;
             }
             if (txtSDTNhanVien.getText().equals("")) {
@@ -794,7 +779,9 @@ public class TTnhanVienView extends javax.swing.JPanel {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        if (start < trang) {
+        if (start + 14 > count) {
+            jButton2.setEnabled(false);
+        } else if (start < trang + start) {
             start = start + 14;
             sotrang++;
         }
@@ -807,6 +794,9 @@ public class TTnhanVienView extends javax.swing.JPanel {
         if (start > 1) {
             start = start - 14;
             sotrang--;
+        }
+        if (start < count) {
+            jButton2.setEnabled(true);
         }
         loadTableNhanVien(nvService.getall(start, end));
     }//GEN-LAST:event_jButton1ActionPerformed

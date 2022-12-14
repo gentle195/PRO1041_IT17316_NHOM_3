@@ -22,7 +22,7 @@ public interface BanHangServiceInterface {
     void updateSoLuong(String ma, HoaDonChiTiet hd) throws Exception;
 
     void updateThanhToan(HoaDon hoaDon, String ma, String ma1) throws Exception;
- 
+    public void updatetrung(String ma, int sl);
     List<HoaDonChiTietViewModel> getListById(String idhoaDon) throws SQLException;
    
 }
