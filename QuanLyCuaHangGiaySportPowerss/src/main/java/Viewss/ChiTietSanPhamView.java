@@ -382,6 +382,7 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
         lblDonGia3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblDonGia3.setText("Số Lượng");
 
+        txtMaSP.setEditable(false);
         txtMaSP.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
                 txtMaSPCaretUpdate(evt);
@@ -872,10 +873,10 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
-        if (txtMaSP.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Vui lòng nhập Mã");
-            return;
-        }
+//        if (txtMaSP.getText().equals("")) {
+//            JOptionPane.showMessageDialog(this, "Vui lòng nhập Mã");
+//            return;
+//        }
         if (txtDonGia.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Vui lòng nhập đơn giá");
             return;
@@ -923,7 +924,14 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
         if (bb == JOptionPane.YES_OPTION) {
             ChiTietSP ctsp = new ChiTietSP();
             ctsp.setSanPham((SanPham) cbTenSP.getSelectedItem());
-            ctsp.setMaSP(txtMaSP.getText());
+//            ctsp.setMaSP(txtMaSP.getText());
+             for (int i = 0; i < 5 + 1; i++) {
+                Random rdm = new Random();
+                int rdmm = rdm.nextInt(100000) + 1;
+                
+                txtMaSP.setText("SP" + rdmm);
+                ctsp.setMaSP(txtMaSP.getText());
+            }
             ctsp.setChatlieu((ChatLieu) cbCL.getSelectedItem());
             ctsp.setHangGiay((HangGiay) cbHang.getSelectedItem());
             ctsp.setSize((Size) cbSIZE.getSelectedItem());
@@ -1128,14 +1136,11 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
 
     private void cbTenSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTenSPActionPerformed
         // TODO add your handling code here:
-//        List<SanPham> sp = SanPhamService.all();
-//        for (int j = 0; j < sp.size(); j++) {
-//            if (sp.get(j).getTenSP().equalsIgnoreCase(cbTenSP.getSelectedItem().toString())) {
-//                   for (int i = 0; i < 5 + 1; i++) {
+//        if (cbTenSP.getSelectedItem().equals("")) {
+//            for (int i = 0; i < 5 + 1; i++) {
 //                Random rdm = new Random();
 //                int rdmm = rdm.nextInt(100000) + 1;
 //                txtMaSP.setText("SP" + rdmm);
-//            }
 //            }
 //        }
 
@@ -1334,13 +1339,13 @@ public class ChiTietSanPhamView extends javax.swing.JPanel {
 
     private void txtMaSPCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtMaSPCaretUpdate
         // TODO add your handling code here:
-        if(!cbTenSP.getSelectedItem().equals("")){
-            for (int i = 0; i < 5 + 1; i++) {
-                Random rdm = new Random();
-                int rdmm = rdm.nextInt(100000) + 1;
-                txtMaSP.setText("SP" + rdmm);
-            }
-        }
+//        if (!cbTenSP.getSelectedItem().equals("")) {
+//            for (int i = 0; i < 5 + 1; i++) {
+//                Random rdm = new Random();
+//                int rdmm = rdm.nextInt(100000) + 1;
+//                txtMaSP.setText("SP" + rdmm);
+//            }
+//        }
 
     }//GEN-LAST:event_txtMaSPCaretUpdate
 

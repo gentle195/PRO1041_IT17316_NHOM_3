@@ -49,7 +49,7 @@ public class KhachHangRepository implements KhachHangRepositoryInterface {
             this.em.getTransaction().rollback();
             throw e;
         }
-        return null;
+        return true;
     }
 
     @Override
@@ -63,7 +63,7 @@ public class KhachHangRepository implements KhachHangRepositoryInterface {
             this.em.getTransaction().rollback();
             throw e;
         }
-        return null;
+      return true;
     }
 
     @Override

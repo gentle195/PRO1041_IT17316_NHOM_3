@@ -25,9 +25,8 @@ public class KhachHangView extends javax.swing.JPanel {
     private KhachHangService serviceKH = new KhachHangService();
     private List<KhachHang> listKH = new ArrayList<>();
     int i = 1;
-    
-    
-      public KhachHangView() {
+
+    public KhachHangView() {
         initComponents();
         serviceKH = new KhachHangService();
         listKH = serviceKH.getAll();
@@ -35,20 +34,20 @@ public class KhachHangView extends javax.swing.JPanel {
 
     }
 
-   private void LoadataTableKH(List<KhachHang> kh) {
+    private void LoadataTableKH(List<KhachHang> kh) {
         DefaultTableModel model = new DefaultTableModel();
         model = (DefaultTableModel) tblKH.getModel();
         model.setRowCount(0);
         for (KhachHang x : kh) {
             model.addRow(new Object[]{
-                i++, x.getMa(), x.getHoTen(), x.getGioiTinh(), x.getNgaySinh(), x.getSdt(), x.getDiaChi()
+                x.getID(), x.getMa(), x.getHoTen(), x.getGioiTinh(), x.getNgaySinh(), x.getSdt(), x.getDiaChi()
             });
         }
     }
 
     private void fillDataKH(int index) {
         KhachHang kh = listKH.get(index);
-        
+
         this.txtIdKH.setText(kh.getID().toString());
         this.txtMaKH.setText(kh.getMa());
         this.txtTenKH.setText(kh.getHoTen());
@@ -355,7 +354,7 @@ public class KhachHangView extends javax.swing.JPanel {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "STT", "Mã khách hàng", "Tên khách hàng", "Giới tính", "Ngày Sinh", "Số điện thoại", "Địa chỉ"
+                "ID", "Mã khách hàng", "Tên khách hàng", "Giới tính", "Ngày Sinh", "Số điện thoại", "Địa chỉ"
             }
         ));
         tblKH.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -447,15 +446,19 @@ public class KhachHangView extends javax.swing.JPanel {
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         if (txtDC.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Không để trống địa chỉ khách hàng");
+            return;
         }
         if (txtSDT.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Không để trống số điện thoại khách hàng");
+            return;
         }
         if (txtTenKH.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Không để trống tên khách hàng");
+            return;
         }
         if (txtNgaySinh.getDate() == null) {
             JOptionPane.showMessageDialog(this, "Không để trống ngày sinh khách hàng");
+            return;
         }
         int bb = JOptionPane.showConfirmDialog(this, "Bạn muốn thêm không ?", "Có", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION);
         if (bb == JOptionPane.YES_OPTION) {
@@ -526,18 +529,23 @@ public class KhachHangView extends javax.swing.JPanel {
         int row = this.tblKH.getSelectedRow();
         if (row == -1) {
             JOptionPane.showMessageDialog(this, "Mời chọn dòng mà bạn muốn chỉnh sửa^^");
+            return;
         }
         if (txtDC.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Không để trống địa chỉ khách hàng");
+            return;
         }
         if (txtSDT.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Không để trống số điện thoại khách hàng");
+               return;
         }
         if (txtTenKH.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Không để trống tên khách hàng");
+               return;
         }
         if (txtNgaySinh.getDate() == null) {
             JOptionPane.showMessageDialog(this, "Không để trống ngày sinh khách hàng");
+               return;
         }
         int bb = JOptionPane.showConfirmDialog(this, "Bạn muốn sửa không ?", "Có", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION);
         if (bb == JOptionPane.YES_OPTION) {
@@ -548,6 +556,7 @@ public class KhachHangView extends javax.swing.JPanel {
             } else {
                 kh.setGioiTinh("Nữ");
             }
+            kh.setID(UUID.fromString(txtIdKH.getText()));
             kh.setHoTen(txtTenKH.getText());
             kh.setMa(txtMaKH.getText());
             kh.setNgaySinh(txtNgaySinh.getDate());
@@ -559,12 +568,12 @@ public class KhachHangView extends javax.swing.JPanel {
             }
             try {
                 JOptionPane.showMessageDialog(this, serviceKH.update(kh));
-//            clearTblKH();
+              
             } catch (Exception ex) {
                 Logger.getLogger(KhachHangView.class.getName()).log(Level.SEVERE, null, ex);
             }
             listKH = serviceKH.getAll();
-        LoadataTableKH(serviceKH.getAll());
+            LoadataTableKH(serviceKH.getAll());
         } else if (bb == JOptionPane.NO_OPTION) {
             return;
         } else {
@@ -584,7 +593,7 @@ public class KhachHangView extends javax.swing.JPanel {
                 kh.add(k);
             }
         }
-        LoadataTableKH(serviceKH.getAll());
+        LoadataTableKH(kh);
     }//GEN-LAST:event_txtSearchCaretUpdate
 
     private void txtTenKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenKHActionPerformed

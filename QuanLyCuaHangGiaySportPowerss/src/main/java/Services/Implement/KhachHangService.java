@@ -49,9 +49,9 @@ public class KhachHangService implements KhachHangServiceInterface {
 //        if (!(kh.getSdt().matches(".*[^0-9].*") || kh.getSdt().length() == 10)) {
 //            return "Sđt phải gồm 10 chữ số";
 //        }
-        if (!(kh.getSdt().matches(".*[^0-9].*"))) {
-            return "Sđt phải là chữ số";
-        }
+//        if (!(kh.getSdt().matches(".*[^0-9].*"))) {
+//            return "Sđt phải là chữ số";
+//        }
         if (!(kh.getSdt().length() == 10)) {
             return "Sđt phải gồm 10 chữ số";
         }
