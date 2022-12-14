@@ -13,6 +13,8 @@ import ViewModels.HoaDonChiTietViewModel;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -157,6 +159,20 @@ public class BanHangRepository implements BanHangRepositoryInterface {
         } catch (Exception e) {
         }
         return null;
+    }
+
+    @Override
+    public void updatetrung(String ma, int sl) {
+        String sql="update ChiTietHoaDon set SoLuong=? where IdChiTietSP like(select IdCTSP from ChiTietSP where MaSP=?)";
+        Connection cn = DBConnection.getConnection();
+        try {
+            PreparedStatement ps= cn.prepareStatement(sql);
+            ps.setObject(1, sl);
+            ps.setObject(2, ma);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(BanHangRepository.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

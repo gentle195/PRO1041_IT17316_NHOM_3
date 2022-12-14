@@ -30,7 +30,7 @@ public interface BanHangRepositoryInterface {
     void updateSoLuong(String ma, HoaDonChiTiet hd) throws Exception;
 
     void updateThanhToan(HoaDon hoaDon, String ma, String ma1) throws Exception;
-
+    void updatetrung(String ma,int sl);
     // Lọc bên hoá đơn xuống hoá đơn chi tiết
     List<HoaDonChiTietViewModel> getListById(String idhoaDon) throws SQLException;
 

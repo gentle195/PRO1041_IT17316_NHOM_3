@@ -259,7 +259,7 @@ public class ChatLieuView extends javax.swing.JFrame {
         for (ChatLieu x : cl) {
             modeltb.addRow(new Object[]{
                 x.getIdCL(),
-                x.getMaCL(), x.getTenCL(), x.getMaCL()
+                x.getMaCL(), x.getTenCL(), x.getMoTaCl()
             });
         }
     }

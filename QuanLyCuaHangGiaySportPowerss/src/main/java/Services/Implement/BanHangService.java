@@ -59,4 +59,9 @@ public class BanHangService implements BanHangServiceInterface {
     public List<HoaDonChiTietViewModel> getListById(String idhoaDon) throws SQLException {
         return banHangRespository.getListById(idhoaDon);
     }
+
+    @Override
+    public void updatetrung(String ma, int sl) {
+        banHangRespository.updatetrung(ma, sl);
+    }
 }
