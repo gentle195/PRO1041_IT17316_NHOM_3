@@ -146,7 +146,7 @@ public class BanHangRepository implements BanHangRepositoryInterface {
     // Lọc bên hoá đơn xuống hoá đơn chi tiết
     @Override
     public List<HoaDonChiTietViewModel> getListById(String idhoaDon) throws SQLException{
-        String query = "SELECT  c.MaSP , c.TenSP , a.SoLuong , a.DonGia fROM ChiTietHoaDon a left join ChiTietSP b on a.IdChiTietSP = b.IdCTSP left join SanPham c on c.IdSP = b.IdSP left join HoaDon d on a.IdHD = d.IdHD where d.Ma = ?";
+        String query = "SELECT  b.MaSP , c.TenSP , a.SoLuong , a.DonGia fROM ChiTietHoaDon a left join ChiTietSP b on a.IdChiTietSP = b.IdCTSP left join SanPham c on c.IdSP = b.IdSP left join HoaDon d on a.IdHD = d.IdHD where d.Ma = ?";
         List<HoaDonChiTietViewModel> list = new ArrayList<>();
         try ( Connection con = DBConnection.getConnection();  PreparedStatement ps = con.prepareStatement(query)) {
             ps.setObject(1, idhoaDon);
