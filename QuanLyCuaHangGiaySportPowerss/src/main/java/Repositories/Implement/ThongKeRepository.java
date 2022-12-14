@@ -26,9 +26,9 @@ public class ThongKeRepository implements ThongKeRepositoryInterface {
 
     @Override
     public List<HoaDonTKViewModel> tkHD() {
-        String query = "select NgayTao, COUNT(IdHD) as SLHD, SUM(tongTien) as TongDoanhThu "
+        String query = "select NgayThanhToan, COUNT(IdHD) as SLHD, SUM(tongTien) as TongDoanhThu "
                 + "from HoaDon where TinhTrang=1 "
-                + "group by NgayTao";
+                + "group by NgayThanhToan";
         try (Connection conn = DBConnection.getConnection();
                 PreparedStatement ps = conn.prepareStatement(query)) {
             ResultSet rs = ps.executeQuery();
@@ -72,7 +72,7 @@ public class ThongKeRepository implements ThongKeRepositoryInterface {
     @Override
     public List<HoaDonTKViewModel> tkHDpM(Date bd, Date kt) {
         String query = "select COUNT(IdHD) as SLHD, SUM(tongTien) as TongDoanhThu \n"
-                + "from HoaDon where TinhTrang=1 and NgayTao between  ? and ?";
+                + "from HoaDon where TinhTrang=1 and NgayThanhToan between  ? and ?";
         try (Connection conn = DBConnection.getConnection();
                 PreparedStatement ps = conn.prepareStatement(query)) {
             ps.setObject(1, bd);

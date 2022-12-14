@@ -34,6 +34,9 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import Services.Interface.BanHangServiceInterface;
 import Services.Interface.HoaDonServiceInterface;
+import static Viewss.QuanLyViews.txtMaNhanVien;
+import static Viewss.QuanLyViews.txtSDTKhachHang;
+import static Viewss.QuanLyViews.txttenkh;
 import java.sql.SQLException;
 import javax.swing.JPanel;
 import com.itextpdf.kernel.color.Color;
@@ -977,7 +980,7 @@ public class NhanVienBanHangViews extends javax.swing.JFrame {
 
     private void btnxoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnxoaActionPerformed
         // TODO add your handling code here:
-        int row = tblgiohang.getSelectedRow();
+         int row = tblgiohang.getSelectedRow();
         if (row == -1) {
             JOptionPane.showMessageDialog(this, "Mời chọn sản phẩm cần sửa");
             return;
@@ -1001,14 +1004,14 @@ public class NhanVienBanHangViews extends javax.swing.JFrame {
                             if (listhdct.get(i).getMaSP().equals(tblgiohang.getValueAt(row, 1))) {
                                 listhdct.get(i).setMaSP(tblgiohang.getValueAt(row, 1).toString());
                                 listhdct.get(i).setTenSP(tblgiohang.getValueAt(row, 2).toString());
-                                listhdct.get(i).setDonGia((BigDecimal) tblgiohang.getValueAt(row, 3));
+                                listhdct.get(i).setDonGia((BigDecimal) tblgiohang.getValueAt(row, 4));
                                 listhdct.get(i).setSoLuong(Integer.parseInt(tblgiohang.getValueAt(row, 3).toString()) - slm);
-                                thanhtien = thanhtien + (listhdct.get(i).getSoLuong() * Integer.parseInt(listhdct.get(i).getDonGia().toString()));
-                                txtThanhTien1.setText((String.valueOf(thanhtien)));
                                 hd.setSoLuong(listhdct.get(i).getSoLuong());
                                 banHangService.updateSoLuong(tblgiohang.getValueAt(row, 1).toString(), hd);
+                                thanhtien = thanhtien + (listhdct.get(i).getSoLuong() * Integer.parseInt(listhdct.get(i).getDonGia().toString()));
+                                txtThanhTien1.setText((String.valueOf(thanhtien)));
                                 for (int j = 0; j < listsp.size(); j++) {
-                                    if (listsp.get(j).getSanPham().getMaSP().equals(tblgiohang.getValueAt(row, 1))) {
+                                    if (listsp.get(j).getMaSP().equals(tblgiohang.getValueAt(row, 1))) {
                                         listsp.get(j).setSoLuong(CT.getSoLuong() + slm);
                                         CT.setSoLuong(listsp.get(j).getSoLuong());
                                         CT.setTrangThai(0);
@@ -1025,7 +1028,7 @@ public class NhanVienBanHangViews extends javax.swing.JFrame {
                             if (listhdct.get(i).getMaSP().equals(tblgiohang.getValueAt(row, 1))) {
                                 listhdct.remove(i);
                                 for (int j = 0; j < listsp.size(); j++) {
-                                    if (listsp.get(j).getSanPham().getMaSP().equals(tblgiohang.getValueAt(row, 1))) {
+                                    if (listsp.get(j).getMaSP().equals(tblgiohang.getValueAt(row, 1))) {
                                         listsp.get(j).setSoLuong(CT.getSoLuong() + slm);
                                         CT.setSoLuong(listsp.get(j).getSoLuong());
                                         CT.setTrangThai(0);
@@ -1073,7 +1076,7 @@ public class NhanVienBanHangViews extends javax.swing.JFrame {
 
     private void btnthemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnthemActionPerformed
         // TODO add your handling code here:
-        int row = this.tbldssanpham.getSelectedRow();
+         int row = this.tbldssanpham.getSelectedRow();
         if (row == -1) {
             JOptionPane.showMessageDialog(this, "Mời chọn sản phẩm cần thêm");
             return;
@@ -1103,14 +1106,14 @@ public class NhanVienBanHangViews extends javax.swing.JFrame {
                         HoaDonChiTiet hd = new HoaDonChiTiet();
                         try {
                             chiTietSPService.updatesl(CT, tbldssanpham.getValueAt(row, 1).toString());
-                            listhdct.add(chiTietHoaDonViewModel);
-                            listhdctt.add(hd);
                             chiTietHoaDonViewModel.setMaSP((String) tbldssanpham.getValueAt(row, 1));
                             chiTietHoaDonViewModel.setTenSP((String) tbldssanpham.getValueAt(row, 2));
                             chiTietHoaDonViewModel.setSoLuong(Integer.valueOf(sl));
                             chiTietHoaDonViewModel.setDonGia((BigDecimal) tbldssanpham.getValueAt(row, 3));
                             hd.setSoLuong(Integer.valueOf(sl));
-                            hd.setDonGia((BigDecimal) tbldssanpham.getValueAt(row, 4));
+                            hd.setDonGia((BigDecimal) tbldssanpham.getValueAt(row, 3));
+                            listhdct.add(chiTietHoaDonViewModel);
+                            listhdctt.add(hd);
                             banHangService.addSanPham(tbldssanpham.getValueAt(row, 1).toString(), tbHoaDonBanHang.getValueAt(r, 1).toString(), hd);
                             addTableGioHang(listhdct);
                             loadTableChiTietSPBH(chiTietSPService.all(start, end));
@@ -1131,14 +1134,14 @@ public class NhanVienBanHangViews extends javax.swing.JFrame {
                         HoaDonChiTiet hd = new HoaDonChiTiet();
                         try {
                             chiTietSPService.updatesl(CT, tbldssanpham.getValueAt(row, 1).toString());
-                            listhdct.add(chiTietHoaDonViewModel);
-                            listhdctt.add(hd);
                             chiTietHoaDonViewModel.setMaSP((String) tbldssanpham.getValueAt(row, 1));
                             chiTietHoaDonViewModel.setTenSP((String) tbldssanpham.getValueAt(row, 2));
                             chiTietHoaDonViewModel.setSoLuong(Integer.valueOf(sl));
                             chiTietHoaDonViewModel.setDonGia((BigDecimal) tbldssanpham.getValueAt(row, 3));
                             hd.setSoLuong(Integer.valueOf(sl));
                             hd.setDonGia((BigDecimal) tbldssanpham.getValueAt(row, 3));
+                            listhdct.add(chiTietHoaDonViewModel);
+                            listhdctt.add(hd);
                             banHangService.addSanPham(tbldssanpham.getValueAt(row, 1).toString(), tbHoaDonBanHang.getValueAt(r, 1).toString(), hd);
                             addTableGioHang(listhdct);
                             loadTableChiTietSPBH(chiTietSPService.all(start, end));
@@ -1217,7 +1220,7 @@ public class NhanVienBanHangViews extends javax.swing.JFrame {
     }
     private void btnthanhtoan2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnthanhtoan2ActionPerformed
         // TODO add your handling code here:
-        Date date = new Date(System.currentTimeMillis());
+      Date date = new Date(System.currentTimeMillis());
         HoaDon hd = new HoaDon();
         int row = tbHoaDonBanHang.getSelectedRow();
         if (row == -1) {
@@ -1227,7 +1230,7 @@ public class NhanVienBanHangViews extends javax.swing.JFrame {
         int bb = JOptionPane.showConfirmDialog(this, "Bạn muốn thanh toán không ?", "Có", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION);
         if (bb == JOptionPane.YES_OPTION) {
             String ma = txtSDTKhachHang.getText();
-            String ma1 = txtMaNhanVienbh.getText();
+            String ma1 = txtMaNhanVien.getText();
             if (txtSDTKhachHang.getText().equals("")) {
                 JOptionPane.showMessageDialog(this, "Số điện thoại khách đang trống");
                 return;
@@ -1266,7 +1269,10 @@ public class NhanVienBanHangViews extends javax.swing.JFrame {
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
-
+            listhdct.clear();
+            clear();
+            loadTableHoaDonBanHang();
+            addTableGioHang(listhdct);
 
         } else if (bb == JOptionPane.NO_OPTION) {
             return;
@@ -1281,10 +1287,6 @@ public class NhanVienBanHangViews extends javax.swing.JFrame {
         } else {
             return;
         }
-        listhdct.clear();
-        clear();
-        loadTableHoaDonBanHang();
-        addTableGioHang(listhdct);
     }//GEN-LAST:event_btnthanhtoan2ActionPerformed
 
     private void txtKhachTra1CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtKhachTra1CaretUpdate
