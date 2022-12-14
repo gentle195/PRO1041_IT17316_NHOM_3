@@ -17,6 +17,7 @@ import java.awt.Dimension;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -45,6 +46,7 @@ public class ThongKe extends javax.swing.JPanel {
     DefaultTableModel dtmTKSP = new DefaultTableModel();
     private List<ChiTietSPViewModel> listTKSP = new ArrayList<>();
     private HoaDonService hoadonService = new HoaDonServiceImpl();
+    SimpleDateFormat spd = new SimpleDateFormat("dd-MM-yyyy");
 
     /**
      * Creates new form ThongKe
@@ -86,7 +88,7 @@ public class ThongKe extends javax.swing.JPanel {
             System.out.println(hd.toString());
             dtmTKHD.addRow(new Object[]{
                 i++,
-                hd.getNgayTao(),
+                spd.format(hd.getNgayTao()),
                 hd.getTongHD(),
                 hd.getTongTien()
             });
@@ -129,6 +131,7 @@ public class ThongKe extends javax.swing.JPanel {
         HoaDonTKViewModel hddt = new HoaDonTKViewModel();
         hddt = listTKHDDT.get(0);
 
+//        List<HoaDonTKViewModel> listTKHD= serviceTK.thongKeHD();
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         for (HoaDonTKViewModel hd : listItem) {
             dataset.addValue(hddt.getTongTien(), "Tổng doanh thu", hd.getNgayTao().getMonth() + 1);
@@ -630,7 +633,7 @@ public class ThongKe extends javax.swing.JPanel {
         tongDT.setCellValue("TỔNG DOANH THU");
 
         for (HoaDonTKViewModel hd : listTKHD) {
-           
+
             rowNum++;
             Row row = sheet.createRow(rowNum);
             Cell stt = row.createCell(0);
