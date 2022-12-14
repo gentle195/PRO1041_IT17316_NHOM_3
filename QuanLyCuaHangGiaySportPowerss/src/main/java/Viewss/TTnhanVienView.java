@@ -46,7 +46,7 @@ public class TTnhanVienView extends javax.swing.JPanel {
         List<ChucVu> cv = cvService.getall();
         cv.add(0, new ChucVu(null, "", "Tất cả", ""));
         DefaultComboBoxModel de = new DefaultComboBoxModel((cv.toArray()));
-        
+        cbCV.setModel(de);
         loadTableNhanVien(nvService.getall(start, end));
 
     }
