@@ -40,7 +40,7 @@ public class KhachHang2Views extends javax.swing.JPanel {
         model.setRowCount(0);
         for (KhachHang x : kh) {
             model.addRow(new Object[]{
-                i++, x.getMa(), x.getHoTen(), x.getGioiTinh(), x.getNgaySinh(), x.getSdt(), x.getDiaChi()
+               x.getID(), x.getMa(), x.getHoTen(), x.getGioiTinh(), x.getNgaySinh(), x.getSdt(), x.getDiaChi()
             });
         }
     }
@@ -340,7 +340,7 @@ public class KhachHang2Views extends javax.swing.JPanel {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "STT", "Mã khách hàng", "Tên khách hàng", "Giới tính", "Ngày Sinh", "Số điện thoại", "Địa chỉ"
+                "ID", "Mã khách hàng", "Tên khách hàng", "Giới tính", "Ngày Sinh", "Số điện thoại", "Địa chỉ"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -436,24 +436,53 @@ public class KhachHang2Views extends javax.swing.JPanel {
     }//GEN-LAST:event_rdNamActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        KhachHang kh = new KhachHang();
-        kh.setDiaChi(txtDC.getText());
-        if (rdNam.isSelected()) {
-            kh.setGioiTinh("Nam");
+       if (txtDC.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Không để trống địa chỉ khách hàng");
+            return;
+        }
+        if (txtSDT.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Không để trống số điện thoại khách hàng");
+            return;
+        }
+        if (txtTenKH.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Không để trống tên khách hàng");
+            return;
+        }
+        if (txtNgaySinh.getDate() == null) {
+            JOptionPane.showMessageDialog(this, "Không để trống ngày sinh khách hàng");
+            return;
+        }
+        int bb = JOptionPane.showConfirmDialog(this, "Bạn muốn thêm không ?", "Có", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION);
+        if (bb == JOptionPane.YES_OPTION) {
+            KhachHang kh = new KhachHang();
+            kh.setDiaChi(txtDC.getText());
+            if (rdNam.isSelected()) {
+                kh.setGioiTinh("Nam");
+            } else {
+                kh.setGioiTinh("Nữ");
+            }
+            kh.setHoTen(txtTenKH.getText());
+            kh.setMa(txtMaKH.getText());
+            kh.setNgaySinh(txtNgaySinh.getDate());
+            if (txtSDT.getText().matches("^0\\d{9,10}")) {
+                kh.setSdt(txtSDT.getText());
+            } else {
+                JOptionPane.showMessageDialog(this, "Số điện thoại nhập chưa đúng");
+                return;
+            }
+            try {
+                JOptionPane.showMessageDialog(this, khachHangService.create(kh));
+//            clearTblKH();
+            } catch (Exception ex) {
+                Logger.getLogger(KhachHangView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            listKH = khachHangService.getAll();
+            LoadataTableKH(khachHangService.getAll());
+        } else if (bb == JOptionPane.NO_OPTION) {
+            return;
         } else {
-            kh.setGioiTinh("Nữ");
+            return;
         }
-        kh.setHoTen(txtTenKH.getText());
-        kh.setMa(txtMaKH.getText());
-        kh.setNgaySinh(txtNgaySinh.getDate());
-        kh.setSdt(txtSDT.getText());
-        try {
-            khachHangService.create(kh);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-        LoadataTableKH(listKH);
-        clearTblKH();
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed

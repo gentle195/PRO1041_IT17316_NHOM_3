@@ -144,6 +144,15 @@ public class giaoDienDangNhap extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
+       if(txtMa.getText().equals("")){
+           JOptionPane.showMessageDialog(this, "Vui lòng nhập tài khoản là mã nhân viên");
+           return;
+       }
+        if(txtMK.getText().equals("")){
+           JOptionPane.showMessageDialog(this, "Vui lòng nhập mật khẩu");
+           return;
+       }
+        
         TaiKhoan user = new TaiKhoan();
         String username = txtMa.getText();
         String password = new String(txtMK.getPassword());

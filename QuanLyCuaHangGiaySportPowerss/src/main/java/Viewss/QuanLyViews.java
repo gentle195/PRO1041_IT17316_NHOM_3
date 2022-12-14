@@ -128,11 +128,8 @@ public class QuanLyViews extends javax.swing.JFrame {
         }
         trang = (int) (count / end) + 1;
         jTrang.setText(sotrang + "/" + trang);
-       
 
     }
-
-   
 
     private void addTableGioHang(ArrayList<HoaDonChiTietViewModel> list) {
         DefaultTableModel modeltb = new DefaultTableModel();
@@ -299,7 +296,6 @@ public class QuanLyViews extends javax.swing.JFrame {
         txtMaNhanVien = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1500, 800));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 204));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -422,7 +418,7 @@ public class QuanLyViews extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Double.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Float.class, java.lang.Double.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false
@@ -629,7 +625,7 @@ public class QuanLyViews extends javax.swing.JFrame {
         jPanel17Layout.setVerticalGroup(
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel17Layout.createSequentialGroup()
-                .addContainerGap(36, Short.MAX_VALUE)
+                .addContainerGap(34, Short.MAX_VALUE)
                 .addComponent(jScrollPane22, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17))
         );
@@ -1007,7 +1003,7 @@ public class QuanLyViews extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Số lượng nhập phải lớn hơn 0");
             } else {
                 int slm = Integer.valueOf(sl);
-                int thanhtien=0;
+                int thanhtien = 0;
                 HoaDonChiTiet hd = new HoaDonChiTiet();
 
                 try {
@@ -1337,6 +1333,7 @@ public class QuanLyViews extends javax.swing.JFrame {
                 return;
             }
         }
+        txtThanhTien1.setText("");
         loadTableHoaDonBanHang();
         listhdct.clear();
         addTableGioHang(listhdct);
@@ -1419,7 +1416,7 @@ public class QuanLyViews extends javax.swing.JFrame {
 
     private void btnnextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnextActionPerformed
         // TODO add your handling code here:
-      if (start + 7 > count) {
+        if (start + 7 > count) {
             btnnext.setEnabled(false);
         } else if (start < trang + start) {
             start = start + 7;

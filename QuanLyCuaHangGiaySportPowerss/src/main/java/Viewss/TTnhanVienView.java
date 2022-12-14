@@ -60,7 +60,7 @@ public class TTnhanVienView extends javax.swing.JPanel {
         int i =1;
         for (NhanVienViewModel x : Sz) {
             modeltb.addRow(new Object[]{
-             i++, x.getMaNV(), x.getHoTenNV(), x.getGioiTinh(), x.getChucvu(), x.getDiaChi(), x.getNgaySinh(),
+           x.getIdNV(), x.getMaNV(), x.getHoTenNV(), x.getGioiTinh(), x.getChucvu(), x.getDiaChi(), x.getNgaySinh(),
                 x.getMaNV(), x.getMatkhau(), x.getSdt()
             });
 
@@ -399,7 +399,7 @@ public class TTnhanVienView extends javax.swing.JPanel {
                 {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "STT", "MÃ NHÂN VIÊN", "HỌ VÀ TÊN", "GIỚI TÍNH", "CHỨC VỤ", "QUÊ QUÁN", "NGÀY SINH", "TÀI KHOẢN", "MẬT KHẨU", "SĐT"
+                "ID Nhân Viên", "MÃ NHÂN VIÊN", "HỌ VÀ TÊN", "GIỚI TÍNH", "CHỨC VỤ", "QUÊ QUÁN", "NGÀY SINH", "TÀI KHOẢN", "MẬT KHẨU", "SĐT"
             }
         ) {
             boolean[] canEdit = new boolean [] {
