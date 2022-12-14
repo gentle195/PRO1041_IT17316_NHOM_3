@@ -454,9 +454,9 @@ public class TTnhanVienView extends javax.swing.JPanel {
             .addGroup(jPanel38Layout.createSequentialGroup()
                 .addGap(370, 370, 370)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(lbtrang, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
+                .addGap(42, 42, 42)
+                .addComponent(lbtrang)
+                .addGap(50, 50, 50)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lbsoluong, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -746,7 +746,9 @@ public class TTnhanVienView extends javax.swing.JPanel {
 
     private void tbNhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbNhanVienMouseClicked
         // TODO add your handling code here:
+        
         int row = tbNhanVien.getSelectedRow();
+        NhanVienViewModel nv=List.get(row);
         txtIDNhanVien.setText(tbNhanVien.getValueAt(row, 0).toString());
         txtMaNhanVien.setText(tbNhanVien.getValueAt(row, 1).toString());
         txtHoTenNV.setText(tbNhanVien.getValueAt(row, 2).toString());
@@ -757,8 +759,7 @@ public class TTnhanVienView extends javax.swing.JPanel {
         }
         cbCV.setSelectedItem(tbNhanVien.getValueAt(row, 4));
         txtDCNV.setText(tbNhanVien.getValueAt(row, 5).toString());
-        dateNSNV.setDate((Date) tbNhanVien.getValueAt(row, 6));
-
+        dateNSNV.setDate(nv.getNgaySinh());
         txtTKNV.setText(tbNhanVien.getValueAt(row, 7).toString());
         txtMKNV.setText(tbNhanVien.getValueAt(row, 8).toString());
         txtSDTNhanVien.setText(tbNhanVien.getValueAt(row, 9).toString());
