@@ -49,7 +49,6 @@ public class KhachHangView extends javax.swing.JPanel {
 
     private void fillDataKH(int index) {
         KhachHang kh = listKH.get(index);
-
         this.txtIdKH.setText(kh.getID().toString());
         this.txtMaKH.setText(kh.getMa());
         this.txtTenKH.setText(kh.getHoTen());

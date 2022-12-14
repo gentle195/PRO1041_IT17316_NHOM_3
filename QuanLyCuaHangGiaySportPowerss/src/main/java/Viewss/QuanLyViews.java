@@ -1114,35 +1114,15 @@ public class QuanLyViews extends javax.swing.JFrame {
                         HoaDonChiTiet hd = new HoaDonChiTiet();
                         try {
                             chiTietSPService.updatesl(CT, tbldssanpham.getValueAt(row, 1).toString());
-                            if (tblgiohang.getRowCount() == 0) {
-                                chiTietHoaDonViewModel.setMaSP((String) tbldssanpham.getValueAt(row, 1));
-                                chiTietHoaDonViewModel.setTenSP((String) tbldssanpham.getValueAt(row, 2));
-                                chiTietHoaDonViewModel.setSoLuong(Integer.valueOf(sl));
-                                chiTietHoaDonViewModel.setDonGia((BigDecimal) tbldssanpham.getValueAt(row, 3));
-                                hd.setSoLuong(Integer.valueOf(sl));
-                                hd.setDonGia((BigDecimal) tbldssanpham.getValueAt(row, 3));
-                                listhdct.add(chiTietHoaDonViewModel);
-                                listhdctt.add(hd);
-                                banHangService.addSanPham(tbldssanpham.getValueAt(row, 1).toString(), tbHoaDonBanHang.getValueAt(r, 1).toString(), hd);
-                            } else if (tblgiohang.getRowCount() > 0) {
-                                for (int i = 0; i < listhdct.size(); i++) {
-                                    if (tbldssanpham.getValueAt(row, 1).equals(listhdct.get(i).getMaSP())) {
-                                        listhdct.get(i).setSoLuong(listhdct.get(i).getSoLuong() + Integer.valueOf(sl));
-                                        banHangService.updatetrung(tbldssanpham.getValueAt(row, 1).toString(), listhdct.get(i).getSoLuong());
-                                    } else {
-                                        chiTietHoaDonViewModel.setMaSP((String) tbldssanpham.getValueAt(row, 1));
-                                        chiTietHoaDonViewModel.setTenSP((String) tbldssanpham.getValueAt(row, 2));
-                                        chiTietHoaDonViewModel.setSoLuong(Integer.valueOf(sl));
-                                        chiTietHoaDonViewModel.setDonGia((BigDecimal) tbldssanpham.getValueAt(row, 3));
-                                        hd.setSoLuong(Integer.valueOf(sl));
-                                        hd.setDonGia((BigDecimal) tbldssanpham.getValueAt(row, 3));
-                                        listhdct.add(chiTietHoaDonViewModel);
-                                        listhdctt.add(hd);
-                                        banHangService.addSanPham(tbldssanpham.getValueAt(row, 1).toString(), tbHoaDonBanHang.getValueAt(r, 1).toString(), hd);
-                                    }
-                                }
-                            }
-
+                            chiTietHoaDonViewModel.setMaSP((String) tbldssanpham.getValueAt(row, 1));
+                            chiTietHoaDonViewModel.setTenSP((String) tbldssanpham.getValueAt(row, 2));
+                            chiTietHoaDonViewModel.setSoLuong(Integer.valueOf(sl));
+                            chiTietHoaDonViewModel.setDonGia((BigDecimal) tbldssanpham.getValueAt(row, 3));
+                            hd.setSoLuong(Integer.valueOf(sl));
+                            hd.setDonGia((BigDecimal) tbldssanpham.getValueAt(row, 3));
+                            listhdct.add(chiTietHoaDonViewModel);
+                            listhdctt.add(hd);
+                            banHangService.addSanPham(tbldssanpham.getValueAt(row, 1).toString(), tbHoaDonBanHang.getValueAt(r, 1).toString(), hd);
                             addTableGioHang(listhdct);
                             loadTableChiTietSPBH(chiTietSPService.all(start, end));
                             if (tblgiohang.getRowCount() > 0) {
@@ -1161,35 +1141,16 @@ public class QuanLyViews extends javax.swing.JFrame {
                         CT.setTrangThai(0);
                         HoaDonChiTiet hd = new HoaDonChiTiet();
                         try {
-                           chiTietSPService.updatesl(CT, tbldssanpham.getValueAt(row, 1).toString());
-                            if (tblgiohang.getRowCount() == 0) {
-                                chiTietHoaDonViewModel.setMaSP((String) tbldssanpham.getValueAt(row, 1));
-                                chiTietHoaDonViewModel.setTenSP((String) tbldssanpham.getValueAt(row, 2));
-                                chiTietHoaDonViewModel.setSoLuong(Integer.valueOf(sl));
-                                chiTietHoaDonViewModel.setDonGia((BigDecimal) tbldssanpham.getValueAt(row, 3));
-                                hd.setSoLuong(Integer.valueOf(sl));
-                                hd.setDonGia((BigDecimal) tbldssanpham.getValueAt(row, 3));
-                                listhdct.add(chiTietHoaDonViewModel);
-                                listhdctt.add(hd);
-                                banHangService.addSanPham(tbldssanpham.getValueAt(row, 1).toString(), tbHoaDonBanHang.getValueAt(r, 1).toString(), hd);
-                            } else if (tblgiohang.getRowCount() > 0) {
-                                for (int i = 0; i < listhdct.size(); i++) {
-                                    if (tbldssanpham.getValueAt(row, 1).equals(listhdct.get(i).getMaSP())) {
-                                        listhdct.get(i).setSoLuong(listhdct.get(i).getSoLuong() + Integer.valueOf(sl));
-                                        banHangService.updatetrung(tbldssanpham.getValueAt(row, 1).toString(), listhdct.get(i).getSoLuong());
-                                    } else {
-                                        chiTietHoaDonViewModel.setMaSP((String) tbldssanpham.getValueAt(row, 1));
-                                        chiTietHoaDonViewModel.setTenSP((String) tbldssanpham.getValueAt(row, 2));
-                                        chiTietHoaDonViewModel.setSoLuong(Integer.valueOf(sl));
-                                        chiTietHoaDonViewModel.setDonGia((BigDecimal) tbldssanpham.getValueAt(row, 3));
-                                        hd.setSoLuong(Integer.valueOf(sl));
-                                        hd.setDonGia((BigDecimal) tbldssanpham.getValueAt(row, 3));
-                                        listhdct.add(chiTietHoaDonViewModel);
-                                        listhdctt.add(hd);
-                                        banHangService.addSanPham(tbldssanpham.getValueAt(row, 1).toString(), tbHoaDonBanHang.getValueAt(r, 1).toString(), hd);
-                                    }
-                                }
-                            }
+                            chiTietSPService.updatesl(CT, tbldssanpham.getValueAt(row, 1).toString());
+                            chiTietHoaDonViewModel.setMaSP((String) tbldssanpham.getValueAt(row, 1));
+                            chiTietHoaDonViewModel.setTenSP((String) tbldssanpham.getValueAt(row, 2));
+                            chiTietHoaDonViewModel.setSoLuong(Integer.valueOf(sl));
+                            chiTietHoaDonViewModel.setDonGia((BigDecimal) tbldssanpham.getValueAt(row, 3));
+                            hd.setSoLuong(Integer.valueOf(sl));
+                            hd.setDonGia((BigDecimal) tbldssanpham.getValueAt(row, 3));
+                            listhdct.add(chiTietHoaDonViewModel);
+                            listhdctt.add(hd);
+                            banHangService.addSanPham(tbldssanpham.getValueAt(row, 1).toString(), tbHoaDonBanHang.getValueAt(r, 1).toString(), hd);
                             addTableGioHang(listhdct);
                             loadTableChiTietSPBH(chiTietSPService.all(start, end));
                             if (tblgiohang.getRowCount() > 0) {
