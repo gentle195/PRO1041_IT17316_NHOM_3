@@ -170,8 +170,7 @@ public class QuanLyViews extends javax.swing.JFrame {
                     .setMarginBottom(30f)
                     .setFontSize(30f)
                     .setBorder(Border.NO_BORDER));
-            table.addCell(new Cell().add("Mã hóa đơn: "
-                    + txtMaHdBH.getText()).setTextAlignment(TextAlignment.RIGHT)
+            table.addCell(new Cell().add("Mã hóa đơn: "+ txtMaHdBH.getText()).setTextAlignment(TextAlignment.RIGHT)
                     .setMarginTop(30f)
                     .setMarginBottom(30f)
                     .setBorder(Border.NO_BORDER)
@@ -187,7 +186,7 @@ public class QuanLyViews extends javax.swing.JFrame {
             customerInforTable.addCell(new Cell().add(txttenkh.getText()).setBorder(Border.NO_BORDER));
             customerInforTable.addCell(new Cell().add("Số điện thoại:").setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT));
             customerInforTable.addCell(new Cell().add(txtSDTKhachHang.getText()).setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT));
-            customerInforTable.addCell(new Cell().add("HT Thanh Toán:").setBorder(Border.NO_BORDER));
+            customerInforTable.addCell(new Cell().add("Thanh toán:").setBorder(Border.NO_BORDER));
             customerInforTable.addCell(new Cell().add(hinhThucThanhToan()).setBorder(Border.NO_BORDER));
             customerInforTable.addCell(new Cell().add("Ngày thanh toán:").setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT));
             customerInforTable.addCell(new Cell().add(LBtime.getText()).setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT));
@@ -390,7 +389,7 @@ public class QuanLyViews extends javax.swing.JFrame {
         panelTong.setLayout(new java.awt.CardLayout());
 
         pnlBanHang.setBackground(new java.awt.Color(255, 255, 255));
-        pnlBanHang.setPreferredSize(new java.awt.Dimension(1070, 750));
+        pnlBanHang.setPreferredSize(new java.awt.Dimension(1220, 750));
 
         jPanel15.setBackground(new java.awt.Color(255, 255, 255));
         jPanel15.setPreferredSize(new java.awt.Dimension(1070, 760));
@@ -833,12 +832,12 @@ public class QuanLyViews extends javax.swing.JFrame {
                                     .addComponent(txtTienDu1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel54Layout.createSequentialGroup()
                                 .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(LBtime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(LBtime, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel54Layout.createSequentialGroup()
                         .addGap(143, 143, 143)
                         .addComponent(btnthanhtoan2)))
-                .addGap(113, 113, 113))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel54Layout.setVerticalGroup(
             jPanel54Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1085,12 +1084,14 @@ public class QuanLyViews extends javax.swing.JFrame {
     private void btnthemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnthemActionPerformed
         // TODO add your handling code here:
         int row = this.tbldssanpham.getSelectedRow();
+        int row2 = this.tbHoaDonBanHang.getSelectedRow();
         if (row == -1) {
             JOptionPane.showMessageDialog(this, "Mời chọn sản phẩm cần thêm");
             return;
         }
-        if (txtMaHdBH.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Mời chọn hóa đơn");
+         if (row2 == -1) {
+            JOptionPane.showMessageDialog(this, "Mời chọn hoá đơn");
+            return;
         } else {
             int ro = tblgiohang.getSelectedRow();
             int r = tbHoaDonBanHang.getSelectedRow();
@@ -1234,10 +1235,11 @@ public class QuanLyViews extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Vui lòng chọn trong dòng");
             return;
         }
+
         int bb = JOptionPane.showConfirmDialog(this, "Bạn muốn thanh toán không ?", "Có", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION);
         if (bb == JOptionPane.YES_OPTION) {
             String ma = txtSDTKhachHang.getText();
-            String ma1 = txtMaNhanVien.getText();
+
             if (txtSDTKhachHang.getText().equals("")) {
                 JOptionPane.showMessageDialog(this, "Số điện thoại khách đang trống");
                 return;
@@ -1259,7 +1261,9 @@ public class QuanLyViews extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Tiền khách trả phải là số");
                 return;
             }
+
             hd.setMaHD(txtMaHdBH.getText());
+            String ma1 = txtMaNhanVien.getText();
             hd.setNgayThanhToan(new Date());
             hd.setTenNguoiNhan(txttenkh.getText());
             hd.setSDT(txtSDTKhachHang.getText());
@@ -1286,14 +1290,14 @@ public class QuanLyViews extends javax.swing.JFrame {
         } else {
             return;
         }
-        int tb = JOptionPane.showConfirmDialog(this, "Có in ra hoá đơn", "Thông báo", JOptionPane.YES_NO_OPTION);
-        if (tb == JOptionPane.YES_OPTION) {
-            exportBill();
+       int tb = JOptionPane.showConfirmDialog(this, "Có in ra hoá đơn", "Thông báo", JOptionPane.YES_NO_OPTION);
+       if (tb == JOptionPane.YES_OPTION) {
+           exportBill();
         } else if (tb == JOptionPane.NO_OPTION) {
+          return;
+       } else {
             return;
-        } else {
-            return;
-        }
+       }
 
     }//GEN-LAST:event_btnthanhtoan2ActionPerformed
 

@@ -407,11 +407,9 @@ public class HangGiayView extends javax.swing.JFrame {
     }//GEN-LAST:event_tbHangMouseClicked
 
     private void btnXoa5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoa5ActionPerformed
-        // TODO add your handling code here:
-        
+        // TODO add your handling code here:     
         List<HangGiay> hang = hangGiayService.all();
         ChiTietSanPhamView.cbHang.setModel(new DefaultComboBoxModel((hang.toArray())));
-
         ChiTietSanPhamView ql = new ChiTietSanPhamView();
         ql.setVisible(true);
         this.dispose();
