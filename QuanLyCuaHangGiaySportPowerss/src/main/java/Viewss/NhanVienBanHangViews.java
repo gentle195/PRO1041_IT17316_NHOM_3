@@ -980,7 +980,7 @@ public class NhanVienBanHangViews extends javax.swing.JFrame {
 
     private void btnxoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnxoaActionPerformed
         // TODO add your handling code here:
-         int row = tblgiohang.getSelectedRow();
+        int row = tblgiohang.getSelectedRow();
         if (row == -1) {
             JOptionPane.showMessageDialog(this, "Mời chọn sản phẩm cần sửa");
             return;
@@ -1076,7 +1076,7 @@ public class NhanVienBanHangViews extends javax.swing.JFrame {
 
     private void btnthemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnthemActionPerformed
         // TODO add your handling code here:
-         int row = this.tbldssanpham.getSelectedRow();
+        int row = this.tbldssanpham.getSelectedRow();
         if (row == -1) {
             JOptionPane.showMessageDialog(this, "Mời chọn sản phẩm cần thêm");
             return;
@@ -1168,7 +1168,7 @@ public class NhanVienBanHangViews extends javax.swing.JFrame {
 
     private void tbHoaDonBanHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbHoaDonBanHangMouseClicked
         // TODO add your handling code here:
-      int row = tbHoaDonBanHang.getSelectedRow();
+        int row = tbHoaDonBanHang.getSelectedRow();
         txtMaHdBH.setText(tbHoaDonBanHang.getValueAt(row, 1).toString());
         LBtime.setText(tbHoaDonBanHang.getValueAt(row, 2).toString());
 
@@ -1220,7 +1220,7 @@ public class NhanVienBanHangViews extends javax.swing.JFrame {
     }
     private void btnthanhtoan2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnthanhtoan2ActionPerformed
         // TODO add your handling code here:
-      Date date = new Date(System.currentTimeMillis());
+        Date date = new Date(System.currentTimeMillis());
         HoaDon hd = new HoaDon();
         int row = tbHoaDonBanHang.getSelectedRow();
         if (row == -1) {
@@ -1230,7 +1230,6 @@ public class NhanVienBanHangViews extends javax.swing.JFrame {
         int bb = JOptionPane.showConfirmDialog(this, "Bạn muốn thanh toán không ?", "Có", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION);
         if (bb == JOptionPane.YES_OPTION) {
             String ma = txtSDTKhachHang.getText();
-            String ma1 = txtMaNhanVien.getText();
             if (txtSDTKhachHang.getText().equals("")) {
                 JOptionPane.showMessageDialog(this, "Số điện thoại khách đang trống");
                 return;
@@ -1252,6 +1251,7 @@ public class NhanVienBanHangViews extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Tiền khách trả phải là số");
                 return;
             }
+            String ma1 = txtMaNhanVien.getText();
             hd.setMaHD(txtMaHdBH.getText());
             hd.setNgayThanhToan(new Date());
             hd.setTenNguoiNhan(txttenkh.getText());

@@ -416,8 +416,6 @@ public class SanPhamView extends javax.swing.JFrame {
         // TODO add your handling code here:
         List<SanPham> sp1 = SanPhamService.all();
         ChiTietSanPhamView.cbTenSP.setModel(new DefaultComboBoxModel((sp1.toArray())));
-
-        
         ChiTietSanPhamView ql = new ChiTietSanPhamView();
         ql.setVisible(true);
         this.dispose();
